@@ -50,8 +50,8 @@ Para mantener el ritmo de desarrollo ágil sin reuniones interminables, los día
 
 | Área / Rol | Responsables Principales | Foco de Entrega en el Sprint |
 | :--- | :--- | :--- |
-| **Desarrollo Frontend** | Dev Frontend | Next.js en `opina-front`, vistas mobile-first, conexión API, Vercel |
-| **Desarrollo Backend** | Dev Backend / Python | FastAPI en `opina-back`, generación de QRs dinámicos, endpoints REST |
+| **Desarrollo Frontend** | Dev Frontend | Next.js en `scansaydone-front`, vistas mobile-first, conexión API, Vercel |
+| **Desarrollo Backend** | Dev Backend / Python | FastAPI en `scansaydone-back`, generación de QRs dinámicos, endpoints REST |
 | **Datos & Analytics** | Especialista de Datos | Modelo de cálculo NPS, queries analíticas, pipeline de métricas |
 | **Ciberseguridad** | Seguridad Informática | Anti-spam, rate limiting, anonimización y protección de datos |
 | **UX / UI Design** | Diseñador UX/UI | Flujo de escaneo ultra rápido (< 30s), wireframes del dashboard de MiPymes |

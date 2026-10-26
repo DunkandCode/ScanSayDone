@@ -76,8 +76,8 @@ Un **Monorepo** es un único repositorio de GitHub que contiene varias aplicacio
 En nuestro repositorio `ScanSayDone` tenemos esta estructura:
 ```text
 ScanSayDone/             <-- Raíz del repositorio
-├── opina-front/        <-- Aplicación web (Next.js / React) -> Va en Vercel
-├── opina-back/         <-- API y backend (FastAPI / Python)  -> Va en Render/Railway
+├── scansaydone-front/        <-- Aplicación web (Next.js / React) -> Va en Vercel
+├── scansaydone-back/         <-- API y backend (FastAPI / Python)  -> Va en Render/Railway
 └── docs/               <-- Documentación del equipo
 ```
 
@@ -87,7 +87,7 @@ ScanSayDone/             <-- Raíz del repositorio
 - **Vercel es una plataforma para Frontend** (especializada en Next.js, React, Vue, etc.).
 - Cuando conectas un repositorio de GitHub a Vercel, Vercel asume por defecto que el proyecto web está en la **raíz (`/`)**.
 - Vercel busca en la raíz un archivo llamado `package.json` para ejecutar `npm install` y `npm run build`.
-- **El problema:** En la raíz de `ScanSayDone` **no hay ningún archivo `package.json`**, porque todo el código de Next.js vivirá dentro de la subcarpeta `opina-front/`.
+- **El problema:** En la raíz de `ScanSayDone` **no hay ningún archivo `package.json`**, porque todo el código de Next.js vivirá dentro de la subcarpeta `scansaydone-front/`.
 - Si lo dejas como está, Vercel intentará construir desde `/` y arrojará el error:  
   `Error: No Next.js or package.json found in root directory`.
 
@@ -95,7 +95,7 @@ ScanSayDone/             <-- Raíz del repositorio
 
 ### 3. Solución: Configurar el "Root Directory" en Vercel (Paso a Paso)
 
-Debemos indicarle a Vercel: *"No leas la raíz del repositorio, entra únicamente a la carpeta `opina-front`"*.
+Debemos indicarle a Vercel: *"No leas la raíz del repositorio, entra únicamente a la carpeta `scansaydone-front`"*.
 
 1. Inicia sesión en [vercel.com](https://vercel.com) y entra al proyecto de **ScanSayDone**.
 2. En la barra superior de navegación, haz clic en **Settings**.
@@ -105,18 +105,18 @@ Debemos indicarle a Vercel: *"No leas la raíz del repositorio, entra únicament
 6. Haz clic en el botón **Edit**.
 7. Escribe exactamente:
    ```text
-   opina-front
+   scansaydone-front
    ```
-   *(Si Vercel te muestra un botón para seleccionar la carpeta, simplemente elige `opina-front`).*
+   *(Si Vercel te muestra un botón para seleccionar la carpeta, simplemente elige `scansaydone-front`).*
 8. Haz clic en **Save**.
 
 ---
 
 ### 4. ¿Por qué el despliegue no funcionará de inmediato y cuándo empezará a funcionar?
-Actualmente la carpeta `opina-front` solo tiene un archivo `README.md`. Aún no tiene código de Next.js instalado.
+Actualmente la carpeta `scansaydone-front` solo tiene un archivo `README.md`. Aún no tiene código de Next.js instalado.
 
 - **Ahora:** Si Vercel intenta compilar, no encontrará archivos de código web aún.
-- **Cuándo funcionará:** En cuanto el responsable del **Issue #2 (`feat(front): Setup de Next.js`)** ejecute la inicialización de Next.js dentro de `opina-front/` y suba los cambios a GitHub.
+- **Cuándo funcionará:** En cuanto el responsable del **Issue #2 (`feat(front): Setup de Next.js`)** ejecute la inicialización de Next.js dentro de `scansaydone-front/` y suba los cambios a GitHub.
 - A partir de ese momento, **cada vez que alguien haga un commit o un Pull Request en el frontend**, Vercel compilará automáticamente y les dará un enlace público funcional (ej. `scansaydone.vercel.app`) para probar la app en vivo.
 
 ---
@@ -128,5 +128,5 @@ Actualmente la carpeta `opina-front` solo tiene un archivo `README.md`. Aún no 
 | **Crear Issues #1, #2, #3, #4** | GitHub | ✅ **Hecho** (ya están en el repo) |
 | **Crear Tablero "Board"** | [github.com/.../projects](https://github.com/DunkandCode/ScanSayDone/projects) | ⏳ Pendiente (hacer clic en "New project") |
 | **Agregar Issues al Tablero** | En la columna Todo (`+ Add item` -> `#`) | ⏳ Pendiente tras crear el tablero |
-| **Cambiar Root Directory a `opina-front`** | En [vercel.com](https://vercel.com) -> Settings -> General | ⏳ Pendiente |
-| **Inicializar Next.js en `opina-front`** | En el Issue #2 | ⏳ Pendiente de desarrollo |
+| **Cambiar Root Directory a `scansaydone-front`** | En [vercel.com](https://vercel.com) -> Settings -> General | ⏳ Pendiente |
+| **Inicializar Next.js en `scansaydone-front`** | En el Issue #2 | ⏳ Pendiente de desarrollo |
