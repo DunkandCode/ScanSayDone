@@ -42,3 +42,11 @@ Thumbs.db
 
 # Temp & Artifacts
 repomix-output.xml
+
+# Claude Code
+.claude/
+claude/
+CLAUDE.md
+CLAUDE.local.md
+.claude.json
+.mcp.json
