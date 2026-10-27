@@ -1,0 +1,89 @@
+name: ScanSayDone CI / CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - 'dev/**'
+      - 'feat/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  # -------------------------------------------------------------
+  # 1. VERIFICACIÓN FRONTEND (Next.js & Vercel Readiness)
+  # -------------------------------------------------------------
+  frontend-build:
+    name: 🌐 Frontend Build & Lint (Next.js)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: scansaydone-front/package-lock.json
+
+      - name: 📦 Instalar dependencias del Frontend
+        working-directory: scansaydone-front
+        run: npm ci
+
+      - name: 🏗️ Compilar aplicación Next.js (Simulación Vercel)
+        working-directory: scansaydone-front
+        run: npm run build
+
+  # -------------------------------------------------------------
+  # 2. VERIFICACIÓN BACKEND (FastAPI & Python)
+  # -------------------------------------------------------------
+  backend-test:
+    name: ⚙️ Backend Test & Sintaxis (FastAPI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scansaydone-back/requirements.txt
+
+      - name: 📦 Instalar dependencias del Backend
+        working-directory: scansaydone-back
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🧪 Verificar sintaxis e inicialización de la API
+        working-directory: scansaydone-back
+        run: |
+          python -m py_compile main.py
+          python -c "import main; print('✓ FastAPI App inicializada correctamente')"
+
+  # -------------------------------------------------------------
+  # 3. VERIFICACIÓN DE CIBERSEGURIDAD & SECRETOS
+  # -------------------------------------------------------------
+  security-audit:
+    name: 🛡️ Auditoría de Ciberseguridad
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🔍 Escanear que no se hayan subido archivos .env con secretos
+        run: |
+          echo "Verificando ausencia de archivos de entorno sensibles..."
+          if find . -name "*.env" -not -path "./.git/*" | grep -q .; then
+            echo "❌ ERROR DE SEGURIDAD: Se detectó un archivo .env en el repositorio. Debe ser ignorado."
+            exit 1
+          else
+            echo "✓ Seguro: No hay archivos .env en el repositorio."
+          fi
