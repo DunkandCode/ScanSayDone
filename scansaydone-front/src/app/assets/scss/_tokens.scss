@@ -1,0 +1,163 @@
+// ==========================================================================
+// _tokens.scss — Fuente unica de verdad para colores de marca.
+// REGLA: Prohibido hex fuera de este archivo (y _brand-vars.scss).
+//        Cualquier color nuevo se declara en _brand-vars.scss como primitivo
+//        y se consume via variable Sass o custom property aqui.
+// ==========================================================================
+
+// Fuentes: Bebas Neue y Montserrat se cargan via next/font/google en layout.js
+// (self-hosted, sin red en runtime). Las variables CSS --font-bebas y
+// --font-montserrat las inyecta next/font en el elemento <html>.
+
+// --------------------------------------------------------------------------
+// 0. IMPORT de la fuente unica de color (Sass vars, sin CSS emitido)
+// --------------------------------------------------------------------------
+@use "brand-vars" as bv;
+
+// --------------------------------------------------------------------------
+// 1. PRIMITIVOS — CSS custom properties en :root
+// --------------------------------------------------------------------------
+:root {
+  // Marca (valores desde bv.* — cero hex duplicados)
+  --brand-coral:   #{bv.$coral};
+  --brand-plum:    #{bv.$plum};
+  --brand-cream:   #{bv.$cream};
+  --brand-mustard: #{bv.$mustard};
+  --brand-peach:   #{bv.$peach};
+  --brand-white:   #{bv.$white};
+  --brand-ink:     #{bv.$ink};
+  --text-2:        #{bv.$text-2};
+
+  // Estados
+  --state-ok:   #{bv.$ok};
+  --state-warn: #{bv.$warn};
+  --state-err:  #{bv.$err};
+
+  // Borde y enlace
+  --border:        color-mix(in srgb, #{bv.$plum} 14%, #{bv.$cream});
+  --border-strong: color-mix(in srgb, #{bv.$plum} 50%, #{bv.$cream}); // WCAG: 3.03:1 vs cream, 3.18:1 vs white (≥3.0 ✓)
+  --link:          #{bv.$link};
+
+  // Variantes para superficies calidas (--grad-warm). El enlace base falla AA
+  // sobre la parada profunda (4.20); esta mezcla da 5.98 / 5.46.
+  --link-on-warm:  color-mix(in srgb, var(--link) 75%, var(--brand-plum));
+
+  // Limite de control sobre ambar: --border-strong solo llega a 2.52 (1.4.11 pide 3).
+  // Al 60% de ciruela da 3.36 / 3.06.
+  --border-on-warm: color-mix(in srgb, var(--brand-plum) 60%, var(--brand-cream));
+
+  // --------------------------------------------------------------------------
+  // 2. SEMANTICOS
+  // --------------------------------------------------------------------------
+  --bg:             #{bv.$cream};
+  --surface:        #{bv.$white};
+  // PANEL-UX §8: superficie pasiva (tracks, esqueletos, hover ghost). Nunca texto ni señal.
+  --surface-2:      color-mix(in srgb, #{bv.$plum} 5%, #{bv.$white});
+  --text-1:         #{bv.$plum};
+  --action-bg:      #{bv.$coral};
+  --action-text:    #{bv.$plum};
+  --focus-ring:     #{bv.$plum};
+  --sidebar:        #{bv.$plum};
+
+  // Zona navbar (fuente: VERIFICACION-F0-F1.md #1, V1)
+  --nav-fg:           #{bv.$cream};   /* navbar fg sobre banda oscura/foto (transparent) */
+  --nav-fg--sticky:   #{bv.$plum};    /* navbar fg sticky sobre crema */
+
+  // Sombras
+  --shadow-card:       0 8px 24px rgba(46,30,63,.10);
+  --shadow-card-hover: 0 12px 32px rgba(46,30,63,.14);
+
+  // Shape
+  --radius-card: .75rem;
+
+  // Motion
+  --dur-micro: 150ms;
+  --ease-ui:   cubic-bezier(.4,0,.2,1);
+  --ease-out:  cubic-bezier(.16,1,.3,1);
+
+  // --------------------------------------------------------------------------
+  // 3. BAND / SPACING TOKENS (F1.2 / item 19)
+  // --------------------------------------------------------------------------
+  --band-y-d: 100px;
+  --band-y-m: 60px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 24px;
+  --sp-5: 32px;
+  --sp-6: 48px;
+  --sp-7: 64px;
+
+  // --------------------------------------------------------------------------
+  // 4. GRADIENTES (fuente: opendesign/EFECTOS-Y-MOTION.md §2.1)
+  // --------------------------------------------------------------------------
+  --grad-brand:   linear-gradient(135deg, #{bv.$coral} 0%, #{bv.$plum} 100%);
+  --grad-surface: linear-gradient(180deg, #{bv.$cream} 0%, #{bv.$white} 100%);
+
+  // Glow radial decorativo para el hero (F8.5)
+  --glow-hero: radial-gradient(70% 70% at 18% 6%, color-mix(in srgb, #{bv.$coral} 28%, transparent), transparent 72%);
+
+  // login v2 (LOGIN-UX §11) — 4 tokens nuevos, ninguno existente se modifica
+  --grad-plum-deep: linear-gradient(165deg, color-mix(in srgb, var(--brand-plum) 82%, black) 0%, var(--brand-plum) 55%, color-mix(in srgb, var(--brand-coral) 7%, var(--brand-plum)) 100%);
+  --glow-corner: radial-gradient(55% 55% at 86% 94%, color-mix(in srgb, var(--brand-coral) 12%, transparent) 0%, transparent 70%);
+  --edge-lit: color-mix(in srgb, var(--brand-cream) 22%, transparent);
+  --shadow-lift: 0 2px 6px color-mix(in srgb, black 30%, transparent), 0 18px 44px color-mix(in srgb, black 45%, transparent);
+
+  // Fondo calido del login (variante vidrio de la referencia, 05-nov-2026).
+  // Las tres paradas son MAS PROFUNDAS que la tarjeta: si el fondo fuese mas
+  // claro que el vidrio, el canto se hundiria y la tarjeta se veria opaca.
+  // Profundizado el 05-nov tras detectar que al 26/36/46% la tarjeta no se
+  // percibia translucida: no habia contraste de valor entre fondo y vidrio.
+  --grad-warm: linear-gradient(168deg,
+    color-mix(in srgb, var(--brand-mustard) 38%, var(--bg)) 0%,
+    color-mix(in srgb, var(--brand-mustard) 46%, var(--bg)) 50%,
+    color-mix(in srgb, var(--brand-mustard) 54%, var(--bg)) 100%);
+
+  // Tinte arcilla: mostaza 60% + coral 40%. Es el tono que separa el lado derecho
+  // del ambar del izquierdo SIN caer en rosa: derivar solo del coral daba salmón.
+  --tint-clay: color-mix(in srgb, var(--brand-mustard) 60%, var(--brand-coral));
+
+  // Fondo calido del lado derecho del login (contenedor del panel simulado).
+  // Arena/arcilla: mas cercano a la referencia que el rosa del primer intento.
+  // Contraste entre mitades en el empalme: 1.03 arriba y 1.07 abajo -> escalon
+  // de tono, no de luz. Sobre la parada profunda: ciruela 11.43, texto-2 4.95 (AA).
+  --grad-warm-2: linear-gradient(168deg,
+    color-mix(in srgb, var(--tint-clay) 20%, var(--bg)) 0%,
+    color-mix(in srgb, var(--tint-clay) 26%, var(--bg)) 52%,
+    color-mix(in srgb, var(--tint-clay) 32%, var(--bg)) 100%);
+
+  // Sombra de la tarjeta de vidrio: tenue y calida (ciruela, no negro).
+  // Sobre fondo claro una sombra negra se ve sucia; y con 8/16% no se percibia.
+  --shadow-glass: 0 2px 6px color-mix(in srgb, var(--brand-plum) 10%, transparent),
+                  0 18px 44px color-mix(in srgb, var(--brand-plum) 20%, transparent);
+
+  // Vidrio de las tarjetas de canal (CANALES-UX §4). Cero hex: crema con alpha.
+  // Va sobre la banda --grad-warm, que es la masa de color que hace legible el vidrio.
+  --grad-glass: linear-gradient(180deg,
+    color-mix(in srgb, var(--brand-cream) 78%, transparent) 0%,
+    color-mix(in srgb, var(--brand-cream) 64%, transparent) 100%);
+}
+
+// --------------------------------------------------------------------------
+// 6. ACCESIBILIDAD — prefers-reduced-motion
+// Excepcion declarada: `!important` es el patron estandar de esta media query.
+// No contradice la regla de "cero !important nuevos" para layout ni color.
+// --------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 5. VARIABLES SASS — para partials existentes que usan $primary, $dark, etc.
+//    Los partials hacen @use "variables" as *; y obtienen estos valores.
+// --------------------------------------------------------------------------
+$primary: bv.$coral;
+$dark:    bv.$plum;
+$light:   bv.$cream;

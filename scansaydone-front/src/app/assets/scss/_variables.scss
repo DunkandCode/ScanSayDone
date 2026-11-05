@@ -1,0 +1,113 @@
+//
+// variables.scss
+//
+@use "sass:color";
+@use "tokens" as t;
+@use "brand-vars" as bv;
+
+// Color
+$white:                     #ffffff;
+
+$primary:                   t.$primary;
+$secondary:                 bv.$secondary;
+$success:                   bv.$ok;
+$warning:                   bv.$warn;
+$info:                      bv.$text-2;
+$danger:                    bv.$err;
+$dark:                      t.$dark;
+$black:                     #161c2d;
+$muted:                     #94a3b8;
+$light:                     t.$light;
+
+// Gray
+$gray-100:                  #f8f9fa;
+$gray-200:                  #f1f5f9;
+$gray-300:                  #dee2e6;
+$gray-400:                  #ced4da;
+$gray-500:                  #adb5bd;
+$gray-600:                  #6c757d; 
+$gray-700:                  #495057;
+
+//Body Background
+$shadow:                    0 0 3px rgba($dark,.15);
+$shadow-md:                 0 5px 13px rgba($dark, .2);
+$shadow-lg:                 0 10px 15px -3px rgba($dark, .1), 0 4px 6px -2px rgba($dark, .05);
+
+// Base font
+$font-size-base:            16px;
+
+$font-family-base:          var(--font-montserrat, 'Montserrat', system-ui, sans-serif);
+$font-family-secondary:     var(--font-montserrat, 'Montserrat', system-ui, sans-serif);
+$font-family-display:       var(--font-bebas, 'Bebas Neue', Impact, sans-serif);
+
+// Overlay
+$overlay:                   rgba($dark, 0.65);
+$linear-gradient-2:         linear-gradient(to bottom, rgba($black, 0) 0%, rgba($black, 0.3) 50%, rgba($black, 0.7) 75%, rgba($black, 1) 100%);
+$gradient-overlay:          linear-gradient(to bottom, rgba($black, 0.4) 0%, rgba($black, 0.6) 25%, rgba($black, 0.8) 50%, rgba($black, 1) 100%);
+$gradient-overlay-2:        linear-gradient(
+                            to right bottom,
+                            rgba($black, 0.4) 0%,
+                            rgba($black, 0.6) 33.33%,
+                            color.adjust($primary, $lightness: -20%) 66.66%,
+                            color.adjust($primary, $lightness: -20%) 100%
+                            );
+$card-overlay:              linear-gradient(to bottom, transparent 0%, transparent 25%, transparent 35%, rgba($black, 0.9) 100%);
+$gradient-primary:          linear-gradient(to top left, rgba($primary, 1) 0%, rgba($danger, 1) 100%);
+
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "warning": $warning,
+    "info": $info,
+    "danger": $danger,
+    "dark": $dark,
+    "muted": $muted,
+    "light": $light,
+);
+
+// WCAG AA text colors for solid buttons (bg=color, text=plum or white).
+// Ratio = contrast(bg, text). Must be ≥4.5:1 (normal text).
+$btn-text: (
+    "primary":   $dark,       // bg #FF5F44  vs plum → 5.07:1 ✓
+    "secondary": $white,      // bg $secondary  vs white → 5.22:1 ✓
+    "success":   $white,      // bg #1B7A4D  vs white → 5.33:1 ✓
+    "warning":   $white,      // bg #986A1E  vs white → 4.75:1 ✓
+    "info":      $white,      // bg #65586E  vs white → 6.62:1 ✓
+    "danger":    $white,      // bg #A82E39  vs white → 6.74:1 ✓
+    "dark":      $white,      // bg #2E1E3F  vs white → 15.29:1 ✓
+    "muted":     $dark,       // bg #94a3b8  vs plum → 5.96:1 ✓
+    "light":     $dark,       // bg #FFF8F2  vs plum → 14.53:1 ✓
+);
+
+// WCAG AA text colors for soft buttons (bg=5% tint on cream, text=variant color or plum).
+// Use original color only if its ratio on the soft bg ≥4.5; otherwise use $dark (plum).
+$btn-soft-text: (
+    "primary":   $dark,       // soft bg ~#fff0e9, plum text → 13.75:1 ✓  (original coral → 2.70:1 ✗)
+    "secondary": $secondary,  // soft bg ~#f7f1ed, $secondary text → 4.66:1 ✓ (original passes)
+    "success":   $success,    // soft bg ~#f4f2ea, #1B7A4D text → 4.76:1 ✓ (original passes)
+    "warning":   $dark,       // soft bg ~#faf1e7, plum text → 14.08:1 ✓  (original #986A1E → 4.26:1 ✗)
+    "info":      $info,       // soft bg ~#f7f0eb, #65586E text → 5.87:1 ✓ (original passes)
+    "danger":    $danger,     // soft bg ~#fbede9, #A82E39 text → 5.94:1 ✓ (original passes)
+    "dark":      $dark,       // soft bg ~#f5ede9, plum text → 13.23:1 ✓  (original $dark → 2.77:1 ✗)
+    "muted":     $dark,       // soft bg ~#faf4ef, plum text → 14.01:1 ✓  (original #94a3b8 → 2.07:1 ✗)
+    "light":     $dark,       // soft bg ~#fff8f2, plum text → 14.53:1 ✓  (original $light → 1.05:1 ✗)
+);
+
+$heading-font-sizes: (
+    "h1, .fs-1": 42px,
+    "h2, .fs-2": 36px,
+    "h3, .fs-3": 28px,
+    "h4, .fs-4": 22px,
+    "h5, .fs-5": 18px,
+    "h6, .fs-6": 15px,
+);
+
+$display-font-sizes: (
+    "display-1": 80px,
+    "display-2": 72px,
+    "display-3": 64px,
+    "display-4": 56px,
+    "display-5": 48px,
+    "display-6": 40px,
+)

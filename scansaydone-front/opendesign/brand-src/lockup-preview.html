@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCAN-SAY-DONE — lockup preview (composición HTML)</title>
+<style>
+  /* Tokens medidos de brand-src (no inventados): crema/ciruela/coral/tinta. */
+  :root{
+    --crema:#FFF8F2; --ciruela:#2E1E3F; --tinta:#000014; --coral:#FF5F44;
+    --hair:1px solid rgba(46,30,63,.25);
+    --display:'Bebas Neue','Oswald','Arial Narrow','Haettenschweiler',Impact,sans-serif;
+    --body:'Montserrat','Segoe UI',Tahoma,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--crema);color:var(--tinta);font-family:var(--body);line-height:1.5}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 32px 96px}
+  header{border-bottom:2px solid var(--ciruela);padding-bottom:20px;margin-bottom:24px}
+  h1{font-family:var(--display);font-weight:400;font-size:44px;line-height:.95;letter-spacing:.02em;text-transform:uppercase}
+  h1 .say{color:var(--coral)}
+  .kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ciruela);margin-bottom:10px}
+  .aviso{border:2px solid var(--coral);padding:14px 16px;margin:24px 0;font-size:13px;font-weight:600}
+  .aviso b{color:var(--coral)}
+  section{border-bottom:var(--hair);padding:36px 0}
+  .label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ciruela);margin-bottom:6px}
+  .num{font-family:var(--display);font-size:28px;color:var(--coral);vertical-align:-4px;margin-right:8px}
+  h2{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px;display:inline}
+  .card{border:var(--hair);padding:40px;display:flex;align-items:center;justify-content:center;margin-top:16px}
+  .card.dark{background:var(--ciruela);border-color:transparent}
+  /* Lockup = isotipo (currentColor) + texto vivo. Gap y alturas proporcionales
+     medidas en logoScanCoral.png: wordmark ≈0.57×H isotipo · gap ≈0.19×H · bajada ≈0.12×H */
+  /* OJO: la caja del isotipo (128) incluye margen uniforme -> el contenido mide
+     el 85 % de la caja. Los ratios medidos en el PNG (0,57 / 0,19 / 0,13) se
+     aplican sobre el contenido: box x 0,85. */
+  .lockup{display:inline-flex;align-items:center;gap:calc(var(--h) * .16);color:var(--ciruela)}
+  .lockup .sym{width:var(--h);height:var(--h);flex:none}
+  .lockup .col{display:flex;flex-direction:column}
+  .lockup .word{font-family:var(--display);font-weight:400;font-size:calc(var(--h) * .67);line-height:.72;letter-spacing:.01em;text-transform:uppercase;color:var(--tinta)}
+  .lockup .word .say{color:var(--coral)}
+  .lockup .baja{font-family:var(--body);font-weight:600;font-size:calc(var(--h) * .13);letter-spacing:.30em;text-transform:uppercase;color:var(--tinta);margin-top:calc(var(--h) * .09);white-space:nowrap}
+  .on-dark .lockup,.on-plum .lockup{color:var(--crema)}
+  .on-dark .word,.on-plum .word,.on-dark .baja,.on-plum .baja{color:var(--crema)}
+  .on-dark .word .say,.on-plum .word .say{color:var(--crema)}
+  .cap{font-size:11px;color:var(--ciruela);margin-top:10px}
+  /* Clear space: 0.5 × altura del isotipo por los 4 lados (acta §5). */
+  .clear{display:inline-block;outline:1px dashed var(--coral);outline-offset:calc(var(--h) * .5);padding:0}
+  .sizes{display:flex;align-items:flex-end;gap:56px;color:var(--ciruela)}
+  .sizes figure{text-align:center}
+  .sizes svg{display:block;margin:0 auto 10px}
+  .sizes figcaption{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ciruela)}
+  dl{display:grid;grid-template-columns:220px 1fr;gap:10px 24px;font-size:13px;margin-top:8px}
+  dt{font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:11px;padding-top:2px}
+  dd b.warn{color:var(--coral)}
+  code{font-family:Consolas,Menlo,monospace;font-size:12px;background:rgba(46,30,63,.08);padding:1px 5px}
+  footer{margin-top:36px;font-size:11px;color:var(--ciruela)}
+  .defsym{position:absolute;width:0;height:0;overflow:hidden}
+</style>
+</head>
+<body>
+<!-- Símbolos definidos UNA sola vez: geometría idéntica a logo-symbol.svg.
+     En producción el isotipo entra inline (componente/`<use>`), nunca `<img>`,
+     para que `currentColor` herede el color del contenedor. -->
+<svg class="defsym" aria-hidden="true" focusable="false"><defs>
+  <symbol id="sym" viewBox="0 0 128 128">
+    <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30.5 8H16A8 8 0 0 0 8 16V30.5"/>
+      <path d="M87.5 8H102A8 8 0 0 1 110 16V30.5"/>
+      <path d="M8 78V92.5A8 8 0 0 0 16 100.5H30.5"/>
+      <path d="M110 78V92.5A8 8 0 0 1 102 100.5H87.5"/>
+      <g transform="translate(58.5 53.5)rotate(-8)">
+        <rect x="-29.5" y="-20.5" width="59" height="41" rx="9.5" stroke-width="13"/>
+        <path d="M-24.5 21L-18 39.5L-6 21" stroke-width="13"/>
+        <g stroke="none" fill="currentColor">
+          <circle cx="-15.2" r="5.6"/><circle r="5.6"/><circle cx="15.2" r="5.6"/>
+        </g>
+      </g>
+    </g>
+  </symbol>
+  <!-- Versión 16 px: sin los 3 puntos (se pierden a ese tamaño). Mismo trazado. -->
+  <symbol id="sym16" viewBox="0 0 128 128">
+    <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30.5 8H16A8 8 0 0 0 8 16V30.5"/>
+      <path d="M87.5 8H102A8 8 0 0 1 110 16V30.5"/>
+      <path d="M8 78V92.5A8 8 0 0 0 16 100.5H30.5"/>
+      <path d="M110 78V92.5A8 8 0 0 1 102 100.5H87.5"/>
+      <g transform="translate(58.5 53.5)rotate(-8)">
+        <rect x="-29.5" y="-20.5" width="59" height="41" rx="9.5" stroke-width="13"/>
+        <path d="M-24.5 21L-18 39.5L-6 21" stroke-width="13"/>
+      </g>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div class="wrap">
+<header>
+  <p class="kicker">Scan-Say-Done · brand-src · referencia de composición</p>
+  <h1>Lockup HTML — <span class="say">Scan·Say</span>·Done</h1>
+</header>
+
+<p class="aviso"><b>AVISO.</b> Los PNG de <b>brand-src/</b> son la fuente de verdad; este HTML solo demuestra la composición.
+Este archivo <b>no es un activo</b>: no se exporta ni se sirve en producción.</p>
+
+<section>
+  <p class="label"><span class="num">01</span><h2>Lockup horizontal — sobre crema</h2></p>
+  <div class="card" style="--h:96px">
+    <span class="lockup" style="--h:96px">
+      <svg class="sym" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg>
+      <span class="col">
+        <span class="word">Scan-<span class="say">Say</span>-Done</span>
+        <span class="baja">Escanea. Opina. Listo.</span>
+      </span>
+    </span>
+  </div>
+  <p class="cap">Isotipo a ciruela <code>#2E1E3F</code> vía <code>currentColor</code> · wordmark tinta <code>#000014</code> con «SAY» coral <code>#FF5F44</code> (Bebas Neue) · bajada Montserrat 600, tracking <code>.30em</code>. Proporciones medidas en <code>logoScanCoral.png</code> (sobre la altura del contenido del isotipo): wordmark ≈0,57× · gap ≈0,19× · bajada ≈0,13×. A 36 px de alto la bajada queda en ~5 px: en navbar se recomienda omitirla (<i>criterio de preview</i> — el PNG la lleva igual de pequeña).</p>
+</section>
+
+<section>
+  <p class="label"><span class="num">02</span><h2>Lockup horizontal — sobre ciruela</h2></p>
+  <div class="card dark on-plum" style="--h:96px">
+    <span class="lockup" style="--h:96px">
+      <svg class="sym" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg>
+      <span class="col">
+        <span class="word">Scan-<span class="say">Say</span>-Done</span>
+        <span class="baja">Escanea. Opina. Listo.</span>
+      </span>
+    </span>
+  </div>
+  <p class="cap">Fondo ciruela · isotipo y texto íntegros en crema <code>#FFF8F2</code> (variante una tinta: «SAY» NO lleva coral sobre ciruela). El wordmark crema sobre ciruela supera 14:1; el isotipo tinta jamás se usa sobre este fondo (≈1.0, invisible).</p>
+</section>
+
+<section>
+  <p class="label"><span class="num">03</span><h2>Isotipo solo — tamaños</h2></p>
+  <div class="sizes" role="img" aria-label="Isotipo de Scan-Say-Done a 16, 24, 48 y 96 píxeles">
+    <figure><svg width="16" height="16" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym16"/></svg><figcaption>16 px · sin puntos</figcaption></figure>
+    <figure><svg width="24" height="24" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg><figcaption>24 px</figcaption></figure>
+    <figure><svg width="48" height="48" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg><figcaption>48 px</figcaption></figure>
+    <figure><svg width="96" height="96" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg><figcaption>96 px</figcaption></figure>
+  </div>
+  <p class="cap">A 16 px se usa la versión simplificada <b>sin los 3 puntos</b> (símbolo <code>#sym16</code>, dibujado inline en esta misma página — no es un archivo aparte). El isotipo nunca baja de 16 px; el wordmark nunca de 24 px.</p>
+</section>
+
+<section>
+  <p class="label"><span class="num">04</span><h2>Dimensiones y resguardo</h2></p>
+  <div style="padding:56px;margin:16px 0 8px">
+    <span class="clear" style="--h:36px">
+      <span class="lockup" style="--h:36px">
+        <svg class="sym" viewBox="0 0 128 128" aria-hidden="true"><use href="#sym"/></svg>
+        <span class="col">
+          <span class="word">Scan-<span class="say">Say</span>-Done</span>
+          <span class="baja">Escanea. Opina. Listo.</span>
+        </span>
+      </span>
+    </span>
+  </div>
+  <dl>
+    <dt>Alto del lockup</dt><dd><b>36 px</b> (navbar). Ancho resultante con texto vivo: <code>auto</code> — no se fuerza a 108 px; la caja del SVG del isotipo es cuadrada (1:1).</dd>
+    <dt>Clear space</dt><dd><b>0,5 × la altura del isotipo</b> por los 4 lados (rectángulo discontinuo arriba) — acta §5, todas las variantes.</dd>
+    <dt>Proporción</dt><dd>La pieza PNG es <b>3:1</b> (2172×724): en cualquier <code>&lt;img&gt;</code> renderizar 108×36, 216×72… <b class="warn">OJO: el template hoy pide 93×22 (4.2:1) y deforma el logo</b> — sustituir al integrar (<code>navlight.jsx</code>).</dd>
+    <dt>Variante vertical</dt><dd>Las mismas dos piezas con <code>flex-direction:column</code> e isotipo centrado sobre el wordmark: no requiere otro SVG.</dd>
+    <dt>Fuentes</dt><dd>Este preview usa la pila <code>'Bebas Neue'→condensadas system</code> y <code>'Montserrat'→system</code>. En producción las carga el sitio (next/font); si el navegador no tiene Bebas instalada, el wordmark cae a un sustituto condensado: la <b>composición</b> se mantiene, la <b>tipografía fina</b> no es verificable aquí.</dd>
+  </dl>
+</section>
+
+<footer>
+  Generado 27-oct-2026 · <code>logo-symbol.svg</code> (isotipo, <code>currentColor</code>) + wordmark como texto vivo = decisión vigente del Plan B simplificado. Motivo: un SVG servido como <code>&lt;img&gt;</code> no carga fuentes; el texto vivo da accesibilidad (nombre legible por lectores de pantalla) y SEO, y evita 4–5 h de outlined. PNGs de <code>brand-src/</code>: fuente de verdad.
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-label="10 · LOGIN v3 — split 50/50 cálido · izquierda ámbar --grad-warm con tarjeta de vidrio 72 % · derecha arcilla --grad-warm-2 con deck al 14 % · sin divisor «o» · ritmo 8/10/50/42/54 · implementado en /entrar">
+<title>10 · LOGIN v3 — split 50/50 cálido · titular «LEE LO QUE TE DICEN» · tarjeta de vidrio 400×745 (crema 72 % · filo · sombra cálida) · derecha arcilla con deck «VISTA DEL PANEL» al 14 % de relleno · regla de 1 px sin «o» · IMPLEMENTADO</title>
+<desc>Plano métrico SVG. Unid: px. Banda = viewport 56–900 (alto 844). SPLIT 50/50, eje x 720 = centro del gutter 6 (container-xl 1140 · col 73, solo retícula de referencia: el login es full-bleed). IZQUIERDA [v3]: fondo --grad-warm (mostaza 38/46/54 % sobre crema, 3 paradas; medido #FADCA5 arriba → #F9CC8A abajo) + ::before resplandor claro arriba-izq y masa coral 20 % abajo-der con blur(6 px). Tarjeta de VIDRIO 400×745 (x160–560, y105–850, aires 49/50): crema 72 %, borde blanco 70 %, backdrop-filter blur(14 px) saturate(104 %), filo inset 0 1px 0, --shadow-glass (ciruela 10/20 %, cálida), z 1; @supports not (backdrop-filter) → fondo 90 %. Cuatro signos del efecto: más clara que el fondo en toda su altura · filo de luz 1 px · sombra cálida · varía de tono hacia abajo. Contrastes: ciruela 13.83 AAA (#FEF1DC) · texto-2 5.93/5.84 · enlace 5.25 (tarjeta abajo #FEEFD8) · enlace/fondo 5.02 · fondo mitad inferior 4.45 SIN texto encima. LÍMITE DE CRAFT: una superficie translúcida sobre un degradado liso NO se percibe como vidrio (wan-image: NO ×3, nota 7/10 final); el deck derecho SÍ se percibe por estar casi sin relleno (14 %). FORMULARIO [lote A1]: único método = correo mágico, sin contraseña, sin OAuth ni passkey; SIN divisor «o» (regla de 1 px aria-hidden, margin 40/32); ritmo medido etiqueta→campo 8 · campo→botón 10 · botón→regla 50 · regla→demo 42 · demo→legal 54; tarjeta 400×745 (375: 343×671); legal centrado con enlaces white-space: nowrap (1 línea a 1440 y 375). DERECHA [v3]: arena/arcilla --grad-warm-2 (arcilla 20/26/32 % sobre crema; --tint-clay = mostaza 60 % + coral 40 %; medido #FDE2CB → #FDDABD); retirados --grad-plum-deep, --glow-hero y --glow-corner del login. Deck «VISTA DEL PANEL» 328×200 (x932–1260, y180–380): relleno crema 14 %, borde ciruela 22 %, blur(10 px), título y puntos en ciruela (45 %/22 %). Mock «VISTA DE ENCUESTA» 360×268 (x900–1260, y344–612, solape 36) blanco con --shadow-glass (era --shadow-lift). Línea de recorrido y frase canónica en ciruela/--text-2. Contraste entre mitades POR MATIZ, NO POR LUZ: 1.03 arriba (#FADCA5|#FDE2CB) · 1.07 abajo (#F9CC8A|#FDDABD) — escalón de tono, no corte; no dibujar una mitad clara y otra oscura. Contrastes derecha: ciruela/#FDD8B9 11.43 · texto-2 4.95 · ciruela/deck #FEE3CD 12.2 · crema/mock 15.29. Tokens nuevos 4: --grad-warm · --shadow-glass · --tint-clay · --grad-warm-2. Estado enviado: h1 «Revisa tu correo» + aviso DEMO, formulario y regla fuera del DOM. Fuentes: VERIFICACION-A1-LOGIN-2026-11-05.md · VERIFICACION-LOGIN-VIDRIO-2026-11-05.md · VERIFICACION-LOGIN-DERECHA-2026-11-05.md. Scan-Say-Done 05-nov-2026 v3 (v2 30-oct en historial git).</desc>
+<defs>
+<linearGradient id="gradWarm" x1="0.12" y1="0" x2="0.88" y2="1">
+<stop offset="0" stop-color="#FADCA5"/>
+<stop offset="0.5" stop-color="#F8D497"/>
+<stop offset="1" stop-color="#F9CC8A"/>
+</linearGradient>
+<linearGradient id="gradWarm2" x1="0.12" y1="0" x2="0.88" y2="1">
+<stop offset="0" stop-color="#FDE2CB"/>
+<stop offset="0.5" stop-color="#FDDECA"/>
+<stop offset="1" stop-color="#FDDABD"/>
+</linearGradient>
+<filter id="glassShadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#2E1E3F" flood-opacity="0.14"/>
+</filter>
+</defs>
+<rect width="1440" height="900" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">10 · LOGIN v3 — split 50/50 cálido · tarjeta de vidrio 72 % · derecha arcilla · sin divisor «o» · IMPLEMENTADO /entrar</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">pantalla 1440×900 · eje 720 · unid px · 05-nov-2026 v3</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">mitades full-bleed: el plano NO consume container BS (referencia = retícula)</text>
+<text x="24" y="46" font-family="monospace" font-size="10" fill="#65586E">capas: band · grid-12 · container · content · measure · labels — GRID-SPEC §4 · v3 = lotes A1 + VIDRIO + DERECHA (05-nov)</text>
+<g id="band">
+<rect x="0" y="56" width="720" height="844" fill="url(#gradWarm)"/>
+<rect x="720" y="56" width="720" height="844" fill="url(#gradWarm2)"/>
+<text x="24" y="132" font-family="monospace" font-size="10" fill="#65586E">--grad-warm [05-nov] · mostaza 38/46/54 % sobre crema · 3 paradas</text>
+<text x="24" y="146" font-family="monospace" font-size="10" fill="#65586E">::before resplandor claro arriba-izq + masa coral 20 % abajo-der · blur(6 px)</text>
+<text x="24" y="160" font-family="monospace" font-size="10" fill="#65586E">tarjeta = vidrio crema 72 % · borde blanco 70 % · blur(14 px) sat(104 %)</text>
+<text x="24" y="174" font-family="monospace" font-size="10" fill="#65586E">filo inset 0 1px 0 · --shadow-glass (ciruela 10/20 %) · z 1 · @supports → 90 %</text>
+<text x="24" y="196" font-family="monospace" font-size="10" fill="#2E1E3F">4 signos del efecto: más clara que el fondo · filo 1 px · sombra cálida · varía abajo</text>
+<text x="24" y="218" font-family="monospace" font-size="10" fill="#B23A2A">LÍMITE (craft): translúcido sobre degradado liso NO se percibe como vidrio (wan 7/10)</text>
+<text x="24" y="232" font-family="monospace" font-size="10" fill="#65586E">contrastes: ciruela 13.83 AAA (#FEF1DC) · texto-2 5.93/5.84 · enlace 5.25</text>
+<text x="24" y="246" font-family="monospace" font-size="10" fill="#65586E">enlace/fondo 5.02 · fondo mitad inferior 4.45 SIN texto encima</text>
+<text x="748" y="84" font-family="monospace" font-size="10" fill="#65586E">--grad-warm-2 [05-nov] · arcilla 20/26/32 % sobre crema · --tint-clay = mostaza 60 % + coral 40 %</text>
+<text x="748" y="100" font-family="monospace" font-size="10" fill="#65586E">era ciruela + --glow-hero + --glow-corner + --grad-plum-deep → RETIRADOS del login</text>
+<text x="748" y="116" font-family="monospace" font-size="10" fill="#65586E">deck: relleno crema 14 % · borde ciruela 22 % · blur(10 px) · título y puntos en ciruela</text>
+<text x="748" y="132" font-family="monospace" font-size="10" fill="#65586E">el deck SÍ se lee translúcido (delta [0,+4,+7] vs fondo): el borde define la caja</text>
+<text x="748" y="148" font-family="monospace" font-size="10" fill="#65586E">mock blanco · --shadow-glass cálida (era --shadow-lift) · textos ciruela / --text-2</text>
+</g>
+<g id="grid-12">
+<rect x="150" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="247" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="344" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="441" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="538" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="635" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="732" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="829" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="926" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1023" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1120" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1217" y="56" width="73" height="844" fill="#2E1E3F" fill-opacity="0.05"/>
+<line x1="235" y1="56" x2="235" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="332" y1="56" x2="332" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="429" y1="56" x2="429" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="526" y1="56" x2="526" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="623" y1="56" x2="623" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="817" y1="56" x2="817" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="914" y1="56" x2="914" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1011" y1="56" x2="1011" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1108" y1="56" x2="1108" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1205" y1="56" x2="1205" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<line x1="150" y1="56" x2="150" y2="900" stroke="#B23A2A" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6 4"/>
+<line x1="1290" y1="56" x2="1290" y2="900" stroke="#B23A2A" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6 4"/>
+<text x="158" y="896" font-family="monospace" font-size="11" fill="#65586E">container-xl 1140 · col 73 · aire 150 — solo retícula de referencia (el login es full-bleed)</text>
+<line x1="720" y1="56" x2="720" y2="900" stroke="#FF5F44" stroke-width="1.5" stroke-opacity="0.8" stroke-dasharray="8 4"/>
+<text x="728" y="704" font-family="monospace" font-size="10" fill="#B23A2A">eje del split x 720 = centro del gutter 6</text>
+<text x="728" y="718" font-family="monospace" font-size="10" fill="#B23A2A">empalme por MATIZ, no por luz: 1.03 arriba · 1.07 abajo</text>
+<text x="728" y="732" font-family="monospace" font-size="10" fill="#B23A2A">(#FADCA5|#FDE2CB en y120 · #F9CC8A|#FDDABD en y860)</text>
+<text x="728" y="746" font-family="monospace" font-size="10" fill="#B23A2A">escalón de tono, no corte: NADA de mitad clara vs oscura</text>
+</g>
+<g id="content">
+<rect x="32" y="66" width="170" height="30" fill="none" stroke="#978F9F" stroke-width="1" stroke-dasharray="3 3" rx="8"/>
+<text x="48" y="85" font-family="sans-serif" font-size="12" fill="#B23A2A" text-decoration="underline">← Volver al sitio</text>
+<!-- tarjeta de vidrio -->
+<rect x="160" y="105" width="400" height="745" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" rx="16" filter="url(#glassShadow)"/>
+<line x1="163" y1="105.5" x2="557" y2="105.5" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="1"/>
+<rect x="464" y="121" width="88" height="22" fill="#F4B63B" rx="4"/>
+<text x="508" y="136" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#2E1E3F" text-anchor="middle">IMPLEMENTADO</text>
+<rect x="297" y="145" width="24" height="24" fill="#FF5F44" rx="4"/>
+<text x="329" y="163" font-family="sans-serif" font-size="16" font-weight="bold" letter-spacing="2" fill="#2E1E3F">SCAN SAY DONE</text>
+<text x="360" y="258" font-family="sans-serif" font-size="40" font-weight="bold" fill="#2E1E3F" text-anchor="middle">LEE LO QUE</text>
+<text x="360" y="319" font-family="sans-serif" font-size="40" font-weight="bold" fill="#2E1E3F" text-anchor="middle">TE DICEN</text>
+<text x="360" y="355" font-family="sans-serif" font-size="11" fill="#65586E" text-anchor="middle">Escribe tu correo y te enviamos un enlace.</text>
+<text x="360" y="371" font-family="sans-serif" font-size="11" fill="#65586E" text-anchor="middle">Sin contraseña.</text>
+<text x="200" y="421" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F">Tu correo</text>
+<rect x="200" y="433" width="320" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="214" y="462" font-family="sans-serif" font-size="12" fill="#65586E">nombre@correo.com</text>
+<rect x="200" y="491" width="320" height="52" fill="#FF5F44" rx="8"/>
+<text x="360" y="522" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F" text-anchor="middle">ENVIARME EL ENLACE</text>
+<line x1="200" y1="593" x2="520" y2="593" stroke="#978F9F" stroke-width="1"/>
+<text x="360" y="661" font-family="sans-serif" font-size="12" fill="#B23A2A" text-anchor="middle" text-decoration="underline">Ver la demo del panel</text>
+<text x="360" y="743" font-family="sans-serif" font-size="9.5" fill="#65586E" text-anchor="middle">Al continuar aceptas los Términos y la Política de privacidad</text>
+<text x="360" y="800" font-family="monospace" font-size="8.5" fill="#65586E" text-anchor="middle">estado enviado: h1 «Revisa tu correo» + aviso DEMO · form y regla fuera del DOM</text>
+<text x="204" y="205" font-family="monospace" font-size="9" fill="#65586E">H1 Bebas 64 lh .95 · 2 líneas · bloque 122</text>
+<text x="204" y="349" font-family="monospace" font-size="9" fill="#65586E">sub M400 16/1.5 · 2 líneas (h 48)</text>
+<text x="204" y="449" font-family="monospace" font-size="9" fill="#65586E">input h48 · radio 8</text>
+<text x="204" y="517" font-family="monospace" font-size="9" fill="#2E1E3F">btn h52 · radio 8 · ciruela/coral 5.08</text>
+<text x="204" y="589" font-family="monospace" font-size="9" fill="#B23A2A">regla 1 px · aria-hidden · SIN «o» [A1]</text>
+<text x="204" y="657" font-family="monospace" font-size="9" fill="#65586E">objetivo 44 · único 2.º destino</text>
+<text x="204" y="761" font-family="monospace" font-size="9" fill="#65586E">legal centrado · enlaces nowrap: 1 línea a 1440 y 375</text>
+<!-- derecha: deck al 14 % + mock -->
+<rect x="932" y="180" width="328" height="200" fill="#FFF8F2" fill-opacity="0.14" stroke="#2E1E3F" stroke-opacity="0.22" stroke-width="1" rx="16"/>
+<text x="956" y="208" font-family="sans-serif" font-size="12" font-weight="bold" letter-spacing="1" fill="#2E1E3F">VISTA DEL PANEL [deck]</text>
+<circle cx="964" cy="232" r="4" fill="#2E1E3F" fill-opacity="0.45"/>
+<rect x="980" y="227" width="180" height="10" rx="5" fill="#2E1E3F" fill-opacity="0.22"/>
+<circle cx="964" cy="262" r="4" fill="#2E1E3F" fill-opacity="0.45"/>
+<rect x="980" y="257" width="180" height="10" rx="5" fill="#2E1E3F" fill-opacity="0.22"/>
+<circle cx="964" cy="292" r="4" fill="#2E1E3F" fill-opacity="0.45"/>
+<rect x="980" y="287" width="180" height="10" rx="5" fill="#2E1E3F" fill-opacity="0.22"/>
+<text x="1096" y="330" font-family="monospace" font-size="9" fill="#65586E" text-anchor="middle">relleno crema 14 % · borde ciruela 22 % · deck sin cifras</text>
+<rect x="900" y="344" width="360" height="268" fill="#FFFFFF" rx="16" filter="url(#glassShadow)"/>
+<rect x="932" y="370" width="16" height="16" fill="#FF5F44" rx="3"/>
+<text x="956" y="383" font-family="sans-serif" font-size="12" font-weight="bold" letter-spacing="1" fill="#2E1E3F">VISTA DE ENCUESTA</text>
+<rect x="1172" y="368" width="56" height="22" fill="#F4B63B" rx="4"/>
+<text x="1200" y="383" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">DEMO</text>
+<text x="932" y="424" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F">¿Cómo fue tu atención?</text>
+<rect x="932" y="452" width="48" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<rect x="988" y="452" width="48" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<rect x="1044" y="452" width="48" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<rect x="1100" y="452" width="48" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<rect x="1156" y="452" width="48" height="48" fill="#FF5F44" rx="8"/>
+<text x="956" y="482" font-family="sans-serif" font-size="14" fill="#2E1E3F" text-anchor="middle">1</text>
+<text x="1012" y="482" font-family="sans-serif" font-size="14" fill="#2E1E3F" text-anchor="middle">2</text>
+<text x="1068" y="482" font-family="sans-serif" font-size="14" fill="#2E1E3F" text-anchor="middle">3</text>
+<text x="1124" y="482" font-family="sans-serif" font-size="14" fill="#2E1E3F" text-anchor="middle">4</text>
+<text x="1180" y="479" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F" text-anchor="middle">5</text>
+<text x="1180" y="493" font-family="sans-serif" font-size="9" fill="#2E1E3F" text-anchor="middle">activo</text>
+<rect x="932" y="536" width="296" height="44" fill="#FF5F44" rx="8"/>
+<text x="1080" y="563" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F" text-anchor="middle">Enviar</text>
+<text x="1080" y="652" font-family="sans-serif" font-size="13" font-weight="bold" letter-spacing="2" fill="#2E1E3F" text-anchor="middle">EL CLIENTE ESCANEA · CONTESTA · TÚ LO LEES</text>
+<text x="1080" y="686" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">ejemplo de referencia · aria-hidden="true"</text>
+<text x="1080" y="712" font-family="monospace" font-size="9" fill="#65586E" text-anchor="middle">ciruela/#FDD8B9 11.43 · texto-2 4.95 · ciruela/deck #FEE3CD 12.2 · crema/mock 15.29</text>
+<text x="1416" y="740" text-anchor="end" font-family="monospace" font-size="10" fill="#65586E">entrada: deck→mock→línea→frase · 500 ms --ease-out · stagger 60 · reduce 0.01 ms</text>
+<text x="1080" y="768" font-family="sans-serif" font-size="13" fill="#65586E" text-anchor="middle">«Panel en construcción. Te avisamos cuando esté.»</text>
+<text x="1080" y="786" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">frase canónica de la landing — ahora --text-2/arcilla 4.95</text>
+</g>
+<g id="measure">
+<line x1="160" y1="89" x2="560" y2="89" stroke="#65586E" stroke-width="1"/>
+<line x1="160" y1="83" x2="160" y2="95" stroke="#65586E" stroke-width="1"/>
+<line x1="560" y1="83" x2="560" y2="95" stroke="#65586E" stroke-width="1"/>
+<text x="360" y="83" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">tarjeta 400 × 745 · vidrio crema 72 % (x160–560 · centro 360)</text>
+<line x1="160" y1="121" x2="200" y2="121" stroke="#65586E" stroke-width="1"/>
+<line x1="160" y1="116" x2="160" y2="126" stroke="#65586E" stroke-width="1"/>
+<line x1="200" y1="116" x2="200" y2="126" stroke="#65586E" stroke-width="1"/>
+<text x="180" y="113" font-family="monospace" font-size="9" fill="#65586E" text-anchor="middle">pad 40</text>
+<line x1="585" y1="105" x2="585" y2="850" stroke="#65586E" stroke-width="1"/>
+<line x1="580" y1="105" x2="590" y2="105" stroke="#65586E" stroke-width="1"/>
+<line x1="580" y1="850" x2="590" y2="850" stroke="#65586E" stroke-width="1"/>
+<text x="593" y="478" font-family="monospace" font-size="10" fill="#65586E">745</text>
+<text x="593" y="492" font-family="monospace" font-size="8.5" fill="#65586E">[A1 · era 706]</text>
+<line x1="144" y1="425" x2="144" y2="433" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="425" x2="149" y2="425" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="433" x2="149" y2="433" stroke="#65586E" stroke-width="1"/>
+<text x="136" y="434" font-family="monospace" font-size="9" fill="#B23A2A" text-anchor="end">8</text>
+<line x1="144" y1="481" x2="144" y2="491" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="481" x2="149" y2="481" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="491" x2="149" y2="491" stroke="#65586E" stroke-width="1"/>
+<text x="136" y="491" font-family="monospace" font-size="9" fill="#B23A2A" text-anchor="end">10</text>
+<line x1="144" y1="543" x2="144" y2="593" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="543" x2="149" y2="543" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="593" x2="149" y2="593" stroke="#65586E" stroke-width="1"/>
+<text x="136" y="572" font-family="monospace" font-size="9" fill="#B23A2A" text-anchor="end">50</text>
+<line x1="144" y1="593" x2="144" y2="635" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="635" x2="149" y2="635" stroke="#65586E" stroke-width="1"/>
+<text x="136" y="618" font-family="monospace" font-size="9" fill="#B23A2A" text-anchor="end">42</text>
+<line x1="144" y1="679" x2="144" y2="733" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="679" x2="149" y2="679" stroke="#65586E" stroke-width="1"/>
+<line x1="139" y1="733" x2="149" y2="733" stroke="#65586E" stroke-width="1"/>
+<text x="136" y="711" font-family="monospace" font-size="9" fill="#B23A2A" text-anchor="end">54</text>
+<text x="126" y="392" font-family="monospace" font-size="8.5" fill="#65586E" text-anchor="end" transform="rotate(-90 126 392)">ritmo medido A1: 8 / 10 / 50 / 42 / 54</text>
+<line x1="0" y1="884" x2="720" y2="884" stroke="#65586E" stroke-width="1"/>
+<line x1="0" y1="878" x2="0" y2="890" stroke="#65586E" stroke-width="1"/>
+<line x1="720" y1="878" x2="720" y2="890" stroke="#65586E" stroke-width="1"/>
+<text x="90" y="876" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">720</text>
+<line x1="720" y1="884" x2="1440" y2="884" stroke="#65586E" stroke-width="1"/>
+<line x1="1440" y1="878" x2="1440" y2="890" stroke="#65586E" stroke-width="1"/>
+<text x="1080" y="876" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">720 · split exacto 50/50 · empalme 1.03–1.07 por matiz</text>
+<line x1="932" y1="166" x2="1260" y2="166" stroke="#65586E" stroke-width="1"/>
+<line x1="932" y1="161" x2="932" y2="171" stroke="#65586E" stroke-width="1"/>
+<line x1="1260" y1="161" x2="1260" y2="171" stroke="#65586E" stroke-width="1"/>
+<text x="1096" y="160" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">deck 328×200 (x932–1260 · y180–380) · relleno 14 % [v3]</text>
+<line x1="1284" y1="344" x2="1284" y2="380" stroke="#65586E" stroke-width="1"/>
+<line x1="1279" y1="344" x2="1289" y2="344" stroke="#65586E" stroke-width="1"/>
+<line x1="1279" y1="380" x2="1289" y2="380" stroke="#65586E" stroke-width="1"/>
+<text x="1292" y="366" font-family="monospace" font-size="9" fill="#65586E">36</text>
+<line x1="1320" y1="344" x2="1320" y2="612" stroke="#65586E" stroke-width="1"/>
+<line x1="1315" y1="344" x2="1325" y2="344" stroke="#65586E" stroke-width="1"/>
+<line x1="1315" y1="612" x2="1325" y2="612" stroke="#65586E" stroke-width="1"/>
+<text x="1328" y="482" font-family="monospace" font-size="10" fill="#65586E">268</text>
+<line x1="900" y1="626" x2="1260" y2="626" stroke="#65586E" stroke-width="1"/>
+<line x1="900" y1="621" x2="900" y2="631" stroke="#65586E" stroke-width="1"/>
+<line x1="1260" y1="621" x2="1260" y2="631" stroke="#65586E" stroke-width="1"/>
+<text x="1080" y="620" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">mock 360 (x900–1260) · pad 32 · content 296 · --shadow-glass</text>
+<line x1="932" y1="510" x2="1204" y2="510" stroke="#65586E" stroke-width="1"/>
+<line x1="932" y1="505" x2="932" y2="515" stroke="#65586E" stroke-width="1"/>
+<line x1="1204" y1="505" x2="1204" y2="515" stroke="#65586E" stroke-width="1"/>
+<text x="1068" y="504" font-family="monospace" font-size="9" fill="#2E1E3F" text-anchor="middle">5×48 + 4×8 = 272 ≤ 296</text>
+<text x="160" y="842" font-family="monospace" font-size="10" fill="#B23A2A">[v3 05-nov] lote A1: regla sin «o» (único método: correo mágico) · ritmo 8/10/50/42/54 · tarjeta 745</text>
+<text x="160" y="856" font-family="monospace" font-size="10" fill="#B23A2A">[v3] lote vidrio: --grad-warm + tarjeta 72 % · lote derecha: --grad-warm-2 + deck 14 %</text>
+<text x="160" y="870" font-family="monospace" font-size="10" fill="#65586E">tokens 4: --grad-warm · --shadow-glass · --tint-clay · --grad-warm-2 · radios 16/8/4 intactos</text>
+</g>
+<g id="labels">
+<text x="748" y="806" font-family="monospace" font-size="10" fill="#65586E">1440: como el plano · 1024: split 50/50 · tarjeta 400 · mock 336 (pad 28) · deck 300×190</text>
+<text x="748" y="822" font-family="monospace" font-size="10" fill="#65586E">768: COLAPSO → banda cálida h96 · marca en ciruela · sin mock/deck · tarjeta 420 (174+420+174)</text>
+<text x="748" y="838" font-family="monospace" font-size="10" fill="#65586E">375: banda cálida 88 · tarjeta 343×671 · pad 24 · H1 44 2 lin · botones full-width</text>
+<text x="748" y="854" font-family="monospace" font-size="10" fill="#65586E">banda y sección ambas cálidas: transición suave sin línea (DERECHA §7.2) · legal 1 línea (nowrap)</text>
+<text x="748" y="870" font-family="monospace" font-size="10" fill="#65586E">mock y deck: DESAPARECEN &lt;992 (decorativos) · la ilustración se reduce a banda, no se borra la marca</text>
+</g>
+</svg>

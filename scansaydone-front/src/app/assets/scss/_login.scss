@@ -1,0 +1,658 @@
+// ==========================================================================
+// _login.scss — Pantalla /entrar (split 50/50, card 400, mock 360)
+// Diseño: opendesign/LOGIN-UX.md · Plano: wireframes/10-login.svg
+// ==========================================================================
+
+// /entrar no lleva navbar: cancela la compensacion de 76px de globals.css
+main:has(> .login-split) {
+  padding-top: 0;
+}
+
+.login-split {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+  }
+}
+
+// Lado izquierdo: crema, tarjeta centrada
+.login-left {
+  flex: 1 1 50%;
+  background: var(--grad-warm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  position: relative;
+
+  @media (max-width: 991.98px) {
+    order: 2;
+    flex: 1 1 auto;
+    padding: 32px 16px;
+  }
+
+  @media (max-width: 575.98px) {
+    padding: 24px 16px;
+  }
+
+  // Resplandores que dan profundidad al vidrio. Decorativos.
+  // El resplandor claro vive arriba a la izquierda porque ahi esta el enlace
+  // "Volver al sitio" (enlace sobre crema = 5.65; sobre arena coralizada bajaria
+  // a 4.16, por eso el calido se mantiene abajo a la derecha, bajo la tarjeta).
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(46% 34% at 14% 8%, color-mix(in srgb, #FFFFFF 55%, transparent) 0%, transparent 72%),
+      radial-gradient(58% 46% at 82% 88%, color-mix(in srgb, var(--brand-coral) 20%, transparent) 0%, transparent 66%);
+    filter: blur(6px);
+  }
+}
+
+// Tarjeta del formulario: 400px, radio 16, borde, sombra de vidrio (--shadow-glass) más filo interior de 1px
+.login-card {
+  width: 400px;
+  max-width: 100%;
+  min-height: 706px;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border: 1px solid color-mix(in srgb, #FFFFFF 70%, transparent);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  // El inset de 1px es el filo que atrapa la luz: sin el, arriba el canto
+  // del vidrio se pierde porque el resplandor del fondo es mas claro que la tarjeta.
+  box-shadow: var(--shadow-glass), inset 0 1px 0 color-mix(in srgb, #FFFFFF 80%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(104%);
+  backdrop-filter: blur(14px) saturate(104%);
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 991.98px) {
+    min-height: auto;
+  }
+
+  @media (max-width: 575.98px) {
+    width: 343px;
+    padding: 24px;
+  }
+}
+
+// Enlace "Volver al sitio"
+// text-decoration necesita !important: _general.scss:38 fuerza `a { text-decoration: none !important }`
+.login-back {
+  position: absolute;
+  top: 32px;
+  left: 40px;
+  color: var(--link);
+  text-decoration: underline !important;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--dur-micro) var(--ease-ui);
+
+  &:hover {
+    color: var(--brand-plum);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 991.98px) {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 24px;
+  }
+
+}
+
+.login-back-icon {
+  margin-right: 6px;
+}
+
+// Marca: isotipo + SCAN SAY DONE
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+
+  .login-brand-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--brand-coral);
+    border-radius: 4px;
+  }
+
+  .login-brand-name {
+    font-family: var(--font-bebas);
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--brand-plum);
+  }
+}
+
+// h1 ENTRAR
+// !important obligatorio: _bootstrap-custom.scss emite `h1 { font-size: 42px !important }`
+// en su bucle de escalas y ganaria a esta clase. Mismo precedente que .hero-title (_home.scss L421).
+.login-title {
+  font-family: var(--font-bebas);
+  font-size: 64px !important;
+  line-height: 0.95;
+  color: var(--brand-plum);
+  margin: 0 0 12px 0;
+  display: block;
+
+  @media (max-width: 575.98px) {
+    font-size: 44px !important;
+  }
+}
+
+// Subtítulo
+.login-subtitle {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-2);
+  margin: 0 0 32px 0;
+}
+
+// Formulario
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Label
+.login-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand-plum);
+  margin-bottom: 8px;
+  display: block;
+}
+
+// Input email
+.login-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 16px;
+  color: var(--brand-plum);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  transition: border-color var(--dur-micro) var(--ease-ui);
+
+  &::placeholder {
+    color: var(--text-2);
+  }
+
+  &:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-color: var(--focus-ring);
+  }
+
+  &.is-invalid {
+    border-color: var(--state-err);
+  }
+
+  @media (max-width: 575.98px) {
+    height: 44px;
+  }
+}
+
+// Mensaje de error
+.login-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--state-err);
+  margin-top: 4px;
+
+  .login-error-icon {
+    flex-shrink: 0;
+  }
+}
+
+// Botón primario (ENVIARME EL ENLACE)
+.login-btn-primary {
+  width: 100%;
+  height: 52px;
+  background: var(--action-bg);
+  color: var(--action-text);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background var(--dur-micro) var(--ease-ui), color var(--dur-micro) var(--ease-ui);
+
+  &:hover:not(:disabled) {
+    background: var(--brand-plum);
+    color: var(--bg);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: var(--surface);
+    border-color: var(--border-strong);
+    color: var(--text-2);
+    cursor: not-allowed;
+  }
+
+}
+
+// Regla divisoria entre el formulario y lo secundario.
+// Sin etiqueta: no hay un segundo metodo de acceso que anunciar
+// (ANALISIS-REFERENCIA-LOGIN-2026-11-05.md §5).
+.login-divider {
+  height: 1px;
+  background: var(--border-strong);
+  margin: 40px 0 32px;
+  flex-shrink: 0;
+}
+
+// Enlace demo
+.login-link-demo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  color: var(--link);
+  text-decoration: underline !important;
+  font-size: 16px;
+  font-weight: 400;
+  transition: color var(--dur-micro) var(--ease-ui);
+
+  &:hover {
+    color: var(--brand-plum);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+// Nota legal
+.login-legal {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-2);
+  margin-top: 44px;
+  text-align: center;
+
+  a {
+    color: var(--link);
+    text-decoration: underline !important;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--brand-plum);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  }
+}
+
+// Estado enviado: reemplaza el formulario
+.login-sent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 0;
+
+  // recibe foco por codigo para que el lector de pantalla anuncie el cambio de estado;
+  // no es un control, asi que no lleva anillo
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.login-sent-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--state-ok);
+  color: var(--surface);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.login-sent-title {
+  font-family: var(--font-bebas);
+  font-size: 48px !important;
+  line-height: 1;
+  color: var(--brand-plum);
+  margin: 0 0 16px 0;
+
+  @media (max-width: 575.98px) {
+    font-size: 36px !important;
+  }
+}
+
+.login-sent-email {
+  font-size: 16px;
+  color: var(--brand-plum);
+  margin: 0 0 24px 0;
+  word-break: break-all;
+}
+
+.login-sent-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: color-mix(in srgb, var(--brand-mustard) 15%, transparent);
+  border: 1px solid var(--brand-mustard);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--brand-plum);
+  margin-bottom: 24px;
+}
+
+.login-btn-secondary {
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  color: var(--link);
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background var(--dur-micro) var(--ease-ui), color var(--dur-micro) var(--ease-ui);
+
+  &:hover {
+    background: var(--bg);
+    color: var(--brand-plum);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+// Lado derecho: ciruela + glow + mock
+.login-right {
+  flex: 1 1 50%;
+  background: var(--grad-warm-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+
+  @media (max-width: 991.98px) {
+    order: 1;
+    flex: 0 0 96px;
+    padding: 16px;
+    align-items: center;
+    justify-content: flex-start;
+
+    .login-stack,
+    .login-run,
+    .login-note {
+      display: none;
+    }
+  }
+
+}
+
+// Wordmark (solo visible en móvil)
+.login-right-wordmark {
+  display: none;
+  font-family: var(--font-bebas);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--brand-plum);
+
+  @media (max-width: 991.98px) {
+    display: block;
+  }
+}
+
+// Stack derecho: deck + mock apilados
+.login-stack {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
+// Deck decorativo (tarjeta trasera con barras)
+.login-deck {
+  width: 328px;
+  height: 200px;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--brand-plum) 22%, transparent);
+  background: color-mix(in srgb, var(--bg) 14%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(104%);
+  backdrop-filter: blur(10px) saturate(104%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  .login-deck-title {
+    font-family: var(--font-bebas);
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: var(--brand-plum);
+  }
+
+  .login-deck-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .login-deck-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--brand-plum) 45%, transparent);
+    flex: none;
+  }
+
+  .login-deck-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--brand-plum) 22%, transparent);
+    flex: 1;
+  }
+
+  .login-deck-row:nth-child(2) .login-deck-bar { flex: 0 0 82%; }
+  .login-deck-row:nth-child(3) .login-deck-bar { flex: 0 0 64%; }
+}
+
+// Mock de encuesta
+.login-mock {
+  width: 360px;
+  max-width: 100%;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  z-index: 2;
+  margin-top: -36px;
+  box-shadow: var(--shadow-glass);
+
+  @media (max-width: 991.98px) {
+    display: none;
+  }
+}
+
+.login-mock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.login-mock-title {
+  font-family: var(--font-bebas);
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--brand-plum);
+}
+
+.login-mock-badge {
+  background: var(--brand-mustard);
+  color: var(--brand-plum);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.login-mock-question {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--brand-plum);
+  margin: 0 0 20px 0;
+}
+
+.login-mock-scale {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.login-mock-tile {
+  flex: 1;
+  height: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--brand-plum);
+
+  &.is-active {
+    background: var(--action-bg);
+    border-color: var(--action-bg);
+    font-weight: 700;
+  }
+}
+
+.login-mock-btn {
+  width: 100%;
+  height: 44px;
+  background: var(--action-bg);
+  color: var(--action-text);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Run line (franja de recorrido)
+.login-run {
+  font-family: var(--font-bebas);
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--brand-plum);
+  text-align: center;
+  margin: 40px 0 0;
+}
+
+// Nota debajo del run
+.login-note {
+  font-size: 13px;
+  color: var(--text-2);
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+.login-right-phrase {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  font-size: 16px;
+  color: var(--text-2);
+  text-align: center;
+  max-width: 300px;
+  margin-top: 8px;
+
+  @media (max-width: 991.98px) {
+    display: none;
+  }
+}
+
+// Banda offline
+.login-offline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: color-mix(in srgb, var(--state-err) 10%, var(--surface));
+  border: 1px solid var(--state-err);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--brand-plum);
+  margin-bottom: 16px;
+}
+
+// Entrada unica de la pantalla (LOGIN-UX §11.b): solo transform/opacity,
+// sin bucle. `prefers-reduced-motion` ya queda neutralizado por el bloque global.
+@keyframes login-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.login-stack { animation: login-rise 500ms var(--ease-out) backwards; }
+.login-run   { animation: login-rise 500ms var(--ease-out) 120ms backwards; }
+.login-note  { animation: login-rise 500ms var(--ease-out) 180ms backwards; }
+.login-right-phrase { animation: login-rise 500ms var(--ease-out) 240ms backwards; }
+
+// Navegadores sin backdrop-filter: la tarjeta queda casi opaca.
+// Sin desenfoque, una superficie al 78% deja pasar el degradado y ensucia el texto.
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .login-card {
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+  }
+}

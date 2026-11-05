@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1640" width="1440" height="1640" role="img" aria-label="06 · FAQ + CTA — DOS bandas: FAQ blanca con acordeón + CTA final ciruela">
+<title>06 · FAQ + CTA — DOS bandas: FAQ blanca con acordeón + CTA final ciruela</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27. v2 05-nov-2026: redibujo total en DOS bandas separadas (sustituye la banda única row 7+5) · FAQ fondo BLANCO (enmienda: docs decían crema) · CTA ciruela SIN --glow-hero (enmienda) · micro «sin tarjeta» eliminada. Fuentes: VERIFICACION-F8.md (§«Desvío documental» + contrastes) · UX-LANDING.md §2 filas 8-9 · page.js:310-380 · _home.scss:955-1132.</desc>
+<rect width="1440" height="1640" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">06 · FAQ + CTA — DOS bandas: FAQ blanca (acordeón) + CTA final ciruela</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">lg 992+ · container 960 · col 58</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#B23A2A">v2 · 05-nov-2026 · sustituye banda única v1 (superseded · VERIFICACION-F8 §Desvío)</text>
+<g id="band-1-faq">
+<rect x="0" y="60" width="1440" height="831" fill="#FFFFFF" stroke="none"/>
+<line x1="0" y1="60" x2="1440" y2="60" stroke="#E5DDD5" stroke-width="1"/>
+<line x1="0" y1="891" x2="1440" y2="891" stroke="#E5DDD5" stroke-width="1"/>
+<text x="68" y="84" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">banda 1 · FAQ · BLANCO --brand-white #FFFFFF (enmienda v2: docs decían «crema») · py --band-y-d 100</text>
+</g>
+<g id="band-2-cta">
+<rect x="0" y="891" width="1440" height="498" fill="#2E1E3F" stroke="none"/>
+<text x="68" y="915" font-family="monospace" font-size="11" fill="#FFF8F2" fill-opacity="0.85" text-anchor="start">banda 2 · CTA FINAL · ciruela #2E1E3F · segunda banda ciruela de la página · py 100 · SIN --glow-hero (enmienda v2)</text>
+</g>
+<g id="grid-12">
+<rect x="240" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="322" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="404" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="486" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="568" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="650" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="814" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="896" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="978" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1060" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1142" y="100" width="58" height="1280" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="310" y1="100" x2="310" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="392" y1="100" x2="392" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="474" y1="100" x2="474" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="556" y1="100" x2="556" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="638" y1="100" x2="638" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720" y1="100" x2="720" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="802" y1="100" x2="802" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="884" y1="100" x2="884" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="966" y1="100" x2="966" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1048" y1="100" x2="1048" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1130" y1="100" x2="1130" y2="1380" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="240" y="100" width="960" height="1280" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="248" y="116" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">container-lg 960 · aire (1440-960)/2 = 240</text>
+</g>
+<g id="faq-head">
+<rect x="590" y="160" width="260" height="20" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="2"/>
+<text x="720" y="174" font-family="sans-serif" font-size="12" font-weight="bold" fill="#65586E" letter-spacing="1.4" text-anchor="middle">DUDAS COMUNES</text>
+<text x="870" y="174" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">kicker .section-kicker 13 MAYÚS · mb 12 · centrado</text>
+<text x="720" y="247" font-family="Impact, 'Arial Narrow', sans-serif" font-size="64" fill="#2E1E3F" text-anchor="middle">PREGUNTAS FRECUENTES</text>
+<text x="720" y="272" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">H2 Bebas 64 · lh .95 = 61 · mb 32 · CENTRADO (.faq__head center · .faq__title text-align:center · _home.scss:606,977)</text>
+</g>
+<g id="faq-accordion">
+<rect x="404" y="285" width="632" height="506" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="404" y1="285" x2="1036" y2="285" stroke="#65586E" stroke-width="1"/>
+<text x="404" y="328" font-family="sans-serif" font-size="12" font-weight="600" fill="#2E1E3F" text-anchor="start">¿Cuánto demora mi cliente en responder?</text>
+<polyline points="1000,322 1006,316 1012,322" fill="none" stroke="#2E1E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="404" y="368" width="520" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<rect x="404" y="386" width="470" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<text x="404" y="416" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">cuerpo abierto: 16/1.6 --text-2 · pb 24 · fondo BLANCO</text>
+<line x1="404" y1="435" x2="1036" y2="435" stroke="#65586E" stroke-width="1"/>
+<text x="404" y="480" font-family="sans-serif" font-size="12" font-weight="600" fill="#2E1E3F" text-anchor="start">¿Necesito que mis clientes se registren?</text>
+<polyline points="1000,470 1006,476 1012,470" fill="none" stroke="#2E1E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="404" y1="510" x2="1036" y2="510" stroke="#65586E" stroke-width="1"/>
+<text x="404" y="555" font-family="sans-serif" font-size="12" font-weight="600" fill="#2E1E3F" text-anchor="start">¿Sirve si vendo por Instagram o TikTok?</text>
+<polyline points="1000,545 1006,551 1012,545" fill="none" stroke="#2E1E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="404" y1="585" x2="1036" y2="585" stroke="#65586E" stroke-width="1"/>
+<text x="404" y="630" font-family="sans-serif" font-size="12" font-weight="600" fill="#2E1E3F" text-anchor="start">¿Qué pasa si pierdo el QR?</text>
+<polyline points="1000,620 1006,626 1012,620" fill="none" stroke="#2E1E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="404" y1="660" x2="1036" y2="660" stroke="#65586E" stroke-width="1"/>
+<text x="404" y="705" font-family="sans-serif" font-size="12" font-weight="600" fill="#2E1E3F" text-anchor="start">¿Quién ve las opiniones?</text>
+<polyline points="1000,695 1006,701 1012,695" fill="none" stroke="#2E1E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="404" y1="735" x2="1036" y2="735" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="752" font-family="monospace" font-size="10" fill="#B23A2A" text-anchor="middle">6.ª «¿Puedo probarlo antes de pagar?» OCULTA hoy: requiresPricing · showPricing = false (page.js:326 · faq-product.js:35)</text>
+<text x="1060" y="330" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">botón Montserrat 600 18 · py 24 · mín 48</text>
+<text x="1060" y="346" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">chevron inline 16 stroke ciruela, der 20</text>
+<text x="1060" y="362" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">plegado ∨ · abierto ∧ (rotación 180°)</text>
+<text x="1060" y="378" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">foco: outline 3 px ciruela (A2)</text>
+<text x="720" y="784" font-family="sans-serif" font-size="13" text-anchor="middle" fill="#2E1E3F">¿Otra duda? <tspan fill="#B23A2A" text-decoration="underline" font-weight="600">Escríbenos</tspan></text>
+<text x="720" y="804" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">pie 16 · centrado · mt 32 · enlace --link 5.65 (hover ciruela) → /contactus</text>
+</g>
+<g id="cta-content">
+<rect x="400" y="991" width="640" height="298" fill="none" stroke="#FFF8F2" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="720" y="1006" font-family="sans-serif" font-size="12" font-weight="bold" fill="#FFF8F2" fill-opacity="0.8" letter-spacing="1.4" text-anchor="middle">COMIENZA HOY</text>
+<text x="720" y="1028" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.6" text-anchor="middle">kicker --on-dark: crema 75 % + ciruela (color-mix)</text>
+<text x="720" y="1084" font-family="Impact, 'Arial Narrow', sans-serif" font-size="64" fill="#FFF8F2" text-anchor="middle">CREA TU PRIMERA ENCUESTA</text>
+<text x="720" y="1136" font-family="sans-serif" font-size="13" fill="#FFF8F2" fill-opacity="0.85" text-anchor="middle">Del QR a la primera opinión, sin equipo técnico.</text>
+<text x="720" y="1154" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.6" text-anchor="middle">subtítulo 18/1.5 · crema 85 % = 10.83 AA</text>
+<rect x="540" y="1167" width="360" height="56" fill="#FF5F44" rx="6"/>
+<text x="720" y="1201" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F" text-anchor="middle">Crear mi primera encuesta</text>
+<text x="920" y="1196" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.6" text-anchor="start">btn-primary h 56 · 18/600 · texto ciruela 5.08</text>
+<text x="920" y="1212" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.6" text-anchor="start">foco outline peach 3 px = 12.88 (F8 #3)</text>
+<text x="720" y="1268" font-family="sans-serif" font-size="12" fill="#FFF8F2" fill-opacity="0.75" text-anchor="middle">Si no recibes clientes en el local ni vendes por redes,</text>
+<text x="720" y="1288" font-family="sans-serif" font-size="12" fill="#FFF8F2" fill-opacity="0.75" text-anchor="middle">hoy esto todavía no te sirve.</text>
+<text x="720" y="1310" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.6" text-anchor="middle">honestidad 14/1.5 · crema 75 % = 8.78 AA · máx 480</text>
+</g>
+<g id="measure">
+<line x1="240" y1="278" x2="404" y2="278" stroke="#65586E" stroke-width="1"/>
+<line x1="240" y1="273" x2="240" y2="283" stroke="#65586E" stroke-width="1"/>
+<line x1="404" y1="273" x2="404" y2="283" stroke="#65586E" stroke-width="1"/>
+<text x="322" y="270" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">offset 164</text>
+<line x1="404" y1="278" x2="1036" y2="278" stroke="#65586E" stroke-width="1"/>
+<line x1="1036" y1="273" x2="1036" y2="283" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="262" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">col-lg-8 offset-lg-2 = 632</text>
+<line x1="1036" y1="278" x2="1200" y2="278" stroke="#65586E" stroke-width="1"/>
+<line x1="1200" y1="273" x2="1200" y2="283" stroke="#65586E" stroke-width="1"/>
+<text x="1118" y="270" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">offset 164</text>
+<line x1="400" y1="983" x2="1040" y2="983" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="400" y1="978" x2="400" y2="988" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1040" y1="978" x2="1040" y2="988" stroke="#FFF8F2" stroke-width="1"/>
+<text x="720" y="975" font-family="monospace" font-size="12" fill="#FFF8F2" text-anchor="middle">contenido máx 640 · centrado</text>
+<line x1="240" y1="1410" x2="1200" y2="1410" stroke="#65586E" stroke-width="1"/>
+<line x1="240" y1="1405" x2="240" y2="1415" stroke="#65586E" stroke-width="1"/>
+<line x1="1200" y1="1405" x2="1200" y2="1415" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="1402" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">container 960</text>
+<line x1="0" y1="1432" x2="240" y2="1432" stroke="#65586E" stroke-width="1"/>
+<line x1="0" y1="1427" x2="0" y2="1437" stroke="#65586E" stroke-width="1"/>
+<line x1="240" y1="1427" x2="240" y2="1437" stroke="#65586E" stroke-width="1"/>
+<text x="120" y="1424" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">margen 240</text>
+<line x1="1250" y1="60" x2="1250" y2="891" stroke="#65586E" stroke-width="1"/>
+<line x1="1245" y1="60" x2="1255" y2="60" stroke="#65586E" stroke-width="1"/>
+<line x1="1245" y1="891" x2="1255" y2="891" stroke="#65586E" stroke-width="1"/>
+<text x="1258" y="478" font-family="monospace" font-size="12" fill="#65586E" text-anchor="start">banda 1 ≈ 831</text>
+<line x1="1250" y1="891" x2="1250" y2="1389" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1245" y1="891" x2="1255" y2="891" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1245" y1="1389" x2="1255" y2="1389" stroke="#FFF8F2" stroke-width="1"/>
+<text x="1258" y="1142" font-family="monospace" font-size="12" fill="#FFF8F2" text-anchor="start">banda 2 ≈ 498</text>
+</g>
+<g id="notas">
+<text x="60" y="1462" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">v2 SUSTITUYE al plano v1 de banda única (row 7+5: FAQ 550 + CTA 386 dentro de 960) — desvío documental aceptado:</text>
+<text x="60" y="1480" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">VERIFICACION-F8.md §«Desvío documental aceptado» · UX-LANDING.md §2 filas 8-9 · ritmo de bandas §4 (el CTA final es ancla ciruela)</text>
+<text x="60" y="1498" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">eliminado del plano anterior: la micro «sin tarjeta» (vetada: no confirmado — VERIFICACION-F8) → hoy existe la línea de honestidad real</text>
+<text x="60" y="1516" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">enmienda v2 (fondo): FAQ en BLANCO — UX-LANDING §2 fila 8 y el comentario SCSS dicen «crema», desactualizados; código manda (_home.scss:962-963)</text>
+<text x="60" y="1534" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">enmienda v2 (glow): la banda CTA NO lleva --glow-hero — solo .hero-band (_home.scss:24) y .page-hero (_page-hero.scss:11) lo usan</text>
+<text x="60" y="1552" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">acordeón: 5 visibles + 6.ª condicional · pregunta abierta 14.53 (fix raíz _components.scss:457-458) · sin emoji, chevron SVG inline</text>
+<text x="60" y="1570" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">contrastes medidos (VERIFICACION-F8 §Estado): subtítulo 10.83 · honestidad 8.78 · botón coral/ciruela 5.08 · foco peach 12.88 · pie --link 5.65</text>
+<text x="60" y="1588" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">regla: nunca dos CTAs coral visibles a la vez (INDEX.md fila 9) — el coral de esta banda es el último de la página; el del hero queda lejos</text>
+<text x="60" y="1606" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">altos cotados: banda 1 ≈ 831 = py 200 + pila (kicker 32 + H2 93 + acordeón 450 + pie 56) · banda 2 ≈ 498 = py 200 + contenido 298</text>
+<text x="60" y="1624" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">altos por contenido (sin cota fija en código) · dibujo a escala 1:1 · márgenes verticales internos: mb 32 tras H2/ct. según --sp-4/--sp-5</text>
+</g>
+</svg>

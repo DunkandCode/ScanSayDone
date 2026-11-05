@@ -1,0 +1,311 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 3120" width="1440" height="3120" role="img" aria-label="13 · CONTACTO — /contactus página normal · navbar 74 + page-hero banda 515 container-xl 1140 (648+48+420) + onda 25 + sección 1125 xxl 1320 panel 736×776 + variante éxito + móvil 351 scrollX 0">
+<title>13 · CONTACTO — /contactus · navbar 74 · banda 515 · sección 1125 panel 736×776 · fila 315+24+315=654 · textarea 122 · móvil 351 scrollX 0</title>
+<desc>Plano metrico SVG. Unid: px. Cotas Playwright /contactus 05-nov-2026 (desktop 1440 alto página 2111 · móvil 375 alto 2570). Hero: banda 515 py 100/100 · container-xl 1140 (aire 150 · col 73) · columna de contenido x 162 ancho 1116 = 648 + 48 + 420 ✓ · breadcrumb 648×24 · H1 Bebas 88 caja 81 · lead 648×29 (1 línea) · media 420×315 (4/3) ILUSTRACIÓN top 176 (centrada, márgenes 100/100) · onda 25 top 567. Sección 1125 padding 40/100 · container-xxl 1320 (aire 60 · col 88) · panel 736×776 (fórmula span-8 = 872 → hueco) · padding 40 · interior 656 vs campos 654 (Δ 2) · row-gap 24. Fila = 23+8+48 = 79 · 315+24+315 = 654 · input 48 · textarea 122 (min-height 108 · rows=4 manda) · contador 20 · submit 54 ENVÍO NO DISPONIBLE (inerte sin endpoint). Pasos 736×111 + nota 736×42 · footer 395. Aviso 45 ANTES de los campos (decisión de producto). Variante estado éxito al costado (MENSAJE ENVIADO / REVISA TU CORREO + botón secundario), no pantalla aparte. Móvil 375: banda 561 py 60/60 · panel 351×899 · media 351×263 bajo el texto · fila 1 columna 177 · aviso 87 (3 líneas) · inputs 301×46 · textarea 122 · footer 684 · scrollX 0. Bandas y secciones grandes comprimidas en el dibujo · elementos 1:1 · [medir] = pendiente.</desc>
+<rect width="1440" height="3120" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">13 · CONTACTO — /contactus reescrita como página del sitio · navbar + page-hero + onda + sección + footer · form de 4 campos · cotas Playwright 05-nov-2026</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">hero xl 1140 · sección xxl 1320 · col 73 / 88</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">v2 · 05-nov-2026 · cotas Playwright /contactus · aviso ANTES de campos · variante éxito al costado · móvil scrollX 0</text>
+<g id="band">
+<rect x="0" y="60" width="1440" height="76" fill="#FFF8F2" stroke="#978F9F" stroke-width="1"/>
+<text x="24" y="104" font-family="monospace" font-size="11" fill="#65586E">NAVBAR · alto 74 (medido) · hero top 76 · compensado por main { padding-top: 76px } (globals.css)</text>
+<rect x="0" y="136" width="1440" height="464" fill="#2E1E3F" stroke="none"/>
+<text x="158" y="160" font-family="monospace" font-size="11" fill="#FFF8F2" fill-opacity="0.85">PAGE-HERO · /contactus · banda ciruela 515 · py 100/100 · jerarquía: breadcrumb → H1 88 → lead 18 → media 420</text>
+<path d="M0 610 C120 598 240 598 360 612 C480 626 600 640 720 630 C840 620 960 602 1080 612 C1200 622 1330 640 1440 626 L1440 652 L0 652 Z" fill="#FFF8F2" stroke="none"/>
+<text x="1416" y="640" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">onda SVG · todo el ancho · 1440×25 · top 567</text>
+<rect x="0" y="648" width="1440" height="912" fill="#FFF8F2" stroke="none"/>
+<text x="68" y="692" font-family="monospace" font-size="11" fill="#65586E">SECCIÓN CONTACTO · container-xxl 1320 · fondo crema (casa — confirmar [medir]) · padding 40/100 · alto 1125</text>
+<rect x="0" y="1560" width="1440" height="100" fill="#FFF8F2" stroke="#978F9F" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="720" y="1614" text-anchor="middle" font-family="monospace" font-size="12" fill="#65586E">FOOTER DEL SITIO · 1440×395 (dibujo comprimido) · banda crema (R4 GRID-SPEC) · detalle en 07-footer.svg · no se redibuja</text>
+</g>
+<g id="grid-12">
+<rect x="150" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="247" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="344" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="441" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="538" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="635" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="829" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="926" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="1023" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="1120" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<rect x="1217" y="156" width="73" height="424" fill="#FFFFFF" fill-opacity="0.1" stroke="none"/>
+<line x1="235" y1="156" x2="235" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="332" y1="156" x2="332" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="429" y1="156" x2="429" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="526" y1="156" x2="526" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="623" y1="156" x2="623" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720" y1="156" x2="720" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="817" y1="156" x2="817" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="914" y1="156" x2="914" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1011" y1="156" x2="1011" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1108" y1="156" x2="1108" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1205" y1="156" x2="1205" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<rect x="60" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="172" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="284" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="396" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="508" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="620" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="844" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="956" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1068" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1180" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1292" y="668" width="88" height="872" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="160" y1="668" x2="160" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="272" y1="668" x2="272" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="384" y1="668" x2="384" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="496" y1="668" x2="496" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="608" y1="668" x2="608" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720" y1="668" x2="720" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="832" y1="668" x2="832" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="944" y1="668" x2="944" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1056" y1="668" x2="1056" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1168" y1="668" x2="1168" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1280" y1="668" x2="1280" y2="1540" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<line x1="150" y1="136" x2="150" y2="600" stroke="#FF5F44" stroke-width="1.5" stroke-opacity="0.7" stroke-dasharray="6 4"/>
+<line x1="1290" y1="136" x2="1290" y2="600" stroke="#FF5F44" stroke-width="1.5" stroke-opacity="0.7" stroke-dasharray="6 4"/>
+<text x="158" y="174" font-family="monospace" font-size="11" fill="#FFF8F2" fill-opacity="0.85">container-xl 1140 · col 73 · gutter 24 · aire (1440-1140)/2 = 150</text>
+<line x1="162" y1="156" x2="162" y2="580" stroke="#FFF8F2" stroke-width="0.75" stroke-opacity="0.45" stroke-dasharray="2 4"/>
+<line x1="1278" y1="156" x2="1278" y2="580" stroke="#FFF8F2" stroke-width="0.75" stroke-opacity="0.45" stroke-dasharray="2 4"/>
+<text x="170" y="570" font-family="monospace" font-size="11" fill="#FFF8F2" fill-opacity="0.85">columna de contenido x 162 · ancho 1116 = 648 + 48 + 420 ✓</text>
+<rect x="60" y="668" width="1320" height="872" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="68" y="708" font-family="monospace" font-size="11" fill="#65586E">container-xxl 1320 · col 88 = (1320-264)/12 · aire 60 · padding 40/100</text>
+</g>
+<g id="content">
+<line x1="162" y1="196" x2="1278" y2="196" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="162" y1="220" x2="1278" y2="220" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<text x="170" y="212" font-family="monospace" font-size="11" fill="#FFF8F2">breadcrumb · bloque 648×24</text>
+<line x1="162" y1="228" x2="810" y2="228" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.8" stroke-dasharray="3 3"/>
+<text x="170" y="225" font-family="monospace" font-size="10" fill="#FF5F44">tinta Bebas desborda ~3-4 px sobre la caja ↑</text>
+<line x1="162" y1="232" x2="810" y2="232" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="162" y1="313" x2="810" y2="313" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<text x="170" y="262" font-family="monospace" font-size="11" fill="#FFF8F2">H1 · Bebas 88 px · line-height .92 → caja de línea 81 (medida)</text>
+<text x="170" y="280" font-family="monospace" font-size="11" fill="#FFF8F2">texto del H1: el de la página (no se inventa)</text>
+<rect x="162" y="330" width="648" height="29" fill="#FFF8F2" fill-opacity="0.08" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.6"/>
+<text x="170" y="349" font-family="monospace" font-size="11" fill="#FFF8F2">lead · 18 px · crema 85% · max-width 60ch</text>
+<text x="170" y="364" font-family="monospace" font-size="11" fill="#FFF8F2">medido 648×29 · 1 línea · 60ch ≈ 715 era de 09</text>
+<rect x="864" y="238" width="420" height="315" fill="#000000" fill-opacity="0.25" rx="16"/>
+<rect x="858" y="232" width="420" height="315" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.6" rx="16"/>
+<text x="1068" y="380" text-anchor="middle" font-family="monospace" font-size="11" fill="#FFF8F2">media · 420 × 315 (4:3)</text>
+<text x="1068" y="398" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">ILUSTRACIÓN — no fotografía</text>
+<text x="1068" y="414" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">radio 16 · filo 1 px crema 22% · sombra</text>
+<text x="1068" y="430" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">top 176 · centrada en banda (márgenes 100/100)</text>
+<rect x="66" y="746" width="736" height="600" fill="#2E1E3F" fill-opacity="0.12" rx="12"/>
+<rect x="60" y="740" width="736" height="600" fill="#FFFFFF" stroke="#2E1E3F" stroke-width="1.5" rx="12"/>
+<rect x="100" y="780" width="656" height="520" fill="none" stroke="#978F9F" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="100" y1="780" x2="754" y2="780" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="100" y1="821" x2="754" y2="821" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<text x="108" y="806" font-family="monospace" font-size="11" fill="#2E1E3F">H2 «Tu mensaje» · Bebas 40 px · caja 40 (dibujado 41 · Δ 1)</text>
+<line x1="100" y1="837" x2="754" y2="837" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="100" y1="852" x2="754" y2="852" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<text x="108" y="848" font-family="monospace" font-size="11" fill="#2E1E3F">lead del panel · 15 px · caja 48 (2 líneas)</text>
+<rect x="100" y="876" width="654" height="45" fill="#2E1E3F" fill-opacity="0.06" stroke="none"/>
+<rect x="100" y="876" width="3" height="45" fill="#2E1E3F" stroke="none"/>
+<text x="112" y="898" font-family="monospace" font-size="11" fill="#2E1E3F">AVISO · filo izquierdo 3 px · alto 45 (87 en móvil — 3 líneas)</text>
+<text x="112" y="916" font-family="monospace" font-size="10" fill="#FF5F44">VA ANTES DE LOS CAMPOS — decisión de producto: se sabe que no se puede enviar ANTES de rellenar</text>
+<rect x="100" y="940" width="315" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="257" y="968" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">Nombre · 315×48 · label 23</text>
+<rect x="439" y="940" width="315" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="596" y="968" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">Correo · 315×48 · label 23</text>
+<rect x="100" y="1012" width="654" height="48" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="427" y="1040" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">campo de 1 columna · 654×48 · etiqueta 23 · fila = 23+8+48 = 79</text>
+<rect x="100" y="1084" width="654" height="122" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="427" y="1149" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">textarea · 4 filas · 654×122 (min-height 108 · rows=4 manda)</text>
+<text x="754" y="1226" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">contador · 654×20 · a la derecha</text>
+<rect x="100" y="1236" width="654" height="54" fill="#2E1E3F" rx="8"/>
+<text x="427" y="1268" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFF8F2">ENVÍO NO DISPONIBLE</text>
+<text x="108" y="1296" font-family="monospace" font-size="10" fill="#65586E">submit inerte — sin endpoint/correo no envía nada · padding 40 · interior 656 vs campos 654 (Δ 2 px) · row-gap 24</text>
+<line x1="60" y1="1364" x2="796" y2="1364" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="60" y1="1388" x2="796" y2="1388" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<text x="68" y="1382" font-family="monospace" font-size="11" fill="#2E1E3F">H3 «Qué pasa después» · 24 px · caja 24 ✓ · bloque pasos 736×111</text>
+<circle cx="76" cy="1412" r="9" fill="none" stroke="#2E1E3F" stroke-width="1"/>
+<text x="76" y="1416" text-anchor="middle" font-family="monospace" font-size="10" fill="#2E1E3F">1</text>
+<text x="94" y="1416" font-family="monospace" font-size="11" fill="#65586E">ítem 1 de lista ordenada · cuerpo [medir] (contenido real de la página — el plano no lo inventa)</text>
+<circle cx="76" cy="1440" r="9" fill="none" stroke="#2E1E3F" stroke-width="1"/>
+<text x="76" y="1444" text-anchor="middle" font-family="monospace" font-size="10" fill="#2E1E3F">2</text>
+<text x="94" y="1444" font-family="monospace" font-size="11" fill="#65586E">ítem 2 · cuerpo [medir]</text>
+<circle cx="76" cy="1468" r="9" fill="none" stroke="#2E1E3F" stroke-width="1"/>
+<text x="76" y="1472" text-anchor="middle" font-family="monospace" font-size="10" fill="#2E1E3F">3</text>
+<text x="94" y="1472" font-family="monospace" font-size="11" fill="#65586E">ítem 3 · cuerpo [medir]</text>
+<text x="68" y="1500" font-family="monospace" font-size="11" fill="#65586E">nota final · 736×42 · 24 px bajo el bloque</text>
+<path d="M798 920 L854 920 M846 916 L854 920 L846 924" stroke="#FF5F44" stroke-width="1" fill="none"/>
+<rect x="860" y="740" width="520" height="340" fill="#FFFFFF" stroke="#FF5F44" stroke-width="1.5" stroke-dasharray="6 4" rx="8"/>
+<text x="872" y="764" font-family="monospace" font-size="11" fill="#FF5F44">VARIANTE · ESTADO FINAL «éxito» · al costado del panel, no pantalla aparte</text>
+<text x="1120" y="856" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="bold" fill="#2E1E3F">MENSAJE ENVIADO</text>
+<text x="1120" y="878" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">título [medir]</text>
+<text x="1120" y="902" text-anchor="middle" font-family="monospace" font-size="12" fill="#65586E">REVISA TU CORREO · tamaño [medir]</text>
+<rect x="930" y="920" width="420" height="48" fill="none" stroke="#2E1E3F" stroke-width="1.5" rx="8"/>
+<text x="1140" y="949" text-anchor="middle" font-family="monospace" font-size="11" fill="#2E1E3F">botón secundario · tamaño [medir]</text>
+<text x="872" y="1006" font-family="monospace" font-size="10" fill="#65586E">reemplaza el contenido del panel al confirmar el envío</text>
+<text x="872" y="1022" font-family="monospace" font-size="10" fill="#65586E">solo alcanzan este estado con endpoint/correo activo — hoy el form es inerte</text>
+<text x="872" y="1038" font-family="monospace" font-size="10" fill="#65586E">estados de envío: 1 normal (inerte) · 2 este éxito · 3 segundo estado [especificar]</text>
+<text x="872" y="1054" font-family="monospace" font-size="10" fill="#65586E">el botón secundario ofrece la salida del estado (acción [medir])</text>
+</g>
+<g id="measure">
+<line x1="1310" y1="60" x2="1310" y2="136" stroke="#65586E" stroke-width="1"/>
+<line x1="1305" y1="60" x2="1315" y2="60" stroke="#65586E" stroke-width="1"/>
+<line x1="1305" y1="136" x2="1315" y2="136" stroke="#65586E" stroke-width="1"/>
+<text x="1302" y="102" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">74</text>
+<line x1="1310" y1="196" x2="1310" y2="220" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="196" x2="1315" y2="196" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="220" x2="1315" y2="220" stroke="#FFF8F2" stroke-width="1"/>
+<text x="1302" y="211" text-anchor="end" font-family="monospace" font-size="11" fill="#FFF8F2">24</text>
+<line x1="1310" y1="220" x2="1310" y2="232" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="220" x2="1315" y2="220" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="232" x2="1315" y2="232" stroke="#FFF8F2" stroke-width="1"/>
+<text x="1302" y="229" text-anchor="end" font-family="monospace" font-size="11" fill="#FFF8F2">12</text>
+<line x1="1310" y1="232" x2="1310" y2="313" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="232" x2="1315" y2="232" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1305" y1="313" x2="1315" y2="313" stroke="#FFF8F2" stroke-width="1"/>
+<text x="1302" y="277" text-anchor="end" font-family="monospace" font-size="11" fill="#FFF8F2">81</text>
+<line x1="830" y1="232" x2="830" y2="547" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="825" y1="232" x2="835" y2="232" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="825" y1="547" x2="835" y2="547" stroke="#FFF8F2" stroke-width="1"/>
+<text x="826" y="393" text-anchor="end" font-family="monospace" font-size="11" fill="#FFF8F2">315</text>
+<line x1="1340" y1="136" x2="1340" y2="600" stroke="#FFF8F2" stroke-width="1"/>
+<path d="M1336 144 L1340 136 L1344 144" stroke="#FFF8F2" stroke-width="1" fill="none"/>
+<path d="M1336 592 L1340 600 L1344 592" stroke="#FFF8F2" stroke-width="1" fill="none"/>
+<text x="1348" y="372" font-family="monospace" font-size="12" fill="#FFF8F2">banda 515</text>
+<line x1="162" y1="560" x2="1278" y2="560" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="162" y1="555" x2="162" y2="565" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="810" y1="555" x2="810" y2="565" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="858" y1="555" x2="858" y2="565" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1278" y1="555" x2="1278" y2="565" stroke="#FFF8F2" stroke-width="1"/>
+<text x="486" y="554" text-anchor="middle" font-family="monospace" font-size="11" fill="#FFF8F2">648</text>
+<text x="834" y="554" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">48</text>
+<text x="1068" y="554" text-anchor="middle" font-family="monospace" font-size="11" fill="#FFF8F2">420</text>
+<line x1="150" y1="590" x2="1290" y2="590" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.7"/>
+<line x1="150" y1="585" x2="150" y2="595" stroke="#FFF8F2" stroke-width="1"/>
+<line x1="1290" y1="585" x2="1290" y2="595" stroke="#FFF8F2" stroke-width="1"/>
+<text x="720" y="586" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFF8F2">container-xl 1140 = 12×73 + 11×24</text>
+<line x1="60" y1="732" x2="796" y2="732" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="727" x2="60" y2="737" stroke="#65586E" stroke-width="1"/>
+<line x1="796" y1="727" x2="796" y2="737" stroke="#65586E" stroke-width="1"/>
+<text x="428" y="726" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">panel 736×776 (medido · ≠ span-8 872 de fórmula — hueco)</text>
+<line x1="60" y1="770" x2="100" y2="770" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="765" x2="60" y2="775" stroke="#65586E" stroke-width="1"/>
+<line x1="100" y1="765" x2="100" y2="775" stroke="#65586E" stroke-width="1"/>
+<text x="80" y="764" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">40</text>
+<line x1="756" y1="770" x2="796" y2="770" stroke="#65586E" stroke-width="1"/>
+<line x1="756" y1="765" x2="756" y2="775" stroke="#65586E" stroke-width="1"/>
+<line x1="796" y1="765" x2="796" y2="775" stroke="#65586E" stroke-width="1"/>
+<text x="776" y="764" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">40</text>
+<line x1="100" y1="1000" x2="754" y2="1000" stroke="#65586E" stroke-width="1"/>
+<line x1="100" y1="995" x2="100" y2="1005" stroke="#65586E" stroke-width="1"/>
+<line x1="415" y1="995" x2="415" y2="1005" stroke="#65586E" stroke-width="1"/>
+<line x1="439" y1="995" x2="439" y2="1005" stroke="#65586E" stroke-width="1"/>
+<line x1="754" y1="995" x2="754" y2="1005" stroke="#65586E" stroke-width="1"/>
+<text x="257" y="994" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">315</text>
+<text x="427" y="994" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">24</text>
+<text x="596" y="994" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">315</text>
+<line x1="810" y1="940" x2="810" y2="988" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="940" x2="815" y2="940" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="988" x2="815" y2="988" stroke="#65586E" stroke-width="1"/>
+<text x="800" y="968" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">48</text>
+<line x1="810" y1="1084" x2="810" y2="1206" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="1084" x2="815" y2="1084" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="1206" x2="815" y2="1206" stroke="#65586E" stroke-width="1"/>
+<text x="800" y="1151" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">122</text>
+<line x1="810" y1="1236" x2="810" y2="1290" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="1236" x2="815" y2="1236" stroke="#65586E" stroke-width="1"/>
+<line x1="805" y1="1290" x2="815" y2="1290" stroke="#65586E" stroke-width="1"/>
+<text x="800" y="1266" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">54</text>
+<line x1="100" y1="1302" x2="754" y2="1302" stroke="#65586E" stroke-width="1"/>
+<line x1="100" y1="1297" x2="100" y2="1307" stroke="#65586E" stroke-width="1"/>
+<line x1="754" y1="1297" x2="754" y2="1307" stroke="#65586E" stroke-width="1"/>
+<text x="427" y="1316" text-anchor="middle" font-family="monospace" font-size="11" fill="#65586E">654 (campo único · textarea · submit)</text>
+<line x1="60" y1="1552" x2="1380" y2="1552" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="1547" x2="60" y2="1557" stroke="#65586E" stroke-width="1"/>
+<line x1="1380" y1="1547" x2="1380" y2="1557" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="1546" text-anchor="middle" font-family="monospace" font-size="12" fill="#65586E">container-xxl 1320 = 12×88 + 11×24</text>
+<line x1="30" y1="1568" x2="60" y2="1568" stroke="#65586E" stroke-width="1"/>
+<line x1="30" y1="1563" x2="30" y2="1573" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="1563" x2="60" y2="1573" stroke="#65586E" stroke-width="1"/>
+<text x="45" y="1560" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">aire 60</text>
+<line x1="1400" y1="648" x2="1400" y2="1560" stroke="#65586E" stroke-width="1"/>
+<path d="M1396 656 L1400 648 L1404 656" stroke="#65586E" stroke-width="1" fill="none"/>
+<path d="M1396 1552 L1400 1560 L1404 1552" stroke="#65586E" stroke-width="1" fill="none"/>
+<text x="1408" y="1100" font-family="monospace" font-size="11" fill="#65586E">sección</text>
+<text x="1408" y="1114" font-family="monospace" font-size="10" fill="#65586E">1125</text>
+</g>
+<g id="mobile">
+<text x="60" y="1692" font-family="monospace" font-size="12" fill="#65586E">MÓVIL 375 · scrollX = 0 — sin desborde horizontal (medido) · fila Nombre/Correo → 1 columna (177 = 2×77 + 24) · aviso 87 (3 líneas) · media DEBAJO del texto</text>
+<rect x="60" y="1710" width="375" height="1316" fill="#FFFFFF" stroke="#2E1E3F" stroke-width="1.5"/>
+<line x1="60" y1="1706" x2="435" y2="1706" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="1701" x2="60" y2="1711" stroke="#65586E" stroke-width="1"/>
+<line x1="435" y1="1701" x2="435" y2="1711" stroke="#65586E" stroke-width="1"/>
+<rect x="60" y="1710" width="375" height="56" fill="#FFF8F2" stroke="#978F9F" stroke-width="1"/>
+<text x="68" y="1742" font-family="monospace" font-size="10" fill="#65586E">navbar móvil · alto 74 (dibujo comprimido)</text>
+<rect x="60" y="1766" width="375" height="444" fill="#2E1E3F" stroke="none"/>
+<text x="68" y="1786" font-family="monospace" font-size="10" fill="#FFF8F2" fill-opacity="0.85">page-hero móvil · banda 561 · py 60/60</text>
+<line x1="72" y1="1806" x2="423" y2="1806" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<text x="76" y="1822" font-family="monospace" font-size="10" fill="#FFF8F2">breadcrumb</text>
+<line x1="72" y1="1834" x2="423" y2="1834" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="72" y1="1874" x2="423" y2="1874" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<text x="76" y="1858" font-family="monospace" font-size="10" fill="#FFF8F2">H1 · caja 40 ✓ (40 dibujado)</text>
+<line x1="72" y1="1890" x2="423" y2="1890" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="72" y1="1916" x2="423" y2="1916" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.4"/>
+<text x="76" y="1908" font-family="monospace" font-size="10" fill="#FFF8F2">lead · caja 58 (2 líneas)</text>
+<rect x="72" y="1936" width="351" height="263" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFF8F2" stroke-width="1" stroke-opacity="0.6" rx="12"/>
+<text x="247" y="2060" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">media 351 × 263 (4:3)</text>
+<text x="247" y="2076" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFF8F2">ilustración · debajo del texto</text>
+<path d="M60 2224 C135 2210 195 2210 255 2224 C315 2238 375 2238 435 2224 L435 2246 L60 2246 Z" fill="#FFF8F2" stroke="none"/>
+<rect x="60" y="2240" width="375" height="696" fill="#FFF8F2" stroke="none"/>
+<text x="68" y="2262" font-family="monospace" font-size="10" fill="#65586E">sección móvil · py 40/60 · onda 24 · alto 1249</text>
+<rect x="72" y="2286" width="351" height="534" fill="#FFFFFF" stroke="#2E1E3F" stroke-width="1.5" rx="12"/>
+<text x="80" y="2308" font-family="monospace" font-size="10" fill="#2E1E3F">.contacto-panel · 351×899 = 375 − 2×12 ✓ (dibujo comprimido)</text>
+<text x="80" y="2348" font-family="monospace" font-size="10" fill="#2E1E3F">H2 · caja 32 (40 dibujado)</text>
+<rect x="97" y="2372" width="301" height="44" fill="#2E1E3F" fill-opacity="0.06" stroke="none"/>
+<rect x="97" y="2372" width="3" height="44" fill="#2E1E3F" stroke="none"/>
+<text x="107" y="2390" font-family="monospace" font-size="9" fill="#FF5F44">AVISO antes de campos · real 87 (3 líneas)</text>
+<rect x="97" y="2428" width="301" height="46" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="247" y="2456" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">Nombre · 301×46</text>
+<rect x="97" y="2484" width="301" height="46" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="247" y="2512" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">Correo · 301×46</text>
+<rect x="97" y="2540" width="301" height="46" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="247" y="2568" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">campo 3 · 301×46</text>
+<rect x="97" y="2596" width="301" height="122" fill="#FFFFFF" stroke="#978F9F" stroke-width="1" rx="8"/>
+<text x="247" y="2661" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">textarea · 301×122</text>
+<text x="398" y="2734" text-anchor="end" font-family="monospace" font-size="9" fill="#65586E">contador · 301×20</text>
+<rect x="97" y="2746" width="301" height="54" fill="#2E1E3F" rx="8"/>
+<text x="247" y="2778" text-anchor="middle" font-family="monospace" font-size="8" fill="#FFF8F2">ENVÍO NO DISPONIBLE</text>
+<text x="80" y="2836" font-family="monospace" font-size="9" fill="#65586E">estados de envío y éxito: ídem escritorio (variante al costado)</text>
+<line x1="72" y1="2876" x2="423" y2="2876" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<line x1="72" y1="2896" x2="423" y2="2896" stroke="#2E1E3F" stroke-width="1" stroke-opacity="0.4"/>
+<text x="80" y="2892" font-family="monospace" font-size="10" fill="#2E1E3F">H3 «Qué pasa después» + 3 ítems + nota · apila · pasos 111 · nota 83</text>
+<rect x="60" y="2936" width="375" height="90" fill="#FFF8F2" stroke="#978F9F" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="247" y="2984" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">footer del sitio · 684 real (07) · comprimido · no redibujado</text>
+<line x1="72" y1="2852" x2="423" y2="2852" stroke="#65586E" stroke-width="1"/>
+<line x1="72" y1="2847" x2="72" y2="2857" stroke="#65586E" stroke-width="1"/>
+<line x1="423" y1="2847" x2="423" y2="2857" stroke="#65586E" stroke-width="1"/>
+<text x="247" y="2864" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">351</text>
+<line x1="444" y1="1936" x2="444" y2="2199" stroke="#65586E" stroke-width="1"/>
+<line x1="439" y1="1936" x2="449" y2="1936" stroke="#65586E" stroke-width="1"/>
+<line x1="439" y1="2199" x2="449" y2="2199" stroke="#65586E" stroke-width="1"/>
+<text x="452" y="2068" font-family="monospace" font-size="10" fill="#65586E">263</text>
+</g>
+<g id="notes">
+<rect x="520" y="1710" width="920" height="480" fill="none" stroke="#978F9F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="540" y="1740" font-family="sans-serif" font-size="13" font-weight="bold" fill="#FF5F44" letter-spacing="0.1em">NOTAS DEL PLANO — HONESTIDAD Y DECISIONES</text>
+<text x="540" y="1774" font-family="monospace" font-size="11" fill="#65586E">N1 — la media del page-hero es una ILUSTRACIÓN, no una fotografía del producto.</text>
+<text x="540" y="1800" font-family="monospace" font-size="11" fill="#65586E">N2 — el formulario está INERTE: sin correo/endpoint configurado no envía nada · el submit dice ENVÍO NO DISPONIBLE.</text>
+<text x="540" y="1826" font-family="monospace" font-size="11" fill="#65586E">N3 — el AVISO va ANTES de los campos: decisión de producto — saber que no se puede enviar ANTES de escribir los 4 campos.</text>
+<text x="540" y="1852" font-family="monospace" font-size="11" fill="#65586E">N4 — estados de envío: 1 normal (inerte) · 2 bloque final de éxito (variante al costado) · 3 segundo estado [especificar].</text>
+<text x="540" y="1878" font-family="monospace" font-size="11" fill="#65586E">N5 — hueco: panel 736 medido ≠ span-8 xxl 872 (GRID-SPEC §2) → reconciliar max-width/offset [medir].</text>
+<text x="540" y="1904" font-family="monospace" font-size="11" fill="#65586E">N6 — Δ 2 px: interior del panel 656 (736 − 2×40) vs fila de campos 654 medido.</text>
+<text x="540" y="1930" font-family="monospace" font-size="11" fill="#65586E">N7 — jerarquía medida: breadcrumb 24 → H1 88 (caja 81) → lead 18 (648×29) → media 420×315 → onda 25 → sección 1125 · panel 736×776.</text>
+<text x="540" y="1956" font-family="monospace" font-size="11" fill="#65586E">N8 — [medir] pendientes de esta pasada: fondo de sección, cuerpos de ítems 1-3, variante éxito, reconciliación N5 · ninguna cota redondeada ni inventada.</text>
+<text x="540" y="1982" font-family="monospace" font-size="11" fill="#65586E">N9 — sin datos de producto inventados: precios/teléfonos/oficinas no aparecen (no se proporcionaron).</text>
+<text x="540" y="2016" font-family="monospace" font-size="11" fill="#65586E">capas: band · grid-12 · container · content · measure · mobile · notes · labels (convención GRID-SPEC §4).</text>
+</g>
+<g id="labels">
+<text x="24" y="3040" font-family="monospace" font-size="11" fill="#65586E">escritorio 1440: navbar 74 · banda hero 515 (py 100/100 · container-xl 1140 col 73 aire 150) · contenido 1116 = 648+48+420 · onda 25 · sección 1125 (padding 40/100 · container-xxl 1320 col 88 aire 60) · panel 736×776 (padding 40) · fila 315+24+315 = 654 · textarea 122 · contador 20 · submit 54 · footer 395</text>
+<text x="24" y="3058" font-family="monospace" font-size="11" fill="#65586E">móvil 375: banda 561 (py 60/60) · panel 351×899 · fila → 1 columna (177) · aviso 87 (3 líneas) · inputs 301×46 · textarea 122 · submit 54 · footer 684 · scrollX = 0</text>
+<text x="24" y="3076" font-family="monospace" font-size="11" fill="#65586E">medidas Playwright /contactus, no redondeadas · bandas/secciones grandes comprimidas en el dibujo (etiquetas llevan el valor real) · [medir] restante: fondo sección, ítems, variante éxito, N5</text>
+<text x="24" y="3100" font-family="sans-serif" font-size="12" fill="#2E1E3F">/contactus = página normal del sitio: navbar + page-hero + onda + sección + footer · plano 13 v2 05-nov-2026 · fuente métrica: Playwright /contactus + GRID-SPEC.</text>
+</g>
+</svg>

@@ -1,0 +1,48 @@
+// ==========================================================================
+// bootstrap.scss — Entry point para Bootstrap 5.3.7 compilado desde fuente.
+// Configura las variables de Bootstrap con los tokens de marca.
+// Se importa desde layout.js (reemplaza bootstrap.min.css precompilado).
+// Overrideamos TODAS las variables de color para evitar que los defaults
+// de Bootstrap (#0d6efd, etc.) se filtren al CSS compilado.
+// ==========================================================================
+
+@use "brand-vars" as bv;
+
+@use "bootstrap/scss/bootstrap" with (
+  // Colores de marca (reemplazan los defaults de Bootstrap)
+  // Todos los valores vienen de bv.* — fuente unica de color (item 14)
+  $primary:                 bv.$coral,
+  $secondary:               bv.$secondary,
+  $success:                 bv.$ok,
+  $info:                    bv.$text-2,
+  $warning:                 bv.$warn,
+  $danger:                  bv.$err,
+  $light:                   bv.$cream,
+  $dark:                    bv.$plum,
+  
+  // Colores base (override para evitar #0d6efd en --bs-blue)
+  $blue:                    bv.$coral,
+  $indigo:                  #6610f2,
+  $purple:                  bv.$plum,
+  $pink:                    #d63384,
+  $red:                     bv.$err,
+  $orange:                  #fd7e14,
+  $yellow:                  bv.$warn,
+  $green:                   bv.$ok,
+  $teal:                    #20c997,
+  $cyan:                    #0dcaf0,
+  
+  // Contraste WCAG: usar ciruela en vez de negro puro
+  $color-contrast-dark:     bv.$plum,
+  
+  // Body
+  $body-bg:                 bv.$cream,
+  $body-color:              bv.$plum,
+  
+  // Configuración
+  $enable-reduced-motion:   true,
+  $enable-shadows:          false,
+  $enable-gradients:        false,
+  $border-radius:           .5rem,
+  $font-family-base:        unquote('var(--font-montserrat, "Montserrat"), system-ui, -apple-system, "Segoe UI", sans-serif')
+);

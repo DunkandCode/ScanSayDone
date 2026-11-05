@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 780" width="1440" height="780" role="img" aria-label="04 · PANEL (captura) — marco vacío discontinuo 16/10 · span-8 del xxl">
+<title>04 · PANEL (captura) — marco vacío discontinuo 16/10 · span-8 del xxl</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27. v3 05-nov-2026: marco vacío deliberado con borde discontinuo (mismo recurso que el QR del panel) · sin isotipo, sin badges, sin texto de relleno · en móvil se oculta. Fuente: VERIFICACION-SLOP-LANDING-2026-11-05.md §3.2 y §4.</desc>
+<rect width="1440" height="780" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">04 · PANEL (captura) — marco vacío discontinuo 16/10 · span-8 del xxl</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">xxl 1400+ · container 1320 · col 88</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">v3 · 05-nov-2026 · marco vacío deliberado · acta: VERIFICACION-SLOP-LANDING-2026-11-05.md</text>
+<g id="band">
+<rect x="0" y="60" width="1440" height="620" fill="#FFF8F2" stroke="none"/>
+<text x="68" y="84" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">banda crema · container-xxl (banda de captura)</text>
+</g>
+<g id="grid-12">
+<rect x="60" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="172" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="284" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="396" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="508" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="620" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="844" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="956" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1068" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1180" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1292" y="100" width="88" height="580" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="160.0" y1="100" x2="160.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="272.0" y1="100" x2="272.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="384.0" y1="100" x2="384.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="496.0" y1="100" x2="496.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="608.0" y1="100" x2="608.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720.0" y1="100" x2="720.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="832.0" y1="100" x2="832.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="944.0" y1="100" x2="944.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1056.0" y1="100" x2="1056.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1168.0" y1="100" x2="1168.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1280.0" y1="100" x2="1280.0" y2="680" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="60" y="100" width="1320" height="580" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="68" y="116" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">container-xxl 1320</text>
+</g>
+<g id="content">
+<rect x="284" y="130" width="872" height="545" fill="#FFFFFF" stroke="#978F9F" stroke-width="1.5" stroke-dasharray="6 4" rx="6"/>
+</g>
+<text x="720.0" y="692" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">cols 3–10 · marco 872 × 545 (16/10) · VACÍO</text>
+<text x="720.0" y="710" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">marco vacío deliberado: no hay captura real · mismo recurso que el QR del panel · sin isotipo, sin badges, sin texto de relleno</text>
+<text x="720.0" y="728" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">en móvil se oculta: apilado se leía como imagen rota, no como «captura pendiente» (acta SLOP §4)</text>
+<g id="measure">
+<line x1="284" y1="122" x2="1156" y2="122" stroke="#65586E" stroke-width="1"/>
+<line x1="284" y1="117" x2="284" y2="127" stroke="#65586E" stroke-width="1"/>
+<line x1="1156" y1="117" x2="1156" y2="127" stroke="#65586E" stroke-width="1"/>
+<text x="720.0" y="114" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">span-8 = 872</text>
+<line x1="1172" y1="130" x2="1172" y2="675" stroke="#65586E" stroke-width="1"/>
+<line x1="1167" y1="130" x2="1177" y2="130" stroke="#65586E" stroke-width="1"/>
+<line x1="1167" y1="675" x2="1177" y2="675" stroke="#65586E" stroke-width="1"/>
+<text x="1180" y="406.5" font-family="monospace" font-size="12" fill="#65586E" text-anchor="start">545 (16/10)</text>
+<line x1="60" y1="700" x2="284" y2="700" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="695" x2="60" y2="705" stroke="#65586E" stroke-width="1"/>
+<line x1="284" y1="695" x2="284" y2="705" stroke="#65586E" stroke-width="1"/>
+<text x="172.0" y="692" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">aire 224</text>
+<line x1="60" y1="740" x2="1380" y2="740" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="735" x2="60" y2="745" stroke="#65586E" stroke-width="1"/>
+<line x1="1380" y1="735" x2="1380" y2="745" stroke="#65586E" stroke-width="1"/>
+<text x="720.0" y="756" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">container 1320</text>
+<line x1="0" y1="760" x2="60" y2="760" stroke="#65586E" stroke-width="1"/>
+<line x1="0" y1="755" x2="0" y2="765" stroke="#65586E" stroke-width="1"/>
+<line x1="60" y1="755" x2="60" y2="765" stroke="#65586E" stroke-width="1"/>
+<text x="30.0" y="752" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">margen 60</text>
+</g>
+</svg>

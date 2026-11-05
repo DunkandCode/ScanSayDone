@@ -22,7 +22,9 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.log
 
 # debug
 npm-debug.log*
@@ -39,3 +41,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# entregas y artefactos locales (no van al repo)
+*.zip
+/evidence/
+/functional-verify.*
+/test-results/

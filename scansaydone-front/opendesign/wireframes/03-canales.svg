@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" width="1440" height="800" role="img" aria-label="03 · CANALES — panel de vidrio cálido · banda --grad-warm · col-12 col-lg-6 col-xl-3">
+<title>03 · CANALES — panel de vidrio cálido · banda --grad-warm · col-12 col-lg-6 col-xl-3</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27. v3 05-nov-2026: banda --grad-warm + tarjetas de vidrio --grad-glass + índice mono 01-04 + hover coral + entrada escalonada view(). Fuentes: CANALES-UX.md §3-§6 · VERIFICACION-CANALES-2026-11-05.md.</desc>
+<defs>
+<linearGradient id="gradWarm" x1="0" y1="0" x2="0.21" y2="1">
+<stop offset="0" stop-color="#FBDFAC"/>
+<stop offset="1" stop-color="#F9D48F"/>
+</linearGradient>
+<linearGradient id="gradGlass" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#FEF2E0"/>
+<stop offset="1" stop-color="#FDEDD3"/>
+</linearGradient>
+</defs>
+<rect width="1440" height="800" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">03 · CANALES — panel de vidrio cálido · banda --grad-warm · col-12 col-lg-6 col-xl-3</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">xl 1200+ · container 1140 · col 73</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">v3 · 05-nov-2026 · actas: CANALES-UX.md §3-§6 · VERIFICACION-CANALES-2026-11-05.md</text>
+<g id="band">
+<rect x="0" y="60" width="1440" height="560" fill="url(#gradWarm)" stroke="none"/>
+<text x="68" y="84" font-family="monospace" font-size="11" font-weight="normal" fill="#65586E" text-anchor="start">banda --grad-warm 168° · #FBDFAC → #F9D48F · masa de color: es lo que hace legible el vidrio · compuesto medido #FBDDA7 → #FAD694</text>
+</g>
+<g id="grid-12">
+<rect x="150" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="247" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="344" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="441" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="538" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="635" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="829" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="926" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1023" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1120" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1217" y="100" width="73" height="480" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="235.0" y1="100" x2="235.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="332.0" y1="100" x2="332.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="429.0" y1="100" x2="429.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="526.0" y1="100" x2="526.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="623.0" y1="100" x2="623.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720.0" y1="100" x2="720.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="817.0" y1="100" x2="817.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="914.0" y1="100" x2="914.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1011.0" y1="100" x2="1011.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1108.0" y1="100" x2="1108.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1205.0" y1="100" x2="1205.0" y2="580" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="150" y="100" width="1140" height="480" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="158" y="116" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">container-xl 1140</text>
+</g>
+<g id="content">
+<rect x="150" y="110" width="250" height="18" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="2"/>
+<text x="410" y="123" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">kicker 13 --text-2 · 5.12 sobre banda arriba</text>
+<rect x="150" y="138" width="752" height="50" fill="#FFFFFF" fill-opacity="0.4" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="526.0" y="168" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" text-anchor="middle">H2 Bebas 64 · span-8 = 752 · 11.83 · a la izquierda</text>
+<rect x="150" y="198" width="560" height="28" fill="none" stroke="#65586E" stroke-width="1" rx="4"/>
+<text x="722" y="216" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">lead 18 · debajo del H2, a la izquierda (v2 lo ponía a la derecha · drift corregido · acta SLOP §8.3)</text>
+<text x="574.5" y="240" font-family="monospace" font-size="10" fill="#B23A2A" text-anchor="middle">:hover (representado en la tarjeta 02)</text>
+<g id="card-01">
+<rect x="156" y="560" width="255" height="7" rx="3.5" fill="#C89B4F" fill-opacity="0.22" stroke="none"/>
+<rect x="150" y="250" width="267" height="310" fill="url(#gradGlass)" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5" rx="12"/>
+<line x1="160" y1="252.5" x2="407" y2="252.5" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1"/>
+<text x="405" y="278" font-family="monospace" font-size="13" fill="#65586E" text-anchor="end">01</text>
+<rect x="166" y="266" width="48" height="48" fill="#FF5F44" rx="4"/>
+<text x="190" y="295" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F" text-anchor="middle">icon</text>
+<text x="166" y="348" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" text-anchor="start">MOSTRADOR</text>
+<rect x="166" y="360" width="210" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="166" y="378" width="180" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="166" y="520" width="150" height="24" fill="none" stroke="#65586E" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="2 2" rx="3"/>
+<text x="241" y="536" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">label 12/600</text>
+<text x="283.5" y="586" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">01 · --in 0 %</text>
+<text x="283.5" y="604" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">col 1–3</text>
+</g>
+<g id="card-02-hover">
+<rect x="447" y="560" width="255" height="7" rx="3.5" fill="#C89B4F" fill-opacity="0.22" stroke="none"/>
+<rect x="441" y="250" width="267" height="310" fill="url(#gradGlass)" stroke="#FF5F44" stroke-width="1.5" rx="12"/>
+<line x1="451" y1="252.5" x2="698" y2="252.5" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1"/>
+<text x="696" y="278" font-family="monospace" font-size="13" fill="#B23A2A" text-anchor="end">02</text>
+<rect x="457" y="266" width="48" height="48" fill="#FF5F44" rx="4"/>
+<text x="481" y="295" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F" text-anchor="middle">icon</text>
+<text x="457" y="348" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" text-anchor="start">INSTAGRAM</text>
+<rect x="457" y="360" width="210" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="457" y="378" width="180" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="457" y="520" width="150" height="24" fill="none" stroke="#65586E" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="2 2" rx="3"/>
+<text x="532" y="536" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">label 12/600</text>
+<text x="574.5" y="586" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">02 · --in 8 %</text>
+<text x="574.5" y="604" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">col 4–6</text>
+</g>
+<g id="card-03">
+<rect x="738" y="560" width="255" height="7" rx="3.5" fill="#C89B4F" fill-opacity="0.22" stroke="none"/>
+<rect x="732" y="250" width="267" height="310" fill="url(#gradGlass)" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5" rx="12"/>
+<line x1="742" y1="252.5" x2="989" y2="252.5" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1"/>
+<text x="987" y="278" font-family="monospace" font-size="13" fill="#65586E" text-anchor="end">03</text>
+<rect x="748" y="266" width="48" height="48" fill="#FF5F44" rx="4"/>
+<text x="772" y="295" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F" text-anchor="middle">icon</text>
+<text x="748" y="348" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" text-anchor="start">WHATSAPP</text>
+<rect x="748" y="360" width="210" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="748" y="378" width="180" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="748" y="520" width="150" height="24" fill="none" stroke="#65586E" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="2 2" rx="3"/>
+<text x="823" y="536" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">label 12/600</text>
+<text x="865.5" y="586" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">03 · --in 16 %</text>
+<text x="865.5" y="604" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">col 7–9</text>
+</g>
+<g id="card-04">
+<rect x="1029" y="560" width="255" height="7" rx="3.5" fill="#C89B4F" fill-opacity="0.22" stroke="none"/>
+<rect x="1023" y="250" width="267" height="310" fill="url(#gradGlass)" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5" rx="12"/>
+<line x1="1033" y1="252.5" x2="1280" y2="252.5" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1"/>
+<text x="1278" y="278" font-family="monospace" font-size="13" fill="#65586E" text-anchor="end">04</text>
+<rect x="1039" y="266" width="48" height="48" fill="#FF5F44" rx="4"/>
+<text x="1063" y="295" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F" text-anchor="middle">icon</text>
+<text x="1039" y="348" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" text-anchor="start">TIKTOK LIVE</text>
+<rect x="1039" y="360" width="210" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="1039" y="378" width="180" height="9" rx="2" fill="#65586E" fill-opacity="0.3" stroke="none"/>
+<rect x="1039" y="520" width="150" height="24" fill="none" stroke="#65586E" stroke-opacity="0.6" stroke-width="1" stroke-dasharray="2 2" rx="3"/>
+<text x="1114" y="536" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">label 12/600</text>
+<text x="1156.5" y="586" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">04 · --in 24 %</text>
+<text x="1156.5" y="604" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">col 10–12</text>
+</g>
+</g>
+<g id="measure">
+<line x1="150" y1="242" x2="417" y2="242" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="237" x2="150" y2="247" stroke="#65586E" stroke-width="1"/>
+<line x1="417" y1="237" x2="417" y2="247" stroke="#65586E" stroke-width="1"/>
+<text x="283.5" y="234" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">span-3 = 267</text>
+<line x1="417" y1="242" x2="441" y2="242" stroke="#65586E" stroke-width="1"/>
+<line x1="417" y1="237" x2="417" y2="247" stroke="#65586E" stroke-width="1"/>
+<line x1="441" y1="237" x2="441" y2="247" stroke="#65586E" stroke-width="1"/>
+<text x="429.0" y="234" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">24</text>
+<line x1="150" y1="650" x2="1290" y2="650" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="645" x2="150" y2="655" stroke="#65586E" stroke-width="1"/>
+<line x1="1290" y1="645" x2="1290" y2="655" stroke="#65586E" stroke-width="1"/>
+<text x="720.0" y="642" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">container 1140</text>
+<line x1="30" y1="672" x2="150" y2="672" stroke="#65586E" stroke-width="1"/>
+<line x1="30" y1="667" x2="30" y2="677" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="667" x2="150" y2="677" stroke="#65586E" stroke-width="1"/>
+<text x="90.0" y="664" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">aire 150</text>
+</g>
+<text x="60" y="700" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">vidrio: --grad-glass (token nuevo, cero hex) crema 78 % → 64 % · borde blanco 70 % · filo inset 0 1px 0 --edge-lit · --shadow-glass · sin backdrop-filter</text>
+<text x="60" y="718" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">compuesto medido: tarjeta #FEF2E0 → #FDEDD3 · banda detrás #FBDDA7 · tarjeta más clara que la banda en toda su altura</text>
+<text x="60" y="736" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">índice mono 01–04 · ui-monospace 13 px · esquina sup-der · decorativo aria-hidden · hover: borde → coral e índice → --link · 150 ms (solo border-color/color)</text>
+<text x="60" y="754" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">entrada escalonada: animation-timeline view() · --in 0/8/16/24 % · opacity + translateY 14→0 · 400 ms · reduced-motion: doble rama + killer global</text>
+<text x="60" y="772" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">NO se toca: label margin-top:auto + min-height 2.4em (4 labels alineados) · retícula col-12 col-lg-6 col-xl-3 · copy 27-oct</text>
+<text x="60" y="790" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">contraste medido sobre compuesto: H2 11.83 · kicker/lead 5.12 · título 13.85 · desc 5.99 · label 5.65 · índice hover --link 5.08 — todo AA</text>
+<text x="1416" y="700" font-family="monospace" font-size="11" fill="#65586E" text-anchor="end">R1 RESUELTO 27-oct (operador · acta DECISIONES §3): 4 tarjetas · orden MOSTRADOR · INSTAGRAM · WHATSAPP · TIKTOK LIVE</text>
+</svg>

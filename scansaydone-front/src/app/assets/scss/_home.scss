@@ -1,0 +1,1158 @@
+//
+// _home.scss
+//
+
+/*********************************/
+/*            Home               */
+/*===============================*/
+@use "variables" as *;
+@use "sass:color";
+
+// Compensar navbar fijo al saltar a anclas
+section[id] {
+    scroll-margin-top: 96px;
+}
+
+// ==========================================================================
+// HERO BAND — Scan-Say-Done (F2)
+// Banda ciruela a todo el ancho con texto crema y tarjeta de encuesta.
+// Tipografia: .hero-title escala display (88/64/44 px), NO toca h1 global.
+// ==========================================================================
+
+.hero-band {
+  // Fondo fotografico + velo. El glow del hero se conserva como primera capa:
+  // es la firma de la marca y aporta la luz coral sobre la foto.
+  // El velo es mas denso a la izquierda porque ahi viven el kicker (13 px) y
+  // la linea de transparencia (14 px), que necesitan 4.5:1; el titular grande
+  // (3:1) y el mock de la derecha toleran menos.
+  background-color: var(--brand-plum); // fallback si la imagen no carga
+  background-image:
+    var(--glow-hero),
+    linear-gradient(
+      90deg,
+      rgba(46, 30, 63, 0.87) 0%,
+      rgba(46, 30, 63, 0.84) 55%,
+      rgba(46, 30, 63, 0.78) 100%
+    ),
+    url("/images/hero-fondo.jpg");
+  background-size: auto, 100% 100%, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  padding: var(--band-y-d) 0;
+  position: relative;
+  --bs-btn-focus-shadow-rgb: 255,231,217;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+
+  // [F] Altura minima desktop
+  @media (min-width: 992px) {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  // [G] Container 1140 en lugar de 1320 (container-xl default)
+  .container-xl {
+    max-width: 1140px !important;
+  }
+
+  // [B] CTA ghost legible sobre ciruela (crema #FFF8F2 vs plum #2E1E3F ≈ 14.53:1)
+  .btn-outline-light {
+    color: var(--brand-cream) !important;
+    border-color: color-mix(in srgb, var(--brand-cream) 45%, transparent) !important;
+  }
+  .btn-outline-light:hover,
+  .btn-outline-light:focus-visible {
+    background-color: var(--brand-cream) !important;
+    color: var(--brand-plum) !important;
+    border-color: var(--brand-cream) !important;
+  }
+}
+
+.hero-kicker {
+  display: inline-block;
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brand-mustard);
+  margin-bottom: 16px;
+
+  @media (min-width: 992px) {
+    font-size: 13px;
+  }
+}
+
+// E2: Acento coral en "CLIENTES?" del H1
+.hero__accent {
+  color: var(--brand-coral);
+}
+
+// Excepción forzada: el bucle de _bootstrap-custom.scss:22-26 genera
+// h1 { font-size: 42px !important } y vencería a .hero-title.
+// Usamos !important para garantizar la escala display (88/64/44).
+.hero-band .hero-title {
+  font-family: var(--font-bebas);
+  font-size: 44px !important;
+  line-height: .92 !important;
+  color: var(--brand-cream);
+  margin-bottom: 24px;
+
+  @media (min-width: 992px) {
+    font-size: 64px !important;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 88px !important;
+  }
+}
+
+.hero-subtitle {
+  font-family: var(--font-montserrat);
+  font-size: 17px;
+  line-height: 1.55;
+  // 10.83 sobre --brand-plum: AA cumplido
+  color: color-mix(in srgb, var(--brand-cream) 85%, transparent);
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.hero-transparency {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  line-height: 1.5;
+  // 7.82 sobre --brand-plum: AA cumplido
+  color: color-mix(in srgb, var(--brand-cream) 70%, transparent);
+  max-width: 440px;
+  margin-bottom: 0;
+}
+
+// Phone card (decorative, aria-hidden="true" on wrapper)
+.hero-phone-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-phone-badge {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background: var(--brand-mustard);
+  color: var(--brand-plum);
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  z-index: 2;
+  letter-spacing: .02em;
+}
+
+.hero-phone-card {
+  background: var(--brand-white);
+  border-radius: 16px;
+  padding: 24px;
+  // Filo de luz en el canto superior (mismo recurso que la tarjeta del login)
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 80%, transparent);
+  max-width: 360px;
+  width: 100%;
+}
+
+.hero-phone-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+
+  span {
+    font-family: var(--font-montserrat);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--brand-plum);
+    letter-spacing: .04em;
+  }
+}
+
+.hero-phone-question {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--brand-plum);
+  margin-bottom: 16px;
+}
+
+.hero-phone-scale {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.hero-phone-scale-btn {
+  flex: 1;
+  min-width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 2px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  text-align: center;
+
+  &--active {
+    background: var(--brand-coral);
+    border: 2px solid var(--brand-plum);
+
+    .hero-phone-scale-num,
+    .hero-phone-scale-label {
+      color: var(--brand-plum);
+    }
+  }
+}
+
+.hero-phone-scale-num {
+  font-family: var(--font-bebas);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--brand-plum);
+}
+
+.hero-phone-scale-label {
+  font-family: var(--font-montserrat);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--text-2);
+  text-align: center;
+  display: block;
+  min-height: 2.4em;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.hero-phone-comment {
+  margin-bottom: 16px;
+}
+
+.hero-phone-comment-field {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  color: var(--text-2);
+  background: var(--brand-white);
+  min-height: 72px;
+  opacity: .6;
+}
+
+.hero-phone-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--brand-coral);
+  color: var(--brand-plum);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  opacity: .85;
+}
+
+// ==========================================================================
+// HOW — Sección de 3 pasos "ASÍ FUNCIONA" (F3)
+// Reemplaza la sección "Sobre nosotros" + ServicesOne anterior.
+// Tipografía: .how__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.how {
+  background: var(--brand-white);
+  padding: var(--band-y-d) 0;
+
+  // Container 1140 en lugar de 1320 (container-xl default)
+  // Specificity (0,2,0) beats Bootstrap's .container-xl (0,1,0) — no !important
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .how {
+    padding: var(--band-y-m) 0;
+  }
+}
+
+.how__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+
+  // DESVÍO 2: CTA ghost debe cumplir mínimo táctil de 44px y fuente 15px
+  .btn {
+    min-height: 44px;
+    font-size: 15px;
+    padding-inline: var(--sp-4);
+  }
+}
+
+.how__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important;
+  line-height: .95 !important;
+  color: var(--brand-plum);
+  margin: 0;
+  letter-spacing: .01em;
+}
+
+/* Breakpoint 768 (md) según UX-LANDING: 64px desde md, 44 por debajo */
+@media (max-width: 767.98px) {
+  .how__title {
+    font-size: 44px !important;
+  }
+}
+
+.how__lead {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  color: var(--text-2);
+  margin: var(--sp-3) 0 0;
+  max-width: 60ch;
+}
+
+.how__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--brand-coral);
+  color: var(--brand-plum);
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 24px;
+}
+
+.how__step {
+  position: relative;
+  padding-top: var(--sp-4);
+
+  // Conector horizontal entre pasos (desktop/tablet)
+  // Sale del badge (40px + 8px gap = 48px) hacia el siguiente paso
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px; // Centro vertical del badge (40px / 2)
+    left: 48px;
+    width: calc(100% - 48px);
+    height: 2px;
+    background: var(--brand-coral);
+  }
+
+  // Ocultar conector del último paso
+  .col-md-4:last-child &::before {
+    display: none;
+  }
+
+  // Móvil: conector vertical por borde izquierdo
+  @media (max-width: 767.98px) {
+    padding-top: 0;
+    padding-left: var(--sp-4);
+    border-left: 2px solid var(--brand-coral);
+
+    &::before {
+      display: none; // Sin conector horizontal en móvil
+    }
+  }
+}
+
+.how__step-title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: var(--sp-3) 0 var(--sp-2);
+  color: var(--brand-plum);
+}
+
+.how__step-body {
+  font-size: 16px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+// ==========================================================================
+// CANALES — Sección de 4 canales de distribución (F4)
+// Reemplaza la sección CtaOne. Tarjetas estáticas (sin sombra), grid 4 columnas.
+// Tipografía: .canales__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.canales {
+  background: var(--grad-warm);
+  padding: var(--band-y-d) 0;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+
+  // Container 1140 en lugar de 1320 (container-xl default)
+  // Specificity (0,2,0) beats Bootstrap's .container-xl (0,1,0) — no !important
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+.canales__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important; // El template aplica h2{font-size:…!important} global
+  line-height: .95 !important;
+  color: var(--brand-plum);
+  margin: 0;
+  letter-spacing: .01em;
+}
+
+/* Breakpoint 768 (md) según UX-LANDING: 64px desde md, 44 por debajo */
+@media (max-width: 767.98px) {
+  .canales__title {
+    font-size: 44px !important;
+  }
+}
+
+.canales__lead {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  color: var(--text-2);
+  margin: var(--sp-3) 0 0;
+
+  @media (max-width: 767.98px) {
+    font-size: 17px;
+  }
+}
+
+.canales__card {
+  background: var(--grad-glass);
+  border: 1px solid color-mix(in srgb, var(--brand-white) 70%, transparent);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 var(--edge-lit);
+  position: relative;
+  transition: border-color var(--dur-micro) var(--ease-ui);
+  border-radius: var(--radius-card);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.canales__card:hover {
+  border-color: var(--brand-coral);
+}
+
+.canales__card:hover .canales__card-index {
+  color: var(--link);
+}
+
+.canales__card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-card);
+  background: var(--brand-coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-3);
+}
+
+.canales__card-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--brand-plum);
+}
+
+.canales__card-title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--brand-plum);
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-3);
+  line-height: 1.2;
+
+  @media (max-width: 767.98px) {
+    font-size: 18px;
+  }
+}
+
+.canales__card-desc {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.canales__card-label {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border-top: 1px solid color-mix(in srgb, var(--brand-plum) 14%, transparent);
+  padding-top: var(--sp-3);
+  margin-top: auto;
+  min-height: 2.4em; /* Reserva 2 líneas → bordes superiores alineados */
+}
+
+// Indice de panel de control (CANALES-UX §3 recurso 1). Decorativo, 0 KB de fuente.
+.canales__card-index {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  transition: color var(--dur-micro) var(--ease-ui);
+}
+
+// Entrada escalonada al entrar en viewport. Solo opacity+transform (composited).
+// Sin GSAP: EFECTOS-Y-MOTION §3 prohibe JS de efectos y §4 exige entrada por CSS.
+@keyframes canales-rise {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    // --in por defecto: SIN esta linea la primera tarjeta queda sin animation-range
+    // valido y no anima (bug del snippet de la spec, corregido aqui).
+    .canales__card { --in: 0%; }
+
+    .canales .row > .col-12:nth-child(2) .canales__card { --in: 8%; }
+    .canales .row > .col-12:nth-child(3) .canales__card { --in: 16%; }
+    .canales .row > .col-12:nth-child(4) .canales__card { --in: 24%; }
+
+    .canales__card {
+      animation: canales-rise both 400ms var(--ease-out);
+      // longhands SIEMPRE despues del shorthand: `animation` resetea animation-timeline a auto
+      animation-timeline: view();
+      animation-range: entry var(--in) entry calc(var(--in) + 56%);
+    }
+  }
+}
+
+// ==========================================================================
+// APLICACIONES — Sección "Así se ve en tu local" (F5)
+// 3 tarjetas con foto 4/3 y caption de 2 líneas. Banda blanca.
+// Tipografía: .apps__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.apps {
+  background: var(--brand-white);
+  padding: var(--band-y-d) 0;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+
+  // Container 1140 en lugar de 1320 (container-xl default)
+  // Specificity (0,2,0) beats Bootstrap's .container-xl (0,1,0) — no !important
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+// E3: Unified eyebrow/kicker class (replaces .apps__kicker and .pricing__kicker)
+.section-kicker {
+  display: block;
+  text-align: inherit;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 12px;
+
+  @media (min-width: 992px) {
+    font-size: 13px;
+  }
+
+  // Dark band variant (CTA final)
+  &--on-dark {
+    color: color-mix(in srgb, var(--brand-cream) 75%, var(--brand-plum));
+  }
+}
+
+// V2: Wrapper for eyebrow + title
+.how__headline {
+  text-align: left;
+  flex: 1;
+}
+
+.canales__head,
+.apps__head {
+  text-align: left;
+}
+
+// El plano (UX-LANDING §3.7) pide el FAQ centrado
+.faq__head {
+  text-align: center;
+}
+
+.panel-preview__headline {
+  // Left-aligned — no text-align override needed
+}
+
+/* Breakpoint 768 (md) según UX-LANDING: 64px desde md, 44 por debajo */
+.apps__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important; // El template aplica h2{font-size:…!important} global
+  line-height: .95 !important;
+  letter-spacing: .01em !important;
+  color: var(--brand-plum);
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .apps__title {
+    font-size: 44px !important;
+  }
+}
+
+.apps__card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.apps__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: transparent;
+
+  // Con imagen real dentro ya no se oculta en apilado móvil (<992):
+  // el aspect-ratio 4/3 fija la altura y object-fit:cover evita desbordes.
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.apps__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--sp-3, 12px);
+}
+
+.apps__caption-title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--brand-plum);
+  line-height: 1.3;
+}
+
+.apps__caption-body {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.apps__note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+// ==========================================================================
+// PANEL — Sección "Todo en una pantalla" (F6)
+// Marco de referencia honesto (16/10) con texto a la izquierda.
+// Tipografía: .panel-preview__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.panel-preview {
+  background: var(--bg);
+  padding: var(--band-y-d) 0;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+
+  // Container 1320 (8 columnas = 872 px de marco, plano 04-panel-preview.svg)
+  // Specificity (0,2,0) beats Bootstrap's .container-xl (0,1,0) — no !important
+  .container-xl {
+    max-width: 1320px;
+  }
+}
+
+.panel-preview__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.panel-preview__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important;
+  line-height: .95 !important;
+  color: var(--brand-plum);
+  margin: 0;
+  letter-spacing: .01em;
+}
+
+@media (max-width: 767.98px) {
+  .panel-preview__title {
+    font-size: 44px !important;
+  }
+}
+
+.panel-preview__cta {
+  position: relative;
+  min-height: 44px;
+  font-size: 15px;
+  padding-inline: var(--sp-4);
+}
+
+.panel-preview__subtitle {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-2);
+  margin: var(--sp-4) 0 var(--sp-4);
+  max-width: 360px;
+}
+
+.panel-preview__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.panel-preview__bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.panel-preview__bullet-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  color: var(--brand-plum);
+  margin-top: 2px;
+}
+
+.panel-preview__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: transparent;
+  // Sin sombra (regla del proyecto). Sin borde: la captura real reemplazó
+  // al marco discontinuo de referencia.
+}
+
+// Captura real del panel. object-position top: la tabla inferior puede
+// recortarse antes que el encabezado del panel. Sin sombra (regla del proyecto).
+.panel-preview__shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-card);
+}
+
+.panel-preview__note {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 13px;
+  color: var(--text-2);
+  margin: var(--sp-3) 0 0;
+}
+
+// ==========================================================================
+// PRECIOS — Seccion de planes (F7)
+// Gated: solo se renderiza cuando hasPricing() es true (3 planes con precio).
+// Banda blanca, 3 tarjetas sin sombra, recomendado con borde coral y badge.
+// ==========================================================================
+
+.pricing {
+  background: var(--brand-white);
+  padding: var(--band-y-d) 0;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+
+  // Container 1140 en lugar de 1320 (container-xl default)
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+
+.pricing__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important;
+  line-height: .95 !important;
+  letter-spacing: .01em !important;
+  color: var(--brand-plum);
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .pricing__title {
+    font-size: 44px !important;
+  }
+}
+
+.pricing__card {
+  position: relative;
+  background: var(--brand-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  // Sin sombra (tarjeta estatica)
+
+  &--recommended {
+    border: 2px solid var(--brand-coral);
+  }
+}
+
+.pricing__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brand-mustard);
+  color: var(--brand-plum);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 4px 12px;
+  border-radius: 100px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.pricing__card-name {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: var(--brand-plum);
+  margin: var(--sp-3) 0 var(--sp-2);
+  line-height: 1.2;
+}
+
+.pricing__card-forwho {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0 0 var(--sp-4);
+}
+
+.pricing__card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: var(--sp-4);
+}
+
+.pricing__card-price-amount {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--brand-plum);
+}
+
+.pricing__card-price-period {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.pricing__card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-4);
+  flex-grow: 1;
+
+  li {
+    font-family: var(--font-montserrat), sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-1);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.pricing__card .btn {
+  width: 100%;
+  margin-top: auto;
+}
+
+// ==========================================================================
+// FAQ — Preguntas frecuentes (F8)
+// Acordeón Bootstrap con 5 preguntas + 6.ª condicional (pricing).
+// Banda crema, container-lg, col-lg-8 offset-lg-2.
+// Tipografía: .faq__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.faq {
+  background: var(--brand-white);
+  padding: var(--band-y-d) 0;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+}
+
+.faq__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important;
+  line-height: .95 !important;
+  color: var(--brand-plum);
+  margin: 0 0 var(--sp-5);
+  text-align: center;
+  letter-spacing: .01em;
+}
+
+@media (max-width: 767.98px) {
+  .faq__title {
+    font-size: 44px !important;
+  }
+}
+
+.faq__accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--border-strong);
+  background: var(--brand-white);
+
+  &:first-child {
+    border-top: 1px solid var(--border-strong);
+  }
+}
+
+.faq__accordion .accordion-button {
+  background: transparent;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--brand-plum);
+  padding: var(--sp-4) 0;
+  min-height: 48px;
+  box-shadow: none;
+
+  &:not(.collapsed) {
+    background: transparent;
+    color: var(--brand-plum);
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--brand-plum);
+    outline-offset: -3px;
+    box-shadow: none;
+  }
+}
+
+// A2 — Foco visible en acordeón de /faqs (usa #faqPageAccordion, no .faq__accordion)
+#faqPageAccordion .accordion-button:focus-visible {
+  outline: 3px solid var(--brand-plum);
+  outline-offset: -3px;
+  box-shadow: none;
+}
+
+.faq__accordion .accordion-body {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-2);
+  padding: 0 0 var(--sp-4) 0;
+  background: var(--brand-white);
+}
+
+.faq__footer {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  color: var(--text-2);
+  text-align: center;
+  margin: var(--sp-5) 0 0;
+}
+
+.faq__footer-link {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--brand-plum);
+  }
+}
+
+// ==========================================================================
+// CTA FINAL — Llamada a la acción final (F8)
+// Banda ciruela, contenido centrado, botón coral.
+// Tipografía: .cta-final__title usa !important porque el template aplica
+// h2{font-size:…!important} y necesitamos vencer esa regla global.
+// ==========================================================================
+
+.cta-final {
+  // Fondo fotografico + velo en degradado. El velo NO es decorativo: sin el,
+  // el texto de 14 px no llega a AA. Las alfas estan escalonadas porque el
+  // texto pequeno vive abajo y el titular grande (3:1) arriba.
+  background-color: var(--brand-plum); // fallback si la imagen no carga
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(46, 30, 63, 0.72) 0%,
+      rgba(46, 30, 63, 0.80) 45%,
+      rgba(46, 30, 63, 0.90) 100%
+    ),
+    url("/images/cta-fondo.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  padding: var(--band-y-d) 0;
+  text-align: center;
+  --bs-btn-focus-shadow-rgb: 255,231,217;
+
+  @media (max-width: 991.98px) {
+    padding: var(--band-y-m) 0;
+  }
+}
+
+.cta-final__content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cta-final__title {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 64px !important;
+  line-height: .95 !important;
+  color: var(--brand-cream);
+  margin: 0 0 var(--sp-4);
+  letter-spacing: .01em;
+}
+
+@media (max-width: 767.98px) {
+  .cta-final__title {
+    font-size: 44px !important;
+  }
+}
+
+.cta-final__subtitle {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  // 10.83 sobre --brand-plum: AA cumplido
+  color: color-mix(in srgb, var(--brand-cream) 85%, transparent);
+  margin: 0 0 var(--sp-5);
+}
+
+.cta-final__btn {
+  height: 56px;
+  padding: 0 var(--sp-5);
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+
+  &:focus-visible {
+    outline: 3px solid var(--brand-peach);
+    outline-offset: 3px;
+    box-shadow: none;
+  }
+}
+
+.cta-final__honesty {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  // 8.78 sobre --brand-plum: AA cumplido
+  color: color-mix(in srgb, var(--brand-cream) 75%, transparent);
+  margin: 0;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ==========================================================================
+// R2 — Objetivos táctiles mínimos de 44 px (WCAG + contrato)
+// Botones visibles (.btn) y enlaces del navbar.
+// ==========================================================================
+
+a.btn,
+button.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+#topnav .navigation-menu > li > a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}

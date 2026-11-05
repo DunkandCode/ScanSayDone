@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 780" width="1440" height="780" role="img" aria-label="02 · CÓMO FUNCIONA — eyebrow + H2 a la izquierda · ghost a la derecha · 3 pasos col-md-4 con conector">
+<title>02 · CÓMO FUNCIONA — eyebrow + H2 a la izquierda · ghost a la derecha · 3 pasos col-md-4 con conector</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27. v2 05-nov-2026: +eyebrow SIMPLE Y RÁPIDO (.section-kicker) · cabecera flex space-between A LA IZQUIERDA con CTA ghost derecha · claim «El mismo QR sirve para siempre.» recuperado en paso 1 · conector y badges medidos. Fuente: page.js:80-114 · _home.scss:273-387 y 573-598 · VERIFICACION-SLOP-LANDING-2026-11-05.md §3.1.</desc>
+<rect width="1440" height="780" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">02 · CÓMO FUNCIONA — eyebrow + H2 a la izquierda · ghost a la derecha · 3 pasos col-md-4 con conector</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">xl 1200+ · container 1140 · col 73</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">v2 · 05-nov-2026 · +eyebrow · cabecera izq. · claim QR en paso 1 · badge CSS/SVG sin emoji</text>
+<g id="band">
+<rect x="0" y="60" width="1440" height="540" fill="#FFFFFF" stroke="none"/>
+<text x="158" y="84" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">banda blanca --brand-white · py --band-y-d 100 (60 en &lt;992) · container-xl forzado a 1140 · alto por contenido, sin cota fija</text>
+</g>
+<g id="grid-12">
+<rect x="150" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="247" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="344" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="441" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="538" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="635" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="829" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="926" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1023" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1120" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1217" y="100" width="73" height="460" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="235" y1="100" x2="235" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="332" y1="100" x2="332" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="429" y1="100" x2="429" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="526" y1="100" x2="526" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="623" y1="100" x2="623" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720" y1="100" x2="720" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="817" y1="100" x2="817" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="914" y1="100" x2="914" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1011" y1="100" x2="1011" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1108" y1="100" x2="1108" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1205" y1="100" x2="1205" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="150" y="100" width="1140" height="460" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="158" y="116" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">container-xl 1140</text>
+</g>
+<g id="content">
+<rect x="150" y="160" width="260" height="20" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="2"/>
+<text x="156" y="174" font-family="sans-serif" font-size="12" font-weight="bold" fill="#65586E" letter-spacing="1.4">SIMPLE Y RÁPIDO</text>
+<text x="422" y="174" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">eyebrow .section-kicker · Montserrat 600 13 (.14em MAYÚS) · 12 en &lt;992 · mb 12 · --text-2</text>
+<rect x="150" y="192" width="752" height="61" fill="#FFFFFF" fill-opacity="0.4" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="150" y="247" font-family="Impact, 'Arial Narrow', sans-serif" font-size="64" fill="#2E1E3F">ASÍ FUNCIONA</text>
+<text x="470" y="214" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">H2 Bebas 64 · lh .95 = 61 · A LA IZQUIERDA</text>
+<rect x="926" y="206" width="364" height="44" fill="none" stroke="#2E1E3F" stroke-width="1.5" rx="6"/>
+<text x="1108" y="232" font-family="sans-serif" font-size="12" fill="#2E1E3F" text-anchor="middle">VER EJEMPLO DE ENCUESTA</text>
+<text x="926" y="200" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">ghost btn-outline-dark · min-h 44 · 15 px · oculto &lt;768 (d-none d-md-)</text>
+<text x="720" y="262" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">.how__head = flex · space-between · gap 24 (_home.scss:290)</text>
+<rect x="150" y="265" width="560" height="28" fill="none" stroke="#65586E" stroke-width="1" rx="4"/>
+<text x="156" y="284" font-family="sans-serif" font-size="12" fill="#65586E" text-anchor="start">Tú lo armas en minutos. El cliente responde en segundos.</text>
+<text x="722" y="284" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">lead 18 · --text-2 · mt 12 · DEBAJO, a la izquierda</text>
+<g id="paso-1">
+<rect x="150" y="316" width="364" height="180" fill="#FFFFFF" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<rect x="150" y="340" width="40" height="40" fill="#FF5F44" rx="20"/>
+<text x="170" y="368" font-family="Impact, 'Arial Narrow', sans-serif" font-size="24" fill="#2E1E3F" text-anchor="middle">1</text>
+<line x1="198" y1="360" x2="514" y2="360" stroke="#FF5F44" stroke-width="2"/>
+<text x="150" y="412" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">ESCANEA</text>
+<rect x="150" y="424" width="300" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<rect x="150" y="440" width="316" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<text x="150" y="472" font-family="sans-serif" font-size="12" font-weight="bold" fill="#B23A2A">El mismo QR sirve para siempre.</text>
+<text x="316" y="388" font-family="monospace" font-size="10" fill="#B23A2A" text-anchor="middle">claim recuperado</text>
+</g>
+<g id="paso-2">
+<rect x="538" y="316" width="364" height="180" fill="#FFFFFF" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<rect x="538" y="340" width="40" height="40" fill="#FF5F44" rx="20"/>
+<text x="558" y="368" font-family="Impact, 'Arial Narrow', sans-serif" font-size="24" fill="#2E1E3F" text-anchor="middle">2</text>
+<line x1="586" y1="360" x2="902" y2="360" stroke="#FF5F44" stroke-width="2"/>
+<text x="538" y="412" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">OPINA</text>
+<rect x="538" y="424" width="280" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<rect x="538" y="440" width="250" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+</g>
+<g id="paso-3">
+<rect x="926" y="316" width="364" height="180" fill="#FFFFFF" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<rect x="926" y="340" width="40" height="40" fill="#FF5F44" rx="20"/>
+<text x="946" y="368" font-family="Impact, 'Arial Narrow', sans-serif" font-size="24" fill="#2E1E3F" text-anchor="middle">3</text>
+<text x="926" y="412" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">LISTO</text>
+<rect x="926" y="424" width="300" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<rect x="926" y="440" width="270" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<rect x="926" y="456" width="180" height="9" rx="2" fill="#65586E" fill-opacity="0.3"/>
+<text x="1108" y="388" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">sin conector (último)</text>
+</g>
+<text x="720" y="520" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">títulos Montserrat 600 20 (mt 12 / mb 8) · cuerpo 16 --text-2 · fila mt-4 = 24</text>
+</g>
+<g id="measure">
+<line x1="150" y1="308" x2="514" y2="308" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="303" x2="150" y2="313" stroke="#65586E" stroke-width="1"/>
+<line x1="514" y1="303" x2="514" y2="313" stroke="#65586E" stroke-width="1"/>
+<text x="332" y="300" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">span-4 = 364</text>
+<line x1="514" y1="308" x2="538" y2="308" stroke="#65586E" stroke-width="1"/>
+<line x1="514" y1="303" x2="514" y2="313" stroke="#65586E" stroke-width="1"/>
+<line x1="538" y1="303" x2="538" y2="313" stroke="#65586E" stroke-width="1"/>
+<text x="526" y="300" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">24</text>
+<line x1="150" y1="580" x2="1290" y2="580" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="575" x2="150" y2="585" stroke="#65586E" stroke-width="1"/>
+<line x1="1290" y1="575" x2="1290" y2="585" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="572" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">container 1140</text>
+<line x1="30" y1="604" x2="150" y2="604" stroke="#65586E" stroke-width="1"/>
+<line x1="30" y1="599" x2="30" y2="609" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="599" x2="150" y2="609" stroke="#65586E" stroke-width="1"/>
+<text x="90" y="596" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">aire 150</text>
+<line x1="90" y1="60" x2="90" y2="160" stroke="#2E1E3F" stroke-width="1"/>
+<line x1="85" y1="60" x2="95" y2="60" stroke="#2E1E3F" stroke-width="1"/>
+<line x1="85" y1="160" x2="95" y2="160" stroke="#2E1E3F" stroke-width="1"/>
+<text x="98" y="115" font-family="monospace" font-size="12" fill="#2E1E3F" text-anchor="start">py 100</text>
+</g>
+<g id="notas">
+<text x="60" y="630" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">v2: +eyebrow «SIMPLE Y RÁPIDO» (page.js:84 · clase unificada .section-kicker, _home.scss:573) — el plano v1 arrancaba directo en el H2</text>
+<text x="60" y="648" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">enmienda v2: la cabecera va A LA IZQUIERDA (.how__headline text-align:left · _home.scss:595, fix anti-slop P1 AUDITORIA-SLOP-LANDING #3);</text>
+<text x="60" y="666" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">cualquier documento que la diga «centrada» está desactualizado — la cabecera centrada es la del FAQ (plano 06 v2)</text>
+<text x="60" y="684" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">claim «El mismo QR sirve para siempre.» vive en el paso 1 (page.js:95) — único claim propio de la trust-strip eliminada (01 v3 · VERIFICACION-SLOP §3.1)</text>
+<text x="60" y="702" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">badges 1-2-3: CSS/SVG, 40×40, coral + cifra Bebas 24 ciruela — PROHIBIDO emoji (contrato §6) · conector: top 20, left 48, ancho calc(100%−48),</text>
+<text x="60" y="720" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">2 px coral, oculto en el paso 3 y en &lt;768 pasa a borde izquierdo vertical (_home.scss:342-373) · retícula 3×364 + gutter 24 intacta</text>
+<text x="60" y="738" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">alto de banda NO cotado en código: py 100×2 + pila (93 head + 39 lead + 24 fila + ~180 paso) ≈ 536 en xl — estimación desde cotas, alto real por contenido</text>
+<text x="60" y="756" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">44 px mínimo táctil en el ghost (DESVÍO 2 · _home.scss:297-302) · el CTA coral de esta página no está aquí: el hero y la banda final lo llevan (planos 01 · 06)</text>
+</g>
+</svg>

@@ -1,0 +1,385 @@
+//
+// helper.scss
+//
+
+/*********************************/
+/*         Helper                */
+/*===============================*/
+@use "variables" as *;
+
+.section {
+    padding: 100px 0;
+    position: relative;
+    @media (max-width: 768px) {
+        padding: 60px 0;
+    }
+}
+
+.section-two {
+    padding: 48px 0;
+    position: relative;
+}
+
+.bg-overlay {
+    background-color: $overlay;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%
+}
+
+.bg-gradient-primary {
+    background: $gradient-primary;
+}
+
+.text-gradient-primary {
+    background: linear-gradient(to right, $primary 0%, $danger 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-linear-gradient-2 {
+    background: $linear-gradient-2;
+}
+
+.bg-gradient-overlay {
+    background: $gradient-overlay;
+}
+
+.bg-gradient-overlay-2 {
+    background: $gradient-overlay-2;
+    filter: blur(100px);
+    border-radius: 30%;
+}
+
+/*********************************/
+/*         Title CSS             */
+/*===============================*/
+.title-heading {
+    line-height: 26px;
+    .heading {
+        font-size: 48px !important;
+        letter-spacing: 1px;
+        @media (max-width: 768px) {
+            font-size: 40px !important;
+        }
+
+        &.sub-heading {
+            font-size: 30px !important;
+            @media (max-width: 768px) {
+                font-size: 26px !important;
+            }
+        }
+    }
+    .letter-spacing {
+        letter-spacing: 1px;
+    }
+    .para-desc {
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        @media (max-width: 768px) {
+            font-size: 16px !important;
+        }
+    }
+}
+
+.section-title {
+    position: relative;
+    .title {
+        letter-spacing: 0.5px;
+        font-size: 28px !important;
+        @media (max-width: 768px) {
+            font-size: 24px !important;
+        }
+    }
+} 
+
+.para-desc {
+    max-width: 600px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.pt-150 {
+    padding-top: 150px !important;
+}
+
+//CTA Video Section
+.cta-video-section {
+    position: relative;
+    padding: 80px 0;
+    background: var(--brand-plum, #2E1E3F); // superficie de marca (fix #12: era foto stock + rgba overlay → violeta desaturado)
+
+    .title {
+        color: var(--brand-cream, #FFF8F2); // 14.53:1 sobre plum ✓
+    }
+}
+
+/*********************************/
+/*         Shapes                */
+/*===============================*/
+.shape {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    @media (max-width: 425px) {
+        bottom: -4px;
+    }
+    &>svg {
+        transform: scale(2);
+        width: 100%;
+        height: auto;
+        transform-origin: top center;
+    }
+}
+
+@media (max-width: 768px) {
+    .mt-60 {
+        margin-top: 60px;
+    }
+}
+
+/*********************************/
+/*         Video iframe          */
+/*===============================*/
+@media (max-width: 640px) {
+    [data-type] iframe, [data-type] video {
+        width: 500px;
+        height: 300px;
+    }
+}
+@media (max-width: 425px) {
+    [data-type] iframe, [data-type] video {
+        width: 360px;
+        height: 260px;
+    }
+}
+@media (max-width: 375px) {
+    [data-type] iframe, [data-type] video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/*********************************/
+/*         Tobii Lightbox          */
+/*===============================*/
+.tobii__btn svg,
+.tobii>button.tobii__close svg {
+    height: 30px;
+    width: auto;
+}
+.tobii__counter {
+    font-size: 16px;
+}
+.tobii-zoom {
+    display: block !important;
+}
+
+.tobii-zoom__icon {
+    display: none;
+}
+
+#grid {
+    padding: 0 !important;
+}
+
+//Mover
+.mover {
+    animation: mover 1s infinite alternate;
+}
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
+
+.border-animation {
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 5px;
+        height: 14px;
+        width: auto;
+        background: linear-gradient(to bottom, rgba($primary, 0.25) 0%, rgba($primary, 0.5) 25%, rgba($primary, 0.75) 50%, rgba($primary, 1) 100%);
+        z-index: -1;
+    }
+}
+
+//features-absolute
+.features-absolute {
+    position: relative;
+    z-index: 2;
+    margin: -240px 0 0px;
+    transition: all 0.5s ease;
+    @media (max-width: 768px) {
+        margin: -140px 0 0;
+    }
+}
+
+//Pricing 
+.pricing {
+    transition: all 0.5s ease;
+}
+
+//round background primary
+.modern-app-round {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: -2;
+    background: rgba($primary, 0.5);
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    &.round-small {
+        width: 350px;
+        height: 350px;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
+
+/*********************************/
+/*         Portfolio             */
+/*===============================*/
+.portfolio {
+    .image .overlay,
+    .content {
+        transition: all 0.5s ease;
+    }
+    &.modern,
+    &.masonry,
+    &.creative {
+        .content {
+            transition: all 0.5s ease;
+            opacity: 1;
+        }
+        &:hover,
+        &:focus-within {
+            .content {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.masonry {
+        .content {
+            .title-body {
+                transition: all 0.5s ease;
+                bottom: 0;
+            }
+        }
+
+        &:hover,
+        &:focus-within {
+            .content {
+                .title-body {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    .image {
+        .overlay {
+            opacity: 0;
+        }
+    }
+    &:hover {
+        .image {
+            .overlay {
+                opacity: 0.7;
+            }
+        }
+
+        &.masonry {
+            .image {
+                .overlay {
+                    opacity: 0.4 !important;
+                }
+            }
+        }
+    }
+}
+
+
+//NFT 
+.nft-item {
+    .bid-button,
+    .bg-overlay {
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+    .nft-image > img {
+        transition: all 0.5s ease;
+    }
+
+    &:hover {
+        .bid-button {
+            opacity: 1;
+        }
+
+        .bg-overlay {
+            opacity: 0.5;
+        }
+
+        .nft-image > img {
+            transform: scale(1.1);
+        }
+    }
+}
+
+//Spinner Class
+.spin-anything {
+    animation: spinner-animation 5s linear infinite
+}
+
+@keyframes spinner-animation {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+//Zoom In Out
+.zoom-in-out {
+    animation: zoom-in-zoom-out 3s ease-out infinite;
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1.5, 1.5);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}

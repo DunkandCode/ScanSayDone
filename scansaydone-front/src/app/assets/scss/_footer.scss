@@ -1,0 +1,114 @@
+//
+// footer.scss
+//
+
+/*********************************/
+/*         Footer                */
+/*===============================*/
+
+@use "variables" as *;
+@use "sass:color";
+
+footer {
+    position: relative;
+    background-color: var(--brand-cream, #FFF8F2);
+    color: var(--text-1, #2E1E3F);
+    padding-top: var(--band-y-d, 100px);
+    padding-bottom: 1rem;
+
+    @media (max-width: 767px) {
+        padding-top: var(--band-y-m, 60px);
+    }
+
+    .footer-head {
+        font-family: var(--font-montserrat, 'Montserrat', system-ui, sans-serif);
+        font-weight: 600;
+        font-size: 13px !important;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--text-2, #65586E);
+        margin-bottom: 1rem;
+    }
+    
+    .text-foot {
+        color: var(--text-1, #2E1E3F);
+    }
+
+    .text-muted {
+        color: var(--text-2, #65586E) !important;
+    }
+
+    .footer-list {
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style: none;
+        
+        li {
+            margin-bottom: 0.625rem;
+            
+            a {
+                color: var(--link, #B23A2A);
+                transition: color 0.2s ease;
+                text-decoration: none;
+                
+                &:hover {
+                    color: color.adjust(#B23A2A, $lightness: -10%);
+                    text-decoration: underline;
+                }
+            }   
+            
+            &:last-child{
+                margin-bottom: 0;
+            }         
+        }
+    }
+
+    .footer-bar {
+        border-top: 1px solid var(--border, #E5DDD5);
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .footer-brand {
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            color: var(--brand-plum, #2E1E3F);
+        }
+
+        .footer-wordmark {
+            font-family: var(--font-bebas, 'Bebas Neue', Impact, sans-serif);
+            font-size: 1.375rem;
+            letter-spacing: 1.5px;
+            color: var(--text-1, #2E1E3F);
+            white-space: nowrap;
+
+            .say {
+                color: var(--brand-plum, #2E1E3F);
+                text-decoration: underline;
+                text-decoration-color: var(--brand-coral, #FF5F44);
+                text-decoration-thickness: 2px;
+                text-underline-offset: 2px;
+            }
+        }
+
+        .footer-descriptor {
+            font-size: 0.9375rem;
+            color: var(--text-1, #2E1E3F);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-montserrat, 'Montserrat', system-ui, sans-serif);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-2, #65586E);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+    }
+}

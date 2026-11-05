@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-label="00 · SISTEMA DE GRID — Bootstrap 5.3.7 · 12 col · gutter 24 px">
+<title>00 · SISTEMA DE GRID — Bootstrap 5.3.7 · 12 col · gutter 24 px</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27.</desc>
+<rect width="1440" height="900" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">00 · SISTEMA DE GRID — Bootstrap 5.3.7 · 12 col · gutter 24 px</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">xxl 1400+ · container 1320 · col 88</text>
+<text x="1416" y="48" font-family="monospace" font-size="11" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="end">(C - 11 x 24) / 12 = col   |   span(n) = n*col + (n-1)*24</text>
+<g id="band">
+<rect x="0" y="70" width="1440" height="600" fill="#FFFFFF" fill-opacity="1.0" stroke="none" stroke-width="1.5" rx="0"/>
+</g>
+<g id="grid-12">
+<rect x="60" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="172" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="284" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="396" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="508" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="620" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="732" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="844" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="956" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="1068" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="1180" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<rect x="1292" y="90" width="88" height="470" fill="#2E1E3F" fill-opacity="0.1" stroke="none" stroke-width="1.5" rx="0"/>
+<line x1="160.0" y1="90" x2="160.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="272.0" y1="90" x2="272.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="384.0" y1="90" x2="384.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="496.0" y1="90" x2="496.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="608.0" y1="90" x2="608.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720.0" y1="90" x2="720.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="832.0" y1="90" x2="832.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="944.0" y1="90" x2="944.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1056.0" y1="90" x2="1056.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1168.0" y1="90" x2="1168.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1280.0" y1="90" x2="1280.0" y2="560" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="60" y="90" width="1320" height="470" fill="none" fill-opacity="1.0" stroke="#2E1E3F" stroke-width="1.5" rx="0" stroke-dasharray="6 4"/>
+<text x="68" y="106" font-family="monospace" font-size="11" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">container-xxl 1320 · aire (1440-1320)/2 = 60</text>
+</g>
+<g id="content">
+<rect x="60" y="115" width="424" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="272.0" y="135" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-4</text>
+<rect x="508" y="115" width="872" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="944.0" y="135" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-8 = 872</text>
+<rect x="60" y="195" width="424" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="272.0" y="215" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-4 #1</text>
+<rect x="508" y="195" width="424" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="720.0" y="215" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-4 #2</text>
+<rect x="956" y="195" width="424" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="1168.0" y="215" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-4 #3</text>
+<rect x="60" y="275" width="312" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="216.0" y="295" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-3 #1</text>
+<rect x="396" y="275" width="312" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="552.0" y="295" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-3 #2</text>
+<rect x="732" y="275" width="312" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="888.0" y="295" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-3 #3</text>
+<rect x="1068" y="275" width="312" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="1224.0" y="295" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-3 #4</text>
+<rect x="60" y="355" width="648" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="384.0" y="375" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-6 = 648 (mitad -12)</text>
+<rect x="732" y="355" width="648" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="1056.0" y="375" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-6 = 648 (mitad -12)</text>
+<rect x="60" y="435" width="760" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="440.0" y="455" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-7 = 760</text>
+<rect x="844" y="435" width="536" height="56" fill="#FFFFFF" fill-opacity="1.0" stroke="#65586E" stroke-width="1.5" rx="4"/>
+<text x="1112.0" y="455" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="middle">span-5 = 536</text>
+</g>
+<g id="measure">
+<line x1="60" y1="580" x2="1380" y2="580" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="60" y1="575" x2="60" y2="585" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1380" y1="575" x2="1380" y2="585" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="720.0" y="572" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="middle">container 1320  (xxl)</text>
+<line x1="60" y1="610" x2="148" y2="610" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="60" y1="605" x2="60" y2="615" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="148" y1="605" x2="148" y2="615" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="104.0" y="602" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="middle">col 88</text>
+<line x1="148" y1="634" x2="172" y2="634" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="148" y1="629" x2="148" y2="639" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="172" y1="629" x2="172" y2="639" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="160.0" y="626" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="middle">gutter 24</text>
+<line x1="1350" y1="90" x2="1350" y2="190" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1345" y1="90" x2="1355" y2="90" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1345" y1="190" x2="1355" y2="190" stroke="#65586E" stroke-width="1" stroke-opacity="1.0"/>
+<text x="1358" y="144.0" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">band-y-d 100 (muestra)</text>
+</g>
+<g id="content">
+<text x="60" y="700" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F" fill-opacity="1.0" text-anchor="start">Tabla de medidas por breakpoint  |  col = (C-264)/12  |  span: 6/4/8 col</text>
+<text x="60" y="730" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">xs  >= 0      container 100%          apila a col-12 (en el plano 575px: col = (575-264)/12 = 25.9)</text>
+<text x="60" y="760" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">sm  >= 576    container 540    col = (540-264)/12 = 23   |   6col= 258  4col= 164  8col= 352</text>
+<text x="60" y="790" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">md  >= 768    container 720    col = (720-264)/12 = 38   |   6col= 348  4col= 224  8col= 472</text>
+<text x="60" y="820" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">lg  >= 992    container 960    col = (960-264)/12 = 58   |   6col= 468  4col= 304  8col= 632</text>
+<text x="60" y="850" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">xl  >= 1200   container 1140   col = (1140-264)/12 = 73   |   6col= 558  4col= 364  8col= 752</text>
+<text x="60" y="880" font-family="monospace" font-size="12" font-weight="normal" fill="#65586E" fill-opacity="1.0" text-anchor="start">xxl >= 1400   container 1320   col = (1320-264)/12 = 88   |   6col= 648  4col= 424  8col= 872</text>
+</g>
+</svg>

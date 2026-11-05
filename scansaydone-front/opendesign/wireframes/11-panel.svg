@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1060" width="1440" height="1060" role="img" aria-label="11 · PANEL v2 — shell sidebar 264 ciruela + topbar 64 blanca + contenido 1128 en ámbar --grad-warm · 3 tarjetas de resumen en vidrio · tabla blanca OPACA · tarjetas del QR en vidrio · anclas ciruela y blanca nunca translúcidas · v1 pantalla única en historial">
+<title>11 · PANEL v2 — SHELL + materiales · sidebar 264 (--sidebar ciruela) · topbar 64 (--surface blanca) · contenido 1128 en --grad-warm ámbar · resumen: 3 tarjetas span-4 360×256 de VIDRIO (--grad-glass + filo + sombra cálida) · bandeja th 74 + filas 56 blanca y OPACA · /panel/qr: 2 tarjetas de vidrio · pastilla DATOS DE EJEMPLO con borde · 2 tokens nuevos</title>
+<desc>Plano métrico SVG · unidades px. Viewport 1440×900 dibujado 1:1 en y 56–900 (pliegue corta en y 898); zona de notas y 916–1050 fuera del viewport. ESTRUCTURA (las 3 medidas): sidebar 264 fija full-height --sidebar #2E1E3F (264 = 11 gutters de 24) · topbar h 64 --surface blanca de x 264 a 1440 (1176) con borde inferior 1 px --border · área de contenido x 264–1440 con padding 24 = contenido 1128 en x 288–1416 · col = (1128 − 11×24)/12 = 72 exacto · 3×360 + 2×24 = 1128 ✓ · fix 05-nov: .panel-container doble (1140/1128) purgado, queda UNO = 1128. FONDO DEL CONTENIDO [v2]: --grad-warm ámbar (168°, mostaza 38/46/54 % sobre crema; medido #FADCA5 → #F9CC8A) — ya no crema plano. MATERIALES: VIDRIO (--grad-glass + borde blanco 70 % + --shadow-glass cálida + filo inset 0 1px 0 · SIN backdrop-filter) → 3 tarjetas de resumen (texto grande: Bebas 28 · Montserrat 16–20) y 2 tarjetas de Mi QR (/panel/qr). OPACO (--surface blanca · radio 12 · overflow hidden) → SOLO la tabla: texto 13–14 px sin margen sobre vidrio (peor caso --text-2 4.68 sobre la parada profunda = margen 0.18 · 8 filas × 56 + th 74 ≈ 522 apilando 2 degradados · filas crecen con datos reales · vidrio no se percibe sobre degradado liso, medido en el login). ANCLAS (nunca translúcidas): sidebar ciruela y topbar blanca — reconstruyen el contraste cálido/frío que el login abandonó; legítimo con la topbar como plano frío (condición cumplida). CONTRASTES 05-nov: sobre vidrio ciruela 13.85 · texto-2 5.99 arriba / 5.65 abajo · enlace «Ver todas» --link-on-warm 5.46 ✓ (antes --link 4.20 ✗) · chips y fechas --border-on-warm 3.27 ✓ (antes --border-strong 2.52 ✗) · pastilla DATOS DE EJEMPLO mostasa + borde --border-on-warm #827587 3.27 ✓ (sin borde 1.37 ✗ desaparecía; 152×24 en navegador, el borde no altera el tamaño) · sobre tabla blanca: ciruela 15.29 · texto-2 6.62. 2 tokens nuevos derivados: --link-on-warm (--link 75 % + ciruela) · --border-on-warm (ciruela 60 % + crema). Cero hex ajenos a la paleta. VISTA DIBUJADA = modo demo (switch en topbar, dataset 8, pastilla con borde); el estado por defecto es VACÍO y se especifica en 12-dashboard. Accesibilidad del shell 05-nov: switch con aria-labelledby al texto visible · región aria-live siempre en DOM (:empty colapsa a altura 0) · drawer móvil con foco atrapado + inert en main (React 19: inert booleano real) + foco devuelto al burger · 129 líneas de SCSS muerto purgadas. Fuentes: VERIFICACION-PANEL-VIDRIO-2026-11-05.md · DASHBOARD-UX.md §1/§3. Scan-Say-Done 05-nov-2026 v2 (v1 30-oct pantalla única sin sidebar, en historial git).</desc>
+<defs>
+<linearGradient id="gradWarmPanel" x1="0.1" y1="0" x2="0.9" y2="1">
+<stop offset="0" stop-color="#FADCA5"/>
+<stop offset="0.5" stop-color="#F8D497"/>
+<stop offset="1" stop-color="#F9CC8A"/>
+</linearGradient>
+<filter id="glassShadowPanel" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2E1E3F" flood-opacity="0.12"/>
+</filter>
+</defs>
+<rect width="1440" height="1060" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">11 · PANEL v2 — SHELL + materiales: 264 / 64 / 1128 ámbar · tarjetas de vidrio · tabla OPACA · anclas ciruela + blanca</text>
+<text x="24" y="46" font-family="monospace" font-size="10" fill="#65586E">capas: band · grid-12 · container · content · measure · labels · notas — GRID-SPEC §4 · v1 (pantalla única sin sidebar) en historial git</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">pantalla 1440×900 · unid px · 05-nov-2026 v2</text>
+<text x="1416" y="42" text-anchor="end" font-family="monospace" font-size="10" fill="#65586E">shell: DASHBOARD-UX §1 · materiales: VERIFICACION-PANEL-VIDRIO-2026-11-05</text>
+<text x="1416" y="52" text-anchor="end" font-family="monospace" font-size="10" fill="#65586E">2 tokens nuevos: --link-on-warm · --border-on-warm · vista = demo ON</text>
+<g id="band">
+<rect x="0" y="56" width="264" height="844" fill="#2E1E3F"/>
+<rect x="264" y="56" width="1176" height="64" fill="#FFFFFF"/>
+<line x1="264" y1="120" x2="1440" y2="120" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="264" y="120" width="1176" height="780" fill="url(#gradWarmPanel)"/>
+<text x="288" y="134" font-family="monospace" font-size="8" fill="#65586E">fondo del contenido [v2]: --grad-warm · ámbar 168° · mostasa 38/46/54 % sobre crema — era crema plano --bg</text>
+</g>
+<g id="grid-12">
+<rect x="288" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="384" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="480" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="576" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="672" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="768" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="864" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="960" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1056" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1152" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1248" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<rect x="1344" y="120" width="72" height="780" fill="#2E1E3F" fill-opacity="0.05"/>
+<line x1="360" y1="120" x2="360" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="456" y1="120" x2="456" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="552" y1="120" x2="552" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="648" y1="120" x2="648" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="744" y1="120" x2="744" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="840" y1="120" x2="840" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="936" y1="120" x2="936" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1032" y1="120" x2="1032" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1128" y1="120" x2="1128" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1224" y1="120" x2="1224" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+<line x1="1320" y1="120" x2="1320" y2="900" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<line x1="288" y1="56" x2="288" y2="900" stroke="#B23A2A" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="6 4"/>
+<line x1="1416" y1="56" x2="1416" y2="900" stroke="#B23A2A" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="6 4"/>
+<text x="296" y="894" font-family="monospace" font-size="8" fill="#65586E">retícula propia del panel: contenido 1128 = 1440 − 264 − 2×24 · col 72 · ningún container de la landing se reusa</text>
+</g>
+<g id="content">
+<!-- sidebar 264: ancla ciruela -->
+<rect x="24" y="70" width="108" height="36" fill="none" stroke="#FFE7D9" stroke-width="1" stroke-dasharray="3 3" rx="6"/>
+<text x="78" y="92" font-family="monospace" font-size="8" fill="#FFE7D9" text-anchor="middle">logo 108×36</text>
+<line x1="156" y1="70" x2="156" y2="106" stroke="#FFE7D9" stroke-width="1" stroke-opacity="0.35"/>
+<text x="172" y="92" font-family="sans-serif" font-size="10" font-weight="bold" letter-spacing="1.4" fill="#FFF8F2">PANEL</text>
+<rect x="0" y="144" width="264" height="48" fill="#FFF8F2" fill-opacity="0.08"/>
+<rect x="0" y="144" width="3" height="48" fill="#FF5F44"/>
+<rect x="24" y="158" width="20" height="20" fill="none" rx="3" stroke="#FFF8F2" stroke-width="1"/>
+<text x="56" y="173" font-family="sans-serif" font-size="12" font-weight="bold" fill="#FFF8F2">Resumen</text>
+<rect x="24" y="206" width="20" height="20" fill="none" rx="3" stroke="#CBC2C5" stroke-width="1"/>
+<text x="56" y="221" font-family="sans-serif" font-size="12" fill="#CBC2C5">Respuestas</text>
+<rect x="24" y="254" width="20" height="20" fill="none" rx="3" stroke="#CBC2C5" stroke-width="1"/>
+<text x="56" y="269" font-family="sans-serif" font-size="12" fill="#CBC2C5">Mi QR</text>
+<text x="24" y="292" font-family="monospace" font-size="7.5" fill="#CBC2C5">ítems h 48 · gap 4 · activo = barra 3 px + 600 + aria-current</text>
+<text x="24" y="303" font-family="monospace" font-size="7.5" fill="#CBC2C5">detalle del nav en 12-dashboard · Salir al pie (y 828–876)</text>
+<line x1="24" y1="810" x2="240" y2="810" stroke="#FFE7D9" stroke-width="1" stroke-opacity="0.35"/>
+<rect x="24" y="834" width="20" height="20" fill="none" rx="3" stroke="#CBC2C5" stroke-width="1"/>
+<text x="56" y="849" font-family="sans-serif" font-size="12" fill="#CBC2C5">Salir</text>
+<!-- topbar 64: ancla blanca -->
+<text x="1152" y="94" font-family="sans-serif" font-size="11" fill="#2E1E3F" text-anchor="end">Datos de ejemplo</text>
+<rect x="1180" y="76" width="48" height="28" rx="14" fill="#2E1E3F"/>
+<circle cx="1208" cy="90" r="10" fill="#FFF8F2"/>
+<text x="1204" y="94" font-family="monospace" font-size="9" fill="#2E1E3F">✓</text>
+<text x="1236" y="86" font-family="monospace" font-size="7.5" fill="#65586E">switch 48×28 en 44 · aria-labelledby</text>
+<text x="1236" y="96" font-family="monospace" font-size="7.5" fill="#65586E">al texto visible (fix 05-nov §1.3)</text>
+<text x="1236" y="106" font-family="monospace" font-size="7.5" fill="#65586E">región aria-live siempre viva §1.4</text>
+<!-- título -->
+<text x="288" y="188" font-family="sans-serif" font-size="34" font-weight="bold" fill="#2E1E3F">LO QUE DICEN TUS CLIENTES</text>
+<text x="288" y="224" font-family="sans-serif" font-size="13" fill="#65586E">Las respuestas de tus clientes, ordenadas por pregunta.</text>
+<text x="288" y="250" font-family="sans-serif" font-size="11" fill="#65586E">Cada pregunta se califica del 1 (muy mala) al 5 (muy buena).</text>
+<text x="1416" y="188" font-family="monospace" font-size="8" fill="#65586E" text-anchor="end">H1 Bebas 44 lh .95 · ciruela/ámbar 11+ ✓</text>
+<text x="1416" y="224" font-family="monospace" font-size="8" fill="#65586E" text-anchor="end">título 160 (py 32 + 42 + 8 + 24 + 10 + 16 + 28)</text>
+<text x="1416" y="250" font-family="monospace" font-size="8" fill="#B23A2A" text-anchor="end">vista = demo ON · estado por defecto = VACÍO (ver 12)</text>
+<!-- 3 tarjetas de resumen: VIDRIO 360×256 -->
+<rect x="288" y="280" width="360" height="256" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" rx="12" filter="url(#glassShadowPanel)"/>
+<rect x="672" y="280" width="360" height="256" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" rx="12" filter="url(#glassShadowPanel)"/>
+<rect x="1056" y="280" width="360" height="256" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" rx="12" filter="url(#glassShadowPanel)"/>
+<text x="288" y="272" font-family="monospace" font-size="9" fill="#2E1E3F" font-weight="bold">VIDRIO: --grad-glass · borde blanco 70 % · --shadow-glass · filo inset 0 1px 0 · SIN backdrop-filter</text>
+<text x="312" y="312" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F">¿Cómo fue tu atención?</text>
+<text x="696" y="312" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F">¿Volverías?</text>
+<text x="1080" y="312" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F">¿Qué mejorarías?</text>
+<text x="314" y="350" font-family="monospace" font-size="9" fill="#65586E">1</text>
+<rect x="336" y="342" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="336" y="342" width="2" height="10" rx="1" fill="#FF5F44" fill-opacity="0.001"/><text x="608" y="351" font-family="monospace" font-size="9" fill="#2E1E3F">0</text>
+<text x="314" y="378" font-family="monospace" font-size="9" fill="#65586E">2</text>
+<rect x="336" y="370" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="336" y="370" width="33" height="10" rx="5" fill="#FF5F44"/><text x="608" y="379" font-family="monospace" font-size="9" fill="#2E1E3F">1</text>
+<text x="314" y="406" font-family="monospace" font-size="9" fill="#65586E">3</text>
+<rect x="336" y="398" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="336" y="398" width="33" height="10" rx="5" fill="#FF5F44"/><text x="608" y="407" font-family="monospace" font-size="9" fill="#2E1E3F">1</text>
+<text x="314" y="434" font-family="monospace" font-size="9" fill="#65586E">4</text>
+<rect x="336" y="426" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="336" y="426" width="65" height="10" rx="5" fill="#FF5F44"/><text x="608" y="435" font-family="monospace" font-size="9" fill="#2E1E3F">2</text>
+<text x="314" y="462" font-family="monospace" font-size="9" fill="#65586E">5</text>
+<rect x="336" y="454" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="336" y="454" width="130" height="10" rx="5" fill="#FF5F44"/><text x="608" y="463" font-family="monospace" font-size="9" fill="#2E1E3F">4</text>
+<text x="312" y="510" font-family="sans-serif" font-size="19" font-weight="bold" fill="#2E1E3F">8</text>
+<text x="332" y="510" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="1.2" fill="#65586E">RESPUESTAS</text>
+<text x="698" y="350" font-family="monospace" font-size="9" fill="#65586E">1</text>
+<rect x="720" y="342" width="260" height="10" rx="5" fill="#F5F4F5"/><text x="992" y="351" font-family="monospace" font-size="9" fill="#2E1E3F">0</text>
+<text x="698" y="378" font-family="monospace" font-size="9" fill="#65586E">2</text>
+<rect x="720" y="370" width="260" height="10" rx="5" fill="#F5F4F5"/><text x="992" y="379" font-family="monospace" font-size="9" fill="#2E1E3F">0</text>
+<text x="698" y="406" font-family="monospace" font-size="9" fill="#65586E">3</text>
+<rect x="720" y="398" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="720" y="398" width="65" height="10" rx="5" fill="#FF5F44"/><text x="992" y="407" font-family="monospace" font-size="9" fill="#2E1E3F">2</text>
+<text x="698" y="434" font-family="monospace" font-size="9" fill="#65586E">4</text>
+<rect x="720" y="426" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="720" y="426" width="130" height="10" rx="5" fill="#FF5F44"/><text x="992" y="435" font-family="monospace" font-size="9" fill="#2E1E3F">4</text>
+<text x="698" y="462" font-family="monospace" font-size="9" fill="#65586E">5</text>
+<rect x="720" y="454" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="720" y="454" width="65" height="10" rx="5" fill="#FF5F44"/><text x="992" y="463" font-family="monospace" font-size="9" fill="#2E1E3F">2</text>
+<text x="696" y="510" font-family="sans-serif" font-size="19" font-weight="bold" fill="#2E1E3F">8</text>
+<text x="716" y="510" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="1.2" fill="#65586E">RESPUESTAS</text>
+<text x="1082" y="350" font-family="monospace" font-size="9" fill="#65586E">1</text>
+<rect x="1104" y="342" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="1104" y="342" width="33" height="10" rx="5" fill="#FF5F44"/><text x="1376" y="351" font-family="monospace" font-size="9" fill="#2E1E3F">1</text>
+<text x="1082" y="378" font-family="monospace" font-size="9" fill="#65586E">2</text>
+<rect x="1104" y="370" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="1104" y="370" width="33" height="10" rx="5" fill="#FF5F44"/><text x="1376" y="379" font-family="monospace" font-size="9" fill="#2E1E3F">1</text>
+<text x="1082" y="406" font-family="monospace" font-size="9" fill="#65586E">3</text>
+<rect x="1104" y="398" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="1104" y="398" width="33" height="10" rx="5" fill="#FF5F44"/><text x="1376" y="407" font-family="monospace" font-size="9" fill="#2E1E3F">1</text>
+<text x="1082" y="434" font-family="monospace" font-size="9" fill="#65586E">4</text>
+<rect x="1104" y="426" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="1104" y="426" width="98" height="10" rx="5" fill="#FF5F44"/><text x="1376" y="435" font-family="monospace" font-size="9" fill="#2E1E3F">3</text>
+<text x="1082" y="462" font-family="monospace" font-size="9" fill="#65586E">5</text>
+<rect x="1104" y="454" width="260" height="10" rx="5" fill="#F5F4F5"/>
+<rect x="1104" y="454" width="65" height="10" rx="5" fill="#FF5F44"/><text x="1376" y="463" font-family="monospace" font-size="9" fill="#2E1E3F">2</text>
+<text x="1080" y="510" font-family="sans-serif" font-size="19" font-weight="bold" fill="#2E1E3F">8</text>
+<text x="1100" y="510" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="1.2" fill="#65586E">RESPUESTAS</text>
+<text x="1080" y="528" font-family="monospace" font-size="8" fill="#65586E">sobre vidrio: ciruela 13.85 · texto-2 5.99 (arriba) / 5.65 (abajo) · count además del color</text>
+<!-- pastilla demo CON BORDE -->
+<rect x="288" y="560" width="152" height="24" rx="4" fill="#F4B63B" stroke="#827587" stroke-width="1"/>
+<text x="364" y="576" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="0.6" fill="#2E1E3F" text-anchor="middle">DATOS DE EJEMPLO</text>
+<text x="456" y="577" font-family="monospace" font-size="8" fill="#65586E">152×24 en navegador · borde --border-on-warm #827587 3.27 ✓ (sin borde 1.37 ✗)</text>
+<text x="456" y="589" font-family="monospace" font-size="8" fill="#65586E">el borde no altera el tamaño · mostasa = firma, no se toca el relleno</text>
+<text x="288" y="612" font-family="sans-serif" font-size="10" fill="#65586E">Estas respuestas son un ejemplo para ver la pantalla llena. No vienen de clientes reales.</text>
+<!-- bandeja OPACA -->
+<text x="288" y="640" font-family="sans-serif" font-size="10" font-weight="bold" letter-spacing="1.4" fill="#65586E">ÚLTIMAS RESPUESTAS</text>
+<text x="1416" y="640" font-family="monospace" font-size="8" fill="#65586E" text-anchor="end">enlace «Ver todas las respuestas» → --link-on-warm 5.46 ✓ (antes --link 4.20 ✗)</text>
+<rect x="288" y="652" width="1128" height="248" fill="#FFFFFF" stroke="#E1DCDD" stroke-width="1" rx="12"/>
+<text x="312" y="694" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="1" fill="#65586E">FECHA</text>
+<text x="480" y="694" font-family="sans-serif" font-size="9" font-weight="bold" letter-spacing="1" fill="#65586E">CANAL</text>
+<text x="660" y="688" font-family="sans-serif" font-size="9" font-weight="bold" fill="#65586E">¿Cómo fue tu</text>
+<text x="660" y="702" font-family="sans-serif" font-size="9" font-weight="bold" fill="#65586E">atención?</text>
+<text x="912" y="688" font-family="sans-serif" font-size="9" font-weight="bold" fill="#65586E">¿Volverías?</text>
+<text x="1164" y="688" font-family="sans-serif" font-size="9" font-weight="bold" fill="#65586E">¿Qué mejorarías?</text>
+<line x1="312" y1="726" x2="1392" y2="726" stroke="#E1DCDD" stroke-width="1"/>
+<text x="312" y="758" font-family="monospace" font-size="10" fill="#65586E">hoy 09:12</text>
+<text x="480" y="758" font-family="sans-serif" font-size="10" fill="#2E1E3F">Mostrador</text>
+<rect x="660" y="740" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<text x="676" y="758" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">5</text>
+<rect x="912" y="740" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<text x="928" y="758" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">4</text>
+<rect x="1164" y="740" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1180" y="758" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">4</text>
+<line x1="312" y1="782" x2="1392" y2="782" stroke="#E1DCDD" stroke-width="1"/>
+<text x="312" y="814" font-family="monospace" font-size="10" fill="#65586E">hoy 08:47</text>
+<text x="480" y="814" font-family="sans-serif" font-size="10" fill="#2E1E3F">WhatsApp</text>
+<rect x="660" y="796" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<text x="676" y="814" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">4</text>
+<rect x="912" y="796" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1164" y="796" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="312" y1="838" x2="1392" y2="838" stroke="#E1DCDD" stroke-width="1"/>
+<text x="312" y="870" font-family="monospace" font-size="10" fill="#65586E">ayer 19:20</text>
+<text x="480" y="870" font-family="sans-serif" font-size="10" fill="#2E1E3F">Instagram</text>
+<rect x="660" y="852" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<text x="676" y="870" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F" text-anchor="middle">5</text>
+<rect x="912" y="852" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1164" y="852" width="32" height="28" rx="6" fill="none" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="0" y1="898" x2="1440" y2="898" stroke="#FF5F44" stroke-width="1.5" stroke-dasharray="8 4" stroke-opacity="0.7"/>
+<text x="296" y="894" font-family="monospace" font-size="8" fill="#2E1E3F" font-weight="bold">TABLA OPACA A PROPÓSITO: texto 13–14 px · sobre vidrio el peor caso --text-2 4.68 vs parada profunda (margen 0.18) · filas apilan 2 degradados · crecen con datos reales · vidrio no se percibe sobre degradado liso (medido en el login)</text>
+<text x="296" y="716" font-family="monospace" font-size="8" fill="#65586E">bandeja: fecha 144 · canal 156 · 3×228 · 4 gutters 24 · pad 24×2 = 1080 · sobre blanco: ciruela 15.29 · texto-2 6.62</text>
+</g>
+<g id="measure">
+<line x1="0" y1="50" x2="264" y2="50" stroke="#65586E" stroke-width="1"/>
+<line x1="0" y1="45" x2="0" y2="55" stroke="#65586E" stroke-width="1"/>
+<line x1="264" y1="45" x2="264" y2="55" stroke="#65586E" stroke-width="1"/>
+<text x="132" y="46" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">sidebar 264</text>
+<line x1="276" y1="56" x2="276" y2="120" stroke="#65586E" stroke-width="1"/>
+<line x1="271" y1="56" x2="281" y2="56" stroke="#65586E" stroke-width="1"/>
+<line x1="271" y1="120" x2="281" y2="120" stroke="#65586E" stroke-width="1"/>
+<text x="282" y="92" font-family="monospace" font-size="10" fill="#65586E">topbar 64</text>
+<line x1="288" y1="908" x2="1416" y2="908" stroke="#65586E" stroke-width="1"/>
+<line x1="288" y1="903" x2="288" y2="913" stroke="#65586E" stroke-width="1"/>
+<line x1="1416" y1="903" x2="1416" y2="913" stroke="#65586E" stroke-width="1"/>
+<text x="852" y="904" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">contenido 1128 (x288–1416) = 1440 − 264 − 2×24 · col 72</text>
+<line x1="288" y1="264" x2="1416" y2="264" stroke="#65586E" stroke-width="1"/>
+<line x1="288" y1="259" x2="288" y2="269" stroke="#65586E" stroke-width="1"/>
+<line x1="1416" y1="259" x2="1416" y2="269" stroke="#65586E" stroke-width="1"/>
+<text x="852" y="260" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">3×360 + 2×24 = 1128 ✓</text>
+<line x1="1424" y1="280" x2="1424" y2="536" stroke="#65586E" stroke-width="1"/>
+<line x1="1420" y1="280" x2="1428" y2="280" stroke="#65586E" stroke-width="1"/>
+<line x1="1420" y1="536" x2="1428" y2="536" stroke="#65586E" stroke-width="1"/>
+<text x="1428" y="412" font-family="monospace" font-size="9" fill="#65586E">256</text>
+<line x1="1424" y1="652" x2="1424" y2="726" stroke="#65586E" stroke-width="1"/>
+<line x1="1420" y1="652" x2="1428" y2="652" stroke="#65586E" stroke-width="1"/>
+<line x1="1420" y1="726" x2="1428" y2="726" stroke="#65586E" stroke-width="1"/>
+<text x="1428" y="692" font-family="monospace" font-size="9" fill="#65586E">74</text>
+<line x1="1424" y1="726" x2="1424" y2="782" stroke="#65586E" stroke-width="1"/>
+<line x1="1420" y1="782" x2="1428" y2="782" stroke="#65586E" stroke-width="1"/>
+<text x="1428" y="758" font-family="monospace" font-size="9" fill="#65586E">56</text>
+<text x="852" y="920" font-family="monospace" font-size="8" fill="#65586E" text-anchor="middle">stack: topbar 64 · título 160 · tarjetas 256 · demo 24+8+20 · overline 16+12 · th 74 · filas 56 — pliegue y 900 corta la 3.ª fila (anotado, no disfrazado)</text>
+</g>
+<g id="labels">
+<line x1="24" y1="936" x2="1416" y2="936" stroke="#E1DCDD" stroke-width="1"/>
+<text x="24" y="930" font-family="monospace" font-size="8" fill="#65586E">ZONA DE NOTAS — fuera del viewport 900 · fuentes: VERIFICACION-PANEL-VIDRIO-2026-11-05 · DASHBOARD-UX §1/§3</text>
+<text x="24" y="954" font-family="monospace" font-size="10" fill="#2E1E3F" font-weight="bold">MATERIALES [v2 05-nov]</text>
+<text x="24" y="968" font-family="monospace" font-size="8.5" fill="#65586E">VIDRIO (--grad-glass + borde blanco 70 % + --shadow-glass cálida</text>
+<text x="24" y="980" font-family="monospace" font-size="8.5" fill="#65586E">+ filo inset 0 1px 0 · SIN backdrop-filter) → 3 tarjetas de Resumen</text>
+<text x="24" y="992" font-family="monospace" font-size="8.5" fill="#65586E">y 2 tarjetas de Mi QR (/panel/qr): texto grande Bebas 28 · M 16–20</text>
+<text x="24" y="1004" font-family="monospace" font-size="8.5" fill="#65586E">OPACO (--surface blanca · radio 12 · overflow hidden) → SOLO la tabla</text>
+<text x="24" y="1016" font-family="monospace" font-size="8.5" fill="#65586E">ANCLAS, nunca translúcidas: sidebar --sidebar ciruela · topbar --surface</text>
+<text x="24" y="1028" font-family="monospace" font-size="8.5" fill="#65586E">blanca — la topbar actúa como plano frío (condición del revisor)</text>
+<text x="24" y="1046" font-family="monospace" font-size="8.5" fill="#B23A2A">fix 05-nov: .panel-container único = 1128 (el de 1140 borrado) · 129 líneas SCSS muerto purgadas</text>
+<text x="370" y="954" font-family="monospace" font-size="10" fill="#2E1E3F" font-weight="bold">CONTRASTES 05-nov</text>
+<text x="370" y="968" font-family="monospace" font-size="8.5" fill="#65586E">sobre vidrio: ciruela 13.85 · texto-2 5.99 arriba / 5.65 abajo</text>
+<text x="370" y="980" font-family="monospace" font-size="8.5" fill="#65586E">enlace «Ver todas»: --link-on-warm 5.46 ✓ (antes --link 4.20 ✗)</text>
+<text x="370" y="992" font-family="monospace" font-size="8.5" fill="#65586E">chips y fechas: --border-on-warm 3.27 ✓ (antes --border-strong 2.52 ✗)</text>
+<text x="370" y="1004" font-family="monospace" font-size="8.5" fill="#65586E">pastilla DATOS DE EJEMPLO: mostasa + borde 3.27 ✓ (sin borde 1.37 ✗)</text>
+<text x="370" y="1016" font-family="monospace" font-size="8.5" fill="#65586E">2 tokens nuevos derivados: --link-on-warm · --border-on-warm</text>
+<text x="370" y="1028" font-family="monospace" font-size="8.5" fill="#65586E">(--link 75 % + ciruela · ciruela 60 % + crema) · cero hex nuevos</text>
+<text x="760" y="954" font-family="monospace" font-size="10" fill="#2E1E3F" font-weight="bold">QR + SHELL</text>
+<text x="760" y="968" font-family="monospace" font-size="8.5" fill="#65586E">/panel/qr: TU QR (360×388) y ASÍ LLEGA (744×388) en vidrio · marco</text>
+<text x="760" y="980" font-family="monospace" font-size="8.5" fill="#65586E">discontinuo sin QR inventado · esa ruta NO lleva tabla</text>
+<text x="760" y="992" font-family="monospace" font-size="8.5" fill="#65586E">sidebar ciruela sobre ámbar: contraste cálido/frío legítimo (§7.3)</text>
+<text x="760" y="1004" font-family="monospace" font-size="8.5" fill="#65586E">drawer móvil: foco atrapado + inert en main (React 19: booleano)</text>
+<text x="760" y="1016" font-family="monospace" font-size="8.5" fill="#65586E">+ foco devuelto al burger · región aria-live siempre en el DOM</text>
+<rect x="1160" y="960" width="80" height="72" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" rx="6" filter="url(#glassShadowPanel)"/>
+<text x="1200" y="988" font-family="monospace" font-size="7" fill="#65586E" text-anchor="middle">marco 264×264</text>
+<rect x="1182" y="984" width="36" height="36" fill="#F5F4F5" stroke="#E1DCDD" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1200" y="1020" font-family="monospace" font-size="7" fill="#2E1E3F" text-anchor="middle">TU QR · vidrio</text>
+<rect x="1256" y="960" width="160" height="72" fill="#FFF8F2" fill-opacity="0.72" stroke="#FFFFFF" stroke-opacity="0.7" rx="6" filter="url(#glassShadowPanel)"/>
+<text x="1336" y="986" font-family="monospace" font-size="7" fill="#2E1E3F" text-anchor="middle">ASÍ LLEGA A TUS CLIENTES</text>
+<text x="1336" y="1000" font-family="monospace" font-size="7" fill="#65586E" text-anchor="middle">3 pasos + enlace ejemplo</text>
+<text x="1336" y="1020" font-family="monospace" font-size="7" fill="#2E1E3F" text-anchor="middle">744×388 · vidrio</text>
+</g>
+</svg>

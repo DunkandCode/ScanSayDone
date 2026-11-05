@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" role="img" aria-label="d04 · MOVIL panel — viewport 390x844 · sidebar = drawer cerrado · alerta + KPI 2x2 + grafico + 2 filas">
+<title>d04 · MOVIL — drawer cerrado · contenido 358 · col 15.17 · span-6 = 171</title>
+<desc>Plano metrico SVG del panel en movil (390x844 = viewport de referencia iOS). Unid: px. conv: contenido = 390 − 2x16 = 358; reticula 12col = col (358 − 11x16)/12 = 15.17 con gutter 16, span-6 = 171 exacto (tarjetas KPI); kpi 171 + 16 + 171 = 358 ✓ y 358 + 2x16 = 390 ✓. Regla n&lt;10: solo absolutos, cero porcentajes. Colores = tokens del contrato y mezclas calculadas; conv conforme a d01: alerta = familia mostaza (surface #F5F0E8 · fg #7A5518 · acento #986A1E), el UNICO uso de mostaza en el plano; el resto son solo coral #FF5F44 y ciruela #2E1E3F. A diferencia de d01-d03 (canvas 1440 con titulo arriba), el lienzo es del tamano exacto del dispositivo: la identidad del plano y la anotacion de esquina van en la franja inferior 832..844. Sidebar = drawer fuera de lienzo (no se dibuja: overlay). Dataset demo unico d01-d04. Scan-Say-Done 2026-10-27.</desc>
+<rect width="390" height="844" fill="#FFFFFF"/>
+<g id="shell">
+<rect x="0" y="64" width="390" height="780" fill="#F7F6F7"/>
+<rect x="0" y="0" width="390" height="64" fill="#FFFFFF"/>
+<line x1="0" y1="64" x2="390" y2="64" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="16" y="10" width="44" height="44" rx="4" fill="none" stroke="#C4BBC0" stroke-width="1"/>
+<line x1="25" y1="25" x2="51" y2="25" stroke="#2E1E3F" stroke-width="2"/>
+<line x1="25" y1="32" x2="51" y2="32" stroke="#2E1E3F" stroke-width="2"/>
+<line x1="25" y1="39" x2="51" y2="39" stroke="#2E1E3F" stroke-width="2"/>
+<text x="72" y="41" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">Resumen</text>
+</g>
+<g id="grid-12">
+<rect x="16" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="47.17" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="78.33" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="109.5" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="140.67" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="171.83" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="203" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="234.17" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="265.33" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="296.5" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="327.67" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+<rect x="358.83" y="88" width="15.17" height="744" fill="#2E1E3F" fill-opacity="0.1"/>
+</g>
+<g id="container">
+<rect x="16" y="88" width="358" height="744" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+</g>
+<g id="content">
+<rect x="16" y="88" width="358" height="148" rx="4" fill="#F5F0E8" stroke="#7A5518" stroke-width="1"/>
+<rect x="16" y="88" width="4" height="148" fill="#986A1E"/>
+<circle cx="44" cy="124" r="12" fill="none" stroke="#986A1E" stroke-width="2"/>
+<text x="44" y="129" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#986A1E">!</text>
+<text x="64" y="128" font-family="sans-serif" font-size="13" font-weight="bold" fill="#7A5518">1 AVISO URGENTE</text>
+<text x="370" y="101" text-anchor="end" font-family="monospace" font-size="8" fill="#7A5518">148 · boton 326x48</text>
+<text x="32" y="160" font-family="sans-serif" font-size="11" fill="#2E1E3F">causa: "3 de 3 respuestas de hoy dicen espera"</text>
+<rect x="32" y="176" width="326" height="48" rx="4" fill="#FF5F44"/>
+<text x="195" y="204" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F">VER LAS 3 RESPUESTAS DEL DIA</text>
+<rect x="16" y="260" width="171" height="96" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="28" y="284" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">OPINIONES (7 DIAS)</text>
+<text x="28" y="324" font-family="sans-serif" font-size="28" font-weight="bold" fill="#2E1E3F">5</text>
+<text x="28" y="344" font-family="monospace" font-size="9" fill="#65586E">absoluto · 1 en rev. fuera</text>
+<rect x="203" y="260" width="171" height="96" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="215" y="284" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">CON COMENTARIO</text>
+<text x="215" y="324" font-family="sans-serif" font-size="28" font-weight="bold" fill="#2E1E3F">5</text>
+<text x="215" y="344" font-family="monospace" font-size="9" fill="#65586E">5 de 5 · sin % n&lt;10</text>
+<rect x="16" y="372" width="171" height="96" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="28" y="396" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">DIAS CON RESPUESTAS</text>
+<text x="28" y="436" font-family="sans-serif" font-size="28" font-weight="bold" fill="#2E1E3F">2</text>
+<text x="28" y="456" font-family="monospace" font-size="9" fill="#65586E">aviso: pocos clientes</text>
+<rect x="203" y="372" width="171" height="96" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="215" y="396" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">ALERTAS ABIERTAS</text>
+<text x="215" y="436" font-family="sans-serif" font-size="28" font-weight="bold" fill="#2E1E3F">2</text>
+<text x="215" y="456" font-family="monospace" font-size="9" fill="#65586E">clicable → d03</text>
+<rect x="16" y="484" width="358" height="180" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="32" y="508" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F">OPINIONES POR DIA</text>
+<text x="362" y="508" text-anchor="end" font-family="monospace" font-size="8" fill="#65586E">cifra sobre barra · el 0 se pinta</text>
+<text x="32" y="524" font-family="monospace" font-size="8" fill="#65586E">escala 30px/punto · n&lt;10: cero % · span-12</text>
+<rect x="41" y="546" width="32" height="90" rx="2" fill="#FF5F44"/>
+<text x="57" y="540" text-anchor="middle" font-family="monospace" font-size="10" fill="#2E1E3F">3</text>
+<rect x="87" y="576" width="32" height="60" rx="2" fill="#FF5F44"/>
+<text x="103" y="570" text-anchor="middle" font-family="monospace" font-size="10" fill="#2E1E3F">2</text>
+<rect x="133" y="634" width="32" height="2" fill="#C4BBC0"/>
+<rect x="179" y="634" width="32" height="2" fill="#C4BBC0"/>
+<rect x="225" y="634" width="32" height="2" fill="#C4BBC0"/>
+<rect x="271" y="634" width="32" height="2" fill="#C4BBC0"/>
+<rect x="317" y="634" width="32" height="2" fill="#C4BBC0"/>
+<text x="149" y="628" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">0</text>
+<text x="195" y="628" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">0</text>
+<text x="241" y="628" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">0</text>
+<text x="287" y="628" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">0</text>
+<text x="333" y="628" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">0</text>
+<line x1="32" y1="636" x2="362" y2="636" stroke="#E2D9D9" stroke-width="1"/>
+<text x="57" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">L</text>
+<text x="103" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">M</text>
+<text x="149" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">X</text>
+<text x="195" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">J</text>
+<text x="241" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">V</text>
+<text x="287" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">S</text>
+<text x="333" y="658" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">D</text>
+<rect x="16" y="664" width="358" height="168" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="32" y="688" font-family="sans-serif" font-size="10" font-weight="bold" fill="#2E1E3F">ULTIMAS OPINIONES</text>
+<text x="358" y="688" text-anchor="end" font-family="sans-serif" font-size="10" font-weight="bold" fill="#B23A2A">VER TODAS</text>
+<line x1="32" y1="696" x2="358" y2="696" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="32" y="704" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="48" y="726" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">1</text>
+<text x="76" y="716" font-family="sans-serif" font-size="11" fill="#2E1E3F">"Espera de 40 min"</text>
+<text x="358" y="716" text-anchor="end" font-family="monospace" font-size="8" fill="#65586E">QR · 08:47</text>
+<line x1="32" y1="740" x2="358" y2="740" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="32" y="748" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="48" y="770" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">2</text>
+<text x="76" y="760" font-family="sans-serif" font-size="11" fill="#2E1E3F">"Muy lenta la atencion"</text>
+<text x="358" y="760" text-anchor="end" font-family="monospace" font-size="8" fill="#65586E">QR · 09:12</text>
+<line x1="32" y1="784" x2="358" y2="784" stroke="#E2D9D9" stroke-width="1"/>
+<text x="32" y="812" font-family="monospace" font-size="8" fill="#65586E">2 filas (de 6) · ver todas → d02 · drawer overlay</text>
+</g>
+<g id="measure">
+<line x1="8" y1="0" x2="8" y2="64" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="0" x2="12" y2="0" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="64" x2="12" y2="64" stroke="#65586E" stroke-width="1"/>
+<text x="8" y="32" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 8 32)">topbar 64</text>
+<line x1="8" y1="176" x2="8" y2="224" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="176" x2="12" y2="176" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="224" x2="12" y2="224" stroke="#65586E" stroke-width="1"/>
+<text x="8" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 8 200)">boton 48</text>
+<line x1="8" y1="260" x2="8" y2="356" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="260" x2="12" y2="260" stroke="#65586E" stroke-width="1"/>
+<line x1="4" y1="356" x2="12" y2="356" stroke="#65586E" stroke-width="1"/>
+<text x="8" y="308" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 8 308)">kpi 96</text>
+<line x1="382" y1="88" x2="382" y2="236" stroke="#65586E" stroke-width="1"/>
+<line x1="378" y1="88" x2="386" y2="88" stroke="#65586E" stroke-width="1"/>
+<line x1="378" y1="236" x2="386" y2="236" stroke="#65586E" stroke-width="1"/>
+<text x="382" y="162" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 382 162)">alerta 148</text>
+<line x1="382" y1="484" x2="382" y2="664" stroke="#65586E" stroke-width="1"/>
+<line x1="378" y1="484" x2="386" y2="484" stroke="#65586E" stroke-width="1"/>
+<line x1="378" y1="664" x2="386" y2="664" stroke="#65586E" stroke-width="1"/>
+<text x="382" y="574" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 382 574)">grafico 180</text>
+<line x1="382" y1="664" x2="382" y2="832" stroke="#65586E" stroke-width="1"/>
+<line x1="378" y1="832" x2="386" y2="832" stroke="#65586E" stroke-width="1"/>
+<text x="382" y="748" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E" transform="rotate(-90 382 748)">lista 168 · 2 filas</text>
+<line x1="16" y1="72" x2="374" y2="72" stroke="#65586E" stroke-width="1"/>
+<line x1="16" y1="67" x2="16" y2="77" stroke="#65586E" stroke-width="1"/>
+<line x1="374" y1="67" x2="374" y2="77" stroke="#65586E" stroke-width="1"/>
+<text x="195" y="84" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">contenido 358 · 16 + 358 + 16 = 390 ✓</text>
+<line x1="16" y1="246" x2="187" y2="246" stroke="#65586E" stroke-width="1"/>
+<line x1="187" y1="246" x2="203" y2="246" stroke="#65586E" stroke-width="1" stroke-dasharray="2 2"/>
+<line x1="203" y1="246" x2="374" y2="246" stroke="#65586E" stroke-width="1"/>
+<line x1="16" y1="241" x2="16" y2="251" stroke="#65586E" stroke-width="1"/>
+<line x1="187" y1="241" x2="187" y2="251" stroke="#65586E" stroke-width="1"/>
+<line x1="203" y1="241" x2="203" y2="251" stroke="#65586E" stroke-width="1"/>
+<line x1="374" y1="241" x2="374" y2="251" stroke="#65586E" stroke-width="1"/>
+<text x="195" y="257" text-anchor="middle" font-family="monospace" font-size="9" fill="#65586E">171 + 16 + 171 = 358 ✓</text>
+<text x="195" y="368" text-anchor="middle" font-family="monospace" font-size="8" fill="#65586E">reticula 12col: col 15.17 + gutter 16 → span-6 = 171 ✓</text>
+<text x="195" y="480" text-anchor="middle" font-family="monospace" font-size="8" fill="#65586E">boton: 16 + 326 + 16 = 358 ✓ · barras 32 + 14 = paso 46</text>
+<text x="16" y="841" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F">d04 · MOVIL</text>
+<text x="374" y="841" text-anchor="end" font-family="monospace" font-size="9" fill="#65586E">movil 390 · contenido 358 · drawer cerrado</text>
+</g>
+<rect x="0.75" y="0.75" width="388.5" height="842.5" fill="none" stroke="#2E1E3F" stroke-width="1.5"/>
+</svg>

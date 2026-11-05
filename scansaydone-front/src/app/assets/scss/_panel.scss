@@ -1,0 +1,1074 @@
+// ==========================================================================
+// _panel.scss — Estilos para /panel (PANEL-UX §2–§8)
+// Todos los colores via tokens. Cero hex sueltos.
+// ==========================================================================
+
+// El panel no lleva navbar fija del sitio: cancela la compensacion de 76px de globals.css
+main:has(> .panel-app) {
+  padding-top: 0;
+}
+
+// Skip link (accesibilidad)
+.panel-skip {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  padding: 12px 24px;
+  background: var(--surface);
+  border: 2px solid var(--brand-plum);
+  border-radius: 6px;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+  text-decoration: none;
+
+  &:focus {
+    top: 16px;
+  }
+}
+
+// App container
+.panel-app {
+  background: var(--grad-warm);
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+.panel-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.panel-brand-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--brand-coral);
+}
+
+.panel-brand-name {
+  font-family: var(--font-bebas);
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: var(--text-1);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.panel-brand-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border-strong);
+}
+
+.panel-brand-overline {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+// Offline banner
+.panel-offline {
+  height: 48px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-offline-inner {
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  color: var(--text-1);
+}
+
+.panel-offline-text {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+// !important: _bootstrap-custom.scss emite h1…h6 { font-size: … !important } desde _variables.scss
+.panel-title {
+  font-family: var(--font-bebas);
+  font-size: 44px !important;
+  line-height: 0.95;
+  color: var(--text-1);
+  margin: 32px 0 8px;
+}
+
+.panel-sub {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0 0 10px;
+}
+
+.panel-scale-note {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin: 0 0 28px;
+}
+
+// Summary cards
+.panel-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.panel-card {
+  height: 256px;
+  padding: 24px;
+  background: var(--grad-glass);
+  border: 1px solid color-mix(in srgb, var(--brand-white) 70%, transparent);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 var(--edge-lit);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-card-q {
+  font-family: var(--font-montserrat);
+  font-size: 16px !important;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.panel-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.panel-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+}
+
+.panel-bar-digit {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+  width: 16px;
+  text-align: left;
+}
+
+.panel-bar-track {
+  flex: 1;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.panel-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--brand-coral);
+  border-radius: 5px;
+  transition: width var(--dur-micro) var(--ease-ui);
+}
+
+.panel-bar-count {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+  width: 28px;
+  text-align: right;
+}
+
+.panel-card-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-2);
+}
+
+.panel-card-dash {
+  font-family: var(--font-bebas);
+  font-size: 40px;
+  color: var(--text-2);
+}
+
+.panel-card-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.panel-card-total {
+  font-family: var(--font-bebas);
+  font-size: 28px;
+  color: var(--text-1);
+}
+
+.panel-card-total-label {
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+// Demo switch
+.panel-demo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin: 28px 0 10px;
+}
+
+.panel-switch {
+  width: 48px;
+  height: 28px;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  background: var(--border-strong);
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--dur-micro) var(--ease-ui), border-color var(--dur-micro) var(--ease-ui);
+
+  &[aria-checked='true'] {
+    background: var(--brand-plum);
+    border-color: var(--brand-plum);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.panel-switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-plum);
+  transition: transform var(--dur-micro) var(--ease-ui);
+
+  [aria-checked='true'] & {
+    transform: translateX(20px);
+    background: var(--brand-cream);
+  }
+}
+
+.panel-demo-label {
+  font-family: var(--font-montserrat);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.panel-demo-badge {
+  font-family: var(--font-montserrat);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-1);
+  background: var(--brand-mustard);
+  border: 1px solid var(--border-on-warm); // 3.27:1 sobre la banda ambar: define el limite
+  padding: 4px 8px;
+  border-radius: 4px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.panel-demo-note {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0 0 28px;
+  min-height: 20px;
+}
+
+// La region viva debe seguir montada para anunciar (a11y), pero no ocupar altura vacia.
+.panel-demo-note:empty {
+  min-height: 0;
+  margin-block: 0;
+}
+
+// Filters
+.panel-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 28px 0 12px;
+}
+
+.panel-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.panel-chip-btn {
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border-on-warm);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  cursor: pointer;
+  transition: border-color var(--dur-micro) var(--ease-ui);
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  &[aria-disabled='true'] {
+    color: var(--text-2);
+    cursor: not-allowed;
+  }
+}
+
+.panel-dates {
+  display: flex;
+  gap: 16px;
+}
+
+.panel-date-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.panel-date-input {
+  height: 44px;
+  width: 150px;
+  padding: 0 12px;
+  border: 1px solid var(--border-on-warm);
+  border-radius: 8px;
+  background: var(--surface);
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  color: var(--text-1);
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    color: var(--text-2);
+    cursor: not-allowed;
+  }
+}
+
+.panel-chip-btn:disabled,
+.panel-date-input:disabled {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-2);
+  cursor: not-allowed;
+}
+
+.panel-chip-btn:disabled[aria-checked='true'] {
+  border-color: var(--border-strong);
+}
+
+// Bandeja
+.panel-bandeja-overline {
+  font-family: var(--font-montserrat);
+  font-size: 13px !important;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-2);
+  text-transform: uppercase;
+  margin: 16px 0 12px;
+}
+
+.panel-table {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden; // para que el radio recorte las filas
+
+  th {
+    height: 74px;
+    padding: 20px 24px;
+    text-align: left;
+    font-family: var(--font-montserrat);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    height: 56px;
+    padding: 0 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-montserrat);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-1);
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 144px;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 156px;
+  }
+}
+
+.panel-td-channel {
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.panel-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+}
+
+// Empty state
+.panel-empty {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 48px 0;
+}
+
+.panel-empty-overline {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-2);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.panel-empty-title {
+  font-family: var(--font-montserrat);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.panel-empty-text {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0 0 24px;
+}
+
+.panel-btn-ghost {
+  height: 44px;
+  padding: 0 24px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: transparent;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color var(--dur-micro) var(--ease-ui);
+
+  &:hover {
+    border-color: var(--brand-plum);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+// Screen reader only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ==========================================================================
+// RESPONSIVE (§5)
+// ==========================================================================
+
+// ≤991px: tarjetas 1 columna
+@media (max-width: 991px) {
+  .panel-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+// ≤767px: tabla → tarjetas
+@media (max-width: 767px) {
+  .panel-table {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    table,
+    tbody,
+    tr,
+    td {
+      display: block;
+    }
+
+    tr {
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+
+    td {
+      height: auto;
+      padding: 4px 0;
+      border: 0;
+
+      &::before {
+        content: attr(data-label);
+        font-family: var(--font-montserrat);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-2);
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .panel-filters {
+    min-width: 0;
+  }
+
+  .panel-chips {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .panel-chip-btn {
+    flex: 0 0 auto;
+  }
+}
+
+// ≤575px: título 28 en 2 líneas
+@media (max-width: 575px) {
+  .panel-title {
+    font-size: 28px !important;
+    max-width: 12ch;
+  }
+}
+
+// ==========================================================================
+// ---- shell del dashboard (DASHBOARD-UX v2) ----
+// ==========================================================================
+
+// .panel-app ya existe arriba (background, min-height). No se duplica.
+
+// Sidebar fija
+.panel-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 264px;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--brand-plum);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  transition: transform var(--dur-micro) var(--ease-ui);
+}
+
+// Marca dentro del sidebar (fondo plum → texto cream)
+.panel-sidebar .panel-brand {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  flex-shrink: 0;
+}
+
+.panel-sidebar .panel-brand-name {
+  color: var(--brand-cream);
+}
+
+.panel-sidebar .panel-brand-overline {
+  color: color-mix(in srgb, var(--brand-cream) 60%, transparent);
+}
+
+.panel-sidebar .panel-brand-sep {
+  background: color-mix(in srgb, var(--brand-cream) 25%, transparent);
+}
+
+// Ítems de navegación lateral
+.panel-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 24px;
+  font-family: var(--font-montserrat);
+  font-size: 15px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--brand-cream) 75%, transparent);
+  text-decoration: none !important;
+  border-left: 3px solid transparent;
+  transition: background var(--dur-micro) var(--ease-ui), color var(--dur-micro) var(--ease-ui);
+}
+
+.panel-nav-item:hover {
+  background: var(--edge-lit);
+  color: var(--brand-cream);
+}
+
+.panel-nav-item.is-active {
+  border-left-color: var(--action-bg);
+  color: var(--brand-cream);
+  font-weight: 600;
+}
+
+.panel-nav-item:focus-visible {
+  outline: 3px solid var(--brand-cream);
+  outline-offset: -3px;
+}
+
+// Separador antes de "Salir"
+.panel-nav-exit {
+  margin-top: auto;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.panel-nav-exit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: var(--edge-lit);
+}
+
+// Topbar fija (a la derecha del sidebar)
+.panel-topbar {
+  position: fixed;
+  top: 0;
+  left: 264px;
+  right: 0;
+  height: 64px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+  z-index: 10;
+}
+
+.panel-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// Contenido principal (desplazado por sidebar + topbar)
+.panel-content {
+  margin-left: 264px;
+  padding: 64px 24px 24px;
+}
+
+// Retícula interior: 1128px (spec §3), no 1140
+.panel-container {
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+// Offline banner: max-width alineado a 1128
+.panel-content .panel-offline-inner {
+  max-width: 1128px;
+}
+
+// Botón hamburguesa (oculto en desktop)
+.panel-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  cursor: pointer;
+  padding: 0;
+}
+
+.panel-burger:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+// Scrim (oculto en desktop; se renderiza condicionalmente con open)
+.panel-scrim {
+  display: none;
+}
+
+// Enlace "Ver todas las respuestas"
+.panel-table-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--link-on-warm);
+  text-decoration: underline !important;
+  margin: 16px 0 0;
+}
+
+.panel-table-more:hover,
+.panel-table-more:focus {
+  color: var(--brand-plum);
+  text-decoration: underline !important;
+}
+
+.panel-table-more:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+// <1200: sidebar como drawer, topbar a ancho completo
+@media (max-width: 1199px) {
+  .panel-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .panel-sidebar.is-open {
+    transform: none;
+  }
+
+  .panel-topbar {
+    left: 0;
+    justify-content: space-between;
+  }
+
+  .panel-content {
+    margin-left: 0;
+  }
+
+  .panel-burger {
+    display: inline-flex;
+  }
+
+  .panel-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: color-mix(in srgb, black 45%, transparent);
+    z-index: 15;
+  }
+}
+
+// ---- secciones Respuestas y Mi QR (DASHBOARD-UX v2 §5-§6) ----
+
+// Estado activo de chips de filtro
+.panel-chip-btn.is-active {
+  border-width: 2px;
+  border-color: var(--brand-plum);
+}
+
+// ==========================================================================
+// Mi QR — grid y tarjetas
+// ==========================================================================
+
+.panel-qr-grid {
+  display: grid;
+  grid-template-columns: 360px 744px;
+  gap: 24px;
+  margin: 24px 0;
+
+  @media (max-width: 1199.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-qr-card,
+.panel-instructions-card {
+  height: auto;
+  min-height: 400px;
+  padding: 24px;
+  background: var(--grad-glass);
+  border: 1px solid color-mix(in srgb, var(--brand-white) 70%, transparent);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 var(--edge-lit);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-qr-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.panel-overline {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+.panel-overline-link {
+  display: block;
+  margin: 24px 0 12px;
+}
+
+.panel-qr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--brand-mustard);
+  border: 1px solid var(--border-on-warm); // 3.27:1 sobre la banda ambar: define el limite
+  color: var(--brand-plum);
+  font-family: var(--font-montserrat);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.panel-qr-frame {
+  width: 264px;
+  height: 264px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.panel-qr-slot {
+  width: 216px;
+  height: 216px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--brand-plum);
+}
+
+.panel-qr-slot-text {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand-plum);
+}
+
+.panel-qr-note {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  text-align: center;
+  margin: auto 0 0;
+}
+
+// ==========================================================================
+// Pasos de instrucciones
+// ==========================================================================
+
+.panel-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0 24px;
+}
+
+.panel-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+}
+
+.panel-step-num {
+  font-family: var(--font-bebas);
+  font-size: 28px;
+  color: var(--text-1);
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.panel-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.panel-step-title {
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--brand-plum);
+  text-transform: uppercase;
+}
+
+.panel-step-text {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+// ==========================================================================
+// Campo de enlace readonly
+// ==========================================================================
+
+.panel-link-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.panel-link-field {
+  width: 696px;
+  max-width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  color: var(--brand-plum);
+  cursor: default;
+
+  &:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 1199.98px) {
+    width: 100%;
+  }
+}
+
+.panel-link-suffix {
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.panel-qr-honesty {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 24px 0 0;
+  line-height: 1.5;
+}

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Scan-Say-Done — planos, mockups y marca (revisión interna)</title>
+<style>
+  /* ── Tokens de marca (DESIGN-CONTRACT) ─────────────────────────────
+     Paleta fijada por el brief: crema, ciruela, coral, mostaza.
+     Tipografía: system-ui + monospace de sistema — requisito duro:
+     sin fuentes externas (funciona servido y desde disco).
+     Gris de cotas #65586E: el mismo que usan los SVG (GRID-SPEC §4). */
+  :root {
+    --crema:   #FFF8F2;
+    --ciruela: #2E1E3F;
+    --coral:   #FF5F44;
+    --mostaza: #F4B63B;
+    --cota:    #65586E;
+    --linea:   rgba(46, 30, 63, .22);
+    --papel:   #FFFFFF;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ciruela);
+    background:
+      /* retícula de mesa de trazado: cuadrícula 24 px (gutter del plano) casi invisible */
+      repeating-linear-gradient(to right,  rgba(46,30,63,.035) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(to bottom, rgba(46,30,63,.035) 0 1px, transparent 1px 24px),
+      var(--crema);
+  }
+  img { display: block; max-width: 100%; height: auto; } /* plano 1440 px escala a la tarjeta */
+
+  .wrap { max-width: 1140px; margin-inline: auto; padding-inline: 24px; } /* el xl del propio grid */
+
+  a { color: var(--ciruela); text-decoration: underline; text-decoration-color: var(--coral);
+      text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  a:hover { text-decoration-color: var(--ciruela); }
+  :focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+
+  .skip { position: absolute; left: -9999px; top: 0; background: var(--mostaza);
+          color: var(--ciruela); padding: 8px 14px; z-index: 10; }
+  .skip:focus { left: 12px; top: 12px; }
+
+  /* ── Cabecera: banda ciruela + sello de breakpoint (convención §4 de GRID-SPEC) ── */
+  header.banda {
+    /* calco de la capa grid-12: 12 columnas tenues con gutter de 2 px sobre banda ciruela */
+    background-color: var(--ciruela);
+    background-image: repeating-linear-gradient(to right,
+      rgba(255,248,242,.07) 0 calc(100% / 12 - 2px),
+      transparent calc(100% / 12 - 2px) calc(100% / 12));
+    color: var(--crema);
+    border-bottom: 4px solid var(--coral);
+  }
+  header.banda .wrap { padding-block: 40px 32px; }
+  .cabecera-flex { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;
+                   justify-content: space-between; }
+  h1 { font-size: clamp(1.5rem, 3.5vw + .5rem, 2.25rem); line-height: 1.2; margin: 0 0 6px;
+       font-weight: 800; letter-spacing: -.01em; }
+  .dossier { font: 600 12px/1.6 var(--mono); color: var(--mostaza);
+             text-transform: uppercase; letter-spacing: .12em; margin: 0 0 10px; }
+  .sub { margin: 0; font-size: .95rem; color: var(--crema); opacity: .92; }
+  .sello {
+    font: 12px/1.7 var(--mono); white-space: pre;
+    border: 1.5px dashed rgba(255,248,242,.65); padding: 10px 14px; color: var(--crema);
+  }
+  .sello b { color: var(--mostaza); font-weight: 700; }
+
+  .aviso {
+    background: var(--papel); border-left: 6px solid var(--coral);
+    padding: 14px 18px; margin: 24px 0 0; font-style: italic; font-size: 1.02rem;
+    color: var(--ciruela); /* AA sobre blanco: 12.4:1 — no hereda el crema de la banda */
+  }
+
+  nav.saltar { background: var(--ciruela); }
+  nav.saltar .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-block: 12px; }
+  nav.saltar a {
+    color: var(--crema); text-decoration: none; font: 700 13px/1 var(--mono);
+    padding: 8px 12px; border: 1.5px solid rgba(255,248,242,.4); display: inline-block;
+  }
+  nav.saltar a:hover { border-color: var(--mostaza); color: var(--mostaza); }
+
+  main { padding-block: 48px 24px; }
+  section { margin-bottom: 64px; }
+  h2 { font-size: clamp(1.25rem, 2vw + .5rem, 1.6rem); margin: 0 0 4px; letter-spacing: -.01em; }
+  .h2-num { font: 700 12px/1 var(--mono); color: var(--coral); text-transform: uppercase;
+            letter-spacing: .14em; display: block; margin-bottom: 8px; }
+  .nota-seccion { max-width: 68ch; color: var(--ciruela); font-size: .95rem; margin: 8px 0 28px;
+                  border-bottom: 2px solid var(--linea); padding-bottom: 16px; }
+  .nota-seccion code { font: .85em/1 var(--mono); background: rgba(244,182,59,.25);
+                       padding: 1px 5px; }
+
+  /* ── Rejillas responsive: 1 col móvil · 2 tablet · 3 desktop ── */
+  .rejilla { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 720px)  { .rejilla { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .rejilla.tres { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ── Tarjeta-plano: esquinas rectas a propósito (no es una landing, es un pliego) ── */
+  .pliego {
+    background: var(--papel); border: 1px solid var(--linea); display: flex; flex-direction: column;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .pliego { transition: transform .18s ease, border-color .18s ease; }
+    .pliego:hover { transform: translateY(-2px); border-color: var(--ciruela); }
+  }
+  .pliego-cab { display: flex; align-items: baseline; gap: 12px; padding: 14px 16px 10px; }
+  .num {
+    flex: none; font: 700 13px/1 var(--mono); background: var(--mostaza); color: var(--ciruela);
+    padding: 5px 7px; letter-spacing: .04em;
+  }
+  .pliego-cab h3 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
+  .marco { border-block: 1px dashed var(--linea); background: var(--papel); }
+  .marco a { display: block; }
+  .pliego-cuerpo { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .cotas { font: 600 13.5px/1.6 var(--mono); color: var(--cota); margin: 0;
+           word-spacing: .1em; }
+  .cotas .eq { color: var(--ciruela); }
+  .meta { font-size: .84rem; color: var(--cota); margin: 0; }
+  .enlaces { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 600 13px/1 var(--mono);
+             margin-top: auto; padding-top: 4px; }
+
+  /* ── Estado de mockups ── */
+  .estado { display: inline-block; font: 700 12px/1 var(--sans); padding: 5px 9px;
+            letter-spacing: .02em; }
+  .estado.ok   { background: var(--mostaza); color: var(--ciruela); } /* 8.4:1 */
+  .estado.mal  { background: var(--coral);   color: var(--ciruela); } /* 4.9:1 */
+  .defectos { font-size: .84rem; line-height: 1.5; color: var(--ciruela); margin: 0;
+              border-left: 3px solid var(--linea); padding-left: 10px; }
+  .defectos b { color: var(--coral); }
+  .defectos code, .meta code { font: .85em/1 var(--mono); background: rgba(244,182,59,.25);
+                               padding: 1px 5px; }
+
+  /* ── Índice documental ── */
+  .doc {
+    background: var(--papel); border: 1px solid var(--linea); border-left: 6px solid var(--coral);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .doc a { font: 700 15px/1.3 var(--mono); word-break: break-all; }
+  .doc p { margin: 0; font-size: .88rem; color: var(--cota); }
+
+  /* ── Sub-grupo dentro de la rejilla: los planos del panel van aparte ── */
+  .subgrupo { grid-column: 1 / -1; margin-top: 16px; border-top: 2px dashed var(--linea);
+              padding-top: 18px; }
+  .subgrupo h3 { font: 700 13px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .12em;
+                 color: var(--coral); margin: 0 0 8px; }
+  .subgrupo p { margin: 0; font-size: .92rem; color: var(--cota); max-width: 72ch; }
+  .subgrupo code { font: .85em/1 var(--mono); background: rgba(244,182,59,.25); padding: 1px 5px; }
+  .num.panel { background: var(--coral); } /* badge de grupo: coral distingue d01–d04 del lote landing */
+
+  /* ── Sellos apilados (landing + panel) en la cabecera ── */
+  .sello-par { display: flex; flex-direction: column; gap: 10px; }
+
+  /* ── Lámina de marca: una imagen a ancho de contenido + leyenda ── */
+  .lamina { background: var(--papel); border: 1px solid var(--linea); padding: 16px; margin: 0; }
+  .lamina a { display: block; }
+  .lamina figcaption { border-top: 1px dashed var(--linea); margin-top: 14px; padding-top: 12px;
+                       font-size: .95rem; color: var(--ciruela); }
+  ul.leyenda { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 10px 0 0;
+               padding: 0; }
+  ul.leyenda li { font: 600 13px/1.5 var(--mono); color: var(--cota); }
+  ul.leyenda li::before { content: "▸"; color: var(--coral); margin-right: 7px; }
+
+  footer.banda {
+    background: var(--ciruela); color: var(--crema); border-top: 4px solid var(--coral);
+    margin-top: 32px;
+  }
+  footer.banda .wrap { padding-block: 28px; font-size: .88rem; }
+  footer.banda .cotas { color: var(--mostaza); margin-bottom: 8px; }
+  footer.banda a { color: var(--crema); }
+</style>
+</head>
+<body>
+<a class="skip" href="#planos">Saltar a los planos</a>
+
+<header class="banda">
+  <div class="wrap">
+    <div class="cabecera-flex">
+      <div>
+        <p class="dossier">opendesign/ · revisión interna · 2026-10-27</p>
+        <h1>Scan-Say-Done — planos, mockups y marca (revisión interna)</h1>
+        <p class="sub">13 planos de grid medibles (9 landing + 4 panel) en SVG, fuente de verdad
+        métrica · 12 mockups de alta fidelidad (referencia visual) · índice documental · lámina
+        de marca.</p>
+      </div>
+      <div class="sello-par">
+        <div class="sello" role="img" aria-label="Sello con las constantes del grid de landing: xl 1200+, contenedor 1140, columna 73, gutter 24, 12 columnas.">xl 1200+ · <b>container 1140</b> · col 73
+gutter 24 · 12 col · <b>GRID-SPEC §4</b></div>
+        <div class="sello" role="img" aria-label="Sello con las constantes del panel: sidebar 264, contenedor 1128, columna 72; en móvil contenido 358 y columna 15.17.">sidebar 264 · <b>C 1128</b> · col 72
+móvil <b>358</b> · col 15.17 · <b>DASHBOARD-UX §1</b></div>
+      </div>
+    </div>
+    <p class="aviso">Referencia de diseño. No es la landing construida ni contenido final.</p>
+  </div>
+</header>
+
+<nav class="saltar" aria-label="Secciones de la galería">
+  <div class="wrap">
+    <a href="#planos">01 · Planos de grid</a>
+    <a href="#mockups">02 · Mockups</a>
+    <a href="#docs">03 · Documentación</a>
+    <a href="#lamina">04 · Lámina de marca</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ════════ SECCIÓN 1 · PLANOS MEDIBLES ════════ -->
+  <section id="planos" aria-labelledby="h-planos">
+    <span class="h2-num">Sección 1 / 4 — fuente de verdad métrica</span>
+    <h2 id="h-planos">Planos de grid medibles</h2>
+    <p class="nota-seccion">13 planos SVG sobre lienzo <code>1440 × H</code> (el móvil del panel,
+    <code>390 × 844</code>), capas <code>band · grid-12 · container · content · measure</code>,
+    cotas en px (GRID-SPEC §4). Formato de la línea de medidas:
+    <code>bp · container · col · fila</code>. Cerrar imagen = SVG a tamaño completo. Fórmulas del
+    landing: <code>col=(C−264)/12</code> · <code>span(n)=n×col+(n−1)×24</code>; los 4 planos del
+    panel llevan su propia retícula (ver su subgrupo al final de la sección).</p>
+
+    <div class="rejilla">
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">00</span><h3>Sistema de grid — referencia general</h3></div>
+        <div class="marco"><a href="wireframes/00-grid-system.svg" target="_blank" rel="noopener">
+          <img src="wireframes/00-grid-system.svg" width="1440" height="900" loading="lazy"
+               alt="Plano SVG del sistema de grid: 12 columnas, gutter 24, contenedores por breakpoint con cotas."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">12 col · <span class="eq">gutter 24</span> · bp sm→xxl · xxl 1320 → col 88</p>
+          <p class="meta">Lienzo 1440 × 900 · tabla de spans 3/4/6/7/8 · GRID-SPEC §1–2.</p>
+          <p class="enlaces"><a href="wireframes/00-grid-system.svg">SVG</a><a href="wireframes/png/00-grid-system.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">01</span><h3>Hero — primera pantalla</h3></div>
+        <div class="marco"><a href="wireframes/01-hero.svg" target="_blank" rel="noopener">
+          <img src="wireframes/01-hero.svg" width="1440" height="760" loading="lazy"
+               alt="Plano SVG del hero: banda ciruela, fila 7+5 con cotas 655 y 461 píxeles."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · row 7+5 = <span class="eq">655/461</span></p>
+          <p class="meta">Lienzo 1440 × 760 · logo 108×36 · banda <code>--band-y-d</code> 100. Cierre: 655+24+461=1140 ✓.</p>
+          <p class="enlaces"><a href="wireframes/01-hero.svg">SVG</a><a href="wireframes/png/01-hero.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">02</span><h3>Cómo funciona — 3 pasos</h3></div>
+        <div class="marco"><a href="wireframes/02-como-funciona.svg" target="_blank" rel="noopener">
+          <img src="wireframes/02-como-funciona.svg" width="1440" height="620" loading="lazy"
+               alt="Plano SVG de cómo funciona: tres columnas de 364 píxeles con conectores."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · 3 × <span class="eq">364</span></p>
+          <p class="meta">Lienzo 1440 × 620 · fila 3×4col: 364×3 + 2×24 = 1140 ✓ · números como badge CSS/SVG.</p>
+          <p class="enlaces"><a href="wireframes/02-como-funciona.svg">SVG</a><a href="wireframes/png/02-como-funciona.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">03</span><h3>Canales — 4 tarjetas</h3></div>
+        <div class="marco"><a href="wireframes/03-canales.svg" target="_blank" rel="noopener">
+          <img src="wireframes/03-canales.svg" width="1440" height="700" loading="lazy"
+               alt="Plano SVG de canales: cuatro tarjetas de 267 píxeles, una por canal."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · 4 × <span class="eq">267</span></p>
+          <p class="meta">Lienzo 1440 × 700 · 4×267+3×24=1140 ✓ · <strong>R1 abierta:</strong> el plano dibuja 4
+          tarjetas; UX-LANDING §2 planteaba 3 (IG+WA unidas).</p>
+          <p class="enlaces"><a href="wireframes/03-canales.svg">SVG</a><a href="wireframes/png/03-canales.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">04</span><h3>Panel del dueño — captura</h3></div>
+        <div class="marco"><a href="wireframes/04-panel-preview.svg" target="_blank" rel="noopener">
+          <img src="wireframes/04-panel-preview.svg" width="1440" height="780" loading="lazy"
+               alt="Plano SVG de la captura del panel: marco span 8 de 872 por 545 píxeles, proporción 16/10."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xxl 1320 · col 88 · frame span-8 = <span class="eq">872 × 545</span> <span class="eq">(16/10)</span></p>
+          <p class="meta">Lienzo 1440 × 780 · única sección en xxl (R3) · mientras no haya captura real: skeleton «demo».</p>
+          <p class="enlaces"><a href="wireframes/04-panel-preview.svg">SVG</a><a href="wireframes/png/04-panel-preview.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">05</span><h3>Precios — 3 planes</h3></div>
+        <div class="marco"><a href="wireframes/05-precios.svg" target="_blank" rel="noopener">
+          <img src="wireframes/05-precios.svg" width="1440" height="820" loading="lazy"
+               alt="Plano SVG de precios: tres tarjetas de 364 píxeles con el plan central destacado."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · 3 × <span class="eq">364</span></p>
+          <p class="meta">Lienzo 1440 × 820 · central destacado con borde coral · planes definitivos sin cerrar (copy pendiente).</p>
+          <p class="enlaces"><a href="wireframes/05-precios.svg">SVG</a><a href="wireframes/png/05-precios.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">06</span><h3>FAQ + CTA final</h3></div>
+        <div class="marco"><a href="wireframes/06-faq-cta.svg" target="_blank" rel="noopener">
+          <img src="wireframes/06-faq-cta.svg" width="1440" height="700" loading="lazy"
+               alt="Plano SVG de FAQ y CTA final en una misma fila: acordeón 7 columnas y CTA 5 columnas."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">lg 960 · col 58 · row 7+5 = <span class="eq">550/386</span></p>
+          <p class="meta">Lienzo 1440 × 700 · <strong>R2:</strong> el plano junta FAQ y CTA en un row 7+5 del
+          container-lg; UX-LANDING los trata como bandas separadas (alturas propias).</p>
+          <p class="enlaces"><a href="wireframes/06-faq-cta.svg">SVG</a><a href="wireframes/png/06-faq-cta.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">07</span><h3>Footer</h3></div>
+        <div class="marco"><a href="wireframes/07-footer.svg" target="_blank" rel="noopener">
+          <img src="wireframes/07-footer.svg" width="1440" height="480" loading="lazy"
+               alt="Plano SVG del footer: banda crema con cuatro columnas de 267 píxeles."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · 4 × <span class="eq">267</span></p>
+          <p class="meta">Lienzo 1440 × 480 · banda crema · <strong>H-1 resuelta</strong> (acta §4,
+          27-oct): crema <code>#FFF8F2</code>; enlaces <code>--link</code> 5.65 sobre crema.</p>
+          <p class="enlaces"><a href="wireframes/07-footer.svg">SVG</a><a href="wireframes/png/07-footer.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">08</span><h3>Aplicaciones — «así se ve en tu local»</h3></div>
+        <div class="marco"><a href="wireframes/08-aplicaciones.svg" target="_blank" rel="noopener">
+          <img src="wireframes/08-aplicaciones.svg" width="1440" height="700" loading="lazy"
+               alt="Plano SVG de aplicaciones: tres marcos 4/3 de 364 por 273 píxeles sobre banda blanca, con pies de dos líneas."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">xl 1140 · col 73 · 3 × <span class="eq">364</span> · marcos 4/3 <span class="eq">364 × 273</span></p>
+          <p class="meta">Lienzo 1440 × 700 · banda blanca · sin CTA por tarjeta (informativos) ·
+          captions 2 líneas según lámina (ANALISIS-REFERENCIAS §4).</p>
+          <p class="enlaces"><a href="wireframes/08-aplicaciones.svg">SVG</a><a href="wireframes/png/08-aplicaciones.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <div class="subgrupo">
+        <h3>Planos del panel (d01–d04) — retícula propia</h3>
+        <p>El área de contenido del panel <strong>no reusa los containers del landing</strong>.
+        Desktop a 1440: <code>sidebar 264 · C 1128 · col 72</code> (gutter 24; KPI 4×264+3×24=1128).
+        Móvil a 390: <code>contenido 358 · col 15.17</code> (gutter 16; span-6=171 exacto).
+        Dataset demo único d01–d04; n&lt;10: solo absolutos, cero porcentajes. Fuente:
+        DASHBOARD-UX §1.</p>
+      </div>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num panel">D1</span><h3>Panel · Resumen</h3></div>
+        <div class="marco"><a href="wireframes/d01-overview.svg" target="_blank" rel="noopener">
+          <img src="wireframes/d01-overview.svg" width="1440" height="900" loading="lazy"
+               alt="Plano SVG del resumen del panel: sidebar de 264 píxeles, cuatro KPI de 264, gráfico de barras 7×64, lista y una alerta."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">C <span class="eq">1128</span> · sidebar 264 · col <span class="eq">72</span> · KPI 4 × <span class="eq">264</span> · barras 7 × 64 gap 31</p>
+          <p class="meta">Lienzo 1440 × 900 · 4 KPI + gráfico span-8 + lista span-4 (744+24+360=1128 ✓) + 1 sola alerta urgente.</p>
+          <p class="enlaces"><a href="wireframes/d01-overview.svg">SVG</a><a href="wireframes/png/d01-overview.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num panel">D2</span><h3>Panel · Opiniones</h3></div>
+        <div class="marco"><a href="wireframes/d02-opiniones.svg" target="_blank" rel="noopener">
+          <img src="wireframes/d02-opiniones.svg" width="1440" height="900" loading="lazy"
+               alt="Plano SVG de opiniones del panel: barra de filtros con chips, lista de filas crudas y paginación, todo dentro de un contenedor de 1128 píxeles."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">C <span class="eq">1128</span> · sidebar 264 · col <span class="eq">72</span> · fila <span class="eq">16+96+24+668+24+140+24+120+16</span></p>
+          <p class="meta">Lienzo 1440 × 900 · filtros chip + lista cruda + paginación · badge numérico 1–5, prohibidas estrellas (contrato §5).</p>
+          <p class="enlaces"><a href="wireframes/d02-opiniones.svg">SVG</a><a href="wireframes/png/d02-opiniones.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num panel">D3</span><h3>Panel · Respuestas</h3></div>
+        <div class="marco"><a href="wireframes/d03-respuestas.svg" target="_blank" rel="noopener">
+          <img src="wireframes/d03-respuestas.svg" width="1440" height="900" loading="lazy"
+               alt="Plano SVG de respuestas del panel: lista con filtro de cola de 360 píxeles a la izquierda y detalle con el texto literal del cliente de 744 a la derecha, sumando 1128."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">C <span class="eq">1128</span> · sidebar 264 · col <span class="eq">72</span> · <span class="eq">360 + 24 + 744 = 1128</span></p>
+          <p class="meta">Lienzo 1440 × 900 · lista span-4 con filtro de cola + detalle span-8 · una sola acción (Responder) por respuesta.
+          <strong>Decisión aplicada</strong> (acta §1): la cuarta vista es <em>Respuestas</em>;
+          la cola de alertas pasa a ser un filtro dentro de la lista.</p>
+          <p class="enlaces"><a href="wireframes/d03-respuestas.svg">SVG</a><a href="wireframes/png/d03-respuestas.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num panel">D4</span><h3>Panel · Móvil</h3></div>
+        <div class="marco"><a href="wireframes/d04-mobile.svg" target="_blank" rel="noopener">
+          <img src="wireframes/d04-mobile.svg" width="390" height="844" loading="lazy"
+               alt="Plano SVG del panel en móvil: 390 por 844, KPI en dos por dos de 171 píxeles, gráfico, dos filas y botón de 326 por 48, con drawer cerrado."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas">contenido <span class="eq">358</span> · col <span class="eq">15.17</span> · span-6 = <span class="eq">171</span> (171+16+171) · alerta 148 · botón <span class="eq">326 × 48</span></p>
+          <p class="meta">Lienzo 390 × 844 (viewport de referencia, no 375) · drawer cerrado: la sidebar
+          no se dibuja · KPI 2×2 + gráfico + 2 filas.</p>
+          <p class="enlaces"><a href="wireframes/d04-mobile.svg">SVG</a><a href="wireframes/png/d04-mobile.png">PNG equivalente</a></p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ════════ SECCIÓN 2 · MOCKUPS ════════ -->
+  <section id="mockups" aria-labelledby="h-mockups">
+    <span class="h2-num">Sección 2 / 4 — dirección visual, NO medidas</span>
+    <h2 id="h-mockups">Mockups de alta fidelidad</h2>
+    <p class="nota-seccion">12 mockups generados con <code>wan-image</code> el 2026-10-27
+    (registro y QA: <code>mockups/INDEX.md</code>; estado por imagen también en
+    <code>AUDITORIA-IMAGENES.md</code>). Sirven para validar jerarquía, densidad y
+    ritmo; <strong>sus píxeles no corresponden a ningún gutter ni span</strong> (GRID-SPEC §5), no
+    son fuente de medidas ni de copy, y ninguna es contenido final. M1–M8: lote original (05 y 08
+    verificados además con análisis visual el 2026-10-27); M9–M12: lote del panel. Cerrar imagen =
+    PNG original.</p>
+
+    <div class="rejilla tres">
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M1</span><h3>Hero — desktop</h3></div>
+        <div class="marco"><a href="mockups/01-hero-desktop.png" target="_blank" rel="noopener">
+          <img src="mockups/01-hero-desktop.png" width="1536" height="864" loading="lazy"
+               alt="Mockup del hero de marketing a dos columnas con CTA coral, tarjeta QR y móvil con encuesta."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 871 KB · qwen-image-3.0-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> marca mal escrita («EncuetaQR») · estrellas de
+          satisfacción (prohibidas, contrato §5) · claim falso «+10 000 empresas».
+          Aprobada solo como layout.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M2</span><h3>Landing completa</h3></div>
+        <div class="marco"><a href="mockups/02-landing-full.png" target="_blank" rel="noopener">
+          <img src="mockups/02-landing-full.png" width="1024" height="1536" loading="lazy"
+               alt="Mockup vertical de la página completa: hero, confianza, pasos, canales, panel, precios, FAQ y footer."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1024 × 1536 px</span> · 1.6 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> marca inventada «FeedbackLive» · precios falsos
+          ($8/$29) · microcopy ilegible. Las secciones del plan, en orden: útil como
+          wireframe de alta fidelidad, no usar su copy.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M3</span><h3>Panel del dueño — desktop</h3></div>
+        <div class="marco"><a href="mockups/03-panel-desktop.png" target="_blank" rel="noopener">
+          <img src="mockups/03-panel-desktop.png" width="1536" height="864" loading="lazy"
+               alt="Mockup del panel con sidebar ciruela, cuatro KPI, barras semanales coral y una alerta urgente."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 1.6 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> estrellas en cada opinión · badges «Positivo» y
+          «Negativo» simultáneos en la misma fila · datos inventados. Estructura aprobada:
+          4 KPI, 1 gráfico, 1 sola alerta.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M4</span><h3>Encuesta — móvil</h3></div>
+        <div class="marco"><a href="mockups/04-survey-mobile.png" target="_blank" rel="noopener">
+          <img src="mockups/04-survey-mobile.png" width="864" height="1536" loading="lazy"
+               alt="Mockup de la encuesta móvil: pregunta, escala de 5 caras, comentario opcional y botón Enviar opinión."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">864 × 1536 px</span> · 739 KB · qwen-image-3.0-pro</p>
+          <p><span class="estado ok">referencia válida</span></p>
+          <p class="defectos">La mejor del lote: texto correcto y legible, un solo CTA.
+          <b>Desviación menor:</b> caras sin número 1–5 bajo cada una.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M5</span><h3>Canales — desktop</h3></div>
+        <div class="marco"><a href="mockups/05-canales-desktop.png" target="_blank" rel="noopener">
+          <img src="mockups/05-canales-desktop.png" width="1536" height="864" loading="lazy"
+               alt="Mockup de la sección de canales con cuatro tarjetas informativas y badges QR, Chat, Live y Web."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 744 KB · qwen-image-3.0-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos">Sin estrellas, sin precios, texto legible (análisis visual 27-oct).
+          <b>Defectos:</b> inventa un canal «Tienda en línea / Web» y usa etiquetas genéricas
+          («Mensajería directa») — el plan es mostrador QR, Instagram, WhatsApp y TikTok LIVE
+          (ver R1).</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M6</span><h3>Precios — 3 planes</h3></div>
+        <div class="marco"><a href="mockups/06-precios-desktop.png" target="_blank" rel="noopener">
+          <img src="mockups/06-precios-desktop.png" width="1536" height="864" loading="lazy"
+               alt="Mockup de precios: tres planes con el central destacado en coral y badge recomendado."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 1.4 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos (R4):</b> features fuera del MVP — «análisis de
+          sentimientos», «API completa», «SLA». Precio como placeholder: correcto, sin cifras
+          inventadas.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M7</span><h3>Encuesta — flujo 3 pantallas</h3></div>
+        <div class="marco"><a href="mockups/07-encuesta-flujo.png" target="_blank" rel="noopener">
+          <img src="mockups/07-encuesta-flujo.png" width="1536" height="864" loading="lazy"
+               alt="Mockup del flujo de encuesta en tres pantallas: escala, chips de aspecto y agradecimiento."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 608 KB · qwen-image-3.0-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defecto (R3):</b> el paso 2 usa chips de multi‑opción; la decisión
+          del plan son 3 preguntas 1–5 con etiqueta verbal. Corregir el copy del paso 2 antes de
+          construir.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M8</span><h3>Panel del dueño — móvil</h3></div>
+        <div class="marco"><a href="mockups/08-panel-mobile.png" target="_blank" rel="noopener">
+          <img src="mockups/08-panel-mobile.png" width="864" height="1536" loading="lazy"
+               alt="Mockup del panel en móvil: cuatro KPI apilados, un gráfico, una alerta y navegación inferior."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">864 × 1536 px</span> · 1.5 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos">Texto legible, sin estrellas (análisis visual 27-oct).
+          <b>Defectos:</b> KPI inventados con semántica de logística («Pedidos Recibidos 47»,
+          «Ingresos $12 840», «Proveedores 3») y alerta de paquete retrasado — el panel del plan
+          gestiona <em>opiniones</em>, no pedidos.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M9</span><h3>Panel — overview</h3></div>
+        <div class="marco"><a href="mockups/09-panel-overview.png" target="_blank" rel="noopener">
+          <img src="mockups/09-panel-overview.png" width="1536" height="864" loading="lazy"
+               alt="Mockup del resumen del panel: sidebar ciruela, cuatro KPI, barras semanales coral, lista con badge numérico y alerta con borde mostaza y botón."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 1.4 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> todo el texto es pseudo-texto ilegible y la marca
+          sale inventada. La estructura sí es correcta (4 KPI + gráfico + rail alerta/lista); la
+          versión normativa es el plano <code>d01</code>.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M10</span><h3>Panel — opiniones</h3></div>
+        <div class="marco"><a href="mockups/10-panel-opiniones.png" target="_blank" rel="noopener">
+          <img src="mockups/10-panel-opiniones.png" width="1536" height="864" loading="lazy"
+               alt="Mockup de la vista de opiniones del panel: chips de filtro y filas de opiniones con badge numérico 1–5."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 1.4 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> texto ilegible — regenerar. Vale solo como
+          referencia de <b>densidad de fila</b>; filtros y paginación se miden en
+          <code>d02</code>.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M11</span><h3>Panel — alertas</h3></div>
+        <div class="marco"><a href="mockups/11-panel-alertas.png" target="_blank" rel="noopener">
+          <img src="mockups/11-panel-alertas.png" width="1536" height="864" loading="lazy"
+               alt="Mockup de alertas del panel: cola de alertas a la izquierda y detalle con causa y una única acción a la derecha."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 1.5 MB · wan2.7-image-pro</p>
+          <p><span class="estado mal">referencia con defectos de contenido</span></p>
+          <p class="defectos"><b>Defectos:</b> texto ilegible — regenerar. La estructura
+          cola + detalle <b>sí se adopta</b> (medidas en <code>d03</code>). Recordar
+          DASHBOARD-DECISIONES: la cuarta vista podría pasar a ser <em>Respuestas</em>.</p>
+        </div>
+      </article>
+
+      <article class="pliego">
+        <div class="pliego-cab"><span class="num">M12</span><h3>Panel — estado vacío</h3></div>
+        <div class="marco"><a href="mockups/12-panel-empty.png" target="_blank" rel="noopener">
+          <img src="mockups/12-panel-empty.png" width="1536" height="864" loading="lazy"
+               alt="Mockup del estado vacío de primer uso del panel: ilustración de un QR, botón Abrir mi QR y tres pasos, sin datos todavía."></a></div>
+        <div class="pliego-cuerpo">
+          <p class="cotas"><span class="eq">1536 × 864 px</span> · 659 KB · qwen-image-3.0-pro</p>
+          <p><span class="estado ok">referencia válida</span></p>
+          <p class="defectos">La mejor del lote de panel: texto casi legible (2 erratas) y
+          estructura fiel al contrato. Única con estado vacío resuelto — el patrón
+          «primer uso» es reutilizable.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ════════ SECCIÓN 3 · DOCUMENTOS ════════ -->
+  <section id="docs" aria-labelledby="h-docs">
+    <span class="h2-num">Sección 3 / 4 — el contexto escrito de lo anterior</span>
+    <h2 id="h-docs">Índice documental</h2>
+    <p class="nota-seccion">Markdown: el navegador los abre como texto plano o los descarga,
+    según el MIME del servidor. Para leerlos con formato, ábrelos en el editor.</p>
+
+    <div class="rejilla tres">
+      <article class="doc">
+        <a href="INDEX.md">INDEX.md</a>
+        <p>Punto de entrada: mapa del proyecto, estado del pipeline y orden de lectura.</p>
+      </article>
+      <article class="doc">
+        <a href="DESIGN-CONTRACT.md">DESIGN-CONTRACT.md</a>
+        <p>Contrato de marca: paleta, tipografía, reglas cromáticas por sección y prohibiciones.</p>
+      </article>
+      <article class="doc">
+        <a href="ASSET-PIPELINE.md">ASSET-PIPELINE.md</a>
+        <p>Pipeline de assets: generación con wan-image, límites por tarea y criterios de QA.</p>
+      </article>
+      <article class="doc">
+        <a href="UX-LANDING.md">UX-LANDING.md</a>
+        <p>Grid y layout del sitio de marketing: secciones, flujos y planos ASCII del plan conceptual.</p>
+      </article>
+      <article class="doc">
+        <a href="DASHBOARD-UX.md">DASHBOARD-UX.md</a>
+        <p>Grid y layout del panel: shell (sidebar 264, C 1128, col 72), vistas, móvil drawer, estados por vista.</p>
+      </article>
+      <article class="doc">
+        <a href="DASHBOARD-DECISIONES.md">DASHBOARD-DECISIONES.md</a>
+        <p>Lo aún no decidido del panel (respuestas crudas, cuarta vista, gates Go). <strong>Si choca con DASHBOARD-UX, manda la decisión.</strong></p>
+      </article>
+      <article class="doc">
+        <a href="AUDITORIA-IMAGENES.md">AUDITORIA-IMAGENES.md</a>
+        <p>Estado de cada imagen (mockups y planos SVG): ALINEADA / CORREGIR / REGENERAR con acción concreta por archivo.</p>
+      </article>
+      <article class="doc">
+        <a href="referencias/ANALISIS-REFERENCIAS.md">referencias/ANALISIS-REFERENCIAS.md</a>
+        <p>Lectura de la lámina de marca: 4 variantes, conflicto de corales (#FF5F44 se mantiene), qué NO se copia de ella.</p>
+      </article>
+      <article class="doc">
+        <a href="wireframes/GRID-SPEC.md">wireframes/GRID-SPEC.md</a>
+        <p>Aritmética del grid Bootstrap 5.3.7, tabla de medidas por breakpoint y reconciliaciones R1–R5.</p>
+      </article>
+      <article class="doc">
+        <a href="BUILD-ORDER.md">BUILD-ORDER.md</a>
+        <p>Orden de construcción del frontend: secuencia de fases y qué bloquea a qué.</p>
+      </article>
+      <article class="doc">
+        <a href="mockups/INDEX.md">mockups/INDEX.md</a>
+        <p>Registro de los 12 mockups, modelo usado, veredicto por imagen y defectos a corregir.</p>
+      </article>
+      <article class="doc">
+        <a href="wireframes/png/INDEX.md">wireframes/png/INDEX.md</a>
+        <p>PNG de los planos: origen, peso, qué muestra cada uno y discrepancias detectadas (R1–R4).</p>
+      </article>
+      <article class="doc">
+        <a href="DECISIONES-2026-10-27.md">DECISIONES-2026-10-27.md</a>
+        <p>Acta de decisiones pendientes.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════ SECCIÓN 4 · LÁMINA DE MARCA ════════ -->
+  <section id="lamina" aria-labelledby="h-lamina">
+    <span class="h2-num">Sección 4 / 4 — identidad de marca</span>
+    <h2 id="h-lamina">Lámina de marca</h2>
+    <p class="nota-seccion"><code>brand-src/referencias.png</code> (1536 × 1024): lámina de
+    identidad entregada por el diseñador. <strong>Activo derivado de presentación</strong> —
+    confirma variantes, tipografía y reglas de uso, pero no re-linea tokens: el coral canónico
+    sigue siendo <code>#FF5F44</code> (DESIGN-CONTRACT §1; lectura completa en
+    <code>referencias/ANALISIS-REFERENCIAS.md</code>). Cerrar imagen = PNG original.</p>
+
+    <figure class="lamina">
+      <a href="brand-src/referencias.png" target="_blank" rel="noopener">
+        <img src="brand-src/referencias.png" width="1536" height="1024" loading="lazy"
+             alt="Lámina de identidad Scan-Say-Done: cuatro variantes del logo, retícula de construcción del isotipo con círculos guía, especímenes tipográficos Bebas Neue y Montserrat, uso en una tinta y aplicaciones en tres columnas."></a>
+      <figcaption>Lo que fija la lámina:
+        <ul class="leyenda">
+          <li>4 variantes de logo: horizontal, vertical, isotipo y una tinta</li>
+          <li>retícula de construcción del isotipo (plantilla del calcado, ASSET-PIPELINE §2)</li>
+          <li>tipografía: Bebas Neue (display) + Montserrat (texto)</li>
+          <li>uso en una tinta: solo sobre fondo claro, nunca invertido</li>
+          <li>3 aplicaciones en columna con foto realista (referencia, no contenido final)</li>
+        </ul>
+      </figcaption>
+    </figure>
+  </section>
+
+</main>
+
+<footer class="banda">
+  <div class="wrap">
+    <p class="cotas">page-max 1140 · gutters 24 · <span class="eq">la galería respeta el grid que revisa</span></p>
+    <p>Herramienta interna de revisión · generada 2026-10-27 sobre <code>opendesign/</code> ·
+    no enlazar fuera del equipo · fuentes: <code>wireframes/GRID-SPEC.md</code>,
+    <code>wireframes/INDEX.md</code>, <code>wireframes/png/INDEX.md</code>,
+    <code>mockups/INDEX.md</code>, <code>DASHBOARD-UX.md</code>,
+    <code>AUDITORIA-IMAGENES.md</code>, <code>referencias/ANALISIS-REFERENCIAS.md</code>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

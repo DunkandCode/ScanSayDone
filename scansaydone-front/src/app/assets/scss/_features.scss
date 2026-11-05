@@ -1,0 +1,33 @@
+//
+// _features.scss
+//
+
+/*********************************/
+/*         Features              */
+/*===============================*/
+
+@use "variables" as *;
+
+.features {
+    transition: all 0.5s ease;
+    .title {
+        transition: all 0.5s ease;
+        &:hover {
+            color: $primary !important;
+        }
+    }
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+    }
+    &.fea-medical {
+        &:hover {
+            background-color: rgba($primary, 0.05);
+        }
+    }
+}
+
+#countdown  .count-down .count-number,
+.features .feature-icon {
+    border-radius: 160px 80px 160px 160px;
+}

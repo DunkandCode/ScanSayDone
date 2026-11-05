@@ -1,0 +1,445 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-label="12 · PANEL v3 DASHBOARD · shell sidebar 264 ciruela + topbar 64 blanca + contenido 1128 en ámbar --grad-warm · 3 secciones Resumen Respuestas Mi QR (Ajustes no existe) · vacío por defecto · demo 8 respuestas + pastilla DATOS DE EJEMPLO con borde · tarjetas de vidrio · tabla opaca · minis de Respuestas, Mi QR y móvil con drawer cerrado">
+<title>12 · PANEL v3 — DASHBOARD · shell 264/64/1128 · fondo de contenido --grad-warm ámbar [05-nov] · 3 secciones: Resumen (3 tarjetas 360x256 de VIDRIO + ultimas 5 respuestas en tabla OPACA), Respuestas (bandeja recotizada) y Mi QR (2 tarjetas de vidrio · marco 264x264 sin QR inventado) · Ajustes NO existe (nada que ajustar) · estado por defecto = VACÍO · demo explícito: switch topbar + 8 respuestas + pastilla DATOS DE EJEMPLO con borde · solo absolutos (n&lt;20: cero tasas) · item activo = barra 3 px + peso 600 + aria-current · anclas: sidebar ciruela + topbar blanca</title>
+<desc>Plano metrico SVG · unidades px REALES del viewport 1440x900. El shell se dibuja a escala 0.66 (x 24-974 · y 64-658) y las mini-vistas del rail a 0.28: ninguna medida dibujada es cota de pantalla, todas van etiquetadas en px reales. SHELL: sidebar 264 px fijo full-height --sidebar #2E1E3F (264 = 11 gutters de 24) · topbar h 64 --surface de x 264 a 1440 = 1176 con borde inferior 1 px --border · area de contenido x 264-1440 (1176) con padding 24 a los 4 lados = contenido 1128 en x 288-1416 · fondo de contenido --grad-warm ámbar [05-nov] (168° · mostaza 38/46/54 % sobre crema · medido #FADCA5 → #F9CC8A): ya no crema plano · reticula propia: col = (1128 - 11x24)/12 = 72 exacto; span-4 = 360, span-8 = 744, span-12 = 1128; 3x360 + 2x24 = 1128 y 360 + 24 + 744 = 1128 cierran; el eje 12 cierra en 1416 = 1440 - 24. SIDEBAR: franja de marca h 64 con logo 108x36 (enlace a / con aria-label Volver al sitio) + separador 1x24 --border-strong + PANEL overline 13/600 .14em en crema · 3 items h 48 gap 4 desde y 88 (bloque 88-240), pad-x 24, icono react-icons/fi 20x20 en x 24, gap 12, texto en x 56 · item activo = barra 3 px --action-bg en x 0 + crema 15/600 + aria-current=page (posicion + peso + semantica: no depende del color) · inactivo mix(crema 75 %, ciruela) #CBC2C5 15/500 = 8.78 · hover --edge-lit #5C4E66 con el texto subido a crema 7.29 (mix75 sobre hover daria 4.41 y fallaria) · Salir anclado al pie: separador 1 px en y 804 e item y 828-876, 24 al pie. RATIOS con formula WCAG: crema/ciruela 14.53 · mix75/ciruela 8.78 · barra coral/ciruela 5.08 no-texto · crema/hover 7.29 · foco --brand-peach/ciruela 12.87 y sobre hover 6.46 (el default ciruela rinde 1.97 y desaparece) · ciruela/blanco 15.29 · --text-2/blanco 6.62 · --link/blanco 5.95 · --border-strong/blanco 3.26 · ciruela/crema 14.53 · --text-2/crema 6.29 · --link/crema 5.65 · coral/blanco 3.01 no-texto (sobre crema 2.86: las barras viven solo dentro de las tarjetas de resumen) · ciruela/--surface-2 13.93 · --text-2/--surface-2 6.03 · ciruela/mostaza 8.45 · --state-err/blanco 6.74. Mostaza total 0.37 % de la pantalla (DATOS DE EJEMPLO 152x24 con borde + DEMO 60x24) bajo el techo del 5 % · coral nunca como texto sobre claro · 2 tokens nuevos 05-nov: --link-on-warm y --border-on-warm (derivados, cero hex nuevos); --sidebar, --surface-2, --edge-lit, --focus-ring y --sp-* ya existen; el scrim del drawer es un color-mix inline de un solo uso. TABLA DE MEDIDAS, TOKENS, ESTADOS Y VETOS: bloque de notas bajo el shell y pie de cada mini. Scan-Say-Done 05-nov-2026 v3 · materiales: VERIFICACION-PANEL-VIDRIO-2026-11-05 (vidrio en tarjetas · tabla opaca · pastilla con borde · fondo ámbar) · estructura y estados: ../DASHBOARD-UX.md v2 · sustituye el concepto del 27-oct (KPIs, grafico de libreria, cola de alertas con boton Responder, paginacion y Ajustes vetados por ../DASHBOARD-AUDITORIA.md).</desc>
+<rect x="0.0" y="0.0" width="1440.0" height="900.0" fill="#FFFFFF"/>
+<defs>
+<linearGradient id="amberContent" x1="0.1" y1="0" x2="0.9" y2="1">
+<stop offset="0" stop-color="#FADCA5"/>
+<stop offset="0.5" stop-color="#F8D497"/>
+<stop offset="1" stop-color="#F9CC8A"/>
+</linearGradient>
+<filter id="glassShadowDash" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#2E1E3F" flood-opacity="0.12"/>
+</filter>
+</defs>
+<g id="labels">
+<text x="24.0" y="24.0" font-family="sans-serif" font-size="16" fill="#2E1E3F" font-weight="bold">12 · PANEL v3 — DASHBOARD · shell 264/64/1128 ámbar · 3 secciones · vacío por defecto · demo 8 + pastilla con borde</text>
+<text x="24.0" y="40.0" font-family="monospace" font-size="9" fill="#65586E">capas: band · grid-12 · container · content · measure · labels</text>
+<text x="1416.0" y="20.0" font-family="monospace" font-size="9" fill="#65586E" text-anchor="end">shell 1440x900 dibujado a 0.66 · minis a 0.28 · 05-nov-2026 v3</text>
+<text x="1416.0" y="31.0" font-family="monospace" font-size="9" fill="#65586E" text-anchor="end">sidebar 264 --sidebar · topbar 64 --surface · contenido 1128 · col 72</text>
+<text x="1416.0" y="42.0" font-family="monospace" font-size="9" fill="#65586E" text-anchor="end">2 tokens nuevos (--link-on-warm · --border-on-warm) · vidrio 05-nov · sustituye el concepto del 27-oct</text>
+</g>
+<g id="band">
+<rect x="24.0" y="64.0" width="198.2" height="594.0" fill="#2E1E3F"/>
+<rect x="198.2" y="64.0" width="776.2" height="42.2" fill="#FFFFFF"/>
+<rect x="198.2" y="106.2" width="776.2" height="551.8" fill="url(#amberContent)"/>
+<line x1="198.2" y1="106.2" x2="974.4" y2="106.2" stroke="#E1DCDD" stroke-width="1"/>
+</g>
+<g id="grid-12">
+<rect x="214.1" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="277.4" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="340.8" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="404.2" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="467.5" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="530.9" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="594.2" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="657.6" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="721.0" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="784.3" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="847.7" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<rect x="911.0" y="106.2" width="47.5" height="551.8" fill-opacity="0.05" fill="#2E1E3F"/>
+<line x1="245.8" y1="106.2" x2="245.8" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+<line x1="372.5" y1="106.2" x2="372.5" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+<line x1="499.2" y1="106.2" x2="499.2" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+<line x1="625.9" y1="106.2" x2="625.9" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+<line x1="752.6" y1="106.2" x2="752.6" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+<line x1="879.4" y1="106.2" x2="879.4" y2="658.0" stroke="#FF5F44" stroke-width="0.7" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+</g>
+<g id="container">
+<line x1="214.1" y1="64.0" x2="214.1" y2="658.0" stroke="#B23A2A" stroke-width="1.5" stroke-dasharray="6 4" stroke-opacity="0.6"/>
+<line x1="958.6" y1="64.0" x2="958.6" y2="658.0" stroke="#B23A2A" stroke-width="1.5" stroke-dasharray="6 4" stroke-opacity="0.6"/>
+<text x="24.0" y="671.0" font-family="monospace" font-size="8" fill="#65586E">reticula propia del panel · C 1128 = 1440 - 264 - 2x24 · col 72 exacto · gutters 24 · ningun container de la landing se reuse</text>
+</g>
+<g id="content">
+<rect x="39.8" y="73.2" width="71.3" height="23.8" fill="none" rx="3" stroke="#FFE7D9" stroke-width="1" stroke-opacity="0.85" stroke-dasharray="3 3"/>
+<text x="75.5" y="88.4" font-family="monospace" font-size="6.5" fill="#FFE7D9" text-anchor="middle">logo 108x36</text>
+<line x1="127.0" y1="77.2" x2="127.0" y2="93.0" stroke="#978F98" stroke-width="1"/>
+<text x="134.9" y="91.1" font-family="sans-serif" font-size="8.6" fill="#FFF8F2" font-weight="bold" letter-spacing="1.2">PANEL</text>
+<text x="39.8" y="103.6" font-family="monospace" font-size="6.2" fill="#CBC2C5">el logo = enlace a / · aria-label</text>
+<text x="39.8" y="110.2" font-family="monospace" font-size="6.2" fill="#CBC2C5">«Volver al sitio» · no se duplica</text>
+<rect x="24.0" y="122.1" width="198.2" height="31.7" fill-opacity="0.08" fill="#FFF8F2"/>
+<rect x="24.0" y="122.1" width="2.0" height="31.7" fill="#FF5F44"/>
+<rect x="39.8" y="131.3" width="13.2" height="13.2" fill="none" rx="2" stroke="#FFF8F2" stroke-width="1"/>
+<text x="61.0" y="142.5" font-family="sans-serif" font-size="9.9" fill="#FFF8F2" font-weight="bold">Resumen</text>
+<rect x="39.8" y="165.6" width="13.2" height="13.2" fill="none" rx="2" stroke="#CBC2C5" stroke-width="1"/>
+<text x="61.0" y="176.9" font-family="sans-serif" font-size="9.9" fill="#CBC2C5">Respuestas</text>
+<rect x="39.8" y="200.0" width="13.2" height="13.2" fill="none" rx="2" stroke="#CBC2C5" stroke-width="1"/>
+<text x="61.0" y="211.2" font-family="sans-serif" font-size="9.9" fill="#CBC2C5">Mi QR</text>
+<text x="39.8" y="235.6" font-family="monospace" font-size="6.5" fill="#CBC2C5">h 48 · gap 4 · pad-x 24</text>
+<text x="39.8" y="242.9" font-family="monospace" font-size="6.5" fill="#CBC2C5">icono fi 20 + gap 12 + texto x 56</text>
+<text x="39.8" y="250.1" font-family="monospace" font-size="6.2" fill="#FFE7D9">ACTIVO: barra 3 px + 600 + aria-current</text>
+<text x="39.8" y="257.4" font-family="monospace" font-size="6.2" fill="#CBC2C5">inactivo 500 · mix75 = 8.78 · no lee color</text>
+<rect x="39.8" y="266.0" width="142.6" height="31.7" fill="#5C4E66"/>
+<text x="47.8" y="278.6" font-family="monospace" font-size="6.5" fill="#FFF8F2">hover --edge-lit · crema 7.29</text>
+<text x="39.8" y="305.6" font-family="monospace" font-size="6.5" fill="#FFE7D9">si el hover dejara mix75: 4.41</text>
+<text x="39.8" y="312.8" font-family="monospace" font-size="6.5" fill="#CBC2C5">por eso el hover sube a crema</text>
+<line x1="39.8" y1="594.6" x2="182.4" y2="594.6" stroke="#FFE7D9" stroke-width="1" stroke-opacity="0.35"/>
+<rect x="39.8" y="619.7" width="13.2" height="13.2" fill="none" rx="2" stroke="#CBC2C5" stroke-width="1"/>
+<text x="61.0" y="630.9" font-family="sans-serif" font-size="9.9" fill="#CBC2C5">Salir</text>
+<text x="39.8" y="650.1" font-family="monospace" font-size="6.2" fill="#CBC2C5">Salir -&gt; /entrar · 48 al pie</text>
+<text x="214.1" y="91.1" font-family="sans-serif" font-size="8.6" fill="#65586E" font-weight="bold" letter-spacing="1.2">RESUMEN</text>
+<text x="918.9" y="89.1" font-family="sans-serif" font-size="9.3" fill="#2E1E3F" text-anchor="end">Datos de ejemplo</text>
+<rect x="926.9" y="75.9" width="31.7" height="18.5" fill="#2E1E3F" rx="9.24"/>
+<circle cx="952.5" cy="85.1" r="9.2" fill="#FFF8F2"/>
+<text x="936.8" y="87.8" font-family="monospace" font-size="7.5" fill="#2E1E3F" text-anchor="middle">v</text>
+<text x="214.1" y="130.0" font-family="sans-serif" font-size="29" fill="#2E1E3F" font-weight="bold">LO QUE DICEN TUS CLIENTES</text>
+<text x="958.6" y="130.7" font-family="monospace" font-size="6.8" fill="#65586E" text-anchor="end">H1 Bebas 44 lh .95 · sobre fondo ámbar --grad-warm [v3] · texto-2/arcilla profunda 4.95 (DERECHA §5)</text>
+<text x="214.1" y="176.2" font-family="sans-serif" font-size="10.6" fill="#65586E">Las respuestas de tus clientes, ordenadas por pregunta.</text>
+<text x="958.6" y="176.2" font-family="monospace" font-size="6.8" fill="#65586E" text-anchor="end">titulo: 32 + 42 + 8 + 24 + 10 + 16 + 28 = 160</text>
+<text x="214.1" y="192.7" font-family="sans-serif" font-size="8.6" fill="#65586E">Cada pregunta se califica del 1 (muy mala) al 5 (muy buena).</text>
+<text x="958.6" y="192.7" font-family="monospace" font-size="6.8" fill="#65586E" text-anchor="end">sub 16/400 sobre ámbar [v3] · ancla 13/500 · col 72 · gut 24</text>
+<text x="214.1" y="204.8" font-family="monospace" font-size="7.5" fill="#65586E">span-4 x3 = 3 x 360 + 2 x 24 = 1128 · RECOTIZADAS de 364 a 360 · alto 256 intacto · [v3] VIDRIO: --grad-glass + borde blanco 70 % + filo + --shadow-glass · sin backdrop-filter</text>
+<rect x="214.1" y="211.8" width="237.6" height="169.0" fill="#FFF8F2" fill-opacity="0.72" rx="7.92" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="229.9" y="238.8" font-family="sans-serif" font-size="11" fill="#2E1E3F" font-weight="bold">¿Como fue tu atencion?</text>
+<text x="229.9" y="254.7" font-family="monospace" font-size="7" fill="#65586E">1</text>
+<rect x="245.8" y="248.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<text x="421.4" y="254.7" font-family="monospace" font-size="7" fill="#2E1E3F">0</text>
+<text x="229.9" y="273.2" font-family="monospace" font-size="7" fill="#65586E">2</text>
+<rect x="245.8" y="267.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="245.8" y="267.2" width="21.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="421.4" y="273.2" font-family="monospace" font-size="7" fill="#2E1E3F">1</text>
+<text x="229.9" y="291.7" font-family="monospace" font-size="7" fill="#65586E">3</text>
+<rect x="245.8" y="285.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="245.8" y="285.7" width="21.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="421.4" y="291.7" font-family="monospace" font-size="7" fill="#2E1E3F">1</text>
+<text x="229.9" y="310.2" font-family="monospace" font-size="7" fill="#65586E">4</text>
+<rect x="245.8" y="304.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="245.8" y="304.2" width="42.9" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="421.4" y="310.2" font-family="monospace" font-size="7" fill="#2E1E3F">2</text>
+<text x="229.9" y="328.7" font-family="monospace" font-size="7" fill="#65586E">5</text>
+<rect x="245.8" y="322.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="245.8" y="322.7" width="85.8" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="421.4" y="328.7" font-family="monospace" font-size="7" fill="#2E1E3F">4</text>
+<text x="229.9" y="360.8" font-family="sans-serif" font-size="18.5" fill="#2E1E3F" font-weight="bold">8</text>
+<text x="243.9" y="359.8" font-family="sans-serif" font-size="7" fill="#65586E" font-weight="bold" letter-spacing="0.9">RESPUESTAS</text>
+<rect x="467.5" y="211.8" width="237.6" height="169.0" fill="#FFF8F2" fill-opacity="0.72" rx="7.92" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="483.4" y="238.8" font-family="sans-serif" font-size="11" fill="#2E1E3F" font-weight="bold">¿Volverias?</text>
+<text x="689.3" y="238.8" font-family="monospace" font-size="6.5" fill="#B23A2A" text-anchor="end">[confirmar]</text>
+<text x="483.4" y="254.7" font-family="monospace" font-size="7" fill="#65586E">1</text>
+<rect x="499.2" y="248.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<text x="674.8" y="254.7" font-family="monospace" font-size="7" fill="#2E1E3F">0</text>
+<text x="483.4" y="273.2" font-family="monospace" font-size="7" fill="#65586E">2</text>
+<rect x="499.2" y="267.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<text x="674.8" y="273.2" font-family="monospace" font-size="7" fill="#2E1E3F">0</text>
+<text x="483.4" y="291.7" font-family="monospace" font-size="7" fill="#65586E">3</text>
+<rect x="499.2" y="285.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="499.2" y="285.7" width="42.9" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="674.8" y="291.7" font-family="monospace" font-size="7" fill="#2E1E3F">2</text>
+<text x="483.4" y="310.2" font-family="monospace" font-size="7" fill="#65586E">4</text>
+<rect x="499.2" y="304.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="499.2" y="304.2" width="85.8" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="674.8" y="310.2" font-family="monospace" font-size="7" fill="#2E1E3F">4</text>
+<text x="483.4" y="328.7" font-family="monospace" font-size="7" fill="#65586E">5</text>
+<rect x="499.2" y="322.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="499.2" y="322.7" width="42.9" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="674.8" y="328.7" font-family="monospace" font-size="7" fill="#2E1E3F">2</text>
+<text x="483.4" y="360.8" font-family="sans-serif" font-size="18.5" fill="#2E1E3F" font-weight="bold">8</text>
+<text x="497.4" y="359.8" font-family="sans-serif" font-size="7" fill="#65586E" font-weight="bold" letter-spacing="0.9">RESPUESTAS</text>
+<rect x="721.0" y="211.8" width="237.6" height="169.0" fill="#FFF8F2" fill-opacity="0.72" rx="7.92" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="736.8" y="238.8" font-family="sans-serif" font-size="11" fill="#2E1E3F" font-weight="bold">¿Que mejorarias?</text>
+<text x="942.7" y="238.8" font-family="monospace" font-size="6.5" fill="#B23A2A" text-anchor="end">[confirmar]</text>
+<text x="736.8" y="254.7" font-family="monospace" font-size="7" fill="#65586E">1</text>
+<rect x="752.7" y="248.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="752.7" y="248.7" width="21.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="928.3" y="254.7" font-family="monospace" font-size="7" fill="#2E1E3F">1</text>
+<text x="736.8" y="273.2" font-family="monospace" font-size="7" fill="#65586E">2</text>
+<rect x="752.7" y="267.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="752.7" y="267.2" width="21.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="928.3" y="273.2" font-family="monospace" font-size="7" fill="#2E1E3F">1</text>
+<text x="736.8" y="291.7" font-family="monospace" font-size="7" fill="#65586E">3</text>
+<rect x="752.7" y="285.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="752.7" y="285.7" width="21.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="928.3" y="291.7" font-family="monospace" font-size="7" fill="#2E1E3F">1</text>
+<text x="736.8" y="310.2" font-family="monospace" font-size="7" fill="#65586E">4</text>
+<rect x="752.7" y="304.2" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="752.7" y="304.2" width="64.4" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="928.3" y="310.2" font-family="monospace" font-size="7" fill="#2E1E3F">3</text>
+<text x="736.8" y="328.7" font-family="monospace" font-size="7" fill="#65586E">5</text>
+<rect x="752.7" y="322.7" width="171.6" height="6.6" fill="#F5F4F5" rx="3.3"/>
+<rect x="752.7" y="322.7" width="42.9" height="6.6" fill="#FF5F44" rx="3.3"/>
+<text x="928.3" y="328.7" font-family="monospace" font-size="7" fill="#2E1E3F">2</text>
+<text x="736.8" y="360.8" font-family="sans-serif" font-size="18.5" fill="#2E1E3F" font-weight="bold">8</text>
+<text x="750.8" y="359.8" font-family="sans-serif" font-size="7" fill="#65586E" font-weight="bold" letter-spacing="0.9">RESPUESTAS</text>
+<rect x="214.1" y="396.6" width="100.3" height="15.8" fill="#F4B63B" stroke="#827587" stroke-width="0.7" rx="2.64"/>
+<text x="264.3" y="407.2" font-family="sans-serif" font-size="6.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold" letter-spacing="0.5">DATOS DE EJEMPLO</text>
+<text x="322.5" y="407.2" font-family="monospace" font-size="6.8" fill="#65586E">badge 152x24 rx 4 · mostasa + borde --border-on-warm 3.27 ✓ (sin borde 1.37: desaparecía) · el switch vivo en la topbar</text>
+<text x="214.1" y="429.0" font-family="sans-serif" font-size="8.6" fill="#65586E">Estas respuestas son un ejemplo para ver la pantalla llena. No vienen de clientes reales.</text>
+<text x="214.1" y="456.0" font-family="sans-serif" font-size="8.6" fill="#65586E" font-weight="bold" letter-spacing="1.2">ULTIMAS RESPUESTAS</text>
+<text x="958.6" y="456.0" font-family="monospace" font-size="6.8" fill="#65586E" text-anchor="end">overline 16 + 12 · span-12 · th 74 · 5 filas de 56 · [v3] TABLA OPACA: --surface blanco · radio 12</text>
+<rect x="214.1" y="465.3" width="744.5" height="192.7" fill="#FFFFFF" rx="7.92" stroke="#E1DCDD" stroke-width="1"/>
+<text x="229.9" y="490.3" font-family="sans-serif" font-size="6.5" fill="#65586E" font-weight="bold" letter-spacing="0.6">FECHA</text>
+<text x="340.8" y="490.3" font-family="sans-serif" font-size="6.5" fill="#65586E" font-weight="bold" letter-spacing="0.6">CANAL</text>
+<text x="459.6" y="490.3" font-family="sans-serif" font-size="6.5" fill="#65586E" font-weight="bold" letter-spacing="0.6">ATENCION</text>
+<text x="625.9" y="490.3" font-family="sans-serif" font-size="6.5" fill="#65586E" font-weight="bold" letter-spacing="0.6">VOLVER</text>
+<text x="792.2" y="490.3" font-family="sans-serif" font-size="6.5" fill="#65586E" font-weight="bold" letter-spacing="0.6">MEJORAR</text>
+<line x1="229.9" y1="514.1" x2="942.7" y2="514.1" stroke="#E1DCDD" stroke-width="1"/>
+<text x="229.9" y="528.0" font-family="monospace" font-size="8.2" fill="#65586E">hoy 09:12</text>
+<text x="340.8" y="528.0" font-family="sans-serif" font-size="8.2" fill="#2E1E3F">Mostrador</text>
+<rect x="459.6" y="523.4" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="470.2" y="536.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">5</text>
+<rect x="625.9" y="523.4" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="636.5" y="536.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">4</text>
+<rect x="792.2" y="523.4" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="802.8" y="536.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">4</text>
+<line x1="229.9" y1="551.1" x2="942.7" y2="551.1" stroke="#E1DCDD" stroke-width="1"/>
+<text x="229.9" y="564.9" font-family="monospace" font-size="8.2" fill="#65586E">hoy 08:47</text>
+<text x="340.8" y="564.9" font-family="sans-serif" font-size="8.2" fill="#2E1E3F">WhatsApp</text>
+<rect x="459.6" y="560.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="470.2" y="573.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">4</text>
+<rect x="625.9" y="560.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="636.5" y="573.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">4</text>
+<rect x="792.2" y="560.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="802.8" y="573.6" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">3</text>
+<line x1="229.9" y1="588.0" x2="942.7" y2="588.0" stroke="#E1DCDD" stroke-width="1"/>
+<text x="229.9" y="601.9" font-family="monospace" font-size="8.2" fill="#65586E">ayer 19:20</text>
+<text x="340.8" y="601.9" font-family="sans-serif" font-size="8.2" fill="#2E1E3F">Instagram</text>
+<rect x="459.6" y="597.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="470.2" y="610.5" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">5</text>
+<rect x="625.9" y="597.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="636.5" y="610.5" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">5</text>
+<rect x="792.2" y="597.3" width="21.1" height="18.5" fill="none" rx="3.96" stroke="#E1DCDD" stroke-width="1"/>
+<text x="802.8" y="610.5" font-family="monospace" font-size="8.2" fill="#2E1E3F" text-anchor="middle" font-weight="bold">5</text>
+<line x1="214.1" y1="658.0" x2="958.6" y2="658.0" stroke="#FF5F44" stroke-width="1.2" stroke-dasharray="6 4" stroke-opacity="0.7"/>
+<text x="214.1" y="652.0" font-family="monospace" font-size="6.8" fill="#FF5F44">pliegue = y 900 · aqui se ven 3 de las 5 filas: la 4.ª (850-906) muere en el borde, la 5.ª (906-962) y el pie «Ver todas las respuestas» quedan bajo scroll</text>
+</g>
+<g id="measure">
+<line x1="24.0" y1="57.0" x2="198.2" y2="57.0" stroke="#65586E" stroke-width="1"/>
+<line x1="24.0" y1="53.0" x2="24.0" y2="61.0" stroke="#65586E" stroke-width="1"/>
+<line x1="198.2" y1="53.0" x2="198.2" y2="61.0" stroke="#65586E" stroke-width="1"/>
+<text x="111.1" y="54.0" font-family="monospace" font-size="7.5" fill="#65586E" text-anchor="middle">sidebar 264</text>
+<line x1="198.2" y1="57.0" x2="974.4" y2="57.0" stroke="#65586E" stroke-width="1"/>
+<line x1="198.2" y1="53.0" x2="198.2" y2="61.0" stroke="#65586E" stroke-width="1"/>
+<line x1="974.4" y1="53.0" x2="974.4" y2="61.0" stroke="#65586E" stroke-width="1"/>
+<text x="586.3" y="54.0" font-family="monospace" font-size="7.5" fill="#65586E" text-anchor="middle">topbar 1176 = 1440 - 264</text>
+<line x1="214.1" y1="684.0" x2="958.6" y2="684.0" stroke="#65586E" stroke-width="1"/>
+<line x1="214.1" y1="680.0" x2="214.1" y2="688.0" stroke="#65586E" stroke-width="1"/>
+<line x1="958.6" y1="680.0" x2="958.6" y2="688.0" stroke="#65586E" stroke-width="1"/>
+<text x="586.3" y="681.0" font-family="monospace" font-size="7.5" fill="#65586E" text-anchor="middle">contenido 1128 · col 72 · 12x72 + 11x24 = 1128</text>
+<line x1="467.5" y1="698.0" x2="705.1" y2="698.0" stroke="#65586E" stroke-width="1"/>
+<line x1="467.5" y1="694.0" x2="467.5" y2="702.0" stroke="#65586E" stroke-width="1"/>
+<line x1="705.1" y1="694.0" x2="705.1" y2="702.0" stroke="#65586E" stroke-width="1"/>
+<text x="586.3" y="695.0" font-family="monospace" font-size="7.5" fill="#65586E" text-anchor="middle">span-8 = 744</text>
+<line x1="978.4" y1="211.8" x2="978.4" y2="380.8" stroke="#65586E" stroke-width="1"/>
+<line x1="974.4" y1="211.8" x2="982.4" y2="211.8" stroke="#65586E" stroke-width="1"/>
+<line x1="974.4" y1="380.8" x2="982.4" y2="380.8" stroke="#65586E" stroke-width="1"/>
+<text x="983.4" y="296.3" font-family="monospace" font-size="7" fill="#65586E">256</text>
+</g>
+<g id="labels">
+<text x="998.0" y="74.0" font-family="monospace" font-size="7.5" fill="#2E1E3F" font-weight="bold">A · RESPUESTAS → /panel/respuestas · la bandeja completa, movida desde el resumen</text>
+<rect x="998.0" y="80.0" width="315.8" height="224.6" fill="url(#amberContent)" stroke="#978F98" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="1007.0" y="98.5" font-family="sans-serif" font-size="12.3" fill="#2E1E3F" font-weight="bold">TODAS TUS RESPUESTAS</text>
+<rect x="1007.0" y="102.4" width="42.0" height="4.5" fill="#F5F4F5"/>
+<rect x="1007.0" y="110.8" width="26.9" height="2.8" fill="#F5F4F5"/>
+<rect x="1000.5" y="131.5" width="19.0" height="12.3" fill="#F5F4F5" rx="2.24" stroke="#2E1E3F" stroke-width="2"/>
+<text x="1010.0" y="139.4" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" text-anchor="middle">Todos</text>
+<rect x="1021.8" y="131.5" width="26.9" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<text x="1035.2" y="139.4" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" text-anchor="middle">Mostra</text>
+<rect x="1050.9" y="131.5" width="25.8" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<text x="1063.8" y="139.4" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" text-anchor="middle">Instag</text>
+<rect x="1078.9" y="131.5" width="27.4" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<text x="1092.6" y="139.4" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" text-anchor="middle">WhatsA</text>
+<rect x="1108.6" y="131.5" width="30.8" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<text x="1124.0" y="139.4" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" text-anchor="middle">TikTok</text>
+<rect x="1216.4" y="131.5" width="42.0" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<rect x="1265.1" y="131.5" width="42.0" height="12.3" fill="#FFFFFF" rx="2.24" stroke="#827587" stroke-width="1"/>
+<text x="1217.8" y="139.4" font-family="sans-serif" font-size="4.8" fill="#65586E">Desde</text>
+<text x="1266.5" y="139.4" font-family="sans-serif" font-size="4.8" fill="#65586E">Hasta</text>
+<text x="1006.4" y="153.9" font-family="sans-serif" font-size="5" fill="#65586E" font-weight="bold" letter-spacing="0.4">RESPUESTAS RECIBIDAS · overline 16 + 12</text>
+<rect x="999.7" y="158.4" width="312.5" height="146.2" fill="#FFFFFF" rx="3.3600000000000003" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="179.1" x2="1305.4" y2="179.1" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="172.4" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">FECHA</text>
+<text x="1053.4" y="172.4" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">CANAL</text>
+<text x="1103.8" y="172.4" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">ATENCION</text>
+<text x="1174.4" y="172.4" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">VOLVER</text>
+<text x="1245.0" y="172.4" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">MEJORAR</text>
+<text x="1006.4" y="194.1" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="194.1" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="183.0" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="183.0" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="183.0" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="194.8" x2="1305.4" y2="194.8" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="209.8" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="209.8" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="198.7" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="198.7" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="198.7" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="210.5" x2="1305.4" y2="210.5" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="225.5" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="225.5" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="214.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="214.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="214.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="226.2" x2="1305.4" y2="226.2" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="241.2" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="241.2" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="230.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="230.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="230.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="241.8" x2="1305.4" y2="241.8" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="256.8" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="256.8" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="245.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="245.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="245.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="257.5" x2="1305.4" y2="257.5" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="272.5" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="272.5" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="261.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="261.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="261.4" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="273.2" x2="1305.4" y2="273.2" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="288.2" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="288.2" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="277.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="277.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="277.1" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1006.4" y1="288.9" x2="1305.4" y2="288.9" stroke="#E1DCDD" stroke-width="1"/>
+<text x="1006.4" y="303.9" font-family="monospace" font-size="4.4" fill="#65586E">hoy 09:12</text>
+<text x="1053.4" y="303.9" font-family="sans-serif" font-size="4.6" fill="#2E1E3F">canal</text>
+<rect x="1103.8" y="292.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1174.4" y="292.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<rect x="1245.0" y="292.8" width="9.0" height="7.8" fill="none" rx="1.6800000000000002" stroke="#E1DCDD" stroke-width="1"/>
+<text x="998.0" y="316.6" font-family="monospace" font-size="6.5" fill="#65586E">columnas 1128: 144 + 156 + 3x228 + 4x24 + pad 24x2 = 1080 contenido · ANTES 3x232 en 1140</text>
+<text x="998.0" y="339.5" font-family="monospace" font-size="6.5" fill="#B23A2A">[v3] fondo ámbar --grad-warm · chips/fechas borde --border-on-warm 3.27 (antes 2.52) · tabla BLANCA OPACA: texto 13-14 px sin margen sobre vidrio (peor caso 4.68)</text>
+<text x="998.0" y="327.1" font-family="monospace" font-size="6.5" fill="#65586E">64+160+24+44+24+16+12+74+8x56 = 866: las 8 filas caben sin scroll · SIN paginacion (vetada)</text>
+<text x="998.0" y="350.0" font-family="monospace" font-size="7.5" fill="#2E1E3F" font-weight="bold">B · MI QR → /panel/qr · como comparte el local su encuesta · sin QR inventado</text>
+<rect x="998.0" y="356.0" width="315.8" height="146.2" fill="url(#amberContent)" stroke="#978F98" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="1007.0" y="374.5" font-family="sans-serif" font-size="12.3" fill="#2E1E3F" font-weight="bold">ASI CONTESTAN TUS CLIENTES</text>
+<rect x="1007.0" y="379.0" width="42.0" height="4.5" fill="#F5F4F5"/>
+<rect x="1007.0" y="385.1" width="26.9" height="2.8" fill="#F5F4F5"/>
+<rect x="998.0" y="393.5" width="100.8" height="108.6" fill="#FFF8F2" fill-opacity="0.72" rx="3.3600000000000003" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="1004.7" y="403.9" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">TU QR</text>
+<rect x="1075.3" y="400.2" width="16.8" height="6.7" fill="#F4B63B" stroke="#827587" stroke-width="0.4" rx="1.12"/>
+<text x="1083.7" y="404.7" font-family="sans-serif" font-size="5" fill="#2E1E3F" text-anchor="middle" font-weight="bold" letter-spacing="0.4">DEMO</text>
+<rect x="1011.4" y="411.4" width="73.9" height="73.9" fill="#F5F4F5" rx="2.24" stroke="#E1DCDD" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="1018.2" y="418.2" width="60.5" height="60.5" fill="none" rx="2" stroke="#978F98" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1048.4" y="449.5" font-family="monospace" font-size="5" fill="#2E1E3F" text-anchor="middle">[ sin QR ]</text>
+<text x="1048.4" y="493.8" font-family="sans-serif" font-size="5" fill="#2E1E3F" text-anchor="middle">Todavia no hay QR.</text>
+<rect x="1105.5" y="393.5" width="208.3" height="108.6" fill="#FFF8F2" fill-opacity="0.72" rx="3.3600000000000003" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="1112.2" y="403.6" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">ASI LLEGA A TUS CLIENTES</text>
+<rect x="1112.2" y="408.1" width="6.7" height="6.7" fill="none" rx="3.3600000000000003" stroke="#FF5F44" stroke-width="1"/>
+<text x="1115.6" y="412.8" font-family="monospace" font-size="6.5" fill="#2E1E3F" text-anchor="middle" font-weight="bold">1</text>
+<text x="1121.8" y="412.0" font-family="sans-serif" font-size="5" fill="#2E1E3F" font-weight="bold" letter-spacing="0.4">ESCANEA</text>
+<rect x="1121.8" y="414.2" width="42.0" height="0.8" fill="#F5F4F5"/>
+<rect x="1112.2" y="424.9" width="6.7" height="6.7" fill="none" rx="3.3600000000000003" stroke="#FF5F44" stroke-width="1"/>
+<text x="1115.6" y="429.6" font-family="monospace" font-size="6.5" fill="#2E1E3F" text-anchor="middle" font-weight="bold">2</text>
+<text x="1121.8" y="428.8" font-family="sans-serif" font-size="5" fill="#2E1E3F" font-weight="bold" letter-spacing="0.4">CONTESTA</text>
+<rect x="1121.8" y="431.0" width="42.0" height="0.8" fill="#F5F4F5"/>
+<rect x="1112.2" y="441.7" width="6.7" height="6.7" fill="none" rx="3.3600000000000003" stroke="#FF5F44" stroke-width="1"/>
+<text x="1115.6" y="446.4" font-family="monospace" font-size="6.5" fill="#2E1E3F" text-anchor="middle" font-weight="bold">3</text>
+<text x="1121.8" y="445.6" font-family="sans-serif" font-size="5" fill="#2E1E3F" font-weight="bold" letter-spacing="0.4">LEES</text>
+<rect x="1121.8" y="447.8" width="42.0" height="0.8" fill="#F5F4F5"/>
+<text x="1112.2" y="464.1" font-family="sans-serif" font-size="4.8" fill="#65586E" font-weight="bold" letter-spacing="0.4">ENLACE DE TU ENCUESTA</text>
+<rect x="1112.2" y="468.6" width="194.9" height="12.3" fill="#F5F4F5" rx="2.24" stroke="#E1DCDD" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="1115.0" y="476.4" font-family="monospace" font-size="5" fill="#2E1E3F">https://tu-dominio/e/XXXXXXXX   · ejemplo</text>
+<rect x="1112.2" y="484.2" width="194.9" height="3.1" fill="#F5F4F5"/>
+<rect x="1112.2" y="488.2" width="128.8" height="3.1" fill="#F5F4F5"/>
+<text x="1112.2" y="494.3" font-family="monospace" font-size="4.6" fill="#65586E">linea de honestidad: 2 linhas 14/400 · 6.03</text>
+<text x="998.0" y="514.2" font-family="monospace" font-size="6.5" fill="#65586E">tarjetas span-4 360 + gap 24 + span-8 744 = 1128 · LAS 2 CIERRAN A h 388 · 134 + 388 = 522 sin scroll · [v3] AMBAS DE VIDRIO</text>
+<text x="998.0" y="524.7" font-family="monospace" font-size="6.5" fill="#65586E">marco 264x264 rx 8 · borde --border DISCONTINUO = senal de «falta» · --surface-2 · hueco 216 · descanso 24</text>
+<text x="998.0" y="535.2" font-family="monospace" font-size="6.5" fill="#65586E">CERO invencion: sin escaneos, sin «comparte y gana», sin contador, sin un modulo de QR dibujado</text>
+<text x="998.0" y="548.0" font-family="monospace" font-size="7.5" fill="#2E1E3F" font-weight="bold">C · MOVIL 375 · drawer CERRADO · la barra no se dibuja</text>
+<rect x="998.0" y="554.0" width="105.0" height="227.4" fill="url(#amberContent)" stroke="#978F98" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="998.0" y="554.0" width="105.0" height="17.9" fill="#FFFFFF"/>
+<line x1="998.0" y1="571.9" x2="1103.0" y2="571.9" stroke="#E1DCDD" stroke-width="1"/>
+<line x1="1002.5" y1="559.6" x2="1014.8" y2="559.6" stroke="#978F98" stroke-width="1.6"/>
+<line x1="1002.5" y1="561.6" x2="1014.8" y2="561.6" stroke="#978F98" stroke-width="1.6"/>
+<line x1="1002.5" y1="563.5" x2="1014.8" y2="563.5" stroke="#978F98" stroke-width="1.6"/>
+<rect x="1090.7" y="559.0" width="9.0" height="5.0" fill="#2E1E3F" rx="2.5200000000000005"/>
+<circle cx="1098.2" cy="561.6" r="5" fill="#FFF8F2"/>
+<text x="1010.0" y="593.8" font-family="sans-serif" font-size="6" fill="#2E1E3F" font-weight="bold">LO QUE DICEN</text>
+<text x="1010.0" y="597.1" font-family="sans-serif" font-size="6" fill="#2E1E3F" font-weight="bold">TUS CLIENTES</text>
+<text x="1010.0" y="601.0" font-family="monospace" font-size="4.6" fill="#65586E">H1 Bebas 28 en 2 linhas</text>
+<rect x="1002.5" y="608.9" width="96.0" height="71.7" fill="#FFF8F2" fill-opacity="0.72" rx="3.4" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="1005.8" y="620.9" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" font-weight="bold">¿Como fue tu atencion?</text>
+<rect x="1005.8" y="628.9" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="637.9" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="646.9" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="655.9" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="664.9" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1002.5" y="687.3" width="96.0" height="71.7" fill="#FFF8F2" fill-opacity="0.72" rx="3.4" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="1005.8" y="699.3" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" font-weight="bold">¿Volverias?</text>
+<rect x="1005.8" y="707.3" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="716.3" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="725.3" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="734.3" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="743.3" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1002.5" y="765.7" width="96.0" height="71.7" fill="#FFF8F2" fill-opacity="0.72" rx="3.4" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1" filter="url(#glassShadowDash)"/>
+<text x="1005.8" y="777.7" font-family="sans-serif" font-size="4.8" fill="#2E1E3F" font-weight="bold">¿Que mejorarias?</text>
+<rect x="1005.8" y="785.7" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="794.7" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="803.7" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="812.7" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<rect x="1005.8" y="821.7" width="60.0" height="2.2" fill="#F5F4F5" rx="1.1"/>
+<text x="1024.9" y="827.7" font-family="monospace" font-size="4.6" fill="#65586E">cortada por el marco</text>
+<text x="1115.0" y="572.0" font-family="monospace" font-size="6.2" fill="#65586E">hamburguesa FiMenu 44x44 en x 16</text>
+<text x="1115.0" y="583.6" font-family="monospace" font-size="6.2" fill="#65586E">abre un drawer de 264 (mismo ancho:</text>
+<text x="1115.0" y="595.2" font-family="monospace" font-size="6.2" fill="#65586E">el nav no se re-fluye dos veces) ·</text>
+<text x="1115.0" y="606.8" font-family="monospace" font-size="6.2" fill="#65586E">overlay mix(plum 55 %, transparent)</text>
+<text x="1115.0" y="618.4" font-family="monospace" font-size="6.2" fill="#65586E">Esc cierra · foco ATRAPADO y foco</text>
+<text x="1115.0" y="630.0" font-family="monospace" font-size="6.2" fill="#65586E">devuelto a la hamburguesa ·</text>
+<text x="1115.0" y="641.6" font-family="monospace" font-size="6.2" fill="#65586E">aria-expanded + aria-controls</text>
+<text x="1115.0" y="653.2" font-family="monospace" font-size="6.2" fill="#65586E"></text>
+<text x="1115.0" y="664.8" font-family="monospace" font-size="6.2" fill="#65586E">switch sin label visible (aria-label)</text>
+<text x="1115.0" y="676.4" font-family="monospace" font-size="6.2" fill="#65586E">Salir vive en el nav: nunca se oculta</text>
+<text x="1115.0" y="688.0" font-family="monospace" font-size="6.2" fill="#65586E"></text>
+<text x="1115.0" y="699.6" font-family="monospace" font-size="6.2" fill="#65586E">pad 16 = contenido 343</text>
+<text x="1115.0" y="711.2" font-family="monospace" font-size="6.2" fill="#65586E">tarjetas 343 x 256 apiladas (3 filas) · vidrio [v3]</text>
+<text x="1115.0" y="722.8" font-family="monospace" font-size="6.2" fill="#65586E">track de barra 243 = 343 - 48 - 24 - 28</text>
+<text x="1115.0" y="734.4" font-family="monospace" font-size="6.2" fill="#65586E">marco QR 295x295 · hueco 247</text>
+<text x="1115.0" y="746.0" font-family="monospace" font-size="6.2" fill="#65586E"></text>
+<text x="1115.0" y="757.6" font-family="monospace" font-size="6.2" fill="#65586E">menos de 768: tabla a filas-tarjeta</text>
+<text x="1115.0" y="769.2" font-family="monospace" font-size="6.2" fill="#65586E">chips con overflow-x y sin wrap · las</text>
+<text x="1115.0" y="780.8" font-family="monospace" font-size="6.2" fill="#65586E">fechas bajan de linea · todo 1 col</text>
+</g>
+<g id="measure">
+<text x="24.0" y="712.0" font-family="monospace" font-size="6.5" fill="#2E1E3F" font-weight="bold">SHELL + MATERIALES [05-nov] · 2 TOKENS NUEVOS</text>
+<text x="24.0" y="723.2" font-family="monospace" font-size="6.5" fill="#65586E">sidebar 264 fijo full-height · --sidebar #2E1E3F · 264 = 11 x --sp-4</text>
+<text x="24.0" y="734.4" font-family="monospace" font-size="6.5" fill="#65586E">topbar h 64 = --sp-7 · de x 264 a 1440 (1176) · --surface + borde --border</text>
+<text x="24.0" y="745.6" font-family="monospace" font-size="6.5" fill="#65586E">contenido 1176 - padding 24 (--sp-4) = 1128 en x 288-1416 · col 72 exacto</text>
+<text x="24.0" y="756.8" font-family="monospace" font-size="6.5" fill="#65586E">span-4 = 360 · span-8 = 744 · span-12 = 1128 · el eje 12 cierra en 1416</text>
+<text x="24.0" y="768.0" font-family="monospace" font-size="6.5" fill="#65586E">fondo de contenido [v3]: --grad-warm ámbar 168° · mostaza 38/46/54 % sobre crema ·</text>
+<text x="24.0" y="779.2" font-family="monospace" font-size="6.5" fill="#65586E">   medido #FADCA5 → #F9CC8A · era crema plano --bg (VERIFICACION-PANEL-VIDRIO §3)</text>
+<text x="24.0" y="790.4" font-family="monospace" font-size="6.5" fill="#65586E">nav: item --sp-6 48 · gaps 24 / 12 / 4 · radio --radius-card 12</text>
+<text x="24.0" y="801.6" font-family="monospace" font-size="6.5" fill="#65586E">materiales [v3]: VIDRIO en 3 tarjetas resumen + 2 del QR (--grad-glass · filo inset ·</text>
+<text x="24.0" y="812.8" font-family="monospace" font-size="6.5" fill="#65586E">   --shadow-glass · borde blanco 70 % · sin backdrop-filter) · tabla OPACA · ratios WCAG:</text>
+<text x="24.0" y="824.0" font-family="monospace" font-size="6.5" fill="#65586E">   crema/ciruela 14.53 · mix75/ciruela 8.78 · barra coral/ciruela 5.08</text>
+<text x="24.0" y="835.2" font-family="monospace" font-size="6.5" fill="#65586E">   crema/hover 7.29 · foco peach/ciruela 12.87 · ciruela/blanco 15.29</text>
+<text x="24.0" y="846.4" font-family="monospace" font-size="6.5" fill="#65586E">   --text-2/blanco 6.62 · --link/blanco 5.95 · border-strong/blanco 3.26</text>
+<text x="24.0" y="857.6" font-family="monospace" font-size="6.5" fill="#65586E">   ciruela/crema 14.53 · --text-2/crema 6.29 · coral/blanco 3.01 no-texto</text>
+<text x="24.0" y="868.8" font-family="monospace" font-size="6.5" fill="#65586E">   ciruela/--surface-2 13.93 · mostaza 8.45 · [v3] vidrio: ciruela 13.85 · texto-2 5.99/5.65</text>
+<text x="24.0" y="880.0" font-family="monospace" font-size="6.5" fill="#65586E">mostaza 0.37 % (techo 5 %) · coral jamas texto sobre claro · [v3] --link-on-warm 5.46 · --border-on-warm 3.27</text>
+<text x="352.0" y="712.0" font-family="monospace" font-size="6.5" fill="#2E1E3F" font-weight="bold">RESPUESTAS Y MI QR · LO QUE SE MUDO, LO QUE SE NEGÓ</text>
+<text x="352.0" y="723.2" font-family="monospace" font-size="6.5" fill="#65586E">switch demo SUBE a la topbar: afecta a 2 secciones, no a 1 · el badge y</text>
+<text x="352.0" y="734.4" font-family="monospace" font-size="6.5" fill="#65586E">   la linea aclaratoria siguen dentro de la seccion afectada</text>
+<text x="352.0" y="745.6" font-family="monospace" font-size="6.5" fill="#65586E">/panel sigue siendo la raiz del shell: su contenido es la seccion Resumen</text>
+<text x="352.0" y="756.8" font-family="monospace" font-size="6.5" fill="#65586E">   (no se renombra: bookmarks, metadata y robots noindex se romperian)</text>
+<text x="352.0" y="768.0" font-family="monospace" font-size="6.5" fill="#65586E">las 3 tarjetas: 364 pasa a 360 · interior 24 + 24 + 260 + 28 = 312 (antes</text>
+<text x="352.0" y="779.2" font-family="monospace" font-size="6.5" fill="#65586E">   24 + 24 + 264 + 28 = 316) · el alto 256 NO cambia: nada produce salto</text>
+<text x="352.0" y="790.4" font-family="monospace" font-size="6.5" fill="#65586E">bandeja: solo bajan las columnas de respuesta (232 a 228) · fecha y canal</text>
+<text x="352.0" y="801.6" font-family="monospace" font-size="6.5" fill="#65586E">   no se tocan: son las que llevan el texto mas largo</text>
+<text x="352.0" y="812.8" font-family="monospace" font-size="6.5" fill="#65586E">orden fisico: filtros SOBRE la bandeja (desvio al brief, ya documentado</text>
+<text x="352.0" y="824.0" font-family="monospace" font-size="6.5" fill="#65586E">   en PANEL-UX 2: filtrar sin ver la lista viola la 1.ª ley de Krug)</text>
+<text x="352.0" y="835.2" font-family="monospace" font-size="6.5" fill="#65586E">NO LLEVA: 4 KPIs · Recharts · cola de alertas · Responder · Exportar ·</text>
+<text x="352.0" y="846.4" font-family="monospace" font-size="6.5" fill="#65586E">   Invitar · paginacion · search box · orden por columna · Ajustes</text>
+<text x="352.0" y="857.6" font-family="monospace" font-size="6.5" fill="#65586E">   (no hay nada que ajustar) · breadcrumb · avatar · menu de usuario</text>
+<text x="352.0" y="868.8" font-family="monospace" font-size="6.5" fill="#65586E">vocabulario vetado en pantalla: KPI · CSAT · NPS · score · dashboard ·</text>
+<text x="352.0" y="880.0" font-family="monospace" font-size="6.5" fill="#65586E">   insights · tiempo real · aqui solo espanol de mostrador</text>
+<text x="672.0" y="712.0" font-family="monospace" font-size="6.5" fill="#2E1E3F" font-weight="bold">ESTADOS Y ACCESIBILIDAD</text>
+<text x="672.0" y="723.2" font-family="monospace" font-size="6.5" fill="#65586E">ESTADO POR DEFECTO = VACÍO (no un vacío disfrazado): ancla retirada · tarjetas 256 con</text>
+<text x="672.0" y="734.4" font-family="monospace" font-size="6.5" fill="#65586E">   «—» Bebas 40 + «Sin respuestas» · bloque central max 420 «AUN NADA</text>
+<text x="672.0" y="745.6" font-family="monospace" font-size="6.5" fill="#65586E">   QUE LEER» · chips aria-disabled · CERO CIFRAS, ni un 0 disfrazado</text>
+<text x="672.0" y="756.8" font-family="monospace" font-size="6.5" fill="#65586E">Resumen demo: 8 respuestas · badge CON BORDE + aria-live «Mostrando datos de ejemplo.»</text>
+<text x="672.0" y="768.0" font-family="monospace" font-size="6.5" fill="#65586E">Respuestas: vacio = th visible y cero filas · demo = 8 filas · SOLO ABSOLUTOS (n&lt;20: cero tasas)</text>
+<text x="672.0" y="779.2" font-family="monospace" font-size="6.5" fill="#65586E">Mi QR: el vacio ES el default y no hay demo que pueblar (aqui no hay</text>
+<text x="672.0" y="790.4" font-family="monospace" font-size="6.5" fill="#65586E">   respuestas) · carga y error DECLARADOS SIN DISPARADOR: no hay peticion</text>
+<text x="672.0" y="801.6" font-family="monospace" font-size="6.5" fill="#65586E">sin conexion: banner full-bleed h 48 bajo la topbar · FiWifiOff +</text>
+<text x="672.0" y="812.8" font-family="monospace" font-size="6.5" fill="#65586E">   «Vas sin conexion...» + boton ghost Reintentar · aria-live polite</text>
+<text x="672.0" y="824.0" font-family="monospace" font-size="6.5" fill="#65586E">accesibilidad: nav con aria-label · skip-link primero · aria-current en</text>
+<text x="672.0" y="835.2" font-family="monospace" font-size="6.5" fill="#65586E">   el item activo · foco peach dentro del sidebar (el ciruela daria 1.97</text>
+<text x="672.0" y="846.4" font-family="monospace" font-size="6.5" fill="#65586E">   y desapareceria) · targets &gt;= 44 · tabla real con caption y th scope</text>
+<text x="672.0" y="857.6" font-family="monospace" font-size="6.5" fill="#65586E">   · lectura sin color: barra + count, check en el chip, badge de texto</text>
+<text x="672.0" y="868.8" font-family="monospace" font-size="6.5" fill="#65586E">backend futuro: V3-M 29 modulos + descanso 4 = 37 en 216 px = 5.84 px/mod</text>
+<text x="672.0" y="880.0" font-family="monospace" font-size="6.5" fill="#65586E">   216 &gt;= 120 px de minimo en pantalla · ciruela sobre blanco, no coral</text>
+</g>
+</svg>

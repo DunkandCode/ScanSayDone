@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-label="d02 · OPINIONES panel — filtros chip + lista cruda de filas + paginacion">
+<title>d02 · OPINIONES — filtros + lista cruda + paginacion · col 72</title>
+<desc>Plano metrico SVG del panel (1440). Unid: px. conv: C=1128; col=72. Colores = tokens del contrato y mezclas calculadas. Cero estrellas: valor 1-5 en cuadro numerico. Scan-Say-Done 2026-10-27.</desc>
+<rect width="1440" height="900" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">d02 · OPINIONES — filtros + lista cruda + paginacion</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">1440 · sidebar 264 · C 1128 · col 72</text>
+<g id="shell">
+<rect x="0" y="0" width="264" height="900" fill="#2E1E3F"/>
+<rect x="78" y="24" width="108" height="36" fill="none" stroke="#FFF8F2" stroke-width="1.5"/>
+<text x="132" y="47" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#FFF8F2">logo claro 108x36</text>
+<rect x="16" y="104" width="240" height="44" rx="4" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="40" y="131" font-family="sans-serif" font-size="13" fill="#A79CA7">RESUMEN</text>
+<rect x="16" y="156" width="240" height="44" rx="4" fill="#3F2F4D"/>
+<rect x="16" y="156" width="4" height="44" fill="#FF5F44"/>
+<text x="40" y="183" font-family="sans-serif" font-size="13" font-weight="bold" fill="#FFF8F2">OPINIONES (activo)</text>
+<rect x="16" y="208" width="240" height="44" rx="4" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="40" y="235" font-family="sans-serif" font-size="13" fill="#A79CA7">ALERTAS</text>
+<rect x="16" y="260" width="240" height="44" rx="4" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="40" y="287" font-family="sans-serif" font-size="13" fill="#A79CA7">MI QR</text>
+<rect x="16" y="312" width="240" height="44" rx="4" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="40" y="339" font-family="sans-serif" font-size="13" fill="#A79CA7">AJUSTES</text>
+<rect x="264" y="0" width="1176" height="64" fill="#FFFFFF"/>
+<line x1="264" y1="64" x2="1440" y2="64" stroke="#E2D9D9" stroke-width="1"/>
+<text x="304" y="40" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">Opiniones</text>
+<circle cx="1244" cy="32" r="16" fill="#F7F6F7" stroke="#E2D9D9" stroke-width="1"/>
+<text x="1244" y="37" text-anchor="middle" font-family="monospace" font-size="10" fill="#65586E">JL</text>
+<rect x="1280" y="12" width="136" height="40" rx="4" fill="#FF5F44"/>
+<text x="1348" y="37" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F">CREAR MI QR</text>
+<rect x="264" y="64" width="1176" height="836" fill="#F7F6F7"/>
+</g>
+<g id="container">
+<rect x="288" y="88" width="1128" height="624" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="296" y="104" font-family="monospace" font-size="11" fill="#65586E">C 1128 · filas span-12 · gutter interno 24</text>
+</g>
+<g id="content">
+<text x="288" y="132" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2E1E3F">TODAS LAS RESPUESTAS</text>
+<text x="470" y="132" font-family="monospace" font-size="11" fill="#65586E">"6 respuestas · 1 en revision no contada (5 cuentan)" · absolutos hasta n&gt;=20 · dataset demo unico d01-d04</text>
+<rect x="288" y="152" width="84" height="44" rx="22" fill="#FFF2F0" stroke="#FF5F44" stroke-width="2"/>
+<text x="330" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F">TODAS ✓</text>
+<rect x="380" y="152" width="56" height="44" rx="22" fill="#FFFFFF" stroke="#C4BBC0" stroke-width="1"/>
+<text x="408" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2E1E3F">1–2</text>
+<rect x="444" y="152" width="44" height="44" rx="22" fill="#FFFFFF" stroke="#C4BBC0" stroke-width="1"/>
+<text x="466" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2E1E3F">3</text>
+<rect x="496" y="152" width="56" height="44" rx="22" fill="#FFFFFF" stroke="#C4BBC0" stroke-width="1"/>
+<text x="524" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2E1E3F">4–5</text>
+<rect x="560" y="152" width="148" height="44" rx="22" fill="#FFFFFF" stroke="#C4BBC0" stroke-width="1"/>
+<text x="634" y="179" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2E1E3F">CON COMENTARIO</text>
+<text x="724" y="179" font-family="monospace" font-size="10" fill="#65586E">5 chips max (Hick) · activo = borde 2 coral + check (no solo color) · h44</text>
+<rect x="288" y="220" width="1128" height="424" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="304" y="246" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">VALOR</text>
+<text x="424" y="246" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">OPINION</text>
+<text x="1116" y="246" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">CANAL</text>
+<text x="1280" y="246" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">FECHA</text>
+<line x1="288" y1="260" x2="1416" y2="260" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="276" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="298" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">1</text>
+<text x="424" y="292" font-family="sans-serif" font-size="12" fill="#2E1E3F">"Espera de 40 min para un cafe. Imposible."</text>
+<rect x="820" y="276" width="92" height="24" rx="4" fill="#F6EAEB"/>
+<text x="866" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#86252E">! URGENTE</text>
+<text x="1116" y="292" font-family="monospace" font-size="10" fill="#65586E">QR MOSTRADOR</text>
+<text x="1280" y="292" font-family="monospace" font-size="10" fill="#65586E">hoy 08:47</text>
+<line x1="288" y1="324" x2="1416" y2="324" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="340" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="362" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">1</text>
+<text x="424" y="356" font-family="sans-serif" font-size="12" fill="#2E1E3F">"Muy lenta la atencion esta manana" · (truncada a 2 lineas)</text>
+<rect x="852" y="340" width="92" height="24" rx="4" fill="#F6EAEB"/>
+<text x="898" y="356" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#86252E">! URGENTE</text>
+<text x="1116" y="356" font-family="monospace" font-size="10" fill="#65586E">QR MOSTRADOR</text>
+<text x="1280" y="356" font-family="monospace" font-size="10" fill="#65586E">hoy 09:12</text>
+<line x1="288" y1="388" x2="1416" y2="388" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="404" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="426" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">2</text>
+<text x="424" y="420" font-family="sans-serif" font-size="12" fill="#2E1E3F">"Casi pierdo el bus por la cola"</text>
+<rect x="764" y="404" width="92" height="24" rx="4" fill="#F6EAEB"/>
+<text x="810" y="420" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#86252E">! URGENTE</text>
+<text x="1116" y="420" font-family="monospace" font-size="10" fill="#65586E">WHATSAPP</text>
+<text x="1280" y="420" font-family="monospace" font-size="10" fill="#65586E">hoy 09:38</text>
+<line x1="288" y1="452" x2="1416" y2="452" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="468" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="490" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">4</text>
+<text x="424" y="484" font-family="sans-serif" font-size="12" fill="#2E1E3F">"Buen cafe, volveremos"</text>
+<text x="1116" y="484" font-family="monospace" font-size="10" fill="#65586E">INSTAGRAM</text>
+<text x="1280" y="484" font-family="monospace" font-size="10" fill="#65586E">ayer 20:41</text>
+<line x1="288" y1="516" x2="1416" y2="516" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="532" width="32" height="32" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="554" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#2E1E3F">5</text>
+<text x="424" y="548" font-family="sans-serif" font-size="12" fill="#2E1E3F">"Trato excelente del dueno"</text>
+<text x="1116" y="548" font-family="monospace" font-size="10" fill="#65586E">WHATSAPP</text>
+<text x="1280" y="548" font-family="monospace" font-size="10" fill="#65586E">ayer 19:02</text>
+<line x1="288" y1="580" x2="1416" y2="580" stroke="#E2D9D9" stroke-width="1"/>
+<rect x="304" y="596" width="32" height="32" rx="4" fill="#F9F8F9" stroke="#E2D9D9" stroke-width="1"/>
+<text x="320" y="618" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#65586E">4</text>
+<text x="424" y="612" font-family="sans-serif" font-size="12" fill="#65586E">"Opinion duplicada? fila completa en --text-2"</text>
+<rect x="764" y="596" width="106" height="24" rx="4" fill="#F9F8F9"/>
+<text x="817" y="612" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#65586E">EN REVISION</text>
+<text x="1116" y="612" font-family="monospace" font-size="10" fill="#65586E">QR MOSTRADOR</text>
+<text x="1280" y="612" font-family="monospace" font-size="10" fill="#65586E">21 oct</text>
+<text x="304" y="638" font-family="monospace" font-size="10" fill="#65586E">EN REVISION = duplicado/sospechosa: NO cuenta en metricas ni alertas · visible tal cual · badge icono+texto gris (nunca solo color)</text>
+<rect x="1192" y="668" width="112" height="44" rx="4" fill="#FFFFFF" stroke="#E2D9D9" stroke-width="1"/>
+<text x="1248" y="695" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#65586E">ANTERIOR</text>
+<rect x="1304" y="668" width="112" height="44" rx="4" fill="#FFFFFF" stroke="#C4BBC0" stroke-width="1"/>
+<text x="1360" y="695" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F">SIGUIENTE</text>
+<text x="288" y="695" font-family="monospace" font-size="11" fill="#65586E">pagina 1 · 10 por pag (Miller) · ANTERIOR deshabilitado en pag 1 (#A39BA8 exenta)</text>
+</g>
+<g id="measure">
+<line x1="288" y1="744" x2="1416" y2="744" stroke="#65586E" stroke-width="1"/>
+<line x1="288" y1="739" x2="288" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="304" y1="739" x2="304" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="400" y1="739" x2="400" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="424" y1="739" x2="424" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1092" y1="739" x2="1092" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1116" y1="739" x2="1116" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1256" y1="739" x2="1256" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1280" y1="739" x2="1280" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1400" y1="739" x2="1400" y2="749" stroke="#65586E" stroke-width="1"/>
+<line x1="1416" y1="739" x2="1416" y2="749" stroke="#65586E" stroke-width="1"/>
+<text x="852" y="768" text-anchor="middle" font-family="monospace" font-size="12" fill="#65586E">fila = 16 + 96(valor) + 24 + 668(opinion) + 24 + 140(canal) + 24 + 120(fecha) + 16 = 1128 ✓</text>
+<line x1="1432" y1="220" x2="1432" y2="260" stroke="#65586E" stroke-width="1"/>
+<text x="1424" y="244" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">head 40</text>
+<line x1="1432" y1="260" x2="1432" y2="324" stroke="#65586E" stroke-width="1"/>
+<text x="1424" y="296" text-anchor="end" font-family="monospace" font-size="11" fill="#65586E">fila 64</text>
+<text x="288" y="800" font-family="monospace" font-size="11" fill="#65586E">hover fila = #F9F8F9 · focus = outline 3 ciruela sobre fila (es enlace) · &lt;992: canal+fecha a 2.ª linea · &lt;768: vista tarjeta 2 col</text>
+<text x="288" y="824" font-family="monospace" font-size="11" fill="#65586E">cero estrellas: valor 1–5 = numero en cuadro 32 (contracto: cara+numero, no dingbat) · separadores 1px #E2D9D9 = --border</text>
+</g>
+</svg>

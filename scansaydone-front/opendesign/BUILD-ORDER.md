@@ -1,0 +1,26 @@
+# BUILD-ORDER — landing Scan-Say-Done
+
+> Orden de construcción sección a sección. 2026-10-27. **Decisión del operador: el landing es el sitio de Scan-Say-Done** — el copy de las 9 rutas (raíz + 8 `page.jsx`) se reescribe como marketing del producto: hero, cómo funciona, canales, panel, precios, FAQ, contacto. Nada de "Agencia"/desarrollo web.
+> Regla de hierro: **Fase 0 completa antes de cualquier hero** — el hero no se construye sin tokens + Bootstrap compilado + tipografías + iconos (D3/D5 del plan). Cotas verificables: `GRID-SPEC.md` §2 y los SVG de esta carpeta.
+
+| # | sección | depende de | archivos que se tocan | criterio de aceptación medible | riesgo |
+|---|---|---|---|---|---|
+| 0.1 | tokens + Bootstrap compilado | — | `scss/_tokens.scss` (nuevo), `scss/bootstrap.scss` (nuevo entry `@use bootstrap/scss/bootstrap with ($theme-colors…)`), `_variables.scss`, `style.scss`, `layout.js` (fuera import de `bootstrap/dist/css`) | `grep 0e6e5c` = 0 · un solo Bootstrap en el bundle · build verde · `--band-y-d/m` y `--sp-1..7` definidos (GRID-SPEC §3) | bucles `!important` del template pujan desde `_bootstrap-custom.scss:22-87` (contrato §2) |
+| 0.2 | tipografías | 0.1 | `layout.js` (`next/font/google`: Bebas_Neue 400, Montserrat 400/500/600), fuera `@import` Kumbh (`_variables.scss:6`) | H1 = Bebas 88/60 según §5 de UX-LANDING · 0 render-blocking Google imports · `tabular-nums` en meta | quitar el import cambia fallbacks → verificar FOIT/FOUT en móvil |
+| 0.3 | iconos | 0.1 | `_components.scss:366,480` (2 `content:` → SVG inline), `react-icons` en canales/pasos, fuera `@mdi/font` | `grep "mdi-"` = 0 · ≈741 KB menos (dato del paquete) · 0 emoji en UI | deuda F2: si los `content:` no se reescriben, la fuente no se puede quitar |
+| 0.4 | route groups | 0.1–0.3 | mueven 9 rutas a `src/app/(marketing)/` (URLs idénticas), `(panel)`, `(public)` | `/` no arrastra CSS de panel · 0 redirects en las 9 URLs · build verde | C3: el layout raíz suma CSS si se hace mal — el aislamiento era imposible sin grupos |
+| 1 | Hero | 0.1–0.4 · logo claro (asset) | `(marketing)/page.jsx` raíz, componente hero nuevo, `navbar/navlight.jsx` (logo 108×36 variante clara) | row 655+24+461 = 1140 (01-hero.svg) · crema/ciruela 14.53 · CTA ciruela/coral 5.08 · 375 sin scroll horizontal · banda `--band-y-d` | asset P0: vector del logo no aparece (PLAN §10 #6, veto 3-nov) → bloquea variante clara |
+| 2 | Prueba de confianza | 1 | mismo `page.jsx`, CSS Grid `repeat(auto-fit,minmax(220px,1fr))` | gap = 24 = 1 gutter · 4 claims sin dato inventado: el 4.º entra SOLO con conteo real del piloto (PLAN §6) | tentar un "10.000 empresas" como el mockup → claim falso prohibido |
+| 3 | Cómo funciona | 1 | componente pasos nuevo | 3×364 + 2×24 = 1140 (02) · badges 1-2-3 SVG/CSS (0 emoji) · <768 conector = `border-left` vertical | orden de apilado 3→1 en móvil (collapses §7 de UX-LANDING) |
+| 4 | Canales | 0.3, 1 | componente canales nuevo | 4×267 + 3×24 = 1140 (03) · icono coral en superficie (nunca texto coral) · sin CTA por tarjeta | R1 GRID-SPEC: 3 vs 4 tarjetas aún por reconciliar en UX-LANDING |
+| 5 | Panel (preview) | 1 · captura real (S2) | componente captura nuevo, `container-xxl` | frame 872×545 = 16/10 (04) · CLS = 0 con `aspect-ratio` · sin captura: skeleton `--surface-2` + badge "demo" | la captura real no existe hasta S2 (6–11 nov, PLAN §8) → el plano ya fija el hueco |
+| 6 | Precios | 0.1, 1 | `components/pricing.jsx` re-temado + ruta `/pricing` con copy producto | 3×364 (05) · central: borde 2px coral + badge · orden DOM recomendado→A→C (móvil apila sin truco) | planes definitivos sin cerrar (mockup "$8/$29" inventados) → copy con precios reales solo cuando el operador los fije |
+| 7 | FAQ + CTA final | 0.3, 1 | `components/faq/faq-one.jsx`, `components/cta/*`, ruta `/faqs` | acordeón ≥48px/ítem · row 550+24+386 = 960 (06) · `--link` 5.65 sobre crema · chevron = SVG (F2) · 1 solo CTA coral visible por pantalla | chevron animado rota con motion → debe respetar `prefers-reduced-motion` |
+| 8 | Footer | 1 · tokens (Fase 0) — **H-1 resuelto** (acta §4) | `components/footer.jsx`, `_footer.scss:29`, rutas `/terms` `/privacy` (copy producto) | 4×267 (07) · logo claro 108×36 · 0 enlaces de agencia · banda crema `#FFF8F2`: foco y enlaces según tokens | H-1 resuelto (acta §4, 27-oct): banda **crema**; contrato y ASSET-PIPELINE ya alineados; el plano asume crema |
+| 9 | QA integral | 1–8 | — | Lighthouse a11y ≥95 · axe 0 critical/serious · 4 estados (loading/empty/error/success) en cada vista · `grep 0e6e5c` y `grep mdi-` = 0 · bandas 100/60 leídas de tokens, no de `.mt-*` | 193 `!important` heredados pueden re-aparecer si alguien compite con utilidades nuevas |
+
+## Reglas transversales
+
+1. **Copy primero, píxel después**: cada sección se construye con texto real de Scan-Say-Done (escanea/opina/listo; canales: QR mostrador, WhatsApp, Instagram, TikTok LIVE). Los mockups no aportan copy.
+2. **Ninguna cota "a ojo"**: anchos de bloque salen de GRID-SPEC §2; si el diseño propone otro span, se recalcula con la fórmula y se actualiza el SVG antes de codificar.
+3. **No romper el orden**: 0.1→0.2→0.3→0.4 en paralelo solo dentro de la fase; 1 no empieza con 0.x abierto; 2–8 encadenan sobre el hero; 5 y 6 toleran placeholder (skeleton / precios por cerrar) sin bloquear 7–8.

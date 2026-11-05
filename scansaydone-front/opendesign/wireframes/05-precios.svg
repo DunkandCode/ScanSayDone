@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1010" width="1440" height="1010" role="img" aria-label="05 · PRECIOS — NO PUBLICADA: estructura aprobada, copy pendiente · 3 planes col-lg-4 · recomendado centrado con badge mostaza">
+<title>05 · PRECIOS — NO PUBLICADA: estructura aprobada, copy pendiente · 3 planes col-lg-4 · recomendado centrado con badge mostaza</title>
+<desc>Plano metrico SVG. Unid: px. conv: (C-11x24)/12. Scan-Say-Done 2026-10-27. v2 05-nov-2026: sección marcada NO PUBLICADA (hasPricing false) · +kicker «Sin permanencia» · sin cifras: todo monto como [precio pendiente] · badge del recomendado corregido a mostaza · orden DOM vs visual documentado. Fuente: page.js:263-308 · site.js:29-46 · _home.scss:823-952.</desc>
+<rect width="1440" height="1010" fill="#FFFFFF"/>
+<text x="24" y="30" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2E1E3F">05 · PRECIOS — NO PUBLICADA: estructura aprobada, copy pendiente · 3 planes col-lg-4</text>
+<text x="1416" y="30" text-anchor="end" font-family="monospace" font-size="13" fill="#65586E">xl 1200+ · container 1140 · col 73</text>
+<text x="1416" y="48" text-anchor="end" font-family="monospace" font-size="11" fill="#B23A2A">v2 · 05-nov-2026 · NO PUBLICADA — estructura aprobada, copy pendiente</text>
+<g id="band">
+<rect x="0" y="60" width="1440" height="750" fill="#FFFFFF" fill-opacity="0.55" stroke="none"/>
+<text x="158" y="84" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">banda blanca --brand-white · py --band-y-d 100 · NO SE RENDERIZA: hasPricing() = false (page.js:268)</text>
+<rect x="60" y="72" width="1320" height="726" fill="none" stroke="#B23A2A" stroke-width="1.5" stroke-dasharray="8 6" rx="4"/>
+<text x="720" y="104" font-family="sans-serif" font-size="26" font-weight="bold" fill="#B23A2A" text-anchor="middle">NO PUBLICADA — estructura aprobada, copy pendiente</text>
+<text x="720" y="126" font-family="monospace" font-size="12" fill="#B23A2A" text-anchor="middle">hasPricing() = false · SITE.features.showPricing = false · SITE.plans = [] · no se renderiza ni se enlaza · se conserva como planificación</text>
+</g>
+<g id="grid-12">
+<rect x="150" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="247" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="344" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="441" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="538" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="635" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="732" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="829" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="926" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1023" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1120" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<rect x="1217" y="150" width="73" height="590" fill="#2E1E3F" fill-opacity="0.1" stroke="none"/>
+<line x1="235" y1="150" x2="235" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="332" y1="150" x2="332" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="429" y1="150" x2="429" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="526" y1="150" x2="526" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="623" y1="150" x2="623" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="720" y1="150" x2="720" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="817" y1="150" x2="817" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="914" y1="150" x2="914" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1011" y1="150" x2="1011" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1108" y1="150" x2="1108" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+<line x1="1205" y1="150" x2="1205" y2="740" stroke="#FF5F44" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+</g>
+<g id="container">
+<rect x="150" y="150" width="1140" height="590" fill="none" stroke="#2E1E3F" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="158" y="166" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">container-xl 1140</text>
+</g>
+<g id="content">
+<rect x="150" y="200" width="240" height="20" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="2"/>
+<text x="156" y="214" font-family="sans-serif" font-size="12" font-weight="bold" fill="#65586E" letter-spacing="1.4">SIN PERMANENCIA</text>
+<text x="402" y="214" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">kicker .section-kicker 13 MAYÚS · añadido en v2 (page.js:271) · v1 no lo dibujaba</text>
+<text x="150" y="287" font-family="Impact, 'Arial Narrow', sans-serif" font-size="64" fill="#2E1E3F">PLANES</text>
+<text x="470" y="254" font-family="monospace" font-size="10" fill="#65586E" text-anchor="start">H2 Bebas 64 · lh .95 = 61 · a la izquierda · fila mt-4 = 24</text>
+<g id="plan-basico">
+<rect x="150" y="317" width="364" height="423" fill="#FFFFFF" fill-opacity="0.55" stroke="#65586E" stroke-width="1.5" stroke-dasharray="5 4" rx="12"/>
+<text x="182" y="349" font-family="sans-serif" font-size="14" font-weight="bold" fill="#65586E">[nombre pendiente]</text>
+<text x="182" y="367" font-family="monospace" font-size="10" fill="#65586E">nombre 20/600 MAYÚS · para-quién 14</text>
+<text x="182" y="411" font-family="Impact, 'Arial Narrow', sans-serif" font-size="30" fill="#B23A2A">[precio pendiente]</text>
+<text x="404" y="411" font-family="sans-serif" font-size="12" fill="#65586E">/ mes</text>
+<text x="182" y="432" font-family="monospace" font-size="10" fill="#65586E">monto en Bebas 48 · periodo 14 — SIN cifras hasta que las fije el operador</text>
+<rect x="182" y="450" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="332" y="466" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente] · 16 px · separador --border</text>
+<rect x="182" y="486" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="332" y="502" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="182" y="522" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="332" y="538" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="182" y="666" width="300" height="48" fill="none" stroke="#2E1E3F" stroke-width="1.5" rx="6"/>
+<text x="332" y="694" font-family="sans-serif" font-size="12" fill="#2E1E3F" text-anchor="middle">[CTA pendiente] · ghost</text>
+<text x="332" y="296" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">BÁSICO · order-lg-1 (DOM idx 1)</text>
+</g>
+<g id="plan-recomendado">
+<rect x="538" y="317" width="364" height="423" fill="#FFFFFF" fill-opacity="0.75" stroke="#FF5F44" stroke-width="2" rx="12"/>
+<rect x="618" y="303" width="204" height="27" fill="#F4B63B" rx="13.5"/>
+<text x="720" y="321" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2E1E3F" text-anchor="middle" letter-spacing="1">RECOMENDADO</text>
+<text x="570" y="349" font-family="sans-serif" font-size="14" font-weight="bold" fill="#65586E">[nombre pendiente]</text>
+<text x="570" y="367" font-family="monospace" font-size="10" fill="#65586E">nombre 20/600 MAYÚS · para-quién 14</text>
+<text x="570" y="411" font-family="Impact, 'Arial Narrow', sans-serif" font-size="30" fill="#B23A2A">[precio pendiente]</text>
+<text x="792" y="411" font-family="sans-serif" font-size="12" fill="#65586E">/ mes</text>
+<text x="570" y="432" font-family="monospace" font-size="10" fill="#65586E">monto en Bebas 48 · periodo 14 — SIN cifras hasta que las fije el operador</text>
+<rect x="570" y="450" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="720" y="466" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente] · 16 px · separador --border</text>
+<rect x="570" y="486" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="720" y="502" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="570" y="522" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="720" y="538" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="570" y="666" width="300" height="48" fill="#FF5F44" rx="6"/>
+<text x="720" y="694" font-family="sans-serif" font-size="12" font-weight="bold" fill="#2E1E3F" text-anchor="middle">[CTA pendiente] · btn-primary</text>
+<text x="720" y="296" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">RECOMENDADO · order-lg-2 (DOM idx 0) · borde 2 px coral</text>
+</g>
+<g id="plan-negocio">
+<rect x="926" y="317" width="364" height="423" fill="#FFFFFF" fill-opacity="0.55" stroke="#65586E" stroke-width="1.5" stroke-dasharray="5 4" rx="12"/>
+<text x="958" y="349" font-family="sans-serif" font-size="14" font-weight="bold" fill="#65586E">[nombre pendiente]</text>
+<text x="958" y="367" font-family="monospace" font-size="10" fill="#65586E">nombre 20/600 MAYÚS · para-quién 14</text>
+<text x="958" y="411" font-family="Impact, 'Arial Narrow', sans-serif" font-size="30" fill="#B23A2A">[precio pendiente]</text>
+<text x="1180" y="411" font-family="sans-serif" font-size="12" fill="#65586E">/ mes</text>
+<text x="958" y="432" font-family="monospace" font-size="10" fill="#65586E">monto en Bebas 48 · periodo 14 — SIN cifras hasta que las fije el operador</text>
+<rect x="958" y="450" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="1108" y="466" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente] · 16 px · separador --border</text>
+<rect x="958" y="486" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="1108" y="502" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="958" y="522" width="300" height="24" fill="none" stroke="#65586E" stroke-width="1" stroke-dasharray="3 3" rx="3"/>
+<text x="1108" y="538" font-family="monospace" font-size="10" fill="#65586E" text-anchor="middle">[feature pendiente]</text>
+<rect x="958" y="666" width="300" height="48" fill="none" stroke="#2E1E3F" stroke-width="1.5" rx="6"/>
+<text x="1108" y="694" font-family="sans-serif" font-size="12" fill="#2E1E3F" text-anchor="middle">[CTA pendiente] · ghost</text>
+<text x="1108" y="296" font-family="monospace" font-size="11" fill="#65586E" text-anchor="middle">NEGOCIO · order-lg-3 (DOM idx 2)</text>
+</g>
+</g>
+<g id="measure">
+<line x1="150" y1="309" x2="514" y2="309" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="304" x2="150" y2="314" stroke="#65586E" stroke-width="1"/>
+<line x1="514" y1="304" x2="514" y2="314" stroke="#65586E" stroke-width="1"/>
+<text x="332" y="301" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">span-4 = 364</text>
+<line x1="514" y1="309" x2="538" y2="309" stroke="#65586E" stroke-width="1"/>
+<line x1="514" y1="304" x2="514" y2="314" stroke="#65586E" stroke-width="1"/>
+<line x1="538" y1="304" x2="538" y2="314" stroke="#65586E" stroke-width="1"/>
+<text x="526" y="301" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">24</text>
+<line x1="150" y1="770" x2="1290" y2="770" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="765" x2="150" y2="775" stroke="#65586E" stroke-width="1"/>
+<line x1="1290" y1="765" x2="1290" y2="775" stroke="#65586E" stroke-width="1"/>
+<text x="720" y="762" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">container 1140</text>
+<line x1="30" y1="794" x2="150" y2="794" stroke="#65586E" stroke-width="1"/>
+<line x1="30" y1="789" x2="30" y2="799" stroke="#65586E" stroke-width="1"/>
+<line x1="150" y1="789" x2="150" y2="799" stroke="#65586E" stroke-width="1"/>
+<text x="90" y="786" font-family="monospace" font-size="12" fill="#65586E" text-anchor="middle">aire 150</text>
+<line x1="110" y1="160" x2="110" y2="260" stroke="#65586E" stroke-width="1"/>
+<line x1="105" y1="160" x2="115" y2="160" stroke="#65586E" stroke-width="1"/>
+<line x1="105" y1="260" x2="115" y2="260" stroke="#65586E" stroke-width="1"/>
+<text x="118" y="215" font-family="monospace" font-size="12" fill="#65586E" text-anchor="start">py 100 (ilustrativo)</text>
+</g>
+<g id="notas">
+<text x="60" y="830" font-family="monospace" font-size="11" fill="#B23A2A" text-anchor="start">NO PUBLICADA: hasPricing() exige showPricing = true Y 3 planes con precio (site.js:46) · hoy showPricing = false y plans = [] (site.js:31, 40)</text>
+<text x="60" y="848" font-family="monospace" font-size="11" fill="#B23A2A" text-anchor="start">efecto: la sección no se renderiza (page.js:268), el footer no enlaza /pricing (footer.jsx:17) y la 6.ª FAQ queda oculta (requiresPricing)</text>
+<text x="60" y="866" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">se conserva como planificación: estructura aprobada (grid, jerarquía, estados) · copy, nombres, features, CTAs y montos PENDIENTES del operador</text>
+<text x="60" y="884" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">PROHIBIDO inventar cifras (contrato): v1 cotaba «precio Bebas 48 · lista 16» sin monto — v2 explícita [precio pendiente] en cada tarjeta</text>
+<text x="60" y="902" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">enmienda v2: el badge del recomendado es MOSTAZA --brand-mustard, pill top −14 centrado (_home.scss:873-889) — v1 lo pintaba coral: FALSO</text>
+<text x="60" y="920" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">enmienda v2: CTA «EMPEZAR» de v1 era copy inventado → [CTA pendiente] · recomendado lleva btn-primary (coral), los demás ghost outline-dark</text>
+<text x="60" y="938" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">orden: DOM recomendado→básico→negocio (idx 0/1/2) · visual lg+ básico·recomendado·negocio (order-lg-1/2/3) — page.js:275-277</text>
+<text x="60" y="956" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">tarjeta estática: borde --border, radio --radius-card, padding --sp-5 32, sin sombra · features con separadores · botón full-width con margin-top auto</text>
+<text x="60" y="974" font-family="monospace" font-size="11" fill="#65586E" text-anchor="start">al publicar (montos reales en site.js): se enlaza desde el footer, aparece la 6.ª FAQ y /pricing deja de mostrar el aviso de cierre (VERIFICACION-F8)</text>
+</g>
+</svg>
