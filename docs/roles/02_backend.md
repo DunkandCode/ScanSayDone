@@ -67,7 +67,7 @@ Abre tu navegador en:
 ---
 
 ## 🛠️ Tareas Siguientes para el Backend
-1. 🚧 **Conexión a Base de Datos** (#12): modelos SQLAlchemy, migración Alembic con RLS y negocios de demostración listos en el código; falta ejecutar `alembic upgrade head` contra Supabase.
+1. ✅ **Conexión a Base de Datos** (#12): modelos SQLAlchemy, migración Alembic con RLS aplicada en Supabase y negocios de demostración cargados (`empresa_id` 1 a 4: Minimarket Don Lucho, Café Rincón Andino, Peluquería Estilo Sur y Cosmos Accesorios).
 2. ✅ **Endpoint de Registro de Respuesta** (#13): `POST /api/v1/respuestas`.
 3. **Rate Limiting y sanitización de comentarios** (#15, Ciberseguridad): límites de peticiones por IP.
 4. **Carga del dataset de 80 encuestas** (#16, Datos): usar los IDs que imprime `scripts/seed_demo.py`.
