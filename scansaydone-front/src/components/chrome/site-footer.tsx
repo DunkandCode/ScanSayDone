@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-// Año calculado al cargar el módulo (valor estable para prerenderizado estático)
+// Año fijado en el build para sitios estáticos; en servidores dinámicos se evalúa al cargar el módulo.
 const year = new Date().getFullYear();
 
 export function SiteFooter() {
-
   return (
     <footer className="w-full border-t border-border-mid bg-background-page px-4 pb-10 pt-15 md:pb-12 md:pt-25">
       <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">

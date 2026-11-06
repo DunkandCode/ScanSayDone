@@ -58,7 +58,7 @@ export function SurveyCard() {
   }, [selected]);
 
   return (
-    <div id="encuesta-demo" tabIndex={-1} className="scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 focus:outline-none">
+    <div id="encuesta-demo" tabIndex={-1} className="scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary">
       {/* Header: DEMO tag + store label */}
       <div className="flex items-center justify-between mb-4">
         <span className="inline-block bg-surface-elevated text-text-primary text-xs font-ui font-semibold px-2 py-0.5 rounded">

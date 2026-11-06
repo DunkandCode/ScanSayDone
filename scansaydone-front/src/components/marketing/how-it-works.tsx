@@ -25,8 +25,9 @@ export function HowItWorks() {
   return (
     <section
       id="como-funciona"
+      tabIndex={-1}
       aria-labelledby="l2-title"
-      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-[92px]"
+      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
     >
       <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
         {/* Eyebrow — 12px mobile, 13px from lg (992). tracking 0.14em. */}

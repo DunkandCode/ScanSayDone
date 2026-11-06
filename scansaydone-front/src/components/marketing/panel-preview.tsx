@@ -11,8 +11,9 @@ export function PanelPreview() {
   return (
     <section
       id="panel"
+      tabIndex={-1}
       aria-labelledby="l3-title"
-      className="w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px]"
+      className="w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
     >
       {/* ÚNICA banda con ensanche xxl: PLANOS §2.6 container-mkt-xxl-only */}
       <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl 2xl:max-w-mkt-2xl">

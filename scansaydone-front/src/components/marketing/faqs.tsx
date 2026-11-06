@@ -76,8 +76,9 @@ export function Faqs() {
   return (
     <section
       id="faq"
+      tabIndex={-1}
       aria-labelledby="l6-title"
-      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-[92px]"
+      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
     >
       <div
         className="mx-auto grid w-full max-w-mkt-sm grid-cols-12 gap-6 md:max-w-mkt-md lg:max-w-mkt-lg"
