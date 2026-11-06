@@ -88,9 +88,18 @@ export function PanelPreview() {
       id="panel"
       tabIndex={-1}
       aria-labelledby="l3-title"
-      className="w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+      className="relative w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
     >
-      <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
+      {/* G2 halo — bajo la figura del panel (PASE-VISUAL-2 §2.3) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(640px 430px at 58% 46%, var(--color-surface-elevated), transparent)",
+        }}
+      />
+      <div className="relative mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
         {/* Eyebrow */}
         <p className="font-ui text-[12px] font-semibold uppercase tracking-[0.14em] text-text-secondary lg:text-[13px]">
           TUS OPINIONES, EN UN PANEL
@@ -111,7 +120,7 @@ export function PanelPreview() {
 
         {/* Marco con contenido de ejemplo */}
         <div className="mt-12 grid grid-cols-12 gap-6">
-          <figure className="col-span-12 max-w-[872px] relative m-0 flex aspect-auto flex-col overflow-hidden rounded-[8px] border border-solid border-border-mid bg-surface-default md:aspect-[16/10]">
+          <figure className="reveal elev-float col-span-12 max-w-[872px] relative m-0 flex aspect-auto flex-col overflow-hidden rounded-[8px] border border-solid border-border-mid bg-surface-default md:aspect-[16/10]">
             {/* Badge DEMO */}
             <span className="absolute left-4 top-4 z-10 rounded-[4px] border border-border-mid bg-surface-elevated px-2 py-0.5 font-ui text-[11px] font-semibold uppercase tracking-[0.1em] text-text-primary">
               DEMO

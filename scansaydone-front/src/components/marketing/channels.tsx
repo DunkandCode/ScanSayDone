@@ -128,10 +128,10 @@ export function Channels() {
         </p>
 
         <ul role="list" className="mt-12 grid grid-cols-12 gap-6 list-none">
-          {CHANNELS.map((ch) => (
+          {CHANNELS.map((ch, index) => (
             <li
               key={ch.kind}
-              className="col-span-12 lg:col-span-6 xl:col-span-3 rounded-[8px] border border-border-mid bg-surface-default p-4"
+              className={`reveal${index > 0 ? ` reveal-${index + 1}` : ""} col-span-12 lg:col-span-6 xl:col-span-3 rounded-[8px] border border-border-mid bg-surface-default p-4`}
             >
               <ChannelIllustration kind={ch.kind} />
               <h3 className="mt-2 font-ui text-[18px] font-semibold leading-[1.3] text-text-primary md:text-[20px]">

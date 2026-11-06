@@ -64,6 +64,9 @@ export function HowItWorks() {
             <li
               key={step.title}
               className={[
+                // Scroll-driven reveal (PASE-VISUAL-2 §2.5)
+                "reveal",
+                index > 0 ? `reveal-${index + 1}` : "",
                 // Base card: 1px border all sides, same bg as band, 16px padding
                 "relative col-span-12 md:col-span-4 rounded-[8px] border border-border-mid p-4 bg-surface-default",
                 // Mobile: 2px left border = vertical decorative connector

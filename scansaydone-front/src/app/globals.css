@@ -40,6 +40,29 @@
   --font-display: var(--font-bebas);
 }
 
+/* Elevation: única sombra del sistema (PASE-VISUAL-2 §2.2, C-87) */
+:root {
+  --elev-float: 0 10px 24px -12px rgb(26 24 27 / 0.22);
+}
+
+.elev-float {
+  box-shadow: var(--elev-float);
+}
+
+/* Reveal-on-scroll — CSS scroll-driven animations (PASE-VISUAL-2 §2.5) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal   { animation: reveal-soft linear both; animation-timeline: view(); animation-range: entry 12% 40%; }
+    .reveal-2 { animation-range: entry 20% 48%; }
+    .reveal-3 { animation-range: entry 28% 56%; }
+    .reveal-4 { animation-range: entry 36% 64%; }
+  }
+}
+@keyframes reveal-soft {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
 body {
   background-color: var(--color-background-page);
   color: var(--color-text-primary);

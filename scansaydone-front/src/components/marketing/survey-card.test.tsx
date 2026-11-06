@@ -158,4 +158,42 @@ describe("SurveyCard", () => {
     expect(radio0).toHaveAttribute("aria-checked", "true");
     expect(radio0).toHaveFocus();
   });
+
+  it("on initial render, button 9 has coral fill and exactly one button has it", () => {
+    render(<SurveyCard />);
+
+    const allRadios = screen.getAllByRole("radio");
+    const coralRadios = allRadios.filter((radio) =>
+      radio.classList.contains("bg-interactive-primary")
+    );
+
+    // Exactly one button has coral fill
+    expect(coralRadios).toHaveLength(1);
+
+    // That button is 9
+    const radio9 = screen.getByRole("radio", { name: "9" });
+    expect(radio9).toHaveClass("bg-interactive-primary");
+    expect(radio9).toHaveClass("border-interactive-primary");
+  });
+
+  it("after clicking 3, button 3 has coral fill and button 9 does not", async () => {
+    const user = userEvent.setup();
+    render(<SurveyCard />);
+
+    const radio3 = screen.getByRole("radio", { name: "3" });
+    const radio9 = screen.getByRole("radio", { name: "9" });
+
+    // Initially 9 has coral
+    expect(radio9).toHaveClass("bg-interactive-primary");
+    expect(radio3).not.toHaveClass("bg-interactive-primary");
+
+    // Click on 3
+    await user.click(radio3);
+
+    // Now 3 has coral and 9 does not
+    expect(radio3).toHaveClass("bg-interactive-primary");
+    expect(radio3).toHaveClass("border-interactive-primary");
+    expect(radio9).not.toHaveClass("bg-interactive-primary");
+    expect(radio9).toHaveClass("bg-surface-default");
+  });
 });

@@ -58,7 +58,7 @@ export function SurveyCard() {
   }, [selected]);
 
   return (
-    <div id="encuesta-demo" tabIndex={-1} className="scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary">
+    <div id="encuesta-demo" tabIndex={-1} className="elev-float scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary">
       {/* Header: DEMO tag + store label */}
       <div className="flex items-center justify-between mb-4">
         <span className="inline-block bg-surface-elevated text-text-primary text-xs font-ui font-semibold px-2 py-0.5 rounded">
@@ -99,7 +99,7 @@ export function SurveyCard() {
             }}
             onKeyDown={(e) => handleKeyDown(e, index)}
             className={`min-h-11 min-w-11 rounded-md font-ui font-semibold text-sm border-2 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary ${
-              selected === null ? value === 9 : selected === value
+              (selected === null ? value === 9 : selected === value)
                 ? "bg-interactive-primary border-interactive-primary text-text-primary"
                 : "bg-surface-default border-border-mid text-text-primary hover:bg-surface-elevated"
             }`}

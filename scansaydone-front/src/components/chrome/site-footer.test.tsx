@@ -36,17 +36,19 @@ describe("SiteFooter", () => {
     expect(tagline).toBeInTheDocument();
   });
 
-  it("tiene los 4 enlaces de Producto con href exactos", () => {
+  it("tiene los 5 enlaces de Producto con href exactos", () => {
     render(<SiteFooter />);
     
     const comoFunciona = screen.getByRole("link", { name: /cómo funciona/i });
     const canales = screen.getByRole("link", { name: /^canales$/i });
     const aplicaciones = screen.getByRole("link", { name: /aplicaciones/i });
+    const panel = screen.getByRole("link", { name: /^panel$/i });
     const preguntas = screen.getByRole("link", { name: /preguntas frecuentes/i });
     
     expect(comoFunciona).toHaveAttribute("href", "/#como-funciona");
     expect(canales).toHaveAttribute("href", "/#canales");
     expect(aplicaciones).toHaveAttribute("href", "/#aplicaciones");
+    expect(panel).toHaveAttribute("href", "/#panel");
     expect(preguntas).toHaveAttribute("href", "/#faq");
   });
 
@@ -70,17 +72,25 @@ describe("SiteFooter", () => {
     const currentYear = new Date().getFullYear();
     const copyright = screen.getByText(new RegExp(`© ${currentYear} scansaydone`, "i"));
     expect(copyright).toBeInTheDocument();
+    expect(copyright.tagName).toBe("SPAN");
   });
 
-  it("NO contiene botones interactivos y tiene exactamente 5 enlaces", () => {
+  it("tiene enlace 'Volver arriba' que apunta a #contenido", () => {
+    render(<SiteFooter />);
+    const volverArriba = screen.getByRole("link", { name: /volver arriba/i });
+    expect(volverArriba).toBeInTheDocument();
+    expect(volverArriba).toHaveAttribute("href", "/#contenido");
+  });
+
+  it("NO contiene botones interactivos y tiene exactamente 7 enlaces", () => {
     render(<SiteFooter />);
     
     // Verificar que no hay botones
     expect(screen.queryAllByRole("button")).toHaveLength(0);
     
-    // Verificar que hay exactamente 5 enlaces (4 de Producto + 1 de Contacto)
+    // Verificar que hay exactamente 7 enlaces (5 de Producto + 1 de Contacto + 1 Volver arriba)
     const allLinks = screen.getAllByRole("link");
-    expect(allLinks).toHaveLength(5);
+    expect(allLinks).toHaveLength(7);
     
     // Verificar que ninguno apunta a rutas placeholder
     const hrefs = allLinks.map((link) => link.getAttribute("href"));
@@ -88,7 +98,6 @@ describe("SiteFooter", () => {
     expect(hrefs).not.toContain("/terms");
     expect(hrefs).not.toContain("/pricing");
     expect(hrefs).not.toContain("/faqs");
-    expect(hrefs).not.toContain("/panel");
     
     // Verificar que no hay enlaces que empiecen con /e/
     const hasERoute = hrefs.some((href) => href && href.startsWith("/e/"));

@@ -55,6 +55,23 @@ describe("SiteHeader", () => {
     expect(ctaLink).toHaveAttribute("href", "#encuesta-demo");
   });
 
+  it("has section links 'Cómo funciona', 'Canales', and 'Aplicaciones' in desktop nav", () => {
+    render(<SiteHeader />);
+    const desktopNav = screen.getByRole("navigation", { name: "Navegación principal" });
+    
+    const comoFuncionaLink = within(desktopNav).getByRole("link", { name: "Cómo funciona" });
+    expect(comoFuncionaLink).toBeInTheDocument();
+    expect(comoFuncionaLink).toHaveAttribute("href", "#como-funciona");
+
+    const canalesLink = within(desktopNav).getByRole("link", { name: "Canales" });
+    expect(canalesLink).toBeInTheDocument();
+    expect(canalesLink).toHaveAttribute("href", "#canales");
+
+    const aplicacionesLink = within(desktopNav).getByRole("link", { name: "Aplicaciones" });
+    expect(aplicacionesLink).toBeInTheDocument();
+    expect(aplicacionesLink).toHaveAttribute("href", "#aplicaciones");
+  });
+
   it("does not contain 'Precios' or 'Entrar' links", () => {
     render(<SiteHeader />);
     const allLinks = screen.getAllByRole("link");
@@ -134,7 +151,7 @@ describe("SiteHeader", () => {
     });
   });
 
-  it("drawer contains FAQ and CTA with nav labeled 'Navegación del menú'", async () => {
+  it("drawer contains full section map and CTA with nav labeled 'Navegación del menú'", async () => {
     const user = userEvent.setup();
     render(<SiteHeader />);
 
@@ -145,6 +162,19 @@ describe("SiteHeader", () => {
       name: "Navegación del menú",
     });
     expect(drawerNav).toBeInTheDocument();
+
+    // Verify all section links are present
+    const comoFunciona = within(drawerNav).getByRole("link", { name: "Cómo funciona" });
+    expect(comoFunciona).toBeInTheDocument();
+    expect(comoFunciona).toHaveAttribute("href", "#como-funciona");
+
+    const canales = within(drawerNav).getByRole("link", { name: "Canales" });
+    expect(canales).toBeInTheDocument();
+    expect(canales).toHaveAttribute("href", "#canales");
+
+    const aplicaciones = within(drawerNav).getByRole("link", { name: "Aplicaciones" });
+    expect(aplicaciones).toBeInTheDocument();
+    expect(aplicaciones).toHaveAttribute("href", "#aplicaciones");
 
     const drawerFaq = within(drawerNav).getByRole("link", { name: "FAQ" });
     expect(drawerFaq).toBeInTheDocument();
@@ -186,7 +216,7 @@ describe("SiteHeader", () => {
     expect(drawer).toHaveAttribute("inert");
   });
 
-  it("Tab cycles through drawer focusable elements: close → FAQ → CTA → close", async () => {
+  it("Tab cycles through drawer focusable elements: close → section links → FAQ → CTA → close", async () => {
     const user = userEvent.setup();
     render(<SiteHeader />);
 
@@ -198,6 +228,9 @@ describe("SiteHeader", () => {
 
     // Get focusable elements in drawer
     const closeButton = within(drawer!).getByRole("button", { name: "Cerrar menú" });
+    const comoFuncionaLink = within(drawer!).getByRole("link", { name: "Cómo funciona" });
+    const canalesLink = within(drawer!).getByRole("link", { name: "Canales" });
+    const aplicacionesLink = within(drawer!).getByRole("link", { name: "Aplicaciones" });
     const faqLink = within(drawer!).getByRole("link", { name: "FAQ" });
     const ctaLink = within(drawer!).getByRole("link", {
       name: "Ver una encuesta de ejemplo",
@@ -208,7 +241,16 @@ describe("SiteHeader", () => {
       expect(document.activeElement).toBe(closeButton);
     });
 
-    // Tab to FAQ
+    // Tab through all section links
+    await user.keyboard("{Tab}");
+    expect(document.activeElement).toBe(comoFuncionaLink);
+
+    await user.keyboard("{Tab}");
+    expect(document.activeElement).toBe(canalesLink);
+
+    await user.keyboard("{Tab}");
+    expect(document.activeElement).toBe(aplicacionesLink);
+
     await user.keyboard("{Tab}");
     expect(document.activeElement).toBe(faqLink);
 

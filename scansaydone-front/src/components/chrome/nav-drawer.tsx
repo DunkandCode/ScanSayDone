@@ -13,6 +13,9 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
   const pathname = usePathname();
 
   // Conditional href: if on home page, use relative anchor; otherwise use absolute path
+  const comoFuncionaHref = pathname === "/" ? "#como-funciona" : "/#como-funciona";
+  const canalesHref = pathname === "/" ? "#canales" : "/#canales";
+  const aplicacionesHref = pathname === "/" ? "#aplicaciones" : "/#aplicaciones";
   const faqHref = pathname === "/" ? "#faq" : "/#faq";
   const surveyHref = pathname === "/" ? "#encuesta-demo" : "/#encuesta-demo";
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -102,9 +105,45 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
         <ul className="flex flex-col gap-4 list-none">
           <li>
             <Link
+              href={comoFuncionaHref}
+              onClick={onClose}
+              className="flex min-h-11 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
+                hover:bg-surface-elevated
+                focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary
+                motion-safe:transition-colors motion-safe:duration-150"
+            >
+              Cómo funciona
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={canalesHref}
+              onClick={onClose}
+              className="flex min-h-11 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
+                hover:bg-surface-elevated
+                focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary
+                motion-safe:transition-colors motion-safe:duration-150"
+            >
+              Canales
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={aplicacionesHref}
+              onClick={onClose}
+              className="flex min-h-11 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
+                hover:bg-surface-elevated
+                focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary
+                motion-safe:transition-colors motion-safe:duration-150"
+            >
+              Aplicaciones
+            </Link>
+          </li>
+          <li>
+            <Link
               href={faqHref}
               onClick={onClose}
-              className="flex h-12 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
+              className="flex min-h-11 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
                 hover:bg-surface-elevated
                 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary
                 motion-safe:transition-colors motion-safe:duration-150"

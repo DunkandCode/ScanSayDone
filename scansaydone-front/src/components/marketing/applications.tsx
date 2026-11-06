@@ -58,10 +58,10 @@ export function Applications() {
 
         {/* 3 placas: 12 col (<lg) → 4 col (lg+). gap-6 = 24 exacto */}
         <ul role="list" className="mt-12 grid grid-cols-12 gap-6 list-none">
-          {PLATES.map((plate) => (
+          {PLATES.map((plate, index) => (
             <li
               key={plate.name}
-              className="col-span-12 lg:col-span-4"
+              className={`reveal${index > 0 ? ` reveal-${index + 1}` : ""} col-span-12 lg:col-span-4`}
             >
               <figure className="m-0 mx-auto w-full max-w-[364px] lg:max-w-none">
                 {/* marco 4/3 — borde sólido (contenido presente, ya no "falta") */}

@@ -27,6 +27,9 @@ export function SiteHeader() {
   // Conditional href: if on home page, use relative anchor; otherwise use absolute path
   const faqHref = pathname === "/" ? "#faq" : "/#faq";
   const surveyHref = pathname === "/" ? "#encuesta-demo" : "/#encuesta-demo";
+  const comoFuncionaHref = pathname === "/" ? "#como-funciona" : "/#como-funciona";
+  const canalesHref = pathname === "/" ? "#canales" : "/#canales";
+  const aplicacionesHref = pathname === "/" ? "#aplicaciones" : "/#aplicaciones";
 
   // Toggle inert on main content and skip-link when drawer opens/closes
   useEffect(() => {
@@ -110,8 +113,38 @@ export function SiteHeader() {
               <ul className="flex list-none items-center gap-6">
                 <li>
                   <Link
+                    href={comoFuncionaHref}
+                    className="inline-flex h-11 items-center rounded-[8px] px-4 font-ui text-[15px] font-medium text-text-primary
+                      hover:bg-surface-elevated motion-safe:transition-colors motion-safe:duration-150
+                      focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                  >
+                    Cómo funciona
+                  </Link>
+                </li>
+                <li className="hidden xl:inline-flex">
+                  <Link
+                    href={canalesHref}
+                    className="inline-flex h-11 items-center rounded-[8px] px-4 font-ui text-[15px] font-medium text-text-primary
+                      hover:bg-surface-elevated motion-safe:transition-colors motion-safe:duration-150
+                      focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                  >
+                    Canales
+                  </Link>
+                </li>
+                <li className="hidden xl:inline-flex">
+                  <Link
+                    href={aplicacionesHref}
+                    className="inline-flex h-11 items-center rounded-[8px] px-4 font-ui text-[15px] font-medium text-text-primary
+                      hover:bg-surface-elevated motion-safe:transition-colors motion-safe:duration-150
+                      focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                  >
+                    Aplicaciones
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href={faqHref}
-                    className="inline-flex h-11 items-center rounded-[8px] px-3 font-ui text-[15px] font-medium text-text-primary
+                    className="inline-flex h-11 items-center rounded-[8px] px-4 font-ui text-[15px] font-medium text-text-primary
                       hover:bg-surface-elevated motion-safe:transition-colors motion-safe:duration-150
                       focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
                   >
@@ -122,9 +155,9 @@ export function SiteHeader() {
                 <li>
                   <Link
                     href={surveyHref}
-                    className="inline-flex h-11 items-center justify-center px-4
-                      font-ui text-[15px] font-semibold text-text-primary underline decoration-border-mid underline-offset-4
-                      hover:decoration-text-primary
+                    className="inline-flex h-11 items-center justify-center rounded-[8px] px-4
+                      font-ui text-[15px] font-semibold text-text-primary
+                      hover:bg-surface-elevated
                       motion-safe:transition-colors motion-safe:duration-150
                       focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
                   >

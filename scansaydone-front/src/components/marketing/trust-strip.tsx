@@ -31,7 +31,13 @@ const CLAIMS = [
 
 export function TrustStrip() {
   return (
-    <section className="w-full border-y border-border-mid bg-surface-elevated px-4 py-15">
+    <section
+      className="w-full border-y border-border-mid px-4 py-15"
+      style={{
+        backgroundImage:
+          "linear-gradient(180deg, color-mix(in srgb, var(--color-background-page) 75%, var(--color-surface-elevated)) 0%, var(--color-surface-elevated) 100%)",
+      }}
+    >
       <div className="relative mx-auto grid w-full max-w-mkt-xl grid-cols-1 gap-4 min-[544px]:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] md:gap-6">
         {CLAIMS.map((claim) => (
           <div key={claim.title} className="flex flex-col">

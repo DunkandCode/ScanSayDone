@@ -2,8 +2,17 @@ import { SurveyCard } from "@/components/marketing/survey-card";
 
 export function Hero() {
   return (
-    <section className="py-16 lg:py-24" aria-labelledby="hero-title">
-      <div className="max-w-mkt-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 lg:py-24" aria-labelledby="hero-title">
+      {/* G3 halo — bajo la tarjeta demo (PASE-VISUAL-2 §2.3) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(560px 440px at 84% 26%, var(--color-surface-elevated), transparent)",
+        }}
+      />
+      <div className="relative max-w-mkt-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left column — 7/12 */}
           <div className="lg:col-span-7">
