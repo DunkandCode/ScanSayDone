@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Color tokens — paleta aprobada CANON §4 + roles derivados */
+  --color-interactive-primary: #FC5A41;
+  --color-interactive-hover: #FD6E57;
+  --color-interactive-pressed: #E84A33;
+  --color-surface-default: #FFFFFF;
+  --color-surface-elevated: #F0D8BD;
+  --color-background-page: #F7E5C8;
+  --color-text-primary: #1A181B;
+  --color-text-secondary: #5A5555;
+  --color-surface-dark: #1A181B;
+  --color-on-dark: #F7E5C8;
+  --color-on-dark-secondary: #C9B6A6;
+  --color-border-mid: #8A6F55;
+  --color-border-subtle: #D9C0A0;
+  --color-success-text: #12603A;
+  --color-warning-text: #6F4700;
+  --color-error-text: #A82E39;
+  --color-disabled-fill: #E6D6C2;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Breakpoints — override Tailwind defaults (PLANOS §1.1) */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Containers — sistema de marca (PLANOS §1.1, §1.4) */
+  --container-mkt-sm: 540px;
+  --container-mkt-md: 720px;
+  --container-mkt-lg: 960px;
+  --container-mkt-xl: 1140px;
+  --container-mkt-2xl: 1320px;
+
+  /* Base font — Montserrat (CANON §5) */
+  --font-ui: var(--font-ui);
+  --font-display: var(--font-display);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-ui), system-ui, sans-serif;
 }
