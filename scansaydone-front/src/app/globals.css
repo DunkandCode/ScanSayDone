@@ -21,6 +21,7 @@
   --color-disabled-fill: #E6D6C2;
 
   /* Breakpoints — override Tailwind defaults (PLANOS §1.1) */
+  --breakpoint-xs: 375px;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
@@ -35,8 +36,8 @@
   --container-mkt-2xl: 1320px;
 
   /* Base font — Montserrat (CANON §5) */
-  --font-ui: var(--font-ui);
-  --font-display: var(--font-display);
+  --font-ui: var(--font-montserrat);
+  --font-display: var(--font-bebas);
 }
 
 body {

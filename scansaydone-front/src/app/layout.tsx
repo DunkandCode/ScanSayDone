@@ -3,13 +3,13 @@ import { Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
-  variable: "--font-display",
+  variable: "--font-bebas",
   subsets: ["latin"],
   weight: "400",
 });
 
 const montserrat = Montserrat({
-  variable: "--font-ui",
+  variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
