@@ -30,9 +30,24 @@ export function Hero() {
             <div className="mt-8">
               <a
                 href="#encuesta-demo"
-                className="inline-flex items-center justify-center px-6 py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
               >
                 Ver una encuesta de ejemplo
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                  focusable="false"
+                  data-decorativo="icon-flecha"
+                >
+                  <path d="M3 8 H12" />
+                  <path d="M8.5 4.5 L12 8 L8.5 11.5" />
+                </svg>
               </a>
             </div>
           </div>

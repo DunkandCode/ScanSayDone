@@ -99,7 +99,7 @@ export function SurveyCard() {
             }}
             onKeyDown={(e) => handleKeyDown(e, index)}
             className={`min-h-11 min-w-11 rounded-md font-ui font-semibold text-sm border-2 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary ${
-              selected === value
+              selected === null ? value === 9 : selected === value
                 ? "bg-interactive-primary border-interactive-primary text-text-primary"
                 : "bg-surface-default border-border-mid text-text-primary hover:bg-surface-elevated"
             }`}

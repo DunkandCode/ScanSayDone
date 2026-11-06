@@ -287,3 +287,22 @@ KPIs visibles (todos derivados, redondeo declarado cuando existe):
 - **La tarjeta demo del hero sigue sin estado seleccionado** y su botón `Enviar` sigue en beige. El mockup muestra un número resaltado en coral y el envío en coral. Cambiarlo toca el lote cerrado de L1 **y** el modelo de encuesta (G-0/B-1 siguen abiertos): no se tocó.
 - **El CTA del hero no lleva flecha**, que el mockup sí dibuja.
 - **La banda 6 (panel) sigue vacía.** La opción (ii) del §6 —componente real con datos de ejemplo etiquetados— está en la tanda 2 y **reabre C-19**, que el operador firmó hoy como «publicar con el marco vacío». No se implementa sin nueva firma.
+
+---
+
+## 13. Acta de la tanda 1.5 (correcciones) y de la tanda 2 (panel) — 2026-11-06
+
+**Correcciones aplicadas a la tanda 1:** iconos de la banda 3 a 32 px y `text-primary`; flecha de avance en el CTA coral del hero (SVG propio 16×16, `data-decorativo="icon-flecha"`); estado seleccionado estático en el número 9 de la tarjeta demo, que ahora solo se muestra seleccionado **mientras el usuario no elige otra cosa** (antes quedaban dos resaltados al pulsar cualquier número).
+
+**Tanda 2 — banda 6 implementada con autorización del operador**, que reabrió C-19 el mismo día para publicar el panel con contenido de ejemplo en lugar del marco vacío.
+
+- El marco pasa a **borde sólido** y contiene un panel real en HTML/CSS: fila de título con filtro deshabilitado, tres KPIs (**8,5** · **486** · **377**), línea de evolución de 30 puntos y once barras de distribución. Cero dependencias: todo en SVG inline y divs.
+- Dataset autoconsistente: `0:1 · 1:1 · 2:2 · 3:2 · 4:4 · 5:6 · 6:20 · 7:73 · 8:100 · 9:127 · 10:150` → Σn = 486, Σ(n·nota) = 4131, media **8,5 exacta**, y 377 respuestas en 8–10. **Se rechazan** el 8,7 y el 42 % del mockup: el primero no es derivable de conteos enteros con 486 y el segundo no tiene denominador y afirma una tasa que el producto no puede sostener.
+- **Declaración en dos capas:** badge `DEMO` y `figcaption` visible: *«Panel de ejemplo con datos inventados. No pertenece a ningún negocio real.»*
+- **No entra:** la barra lateral del mockup (pospuesta, C-71), la lista de últimas respuestas con comentarios (sería prueba social inventada) y los checks coral de la guía (competirían con el presupuesto de un coral por pantalla).
+
+**Desviación menor registrada:** en móvil las barras de distribución se ocultan y queda la versión compacta KPI + línea, como pedía el §6. El `figcaption` se mantiene visible en ambos.
+
+**Verificación de las dos tandas juntas:** **87 tests**, `build` 14/14, `lint` 0 errores, `tsc` 0, **axe 0 violaciones** en 1440×900 y 375×812. Cero `border-dashed` en las bandas 5 y 6; cero cadenas `42` y `8,7` en el DOM del panel; cero coral dentro del panel.
+
+**Estado de la decisión C-19:** cambió por firma del operador. La banda 6 ya no es un marco vacío declarado: es un panel de ejemplo con datos etiquetados. Si en el futuro se publica un panel real, se sustituye el dataset y se retira el badge, sin re-cotar geometría.

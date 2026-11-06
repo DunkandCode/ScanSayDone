@@ -3,18 +3,18 @@ import { render, screen } from "@testing-library/react";
 import { PanelPreview } from "./panel-preview";
 
 describe("PanelPreview", () => {
-  it("renders h2 with 'TODO EN UN MISMO LUGAR' and exactly one h2 in the component", () => {
+  // ── Structural tests (updated) ──
+
+  it("renders exactly one h2 with 'TODO EN UN MISMO LUGAR' and section has id='panel'", () => {
     render(<PanelPreview />);
 
     const h2s = screen.getAllByRole("heading", { level: 2 });
     expect(h2s).toHaveLength(1);
     expect(h2s[0]).toHaveTextContent("TODO EN UN MISMO LUGAR");
-  });
 
-  it("section has id='panel' and aria-labelledby pointing to h2", () => {
-    render(<PanelPreview />);
-
-    const section = screen.getByRole("region", { name: "TODO EN UN MISMO LUGAR" });
+    const section = screen.getByRole("region", {
+      name: "TODO EN UN MISMO LUGAR",
+    });
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute("id", "panel");
     expect(section).toHaveAttribute("aria-labelledby", "l3-title");
@@ -23,23 +23,20 @@ describe("PanelPreview", () => {
     expect(h2).toHaveAttribute("id", "l3-title");
   });
 
-  it("renders the DEMO badge with literal text 'DEMO'", () => {
+  it("renders eyebrow and lead text", () => {
     render(<PanelPreview />);
 
-    const badge = screen.getByText("DEMO");
-    expect(badge).toBeInTheDocument();
-    expect(badge.tagName).toBe("SPAN");
+    expect(
+      screen.getByText("TUS OPINIONES, EN UN PANEL")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Ahí llegan las respuestas que te dejan tus clientes."
+      )
+    ).toBeInTheDocument();
   });
 
-  it("frame declaration is exactly 'Todavía no hay panel que mostrar.'", () => {
-    render(<PanelPreview />);
-
-    const declaration = screen.getByText("Todavía no hay panel que mostrar.");
-    expect(declaration).toBeInTheDocument();
-    expect(declaration.tagName).toBe("FIGCAPTION");
-  });
-
-  it("three bullets match approved copy and are inside ul role='list'", () => {
+  it("three bullets match approved copy inside ul role='list'", () => {
     render(<PanelPreview />);
 
     const list = screen.getByRole("list");
@@ -58,40 +55,6 @@ describe("PanelPreview", () => {
     );
   });
 
-  it("no links or buttons in the component (empty state has zero CTAs)", () => {
-    render(<PanelPreview />);
-
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
-  });
-
-  it("no images and no elements with src attribute", () => {
-    render(<PanelPreview />);
-
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
-
-    const elementsWithSrc = document.querySelectorAll("[src]");
-    expect(elementsWithSrc).toHaveLength(0);
-  });
-
-  it("renders eyebrow text exactly as approved", () => {
-    render(<PanelPreview />);
-
-    expect(
-      screen.getByText("TUS OPINIONES, EN UN PANEL")
-    ).toBeInTheDocument();
-  });
-
-  it("renders lead text exactly as approved", () => {
-    render(<PanelPreview />);
-
-    expect(
-      screen.getByText(
-        "Ahí llegan las respuestas que te dejan tus clientes."
-      )
-    ).toBeInTheDocument();
-  });
-
   it("has no h1 elements inside the component", () => {
     render(<PanelPreview />);
 
@@ -99,12 +62,92 @@ describe("PanelPreview", () => {
     expect(h1s).toHaveLength(0);
   });
 
-  it("figure frame has exactly 2 children (badge + figcaption) — nothing else inside", () => {
+  // ── New panel content tests ──
+
+  it("renders KPI values 8,5 and 486 and 377", () => {
     render(<PanelPreview />);
 
-    const declaration = screen.getByText("Todavía no hay panel que mostrar.");
-    const figure = declaration.closest("figure");
-    expect(figure).toBeInTheDocument();
-    expect(figure!.children).toHaveLength(2);
+    expect(screen.getByText("8,5")).toBeInTheDocument();
+    expect(screen.getByText("486")).toBeInTheDocument();
+    expect(screen.getByText("377")).toBeInTheDocument();
+  });
+
+  it("does NOT render '42 %', '42%', or '8,7'", () => {
+    render(<PanelPreview />);
+
+    const panel = screen.getByRole("region");
+    const textContent = panel.textContent ?? "";
+    expect(textContent).not.toContain("42 %");
+    expect(textContent).not.toContain("42%");
+    expect(textContent).not.toContain("8,7");
+  });
+
+  it("figcaption contains the exact declaration text", () => {
+    render(<PanelPreview />);
+
+    const declaration = screen.getByText(
+      "Panel de ejemplo con datos inventados. No pertenece a ningún negocio real."
+    );
+    expect(declaration).toBeInTheDocument();
+    expect(declaration.tagName).toBe("FIGCAPTION");
+  });
+
+  it("renders the DEMO badge", () => {
+    render(<PanelPreview />);
+
+    const badge = screen.getByText("DEMO");
+    expect(badge).toBeInTheDocument();
+    expect(badge.tagName).toBe("SPAN");
+  });
+
+  it("renders exactly 11 distribution bars", () => {
+    render(<PanelPreview />);
+
+    const barsSvg = document.querySelector(
+      '[data-decorativo="panel-barras"]'
+    );
+    expect(barsSvg).toBeInTheDocument();
+    const rects = barsSvg!.querySelectorAll("rect");
+    expect(rects).toHaveLength(11);
+  });
+
+  it("line SVG has data-decorativo='panel-linea' and aria-hidden", () => {
+    render(<PanelPreview />);
+
+    const lineSvg = document.querySelector(
+      '[data-decorativo="panel-linea"]'
+    );
+    expect(lineSvg).toBeInTheDocument();
+    expect(lineSvg).toHaveAttribute("aria-hidden", "true");
+    expect(lineSvg).toHaveAttribute("focusable", "false");
+  });
+
+  it("no longer contains the old empty-state text", () => {
+    render(<PanelPreview />);
+
+    expect(
+      screen.queryByText("Todavía no hay panel que mostrar.")
+    ).not.toBeInTheDocument();
+  });
+
+  it("has no active links or enabled buttons inside the panel", () => {
+    render(<PanelPreview />);
+
+    const panel = screen.getByRole("region");
+    const links = panel.querySelectorAll("a");
+    expect(links).toHaveLength(0);
+
+    const enabledButtons = panel.querySelectorAll("button:not([disabled])");
+    expect(enabledButtons).toHaveLength(0);
+  });
+
+  it("has zero elements with coral/interactive-primary background inside the panel", () => {
+    render(<PanelPreview />);
+
+    const panel = screen.getByRole("region");
+    const coralElements = panel.querySelectorAll(
+      "[class*='interactive-primary'], [class*='interactive-hover'], [class*='interactive-pressed']"
+    );
+    expect(coralElements).toHaveLength(0);
   });
 });
