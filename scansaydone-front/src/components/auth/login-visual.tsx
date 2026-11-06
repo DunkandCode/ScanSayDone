@@ -15,13 +15,13 @@ export function LoginVisual() {
         className="absolute inset-0 h-full w-full object-cover scale-105"
       />
 
-      {/* Gradient veil — opaque from 65% down so caption sits on solid background-page */}
+      {/* Gradient veil — soft, never fully opaque so the scene reaches every edge */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, color-mix(in srgb, var(--color-background-page) 55%, transparent) 0%, color-mix(in srgb, var(--color-background-page) 92%, transparent) 52%, var(--color-background-page) 65%)",
+            "linear-gradient(180deg, color-mix(in srgb, var(--color-background-page) 30%, transparent) 0%, color-mix(in srgb, var(--color-background-page) 48%, transparent) 60%, color-mix(in srgb, var(--color-background-page) 60%, transparent) 100%)",
         }}
       />
 
@@ -101,15 +101,15 @@ export function LoginVisual() {
           </div>
         </div>
 
-        {/* Caption */}
-        <figcaption className="mt-6 space-y-2 text-center">
-          <p className="font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-text-primary">
+        {/* Opaque plate with caption — text no longer sits on top of the photo */}
+        <figcaption className="mt-6 w-[432px] rounded-[10px] border border-border-mid bg-background-page px-4 py-3">
+          <p className="font-ui text-[13px] font-bold uppercase tracking-[0.14em] text-text-primary">
             EL CLIENTE ESCANEA · CONTESTA · TÚ LEES
           </p>
-          <p className="font-ui text-[12px] text-text-secondary">
+          <p className="mt-2 font-ui text-[12px] text-text-secondary">
             ejemplo de referencia · sin funciones
           </p>
-          <p className="font-ui text-[14px] font-medium text-text-primary">
+          <p className="mt-2 font-ui text-[14px] font-medium text-text-primary">
             Todavía no hay panel que mostrar.
           </p>
         </figcaption>
