@@ -11,6 +11,7 @@ Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 | `planos/PLANOS-2026-11-05.md` | Planos técnicos: retícula, spans, alturas, reflujo por breakpoint y geometría de componentes | vigente |
 | `planos/L1-HERO-2026-11-05.md` | Contrato de layout y accesibilidad del hero L1 (landing): composición asimétrica 7/5, escala tipográfica, estados de componentes, orden de foco y ratios de contraste WCAG | vigente |
 | `planos/L2-COMO-FUNCIONA-2026-11-06.md` | Contrato de la banda 3 del landing (L2 "Cómo funciona"): retícula 3×364, reflujo por breakpoint, anatomía de la tarjeta de paso, conector, copy propuesto, accesibilidad y 26 criterios de aceptación | vigente |
+| `planos/L3-PANEL-2026-11-06.md` | Contrato de la banda 6 del landing (L3 "Qué ve el dueño"): única banda xxl (1320 → marco 872×545), estado vacío honesto mientras no exista captura del panel, anatomía del marco, copy propuesto, accesibilidad, 26 criterios y acta del gate de implementación | vigente |
 | `assets/MANIFEST-UX-2026-11-05.md` | Manifiesto de assets del snapshot histórico congelado | vigente |
 | `decisiones/DECISIONES-2026-11-05.md` | Registro de decisiones técnicas y de diseño con justificación, alternativas rechazadas y owner | vigente |
 
