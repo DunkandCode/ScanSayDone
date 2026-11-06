@@ -38,7 +38,7 @@ export function Applications() {
     <section
       id="aplicaciones"
       aria-labelledby="l5-title"
-      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-4"
+      className="w-full bg-surface-default px-4 py-15 md:py-25 scroll-mt-[92px]"
     >
       <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
         {/* eyebrow — 12 px hasta 991, 13 px desde 992 */}
