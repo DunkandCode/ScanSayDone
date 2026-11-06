@@ -32,11 +32,34 @@ describe("CtaFinal", () => {
     expect(container.textContent).not.toContain("Sin tarjeta");
   });
 
-  it("does not contain the generated image declaration", () => {
+  it("renders the generated image declaration line", () => {
+    render(<CtaFinal />);
+    expect(
+      screen.getByText(/La imagen de fondo es una ilustración generada/)
+    ).toBeInTheDocument();
+  });
+
+  it("background image has alt='' and aria-hidden (decorative)", () => {
     const { container } = render(<CtaFinal />);
-    expect(container.textContent).not.toContain(
-      "La imagen de fondo es una ilustración generada"
+    const imgs = container.querySelectorAll("img");
+    const bgImg = Array.from(imgs).find(
+      (img) =>
+        img.getAttribute("src")?.includes("banda-9-escena") ||
+        img.getAttribute("data-src")?.includes("banda-9-escena") ||
+        img.getAttribute("srcset")?.includes("banda-9-escena")
     );
+    expect(bgImg).not.toBeNull();
+    expect(bgImg).toHaveAttribute("alt", "");
+    expect(bgImg).toHaveAttribute("aria-hidden", "true");
+    expect(bgImg).toHaveAttribute("loading", "lazy");
+  });
+
+  it("veil layer exists with surface-dark/88 class", () => {
+    const { container } = render(<CtaFinal />);
+    const section = container.querySelector("section");
+    const veil = section?.querySelector('div[aria-hidden="true"]');
+    expect(veil).not.toBeNull();
+    expect(veil?.className).toMatch(/bg-surface-dark\/88/);
   });
 
   it("section has id='cta-final'", () => {
