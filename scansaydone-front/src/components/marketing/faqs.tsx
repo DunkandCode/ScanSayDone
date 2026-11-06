@@ -40,7 +40,7 @@ function FaqItem({ n, q, a }: { n: number; q: string; a: string }) {
           aria-expanded={abierto}
           aria-controls={`l6-a${n}`}
           onClick={() => setAbierto((v) => !v)}
-          className="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left font-ui text-[16px] font-semibold leading-[1.5] text-text-primary focus-visible:outline-[3px] focus-visible:outline-offset-[2px] focus-visible:outline-text-primary"
+          className="flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left font-ui text-[16px] font-semibold leading-[1.5] text-text-primary focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
         >
           <span>{q}</span>
           <svg
@@ -107,7 +107,7 @@ export function Faqs() {
             ¿Otra duda?{" "}
             <a
               href="/contactus"
-              className="inline-flex items-center py-2.5 font-ui text-[16px] font-semibold text-text-primary underline decoration-border-mid underline-offset-4 focus-visible:outline-[3px] focus-visible:outline-offset-[2px] focus-visible:outline-text-primary"
+              className="inline-flex items-center py-2.5 font-ui text-[16px] font-semibold text-text-primary underline decoration-border-mid underline-offset-4 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
             >
               Escríbenos
             </a>
