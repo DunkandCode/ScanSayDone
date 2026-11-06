@@ -21,13 +21,14 @@ describe("SiteFooter", () => {
     expect(contactoHeading).toBeInTheDocument();
     expect(legalHeading).toBeInTheDocument();
     
-    // Verificar que ScanSayDone (marca) NO es un heading
+    // Verificar que hay exactamente 3 headings
     const allHeadings = screen.getAllByRole("heading");
     expect(allHeadings).toHaveLength(3);
     
-    // La marca es un div, no un heading
-    const marcaElement = screen.getByText("ScanSayDone");
-    expect(marcaElement.tagName).toBe("DIV");
+    // La marca es una imagen (lockup), no un heading ni texto
+    const marcaImage = screen.getByAltText("Scan-Say-Done");
+    expect(marcaImage).toBeInTheDocument();
+    expect(marcaImage.tagName).toBe("IMG");
   });
 
   it("contiene el tagline ESCANEA. OPINA. LISTO.", () => {

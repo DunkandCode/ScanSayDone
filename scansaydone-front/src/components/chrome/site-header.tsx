@@ -156,6 +156,16 @@ export function SiteHeader() {
                     FAQ
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/entrar"
+                    className="inline-flex h-11 items-center rounded-[8px] px-4 font-ui text-[15px] font-medium text-text-primary
+                      hover:bg-surface-elevated motion-safe:transition-colors motion-safe:duration-150
+                      focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                  >
+                    Entrar
+                  </Link>
+                </li>
                 {/* Precios: sin nodo en el DOM hasta C-55 */}
                 <li>
                   <Link

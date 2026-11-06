@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 // Año fijado en el build para sitios estáticos; en servidores dinámicos se evalúa al cargar el módulo.
 const year = new Date().getFullYear();
@@ -34,9 +35,13 @@ export function SiteFooter() {
           <div className="grid grid-cols-12 gap-6">
           {/* Celda 1 — Marca */}
           <div className="col-span-12 lg:col-span-6 xl:col-span-3">
-            <div className="flex h-9 items-center font-ui text-[16px] font-semibold uppercase leading-none tracking-[0.12em] text-text-primary">
-              ScanSayDone
-            </div>
+            <Image
+              src="/img/marca/lockup-nav.png"
+              width={305}
+              height={72}
+              alt="Scan-Say-Done"
+              className="h-9 w-auto"
+            />
             <p className="mt-4 font-display uppercase text-[32px] leading-[0.95] text-text-primary">
               ESCANEA. OPINA. LISTO.
             </p>

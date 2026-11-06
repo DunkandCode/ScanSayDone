@@ -52,7 +52,7 @@ export function CtaFinal() {
                 href="/contactus"
                 className="inline-flex h-14 w-full items-center justify-center rounded-[8px] bg-interactive-primary px-6 font-ui text-[16px] font-semibold text-text-primary transition-colors duration-150 hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary sm:w-auto"
               >
-                Escríbenos
+                Hablemos
               </Link>
             </div>
             <p className="mt-6 font-ui text-[12px] text-on-dark-secondary">

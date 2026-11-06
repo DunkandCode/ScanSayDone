@@ -85,18 +85,24 @@ describe("SiteHeader", () => {
     expect(aplicacionesLink).toHaveAttribute("href", "#aplicaciones");
   });
 
-  it("does not contain 'Precios' or 'Entrar' links", () => {
+  it("does not contain 'Precios' link", () => {
     render(<SiteHeader />);
     const allLinks = screen.getAllByRole("link");
     const linkTexts = allLinks.map((link) => link.textContent?.trim());
 
     expect(linkTexts).not.toContain("Precios");
-    expect(linkTexts).not.toContain("Entrar");
 
-    // Also verify no href to /pricing or /entrar
+    // Also verify no href to /pricing
     const allHrefs = allLinks.map((link) => link.getAttribute("href"));
     expect(allHrefs).not.toContain("/pricing");
-    expect(allHrefs).not.toContain("/entrar");
+  });
+
+  it("has 'Entrar' link with href '/entrar' in desktop nav", () => {
+    render(<SiteHeader />);
+    const desktopNav = screen.getByRole("navigation", { name: "Navegación principal" });
+    const entrarLink = within(desktopNav).getByRole("link", { name: "Entrar" });
+    expect(entrarLink).toBeInTheDocument();
+    expect(entrarLink).toHaveAttribute("href", "/entrar");
   });
 
   it("burger has aria-expanded='false' initially and drawer is closed", () => {
@@ -193,6 +199,10 @@ describe("SiteHeader", () => {
     expect(drawerFaq).toBeInTheDocument();
     expect(drawerFaq).toHaveAttribute("href", "#faq");
 
+    const drawerEntrar = within(drawerNav).getByRole("link", { name: "Entrar" });
+    expect(drawerEntrar).toBeInTheDocument();
+    expect(drawerEntrar).toHaveAttribute("href", "/entrar");
+
     const drawerCta = within(drawerNav).getByRole("link", {
       name: "Ver una encuesta de ejemplo",
     });
@@ -229,7 +239,7 @@ describe("SiteHeader", () => {
     expect(drawer).toHaveAttribute("inert");
   });
 
-  it("Tab cycles through drawer focusable elements: close → section links → FAQ → CTA → close", async () => {
+  it("Tab cycles through drawer focusable elements: close → section links → FAQ → Entrar → CTA → close", async () => {
     const user = userEvent.setup();
     render(<SiteHeader />);
 
@@ -245,6 +255,7 @@ describe("SiteHeader", () => {
     const canalesLink = within(drawer!).getByRole("link", { name: "Canales" });
     const aplicacionesLink = within(drawer!).getByRole("link", { name: "Aplicaciones" });
     const faqLink = within(drawer!).getByRole("link", { name: "FAQ" });
+    const entrarLink = within(drawer!).getByRole("link", { name: "Entrar" });
     const ctaLink = within(drawer!).getByRole("link", {
       name: "Ver una encuesta de ejemplo",
     });
@@ -266,6 +277,10 @@ describe("SiteHeader", () => {
 
     await user.keyboard("{Tab}");
     expect(document.activeElement).toBe(faqLink);
+
+    // Tab to Entrar
+    await user.keyboard("{Tab}");
+    expect(document.activeElement).toBe(entrarLink);
 
     // Tab to CTA
     await user.keyboard("{Tab}");

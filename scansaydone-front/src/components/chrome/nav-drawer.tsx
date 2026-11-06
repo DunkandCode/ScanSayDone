@@ -153,6 +153,18 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
           </li>
           <li>
             <Link
+              href="/entrar"
+              onClick={onClose}
+              className="flex min-h-11 w-full items-center justify-center rounded-[8px] font-ui text-[17px] font-medium text-text-primary
+                hover:bg-surface-elevated
+                focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary
+                motion-safe:transition-colors motion-safe:duration-150"
+            >
+              Entrar
+            </Link>
+          </li>
+          <li>
+            <Link
               href={surveyHref}
               onClick={onClose}
               className="flex h-12 w-full items-center justify-center rounded-[8px] border-2 border-text-primary bg-transparent

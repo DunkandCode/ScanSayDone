@@ -20,9 +20,9 @@ describe("CtaFinal", () => {
     ).toBeInTheDocument();
   });
 
-  it("button says 'Escríbenos' and links to /contactus", () => {
+  it("button says 'Hablemos' and links to /contactus", () => {
     render(<CtaFinal />);
-    const link = screen.getByRole("link", { name: "Escríbenos" });
+    const link = screen.getByRole("link", { name: "Hablemos" });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/contactus");
   });
