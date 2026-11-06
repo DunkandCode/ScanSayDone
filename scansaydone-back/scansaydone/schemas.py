@@ -29,8 +29,12 @@ class RespuestaEntrada(BaseModel):
 
     @field_validator("p5_comentario")
     @classmethod
-    def comentario_vacio_es_nulo(cls, valor: str | None) -> str | None:
-        return valor or None
+    def comentario_valido(cls, valor: str | None) -> str | None:
+        # PostgreSQL no puede guardar el carácter NUL en un texto: sin esta validación
+        # el INSERT fallaría y el cliente recibiría un 500 en vez de un 422.
+        if valor and "\x00" in valor:
+            raise ValueError("El comentario contiene caracteres no permitidos.")
+        return valor or None  # un comentario vacío tras recortar se guarda como NULL
 
 
 class RespuestaCreada(BaseModel):

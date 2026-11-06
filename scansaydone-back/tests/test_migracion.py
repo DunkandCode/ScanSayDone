@@ -1,3 +1,4 @@
+import io
 from datetime import date, time
 from pathlib import Path
 
@@ -59,6 +60,17 @@ def test_migracion_crea_tablas_y_rubros(bd_migrada):
         filas = conexion.execute(sa.text("select rubro_id, nombre from dim_rubros order by rubro_id")).all()
     assert len(filas) == 4
     assert filas[0] == (1, "Minimarket / almacén de barrio")
+
+
+def test_migracion_activa_rls_en_todas_las_tablas_incluida_alembic_version(monkeypatch):
+    """En Supabase, `public` es accesible con la clave anon: toda tabla debe tener RLS."""
+    monkeypatch.setenv("POSTGRES_URL_NON_POOLING", "postgresql://u:p@h:5432/db")
+    salida = io.StringIO()
+    command.upgrade(Config(str(ALEMBIC_INI), output_buffer=salida), "head", sql=True)
+
+    sql = salida.getvalue()
+    for tabla in ("dim_rubros", "dim_empresas", "fact_encuestas", "alembic_version"):
+        assert f"ALTER TABLE {tabla} ENABLE ROW LEVEL SECURITY" in sql
 
 
 def test_migracion_acepta_fila_valida_y_pone_creado_en(bd_migrada):

@@ -9,6 +9,8 @@ from sqlalchemy.pool import NullPool
 
 from scansaydone.config import obtener_url_db
 
+SEGUNDOS_ESPERA_CONEXION = 5
+
 
 @lru_cache(maxsize=1)
 def obtener_engine() -> Engine:
@@ -16,8 +18,13 @@ def obtener_engine() -> Engine:
     url = obtener_url_db()
     argumentos = {}
     if url.startswith("postgresql"):
-        # El pooler de transacciones de Supabase no admite sentencias preparadas.
-        argumentos["connect_args"] = {"prepare_threshold": None}
+        # prepare_threshold=None: el pooler de transacciones de Supabase no admite sentencias
+        # preparadas. connect_timeout: sin él, una base que no responde tarda minutos en fallar
+        # (y la función de Vercel moriría por tiempo antes de poder devolver el 503).
+        argumentos["connect_args"] = {
+            "prepare_threshold": None,
+            "connect_timeout": SEGUNDOS_ESPERA_CONEXION,
+        }
     # NullPool: en serverless cada invocación abre y cierra su conexión.
     return create_engine(url, poolclass=NullPool, **argumentos)
 

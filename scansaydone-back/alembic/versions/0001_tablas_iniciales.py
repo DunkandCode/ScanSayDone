@@ -13,7 +13,8 @@ down_revision = None
 branch_labels = None
 depends_on = None
 
-TABLAS = ("dim_rubros", "dim_empresas", "fact_encuestas")
+# alembic_version también vive en `public`: sin RLS, la clave anon podría borrarla o alterarla.
+TABLAS = ("dim_rubros", "dim_empresas", "fact_encuestas", "alembic_version")
 
 
 def upgrade() -> None:

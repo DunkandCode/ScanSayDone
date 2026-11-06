@@ -89,6 +89,7 @@ def test_comentario_301_caracteres_se_rechaza(client, empresa_cafe):
         {"p1_nps": True},
         {"empresa_id": 0},
         {"empresa_id": 2147483648},  # mayor que el máximo de INTEGER
+        {"p5_comentario": "hola\u0000"},  # PostgreSQL no admite NUL en texto: sería un 500 al insertar
         {"extra": 1},
     ],
 )
