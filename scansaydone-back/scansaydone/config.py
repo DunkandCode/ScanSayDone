@@ -13,6 +13,8 @@ from dotenv import load_dotenv
 # Carga scansaydone-back/.env si existe (desarrollo local). No pisa variables ya definidas.
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
+VERSION = "0.1.0"
+
 ESQUEMA_DRIVER = "postgresql+psycopg"
 
 # Parámetros de la URL que libpq/psycopg aceptan. Las URLs de la integración de
