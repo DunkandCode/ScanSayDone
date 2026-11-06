@@ -8,16 +8,22 @@
 
 ```
 assets/marca/
-├── fuente/                 ← originales intactos. NO se sirven, NO se editan.
-│   ├── logoScanCoral.png   2172 × 724   (3:1)   lockup horizontal con wordmark
-│   ├── faviconScan.png     1254 × 1254  (1:1)   isotipo, base de favicon e iconos
-│   ├── referencias.png     1536 × 1024          lámina de identidad (4 variantes + retícula)
-│   ├── logoDunk.png        1774 × 887           marca de la empresa que desarrolló el sistema
-│   └── logo-symbol.svg     vector 128           isotipo una tinta, geometría autorizada
-└── MANIFEST-ASSETS.md      ← este archivo
+├── fuente/                        ← originales intactos. NO se sirven, NO se editan.
+│   ├── logoScanCoral.png          2172 × 724   (3:1)    lockup color, PNG original
+│   ├── faviconScan.png            1254 × 1254  (1:1)    isotipo, base de favicon e iconos
+│   ├── referencias.png            1536 × 1024           lámina de identidad (4 variantes + retícula)
+│   ├── logoDunk.png               1774 × 887            marca de la empresa desarrolladora
+│   ├── logo-symbol.svg            vector 128            isotipo una tinta, geometría autorizada
+│   ├── lockup-horizontal-color.webp  2048 × 683  (3:1)  lockup color, horizontal
+│   ├── lockup-vertical-color.webp     819 × 1024 (0.8:1) lockup color, vertical (isotipo arriba)
+│   ├── lockup-vertical-alterno.webp   1942 × 809 (2.4:1) variante vertical alternativa
+│   ├── lockup-variantes-mono.webp     2048 × 682 (3:1)  plancha con 6 variantes a una tinta
+│   ├── isotipo-color-384-a.webp       384 × 384         isotipo color, versión de icono
+│   └── isotipo-color-384-b.webp       384 × 384         isotipo color, versión de icono
+└── MANIFEST-ASSETS.md             ← este archivo
 
 scansaydone-front/public/img/marca/
-└── logo-dunk.png           ← única marca que se sirve hoy, para el pie
+└── logo-dunk.png                  ← única marca que se sirve hoy, para el pie
 ```
 
 **Por qué solo `logo-dunk.png` está en `public/`:** el manifiesto de marca deroga los lockups en SVG y fija que
@@ -85,3 +91,24 @@ optimizada (ancho ≤ 240 px, WebP) y se conserva el original aquí, en `fuente/
 | marca de la empresa en el pie | `logoDunk.png` → WebP ≤ 240 px | lote del logo |
 
 Ninguna de estas derivaciones se hizo todavía: el operador dejó el logo para el final.
+
+## 7. Hallazgo del 2026-11-06: el wordmark real no es el que sirve el sitio
+
+Al abrir las variantes nuevas se ve el lockup definitivo, y **no coincide con lo implementado**:
+
+| | Marca real (activos) | Servido hoy en el sitio |
+|---|---|---|
+| Cadena | **`SCAN-SAY-DONE`**, con guiones | `SCANSAYDONE`, sin guiones |
+| Tipografía | condensada en mayúsculas (familia tipo Bebas) | Montserrat 600, mayúsculas con tracking 0.12 em |
+| Color | **tricolor**: `SCAN` tinta, `SAY` coral, `DONE` tinta | tinta plana |
+| Tagline | `ESCANEA OPINA LISTO` bajo el wordmark | no lleva |
+| Isotipo | marco de escaneo + bocadillo, **obligatorio en el lockup** | no está |
+
+Consecuencias que el lote del logo tiene que resolver, no este archivo:
+
+1. **C-74 queda resuelto por el activo:** la grafía oficial es `SCAN-SAY-DONE`, no `ScanSayDone`.
+2. **La regla «Bebas solo títulos ≥ 32 px» choca con el wordmark.** La restricción se escribió para titulares de sección; el lockup es una pieza de marca y su propia geometría manda. Hay que decidir si el wordmark se incorpora como **pieza gráfica** (raster/SVG del activo) o se reconstruye como texto vivo con la familia condensada.
+3. **El tagline del sitio ya coincide:** el pie sirve `ESCANEA. OPINA. LISTO.` — es la misma cadena de la marca, solo con puntos. No hay que inventar nada.
+4. La **plancha monocroma** (`lockup-variantes-mono.webp`) trae las seis variantes a una tinta, incluidas las invertidas para fondo oscuro. Es la que sirve para decidir el pie y cualquier uso sobre `surface-dark` sin volver a medir contraste: el activo ya trae sus pares.
+
+Ninguna de estas piezas está en `public/` todavía, salvo la marca de la empresa desarrolladora. El lockup no se sirve hasta que el lote del logo decida su forma final.
