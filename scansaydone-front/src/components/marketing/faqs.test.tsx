@@ -2,6 +2,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Faqs } from "./faqs";
+import { QR_CLAIM_BODY } from "../../lib/copy-landing";
 
 const PREGUNTAS = [
   "¿Tengo que instalar algo?",
@@ -15,7 +16,7 @@ const RESPUESTAS = [
   "No. La encuesta funciona en el navegador, el tuyo y el de tus clientes. No hay que descargar nada.",
   "Tampoco. Enfocan el teléfono al QR y la encuesta se abre en el navegador.",
   "En tu panel. Cada opinión entra con su fecha, su canal y lo que contestó.",
-  "El mismo QR sirve para siempre: no hay que reimprimirlo.",
+  QR_CLAIM_BODY,
   "No. Es un ejemplo. Cuando falta un dato o una foto reales, la página lo dice con letras.",
 ];
 

@@ -42,7 +42,7 @@ const lineData = [
 
 /* ── SVG constants ──────────────────────────────────────────────────────────── */
 const LINE_W = 872;
-const LINE_H = 160;
+const LINE_H = 138;
 
 const linePath = lineData
   .map((v, i) => {
@@ -52,6 +52,13 @@ const linePath = lineData
   })
   .join(" ");
 
+/** Reference lines at values 0, 5, 10 for the y-axis scale. */
+const refLines = [
+  { value: 10, y: 0 },
+  { value: 5, y: LINE_H / 2 },
+  { value: 0, y: LINE_H },
+] as const;
+
 const BAR_VIEW_W = 872;
 const BAR_VIEW_H = 130;
 const BAR_MAX_H = 100;
@@ -60,7 +67,8 @@ const BAR_RECT_W = 52;
 
 const barRects = demoData.map((d, i) => {
   const x = i * BAR_STEP + (BAR_STEP - BAR_RECT_W) / 2;
-  const height = (d.count / maxCount) * BAR_MAX_H;
+  const rawHeight = (d.count / maxCount) * BAR_MAX_H;
+  const height = d.count > 0 ? Math.max(2, rawHeight) : 0;
   const y = BAR_MAX_H - height;
   return {
     x,
@@ -82,7 +90,7 @@ export function PanelPreview() {
       aria-labelledby="l3-title"
       className="w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
     >
-      <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl 2xl:max-w-mkt-2xl">
+      <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
         {/* Eyebrow */}
         <p className="font-ui text-[12px] font-semibold uppercase tracking-[0.14em] text-text-secondary lg:text-[13px]">
           TUS OPINIONES, EN UN PANEL
@@ -103,14 +111,14 @@ export function PanelPreview() {
 
         {/* Marco con contenido de ejemplo */}
         <div className="mt-12 grid grid-cols-12 gap-6">
-          <figure className="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 relative m-0 flex aspect-auto flex-col overflow-hidden rounded-[8px] border border-solid border-border-mid bg-surface-default md:aspect-[16/10]">
+          <figure className="col-span-12 max-w-[872px] relative m-0 flex aspect-auto flex-col overflow-hidden rounded-[8px] border border-solid border-border-mid bg-surface-default md:aspect-[16/10]">
             {/* Badge DEMO */}
             <span className="absolute left-4 top-4 z-10 rounded-[4px] border border-border-mid bg-surface-elevated px-2 py-0.5 font-ui text-[11px] font-semibold uppercase tracking-[0.1em] text-text-primary">
               DEMO
             </span>
 
             {/* Contenido interno */}
-            <div className="flex min-h-0 flex-1 flex-col gap-3 p-4 pt-10 md:gap-4 md:p-6 md:pt-12">
+            <div className="flex min-h-0 flex-1 flex-col gap-3 p-4 pt-10 md:gap-7 md:p-6 md:pt-12">
               {/* Fila de título */}
               <div className="flex items-center justify-between">
                 <p className="font-ui text-[15px] font-semibold text-text-primary md:text-[17px]">
@@ -153,27 +161,58 @@ export function PanelPreview() {
               </div>
 
               {/* Línea de evolución */}
-              <div className="flex-1 min-h-0">
+              <div className="shrink-0 h-[130px]">
                 <svg
                   viewBox={`0 0 ${LINE_W} ${LINE_H}`}
-                  aria-hidden="true"
-                  focusable="false"
+                  role="img"
+                  aria-label="Evolución de la nota media en 30 días, sobre una escala de 0 a 10"
                   data-decorativo="panel-linea"
                   className="h-full w-full"
-                  preserveAspectRatio="none"
                 >
+                  {refLines.map((ref) => (
+                    <g key={ref.value}>
+                      <line
+                        x1="0"
+                        y1={ref.y}
+                        x2={LINE_W}
+                        y2={ref.y}
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        className="text-border-subtle"
+                      />
+                      <text
+                        x="4"
+                        y={ref.y}
+                        dominantBaseline={
+                          ref.value === 10
+                            ? "hanging"
+                            : ref.value === 0
+                              ? "ideographic"
+                              : "middle"
+                        }
+                        fontSize="11"
+                        fontFamily="system-ui, sans-serif"
+                        fill="currentColor"
+                        className="text-text-secondary"
+                      >
+                        {ref.value}
+                      </text>
+                    </g>
+                  ))}
                   <path
                     d={linePath}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
                     className="text-text-primary"
+                    aria-hidden="true"
+                    focusable="false"
                   />
                 </svg>
               </div>
 
               {/* Barras de distribución — solo escritorio */}
-              <div className="hidden md:block">
+              <div className="hidden shrink-0 md:block">
                 <svg
                   viewBox={`0 0 ${BAR_VIEW_W} ${BAR_VIEW_H}`}
                   aria-hidden="true"

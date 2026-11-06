@@ -431,3 +431,101 @@ Opciones, en orden de preferencia del orquestador:
 3. Aceptar la repetición y registrarla como intencional (el mismo verbo, el mismo destino, dos intensidades).
 
 **Owner:** operador. No se cambió ninguna cadena firmada.
+
+---
+
+## 10. Correcciones del operador 2026-11-06 (banda 6, claim del QR, presentación de la franja)
+
+> **Qué es:** cierre de tres correcciones pedidas por el operador tras revisar el landing implementado (F1). **Este §10 abre C-84…C-86.** No edito código; no corrí build/tests; cero PASS. Medición base `[M]` 1440×900 dada por el orquestador + as-built leído en esta sesión (`panel-preview.tsx`, `trust-strip.tsx`, `how-it-works.tsx`, `channels.tsx`, `applications.tsx`, `faqs.tsx`, `globals.css:24-36`).
+> **Causa raíz medida de la banda 6:** es la única banda con escalón `2xl:max-w-mkt-2xl` (`panel-preview.tsx:85`). Breakpoints propios del sitio: `lg=992`, `xl=1200`, `2xl=1400` (`globals.css:27-29 [as-built]`). A 1440 entra 2xl → contenedor 1320 en x=60, mientras bandas 3/4/5 paran en xl → 1140 en x=150 (`how-it-works.tsx:32`, `channels.tsx:114`, `applications.tsx:40 [as-built]`). La figura queda además centrada por `lg:col-span-8 lg:col-start-3` (`:106`): en contenedor de 1320, tracks de 88 → x=284, w=872 `[D]` — exacto con lo medido.
+
+### 10.1 Banda 6 — salida elegida: **(b) eje compartido 150, figura 872 a la izquierda**
+
+| Elemento | Receta | Efecto a 1440 |
+|---|---|---|
+| Contenedor (`:85`) | retirar el escalón `2xl:max-w-mkt-2xl`; la escalera pasa a ser la misma de bandas 3/4/5: `max-w-mkt-sm md:720 lg:960 xl:1140` | contenedor **1140 en x=150**; eyebrow, `h2`, lead y bullets arrancan en **150** — un solo eje con cómo funciona/canales/aplicaciones |
+| Wrapper de la figura (`:105`) | se conserva `mt-12 grid grid-cols-12 gap-6` (único hijo) | nada |
+| Figura (`:106`) | quitar `md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3`; queda `col-span-12` + **`max-w-[872px]`** (izquierda, sin `mx-auto`) | figura **en x=150, ancho 872 exacto**, alto 545 por `md:aspect-[16/10]` porta; **268 px libres a la derecha** (margen interior del contenedor) |
+
+- **872 no es número nuevo:** es la geometría autorada del panel — `LINE_W=872`, `BAR_VIEW_W=872` (`panel-preview.tsx:44,55 [as-built]`). El arbitrary `max-w-[872px]` es el primer piso en CSS de un valor ya firmado en el componente.
+- **Requisitos duros, intactos:** borde del marco 1 px sólido `border-border-mid` y badge `DEMO` (`absolute left-4 top-4`) no se tocan; `md:aspect-[16/10]` y `figcaption` porta; 11 barras (11 `<rect>` generados de `demoData`) y los 3 KPIs (8,5 · 486 · 377) no se mueven; **cero coral** dentro del panel (ninguna clase de color cambia; `grep FC5A41|FD6E57|E84A33` en `panel-preview.tsx` = 0 hoy `[as-built]`).
+- **Alto de banda a 1440:** ≈ **1041 sin cambio** `[D]` — la corrección es horizontal; figura sigue midiendo 545. Riesgo único: que el `h2` «TODO EN UN MISMO LUGAR» cambie de líneas en 1140 vs 1320 (Bebas 64: estimación ~530–560 px de avance → 1 línea en ambos). El gate remide y fija el número (B-10).
+- **A 992** (=`lg` propio): contenedor 960 en x=16, figura `min(872, 960)=872` en **x=16 con el titular** — eje compartido también aquí; ancho 872 > los 632 que producía el centrado viejo → **mejora** la escala de las barras. A 768–991: contenedor 720, figura 720 (vs 596 viejo: también mejora; etiquetas svg pasan de ~9,6 a ~11,6 px `[D]`, escala del viewBox — el gate registra a 800 y 992). **Scroll horizontal: ninguno** (figura ≤ contenedor siempre).
+- **A 375:** sin cambio material: contenido 343; figura `col-span-12` → 343; `aspect-auto` bajo md porta; barras ocultas (`hidden md:block`); titular y figura comparten x=16 igual que antes.
+
+**Por qué caen las otras:**
+- **(a)** contenedor 1140 con figura centrada: la figura volvería a x=284 (150+134). El síntoma textual del operador —«el dashboard al medio»— **sobrevive**: titular y figura seguirían sin borde común.
+- **(c)** figura 1140: obliga a reescribir la geometría firmada del panel (11 barras y 3 KPIs con +268 px). Con `aspect-[16/10]` el alto pasa 545→712 (+167): barras y etiquetas SVG se inflan ~1,31× (números de barra de 14 a ~18 px, por encima del lead de 17–18 de la propia banda) y la línea `preserveAspectRatio="none"` se estira. Rediseño del as-built de acta §13 sin ganancia de lectura.
+- **(d)** (titular centrado / contenedor 960 con figura centrada): centrar el titular rompe el alineamiento izquierdo de todo el landing; la variante 960 deja el mismo desface (44 px) en miniatura.
+
+**Nota de coherencia (reemplazo parcial):** el operador había aceptado tres ejes de titular (150/60/240) cuando las bandas 2 y 9 no existían. Esta corrección **reemplaza parcialmente esa aceptación**: el eje **60 desaparece** (la banda 6 se mueve al eje 150). **Quedan en pie** el eje 150 (bandas 3/4/5, ahora también la 6) y el eje 240 de la franja de confianza (contenedor `mkt-lg` 960 firmado en §1.3) — la queja del operador no los nombra y la escalera centrada 150→240→404 (FAQ/banda 9) sigue siendo coherente. No se reabre ningún otro eje: **C-85, owner Operador, acta normal.**
+
+### 10.2 Claim del QR — cadena corregida (reemplazo del canon, con autorización)
+
+La regla 9 de `UX-SPEC §5.1:346` **exige una cadena literal** (`no se varía ni se reescribe a mano`) y hoy vive como constante `CANONICA_QR` en `faqs.tsx:9`. El operador autorizó el cambio («eso corregirlo», 2026-11-06, consignado en el encargo). Se sustituye el canon **por acta, con fecha**, no por edición silenciosa:
+
+| | Cadena vieja (deja de usarse) | Cadena nueva |
+|---|---|---|
+| Título claim 3 | `EL QR NO SE REIMPRE` (literal servido, subjuntivo defectuoso) | **`TU QR NO CAMBIA`** (3 palabras, ≤4 ✓, indicativo, tuteo coherente con «TUS CLIENTES» del claim 2) |
+| Cuerpo / canon | `El mismo QR sirve para siempre: no hay que reimprimirlo.` | **`Si imprimes otro cartel, el código es el mismo.`** (47 car. ≤60 ✓, una línea, indicativo, cero promesa de durabilidad física: afirma invariancia del código, no del objeto) |
+
+- **Qué se sustituye exactamente:** la literal de `UX-SPEC §5.1` regla 9 (línea 346) y su reflejo en `COPY-INTERNAS §1` → enmienda fechada 2026-11-06 por el operador/PM (**C-84, owner Operador**). La FAQ `¿Tengo que reimprimir el QR cada vez?` (`faqs.tsx:25`) pasa a responder con la cadena nueva: la respuesta funciona en ambos contextos (banda 2 y FAQ) porque describe el hecho de diseño, no una promesa.
+- **Defecto gramatical cerrado:** indicativo en las dos cadenas («no cambia», «imprimes… es»); cero subjuntivo «reimpri*a*».
+- **Hallazgo de mecanismo `[as-built]`:** `trust-strip.tsx:22` **duplica la literal a mano** en vez de importar la constante — la regla 9 («desde una constante compartida») está violada en el as-built aunque el string coincidiera. Con el cambio: la constante compartida se sube a un módulo único (p. ej. `src/lib/copy-canonical.ts`, export de `CANONICA_QR`) que importan `faqs.tsx` y `trust-strip.tsx`; la literal nueva aparece **una sola vez** en `src`. Tests acoplados a actualizar en el mismo lote: `trust-strip.test.tsx:15,33` y `faqs.test.tsx:18`.
+- Icono `icon-sin-reimpresion` (hoja + flecha de retorno) **porta**: el giro semántico es reutilización, no duración; no se reabre el set cerrado T1.
+
+### 10.3 Franja de claims — presentación: filetes verticales editoriales (separación por borde)
+
+**Una mejora, un mecanismo ya firmado** («elevación/separación por borde y color, no por sombra»): dos **filetes verticales de 1 px** entre las tres columnas, de icono a cuerpo, sin tocar tipografía, fondo ni track.
+
+| Parámetro | Número |
+|---|---|
+| Filetes | 2, ancho 1 px, `bg-border-mid` #8A6F55 (token servido, cero hex nuevo), `aria-hidden="true"`, `pointer-events-none`, **absolute** dentro del wrapper de la retícula (`relative`) |
+| Posición a 1440 | centro del gap 1: **x=556**; centro del gap 2: **x=884** (tracks 304 en 240/568/896; gaps 544–568 y 872–896 `[D]` sobre contenedor 960 medido) |
+| Fórmula responsive | `left-[calc((100%-48px)/3+12px)]` y `left-[calc(2*((100%-48px)/3)+36px)]` — exacta sobre cualquier contenedor con `gap-6` y 3 tracks |
+| Altura | `inset-y-0` = altura del contenido (icono top → body bottom): ≈ **155 px** a 1440 (banda medida 275 − py 120 `[D]`) |
+| Aire | 12 px de clara a cada lado del filete (semigap) |
+| Corte | `hidden md:block`: filete **solo con 3 tracks** (≥768, md con contenedor ≥736); a 544–767 (2+1 tracks) y móvil (1 track): **cero filetes**, la separación la hace el gap 16/24 como hoy |
+| Contraste | filete↔elevated **3.40** `[D §1.3]` ≥3 ✓ (elemento no textual); superficies y pares de texto **intactos**: elevated #F0D8BD no cambia; title 12.82, body 5.33 `[V]` |
+| Altos resultantes | **275 ±2 a 1440** y **501 ±5 a 375** `[M acta §9]` — los filetes son absolute: **cero cambio de layout**; el gate re-mide |
+
+**Coral: NO.** Un acento coral en los iconos competiría con el coral del hero (regla «un solo coral por pantalla»: al scrollear, banda 2 puede compartir pliegue con el hero) y rompería el presupuesto firmado. Los iconos quedan `text-text-primary` como hoy. **Tamaños: NO.** Subir el icono 32→40 cambiaría el trazo efectivo del set cerrado (1,5×40/24 = 2,5 px) y reabriría acta §13 sin pedirlo. **Dos filas: NO.** Duplicaría el alto de una banda cuyo rol es «ligera» `[P §1.3]`. **Cifra/palabra destacada: NO** en esta vía — cifras vetadas (`UX-SPEC §5.2`); destacar palabra exigiría una segunda tinta o coral. **C-86, owner Operador, acta normal.**
+
+### 10.4 Qué se reabre / qué no
+
+- **Se reabre:** geometría interna de banda 6 (clases `:85/:106`), las 2 cadenas del claim 3 + sus tests, el mecanismo de la constante compartida (hoist), y se **reemplaza parcialmente** la aceptación previa de ejes (60 fuera; 150/240 y la escalera 150→240→404 quedan).
+- **No se reabre:** ningún copy firmado (C-49 FAQ, C-67 barra, C-48 anillo), panel interno de la banda 6 (barras/KPIs/badge/caption/aspect), py/gap/tracks y fondo elevated de la banda 2, banda 9 (C-83 sigue pendiente, ajeno a esto), C-76…C-83.
+
+### 10.5 Criterios binarios del gate (añadidos a §7)
+
+1. A 1440: x del eyebrow/h2 de `#panel` = **150 ±1** y x izquierdo de la figura = **150 ±1**, ancho figura **872 ±1**, alto figura **545 ±2**; cero elemento de la banda con borde izquierdo en x=60.
+2. Figura: computed border 1 px sólido `rgb(138,111,85)`; badge `DEMO` visible en left-4/top-4 (captura); DOM conserva 11 `<rect>`, los 3 KPIs y el `figcaption` exacto; `grep FC5A41|FD6E57|E84A33` en `panel-preview.tsx` = 0.
+3. A 992: titular y figura comparten x (16 ±1), ancho figura 872; a 375: figura 343, alto auto, cero scroll horizontal en 375/320; alto de banda a 1440 re-medido y anotado (tolerancia ±30 vs 1041).
+4. Claim QR: as-test exactos `TU QR NO CAMBIA` y `Si imprimes otro cartel, el código es el mismo.` en banda 2 y en la respuesta de la FAQ; grep de `sirve para siempre` y `EL QR NO SE REIMPRE` en `src/` = **0**; la literal nueva aparece **1 vez** en `src` (constante compartida importada por ambos componentes).
+5. Franja: exactamente **2** filetes a ≥768 (computed 1 px `rgb(138,111,85)`, `aria-hidden`) y **0** a 375; cero `h2`/enlaces/botones nuevos (no regresión de §7.3); altura banda 275 ±2 a 1440 / 501 ±5 a 375; cero coral (los 3 iconos siguen `rgb(26,24,27)`).
+6. Docs: enmienda fechada de `UX-SPEC §5.1` regla 9 y de `COPY-INTERNAS §1` en acta antes de publicar la cadena nueva (**C-84**).
+
+### 10.6 Lo que NO verifiqué
+
+- Nada ejecutado: sin build/lint/tests/axe/Playwright; **cero PASS**. Los x/anchos citados son aritmética sobre la medición `[M]` del encargo + clases leídas, no re-medición mía.
+- Líneas del `h2` y alto final de banda a 1140 (estimados 1 línea/±0); escala de etiquetas SVG a 720/872 estimada por viewBox.
+- El `figcaption`/badge los verifiqué por lectura estática, no por captura.
+- El axis del hero (`hero.tsx:6` tiene su propia escalera con `px-4 sm:px-6 lg:px-8`) **no lo audité** — fuera del encargo; si el operador pide un pase global de ejes, es otra tarea.
+- Si los 268 px libres a la derecha convencen visualmente es criterio del operador con captura; el descarte de (c) queda por si prefiere panel ancho (reabriría geometría firmada del panel).
+- La corrección de la FAQ por duplicación de constante toca `faqs.tsx` (banda 8, no prohibida pero fuera del «un solo archivo»: la especifico aquí para que frontend la ejecute; yo no la edito).
+
+---
+
+## 11. Acta de ejecución de las correcciones — 2026-11-06 (orquestador)
+
+**Aplicado:** la banda 6 pierde el escalón `2xl` y pasa al contenedor de 1140 con su `figure` de 872 alineada a la izquierda (**x=150**, antes 60); el claim del QR se sustituye por `TU QR NO CAMBIA` / `Si imprimes otro cartel, el código es el mismo.` y la cadena se sube a `src/lib/copy-landing.ts`, que ahora importan la franja y la FAQ (antes estaba duplicada a mano); la franja de confianza se suma al eje 150 con tracks de 364 y dos filetes de 1 px entre columnas.
+
+**Medido:** **103 tests**, `build` 14/14, `lint` 0 errores, `tsc` 0, **axe 0 violaciones**. Franja en **x=150** con tracks de 364 y los tres títulos en **una línea** (antes el segundo partía en dos); filetes en 526 y 914 a 1440 y **0** a 375; figura del panel en **150/872/545**; banda 6 en 1041; franja en 245 a 1440 y 481 a 375.
+
+**Un objetivo no se cumplió y no era alcanzable:** la proporción trazo/bloque del panel quedó en **19 %** contra el ≥55 % pedido. Con escala 0–10 y datos entre 7,4 y 9,2 el trazo ocupa 18 % por aritmética, no por CSS. Se resolvió por otra vía: **el vacío ahora es un eje** con referencias en 0, 5 y 10 y sus etiquetas, así que el espacio que antes estaba en blanco dice dónde cae la línea. La franja blanca grande desapareció; lo que queda es información.
+
+**Desvío menor:** el alto de la franja en móvil bajó de 501 a 481 porque el cuerpo del claim nuevo es más corto (47 caracteres frente a 60) y envuelve menos. Es consecuencia de la corrección de copy, no un defecto.
+
+**Nota sobre la alineación:** la franja estaba en 960 centrado por canon; se movió a 1140 para compartir eje con el resto. Esto **reemplaza parcialmente** la aceptación previa de los tres ejes de titular: hoy la página tiene 150 (bandas 2, 3, 4, 5, 6), 404 (bloque de la FAQ, centrado a propósito) y el bloque de 632 del cierre. El eje 60 desapareció.
+
+**Sin tocar y pendiente:** C-83 (dos «Escríbenos» en el mismo pliegue) sigue abierto; la franja no lleva CTA, así que no lo empeora.

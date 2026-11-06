@@ -4,7 +4,12 @@
  * Franja de confianza entre Hero y Cómo Funciona.
  * 3 claims sin h2, sin enlaces, sin botones.
  * Fondo: surface-elevated con bordes border-mid.
+ *
+ * Corrección 2026-11-06 (C-84 / §10): el claim 3 importa la literal canónica
+ * desde src/lib/copy-landing.ts (un único punto de verdad).
  */
+
+import { QR_CLAIM_TITLE, QR_CLAIM_BODY } from "../../lib/copy-landing";
 
 const CLAIMS = [
   {
@@ -18,8 +23,8 @@ const CLAIMS = [
     iconId: "icon-sin-cuenta",
   },
   {
-    title: "EL QR NO SE REIMPRE",
-    body: "El mismo QR sirve para siempre: no hay que reimprimirlo.",
+    title: QR_CLAIM_TITLE,
+    body: QR_CLAIM_BODY,
     iconId: "icon-sin-reimpresion",
   },
 ] as const;
@@ -27,7 +32,7 @@ const CLAIMS = [
 export function TrustStrip() {
   return (
     <section className="w-full border-y border-border-mid bg-surface-elevated px-4 py-15">
-      <div className="mx-auto grid w-full max-w-mkt-lg grid-cols-1 gap-4 min-[544px]:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] md:gap-6">
+      <div className="relative mx-auto grid w-full max-w-mkt-xl grid-cols-1 gap-4 min-[544px]:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] md:gap-6">
         {CLAIMS.map((claim) => (
           <div key={claim.title} className="flex flex-col">
             {claim.iconId === "icon-sin-app" && (
@@ -103,6 +108,18 @@ export function TrustStrip() {
             </p>
           </div>
         ))}
+
+        {/* Filetes verticales entre columnas (C-86, §10.3): solo desktop (md+) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 hidden w-px bg-border-mid md:block"
+          style={{ left: "calc((100% - 48px) / 3 + 12px)" }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 hidden w-px bg-border-mid md:block"
+          style={{ left: "calc(2 * ((100% - 48px) / 3) + 36px)" }}
+        />
       </div>
     </section>
   );

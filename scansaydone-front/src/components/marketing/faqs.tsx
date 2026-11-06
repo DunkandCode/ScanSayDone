@@ -5,8 +5,9 @@
 // All colors resolve to @theme tokens defined in globals.css.
 import { useState } from "react";
 
-// [P] canonical literal — UX-SPEC §5.1 rule 9; not varied or rewritten by hand:
-const CANONICA_QR = "El mismo QR sirve para siempre: no hay que reimprimirlo.";
+// [P] canonical literal — UX-SPEC §5.1 rule 9 (enmendada 2026-11-06 C-84):
+// un único punto de verdad compartido con la franja de confianza (banda 2).
+import { QR_CLAIM_BODY } from "../../lib/copy-landing";
 
 // Isolated data (CANON §3 / F0.5). Adding an item requires a signed act (§5.5).
 const PREGUNTAS: { q: string; a: string }[] = [
@@ -22,7 +23,7 @@ const PREGUNTAS: { q: string; a: string }[] = [
     q: "¿Dónde veo lo que responden?",
     a: "En tu panel. Cada opinión entra con su fecha, su canal y lo que contestó.",
   },
-  { q: "¿Tengo que reimprimir el QR cada vez?", a: CANONICA_QR },
+  { q: "¿Tengo que reimprimir el QR cada vez?", a: QR_CLAIM_BODY },
   {
     q: "¿Lo que se ve en esta página es real?",
     a: "No. Es un ejemplo. Cuando falta un dato o una foto reales, la página lo dice con letras.",

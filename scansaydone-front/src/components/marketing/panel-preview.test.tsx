@@ -111,15 +111,63 @@ describe("PanelPreview", () => {
     expect(rects).toHaveLength(11);
   });
 
-  it("line SVG has data-decorativo='panel-linea' and aria-hidden", () => {
+  it("line SVG has role='img' with descriptive aria-label and data-decorativo", () => {
     render(<PanelPreview />);
 
     const lineSvg = document.querySelector(
       '[data-decorativo="panel-linea"]'
     );
     expect(lineSvg).toBeInTheDocument();
-    expect(lineSvg).toHaveAttribute("aria-hidden", "true");
-    expect(lineSvg).toHaveAttribute("focusable", "false");
+    expect(lineSvg).toHaveAttribute("role", "img");
+    expect(lineSvg).toHaveAttribute(
+      "aria-label",
+      "Evolución de la nota media en 30 días, sobre una escala de 0 a 10"
+    );
+  });
+
+  it("line path is aria-hidden and not focusable", () => {
+    render(<PanelPreview />);
+
+    const lineSvg = document.querySelector(
+      '[data-decorativo="panel-linea"]'
+    );
+    const path = lineSvg!.querySelector("path");
+    expect(path).toBeInTheDocument();
+    expect(path).toHaveAttribute("aria-hidden", "true");
+    expect(path).toHaveAttribute("focusable", "false");
+  });
+
+  it("renders three reference lines at values 0, 5, 10", () => {
+    render(<PanelPreview />);
+
+    const lineSvg = document.querySelector(
+      '[data-decorativo="panel-linea"]'
+    );
+    const lines = lineSvg!.querySelectorAll("line");
+    expect(lines).toHaveLength(3);
+  });
+
+  it("renders reference labels 0, 5, 10 as accessible text inside SVG", () => {
+    render(<PanelPreview />);
+
+    const lineSvg = document.querySelector(
+      '[data-decorativo="panel-linea"]'
+    );
+    const texts = lineSvg!.querySelectorAll("text");
+    expect(texts).toHaveLength(3);
+    const values = Array.from(texts).map((t) => t.textContent);
+    expect(values).toContain("0");
+    expect(values).toContain("5");
+    expect(values).toContain("10");
+  });
+
+  it("line SVG does not use preserveAspectRatio='none'", () => {
+    render(<PanelPreview />);
+
+    const lineSvg = document.querySelector(
+      '[data-decorativo="panel-linea"]'
+    );
+    expect(lineSvg).not.toHaveAttribute("preserveAspectRatio", "none");
   });
 
   it("no longer contains the old empty-state text", () => {

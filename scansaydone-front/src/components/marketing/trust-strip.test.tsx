@@ -1,6 +1,7 @@
 /// <reference types="vitest/globals" />
 import { render, screen } from "@testing-library/react";
 import { TrustStrip } from "./trust-strip";
+import { QR_CLAIM_TITLE, QR_CLAIM_BODY } from "../../lib/copy-landing";
 
 describe("TrustStrip", () => {
   it("renders the three titles literally", () => {
@@ -12,7 +13,7 @@ describe("TrustStrip", () => {
       screen.getByText("SIN CUENTA PARA TUS CLIENTES")
     ).toBeInTheDocument();
     expect(
-      screen.getByText("EL QR NO SE REIMPRE")
+      screen.getByText(QR_CLAIM_TITLE)
     ).toBeInTheDocument();
   });
 
@@ -30,7 +31,7 @@ describe("TrustStrip", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "El mismo QR sirve para siempre: no hay que reimprimirlo."
+        QR_CLAIM_BODY
       )
     ).toBeInTheDocument();
   });
