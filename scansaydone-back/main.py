@@ -3,11 +3,18 @@ ScanSayDone API - Backend FastAPI
 Equipo: Dunk & Code XD | Talento Digital 2026
 """
 
-from fastapi import FastAPI
+import logging
+
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from sqlalchemy.exc import OperationalError
 
 from scansaydone import config
-from scansaydone.routers import analytics, general, qr
+from scansaydone.config import ConfiguracionError
+from scansaydone.routers import analytics, empresas, general, qr, respuestas
+
+logger = logging.getLogger("scansaydone")
 
 app = FastAPI(
     title="ScanSayDone API",
@@ -26,6 +33,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+async def servicio_no_disponible(request: Request, exc: Exception) -> JSONResponse:
+    """La base de datos no responde o falta configuración: 503 sin detalles internos.
+
+    El motivo real queda en el log (sin la URL de conexión ni credenciales).
+    """
+    logger.error("Servicio no disponible (%s): %s", type(exc).__name__, getattr(exc, "orig", exc))
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "Servicio no disponible, intenta nuevamente."},
+    )
+
+
+app.add_exception_handler(OperationalError, servicio_no_disponible)
+app.add_exception_handler(ConfiguracionError, servicio_no_disponible)
+
 app.include_router(general.router)
 app.include_router(qr.router)
 app.include_router(analytics.router)
+app.include_router(respuestas.router)
+app.include_router(empresas.router)
