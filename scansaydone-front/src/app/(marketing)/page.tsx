@@ -3,6 +3,7 @@ import { HowItWorks } from "@/components/marketing/how-it-works";
 import { Channels } from "@/components/marketing/channels";
 import { Applications } from "@/components/marketing/applications";
 import { PanelPreview } from "@/components/marketing/panel-preview";
+import { Faqs } from "@/components/marketing/faqs";
 
 export default function MarketingLanding() {
   return (
@@ -15,6 +16,7 @@ export default function MarketingLanding() {
           si se despliega antes de la etapa P; el marco vacio no se publica (L3-PANEL §1.2, criterio 1).
           Al llegar la captura real: se repone con el ghost "Ver mi panel (demo)". */}
       <PanelPreview />
+      <Faqs />
     </>
   );
 }
