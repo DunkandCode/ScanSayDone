@@ -10,7 +10,7 @@ export default function EntrarPage() {
           "linear-gradient(180deg, var(--color-background-page) 0%, var(--color-surface-elevated) 100%)",
       }}
     >
-      <div className="mx-auto grid min-h-screen w-full max-w-[1680px] grid-cols-1 items-center justify-items-center gap-10 lg:grid-cols-2 lg:gap-0">
+      <div className="grid min-h-screen w-full grid-cols-1 items-center justify-items-center gap-10 lg:grid-cols-2 lg:gap-0">
         {/* Left column — access card */}
         <div className="w-full self-center lg:px-12 lg:py-14">
           <LoginCard />
