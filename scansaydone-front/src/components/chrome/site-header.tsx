@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { NavDrawer } from "./nav-drawer";
 import { MAIN_ID, SKIP_LINK_ID } from "./chrome-ids";
@@ -96,16 +97,20 @@ export function SiteHeader() {
             className="flex h-full flex-1 items-center justify-between"
             inert={drawerOpen || undefined}
           >
-            {/* Wordmark — font-ui at 16px, semibold, uppercase, tracking 0.12em */}
+            {/* Brand lockup */}
             <Link
               href="/"
-              aria-label="ScanSayDone — ir al inicio"
-              className="inline-flex h-11 items-center whitespace-nowrap leading-none text-text-primary
+              className="inline-flex h-11 items-center
                 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
             >
-              <span className="flex h-9 items-center font-ui text-[16px] font-semibold uppercase tracking-[0.12em]">
-                ScanSayDone
-              </span>
+              <Image
+                src="/img/marca/lockup-nav.png"
+                width={310}
+                height={72}
+                alt="Scan-Say-Done"
+                className="h-9 w-auto"
+                priority
+              />
             </Link>
 
             {/* Desktop nav */}

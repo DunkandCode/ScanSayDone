@@ -26,6 +26,19 @@ describe("SiteHeader", () => {
     expect(nav).toBeInTheDocument();
   });
 
+  it("renders brand lockup image with correct alt and dimensions", () => {
+    render(<SiteHeader />);
+    const brandImage = screen.getByAltText("Scan-Say-Done");
+    expect(brandImage).toBeInTheDocument();
+    expect(brandImage).toHaveAttribute("src", expect.stringContaining("lockup-nav"));
+    expect(brandImage).toHaveAttribute("width", "310");
+    expect(brandImage).toHaveAttribute("height", "72");
+    
+    // Verify it's wrapped in a link to home
+    const brandLink = brandImage.closest("a");
+    expect(brandLink).toHaveAttribute("href", "/");
+  });
+
   it("skip-link is first focusable and points to #contenido", () => {
     render(<SiteHeader />);
     const skipLink = screen.getByText("Saltar al contenido");
