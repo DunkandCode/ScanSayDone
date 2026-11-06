@@ -41,12 +41,26 @@ Regla: si dos documentos contradicen, se resuelve en un acta y se corrige el doc
 ## 3. Orden de trabajo
 
 ```
-F0 Base  →  L Landing  →  A Login  →  P Panel  →  I Internas  →  E Encuesta
+F0 Base  →  L Landing  →  A Login  →  P Panel  →  I Internas  →  E Encuesta  →  Backend
 ```
 
+- **Solo frontend.** Ni una llamada a la API en esta fase: todo funciona con datos de demostración
+  aislados. La integración con backend es la última etapa, cuando el contrato exista.
 - Cada etapa se aprueba antes de la siguiente.
 - Si un gate falla, no se avanza: se corrige en la misma etapa.
-- La encuesta queda al final porque depende de decisiones de producto y del contrato de backend.
+- La encuesta queda al final porque depende de decisiones de producto y de un endpoint que hoy no
+  existe.
+- El landing se construye sección por sección, revisando las capturas existentes en cada una.
+
+### 3.1 Documentación: dos zonas que no se mezclan
+
+| Zona | Ruta | Estado |
+|---|---|---|
+| Documentación viva | `docs/ux/` | Vigente, se edita con fecha nueva |
+| Snapshot histórico | `scansaydone-front/ENTREGA-UX-2026-10-30/` | Congelado, nunca se edita |
+
+Regla: si un valor cambia, se escribe un documento nuevo con la fecha del cambio y se declara qué
+reemplaza. El snapshot no se toca. Convención completa en `docs/ux/README.md`.
 
 ---
 
