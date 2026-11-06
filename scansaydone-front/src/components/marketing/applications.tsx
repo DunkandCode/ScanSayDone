@@ -66,7 +66,7 @@ export function Applications() {
               key={plate.name}
               className="col-span-12 lg:col-span-4"
             >
-              <figure className="m-0">
+              <figure className="m-0 mx-auto w-full max-w-[364px] lg:max-w-none">
                 {/* marco 4/3 — borde discontinuo = señal de falta (precedente C-30 / panel-preview) */}
                 <div className="relative flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-[8px] border border-dashed border-border-mid bg-surface-default p-4">
                   <span className="absolute left-4 top-4 rounded-[4px] border border-border-mid bg-surface-elevated px-2 py-0.5 font-ui text-[11px] font-semibold uppercase tracking-[0.1em] text-text-primary">

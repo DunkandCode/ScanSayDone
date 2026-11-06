@@ -606,3 +606,33 @@ Gaps medidos 24 exactos (538−514, 926−902). Cero scroll horizontal en los 8 
 **No verificado en este gate:** axe (no instalado: contraste por fórmula, reproducido por el reviewer sobre los hex reales); CLS numérico; recuento de líneas; prueba con foto real (no hay fotos, `Cond. F`); runtime de anclas (navbar inexistente, C-16).
 
 **Tests:** 49 pasan (11 de esta banda, 10 de L4, 11 de L3, 9 de L2, 8 de la tarjeta demo). `build`, `lint` (0 errores; 1 warning preexistente en `survey/[code]`) y `tsc --noEmit` en verde. Por banda: 3 SVG, 0 `img`, 0 enlaces, 0 botones, 3 badges `DEMO`, 3 declaraciones, borde computed `dashed`, consola sin mensajes y **0 peticiones `/api/`**.
+
+### 12.1 C-40 nota b / F-2 — CERRADA por decisión del operador (mismo día)
+
+El operador autorizó la mitigación que este plano había pre-redactado en §3.2 nota de gate y §10 C-40 nota b ("`max-w-[364px]` **centrado** en 1-up"). Implementada en **`applications.tsx:69`**: `<figure className="m-0 mx-auto w-full max-w-[364px] lg:max-w-none">`. Es el único cambio del archivo; el resto coincide con el listing de §8.1.
+
+**Medición post-fix en build de producción (Playwright, 7 anchos).** `figure` ancho / x / marco / caption / scrollWidth:
+
+| viewport | figure | x | marco | caption |
+|---|---|---|---|---|
+| 1440 | 364 | 150 | 364×273 | 364 |
+| 1200 | 364 | 30 | 364×273 | 364 |
+| 992 | **304** | 16 | 304×228 | 304 |
+| 768 | **364** | **202** | **364×273** | 364 |
+| 576 | **364** | 106 | 364×273 | 364 |
+| 375 | 343 | 16 | 343×257 | 343 |
+| 320 | 288 | 16 | 288×216 | 288 |
+
+Aritmética verificada: 768 → 24 + (720−364)/2 = 202; 576 → 18 + (540−364)/2 = 106. Cero scroll horizontal, consola sin mensajes. **F-2 cerrada.**
+
+**Enmienda de criterios que este cambio obliga a registrar** (sin ella, un gate futuro mediría contra texto superado):
+
+- **§9.5:** en 576–991 el ancho apilado es `min(contenido, 364)` **centrado**, no el contenido completo (720/540).
+- **§9.8 y §5.6:** "caption = ancho de la columna" vale desde `lg`; por debajo de `lg` es "caption = ancho del marco (cota 364)". La propiedad estructural de §4.2 —*caption borde a borde con el marco*— **sigue vigente sin cambio**.
+- Las filas md/sm de las tablas §2.3 y §3.1 (720×540, 540×405) pasan a `[D]` histórico superado.
+- **Alcance del rango:** la cota actúa en todo **576–991**, no solo a 768 (a 576 la placa pasa de 540 a 364). Dentro de lo autorizado ("540–720").
+- **Centrado deliberado:** el desfase de eje a 768 (placas en x=202 frente a encabezado en x=24) es consecuencia de la palabra "centrado" de la nota b. Reversible retirando `mx-auto` si el operador lo prefiere alineado a la izquierda. No es defecto.
+- **`lg:max-w-none`:** redundante hoy (la columna mide 304 en lg y 364 en xl, ambas ≤ 364), pero explícito y defensivo: la cota es propiedad exclusiva del 1-up. `--breakpoint-lg: 992px` alinea la cota con el colapso del grid.
+- **Fuente as-built única de la cifra 364 en código:** `applications.tsx:69` (evita deriva entre código, acta y §2.3).
+
+**Re-validación:** 49/49 tests (mismo conteo), `build`, `lint` y `tsc --noEmit` en verde. Veredicto del reviewer sobre el cambio: APRUEBA CON CONDICIONES, 0 BLOQUEANTE, 0 FAIL; la condición era precisamente este registro.
