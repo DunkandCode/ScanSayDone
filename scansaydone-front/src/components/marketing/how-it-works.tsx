@@ -46,7 +46,7 @@ export function HowItWorks() {
           <div className="col-span-12 xl:col-span-4 flex xl:justify-end">
             <a
               href="#encuesta-demo"
-              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[8px] border-2 border-text-primary px-6 font-ui text-[16px] font-semibold text-text-primary motion-safe:transition-colors motion-safe:duration-150 hover:bg-surface-elevated active:bg-surface-dark active:text-on-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[8px] border-2 border-text-primary px-6 font-ui text-[16px] font-semibold text-text-primary motion-safe:transition-colors motion-safe:duration-150 hover:bg-surface-elevated active:bg-surface-dark active:text-on-dark focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
             >
               Ver una encuesta de ejemplo
             </a>
@@ -76,16 +76,81 @@ export function HowItWorks() {
                   : "",
               ].join(" ")}
             >
-              <div className="flex items-start gap-4">
-                <span
-                  aria-hidden="true"
-                  className="flex size-10 shrink-0 items-center justify-center rounded-full bg-interactive-primary font-display text-[32px] leading-[0.9] text-text-primary md:text-[40px]"
-                >
-                  {index + 1}
-                </span>
-                <h3 className="font-ui text-[18px] leading-[1.3] font-semibold text-text-primary md:text-[20px]">
-                  {step.title}
-                </h3>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full bg-interactive-primary font-display text-[32px] leading-[0.9] text-text-primary md:text-[40px]"
+                  >
+                    {index + 1}
+                  </span>
+                  <h3 className="font-ui text-[18px] leading-[1.3] font-semibold text-text-primary md:text-[20px]">
+                    {step.title}
+                  </h3>
+                </div>
+                {index === 0 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-6 w-6 shrink-0 text-text-secondary"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-decorativo="icon-escanea"
+                  >
+                    <rect x="8" y="3" width="8" height="14" rx="1.5" />
+                    <line x1="8" y1="5.5" x2="16" y2="5.5" />
+                    <line x1="8" y1="14" x2="16" y2="14" />
+                    <rect x="9.5" y="7" width="2" height="2" rx="0.3" />
+                    <rect x="12.5" y="7" width="2" height="2" rx="0.3" />
+                    <rect x="9.5" y="10" width="2" height="2" rx="0.3" />
+                    <rect x="12.5" y="10" width="2" height="2" rx="0.3" />
+                    <line x1="12" y1="17" x2="12" y2="20" />
+                    <line x1="9" y1="20" x2="15" y2="20" />
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-6 w-6 shrink-0 text-text-secondary"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-decorativo="icon-responde"
+                  >
+                    <rect x="7" y="3" width="10" height="16" rx="1.5" />
+                    <line x1="7" y1="6" x2="17" y2="6" />
+                    <line x1="7" y1="14" x2="17" y2="14" />
+                    <path d="M9 10 h1.5 M11 10 h1.5 M13 10 h1.5 M15 10 h1.5 M16 10 h1" />
+                    <path d="M12.5 7 l1 2 h-2 Z" />
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-6 w-6 shrink-0 text-text-secondary"
+                    aria-hidden="true"
+                    focusable="false"
+                    data-decorativo="icon-lees"
+                  >
+                    <rect x="3" y="4" width="18" height="12" rx="1.5" />
+                    <path d="M12 16 v3 M8 19 h8" />
+                    <path d="M6 13 V7 M6 13 H18" />
+                    <path d="M7 12 L10 10 L13 11 L16 7" />
+                  </svg>
+                )}
               </div>
               <p className="mt-2 font-ui text-[16px] leading-[1.6] text-text-primary">
                 {step.body}

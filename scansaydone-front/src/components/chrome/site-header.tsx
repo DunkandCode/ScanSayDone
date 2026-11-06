@@ -93,14 +93,14 @@ export function SiteHeader() {
             className="flex h-full flex-1 items-center justify-between"
             inert={drawerOpen || undefined}
           >
-            {/* Wordmark — font-ui at 16px, semibold, mixed case */}
+            {/* Wordmark — font-ui at 16px, semibold, uppercase, tracking 0.12em */}
             <Link
               href="/"
               aria-label="ScanSayDone — ir al inicio"
-              className="inline-flex h-11 w-[108px] items-center whitespace-nowrap leading-none text-text-primary
+              className="inline-flex h-11 items-center whitespace-nowrap leading-none text-text-primary
                 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
             >
-              <span className="flex h-9 w-[108px] items-center font-ui text-[16px] font-semibold">
+              <span className="flex h-9 items-center font-ui text-[16px] font-semibold uppercase tracking-[0.12em]">
                 ScanSayDone
               </span>
             </Link>
@@ -122,9 +122,9 @@ export function SiteHeader() {
                 <li>
                   <Link
                     href={surveyHref}
-                    className="inline-flex h-11 items-center justify-center rounded-[8px] border-2 border-text-primary bg-transparent px-4
-                      font-ui text-[15px] font-semibold text-text-primary
-                      hover:bg-surface-elevated active:bg-surface-dark active:text-on-dark
+                    className="inline-flex h-11 items-center justify-center px-4
+                      font-ui text-[15px] font-semibold text-text-primary underline decoration-border-mid underline-offset-4
+                      hover:decoration-text-primary
                       motion-safe:transition-colors motion-safe:duration-150
                       focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
                   >

@@ -30,7 +30,7 @@ export function Hero() {
             <div className="mt-8">
               <a
                 href="#encuesta-demo"
-                className="inline-flex items-center justify-center px-6 py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
+                className="inline-flex items-center justify-center px-6 py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
               >
                 Ver una encuesta de ejemplo
               </a>

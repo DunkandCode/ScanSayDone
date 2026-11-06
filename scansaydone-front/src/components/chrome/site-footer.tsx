@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-12 gap-6">
           {/* Celda 1 — Marca */}
           <div className="col-span-12 lg:col-span-6 xl:col-span-3">
-            <div className="flex h-9 w-[108px] items-center font-ui text-[16px] font-semibold leading-none text-text-primary">
+            <div className="flex h-9 items-center font-ui text-[16px] font-semibold uppercase leading-none tracking-[0.12em] text-text-primary">
               ScanSayDone
             </div>
             <p className="mt-4 font-display uppercase text-[32px] leading-[0.95] text-text-primary">

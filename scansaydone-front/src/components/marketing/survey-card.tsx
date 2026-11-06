@@ -98,7 +98,7 @@ export function SurveyCard() {
               setShowDemoNote(false);
             }}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`min-h-11 min-w-11 rounded-md font-ui font-semibold text-sm border-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary ${
+            className={`min-h-11 min-w-11 rounded-md font-ui font-semibold text-sm border-2 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary ${
               selected === value
                 ? "bg-interactive-primary border-interactive-primary text-text-primary"
                 : "bg-surface-default border-border-mid text-text-primary hover:bg-surface-elevated"
@@ -114,7 +114,7 @@ export function SurveyCard() {
         type="button"
         onClick={handleSubmit}
         disabled={selected === null}
-        className="w-full py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg border-2 border-interactive-primary hover:bg-interactive-hover hover:border-interactive-hover active:bg-interactive-pressed active:border-interactive-pressed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary disabled:bg-disabled-fill disabled:border-disabled-fill disabled:text-text-secondary disabled:cursor-not-allowed"
+        className="w-full py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg border-2 border-interactive-primary hover:bg-interactive-hover hover:border-interactive-hover active:bg-interactive-pressed active:border-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary disabled:bg-disabled-fill disabled:border-disabled-fill disabled:text-text-secondary disabled:cursor-not-allowed"
       >
         Enviar
       </button>

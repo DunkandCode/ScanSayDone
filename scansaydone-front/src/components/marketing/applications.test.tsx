@@ -57,29 +57,46 @@ describe("Applications", () => {
     expect(captions[2]).toHaveTextContent("Comercio pequeño");
   });
 
-  it("'DEMO' appears exactly 3 times and the declaration exactly 3 times", () => {
+  it("'ILUSTRACIÓN' badge appears exactly 3 times", () => {
     render(<Applications />);
-    const demos = screen.getAllByText("DEMO");
-    expect(demos).toHaveLength(3);
-    const declarations = screen.getAllByText("Todavía no hay foto que mostrar.");
-    expect(declarations).toHaveLength(3);
+    const badges = screen.getAllByText("ILUSTRACIÓN");
+    expect(badges).toHaveLength(3);
   });
 
-  it("has zero links, zero buttons, and zero images", () => {
+  it("renders three images with correct alt texts", () => {
+    render(<Applications />);
+    const images = screen.getAllByRole("img");
+    expect(images).toHaveLength(3);
+    
+    expect(images[0]).toHaveAttribute(
+      "alt",
+      "Mesa de restaurante con soporte de encuesta (ilustración generada)"
+    );
+    expect(images[1]).toHaveAttribute(
+      "alt",
+      "Taza de café junto a un soporte ilustrado (imagen generada)"
+    );
+    expect(images[2]).toHaveAttribute(
+      "alt",
+      "Mostrador de comercio con tarjeta de encuesta (imagen generada)"
+    );
+  });
+
+  it("renders the declaration line exactly once", () => {
+    render(<Applications />);
+    const declaration = screen.getByText(
+      /Estas tres imágenes son ilustraciones generadas por IA/
+    );
+    expect(declaration).toBeInTheDocument();
+    expect(declaration).toHaveTextContent(
+      "Estas tres imágenes son ilustraciones generadas por IA. No muestran locales reales. El patrón que parece un código es decorativo y no se puede escanear."
+    );
+  });
+
+  it("has zero links and zero buttons", () => {
     render(<Applications />);
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
-  });
-
-  it("every SVG has aria-hidden='true' and focusable='false'", () => {
-    render(<Applications />);
-    const svgs = document.querySelectorAll("svg[data-decorativo='marca-de-hueco']");
-    expect(svgs).toHaveLength(3);
-    svgs.forEach((svg) => {
-      expect(svg).toHaveAttribute("aria-hidden", "true");
-      expect(svg).toHaveAttribute("focusable", "false");
-    });
   });
 
   it("renders the eyebrow text", () => {
