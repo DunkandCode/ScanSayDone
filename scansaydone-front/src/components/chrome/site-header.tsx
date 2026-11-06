@@ -105,7 +105,7 @@ export function SiteHeader() {
             >
               <Image
                 src="/img/marca/lockup-nav.png"
-                width={310}
+                width={305}
                 height={72}
                 alt="Scan-Say-Done"
                 className="h-9 w-auto"

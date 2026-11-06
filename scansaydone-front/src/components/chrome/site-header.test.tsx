@@ -31,7 +31,7 @@ describe("SiteHeader", () => {
     const brandImage = screen.getByAltText("Scan-Say-Done");
     expect(brandImage).toBeInTheDocument();
     expect(brandImage).toHaveAttribute("src", expect.stringContaining("lockup-nav"));
-    expect(brandImage).toHaveAttribute("width", "310");
+    expect(brandImage).toHaveAttribute("width", "305");
     expect(brandImage).toHaveAttribute("height", "72");
     
     // Verify it's wrapped in a link to home
