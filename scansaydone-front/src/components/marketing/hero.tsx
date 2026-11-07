@@ -33,7 +33,18 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-mkt-xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:justify-between">
-          <div className="w-full max-w-xl rounded-2xl bg-background-page px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+          <div className="relative w-full max-w-xl">
+            {/* Halo feathered: gradiente radial local que sostiene contraste del copy sin formar caja dura contra la escena. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -z-10"
+              style={{
+                inset: "-8rem",
+                background:
+                  "radial-gradient(ellipse closest-side at 50% 50%, color-mix(in srgb, var(--color-background-page) 92%, transparent) 85%, transparent 100%)",
+              }}
+            />
+            <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
             <p className="mb-4 font-ui text-xs font-semibold uppercase tracking-widest text-text-secondary sm:mb-6 sm:text-sm">
               ENCUESTAS DE SATISFACCIÓN PARA RESTAURANTES Y COMERCIOS
             </p>
@@ -76,6 +87,7 @@ export function Hero() {
                   <path d="M8.5 4.5 L12 8 L8.5 11.5" />
                 </svg>
               </a>
+            </div>
             </div>
           </div>
 
