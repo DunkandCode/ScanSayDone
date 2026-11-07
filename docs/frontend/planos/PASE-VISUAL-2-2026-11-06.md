@@ -407,4 +407,63 @@ Fuente 1024×1024. Reglas de operación vigentes: 1 imagen = 1 tarea wan-image, 
 - **C-96:** corte explícito del H1 (14.3) — cero cadenas nuevas, cambio estructural; firma de operador en el acta de F7.
 - **Totales del §14: entran 1 imagen nueva (hero); se comprimen 5; el landing queda con 2 escenas raster + 3 ilustraciones WebP + 4 SVG de banda 4.** Reutilizar `login-escena` en el hero queda descartado: su encuadre es 4:5 vertical de medio cuerpo de mesa pensado para el panel de login, y la ventana del hero es 1:1 con requisitos de solape distintos — se pierde más en el recorte de lo que se gana evitando una tarea de generación.
 
-**Cierre del §14:** el hero recibe su aire con **una ventana 1:1 que el texto no pisa y una tarjeta que la cruza** — la lección del login aplicada al hero, la escena del cierre sin competencia. Peso tras compresión: menos de medio megabyte en cinco archivos que hoy pesan ocho.
+**Cierre del §14:** el hero recibe su aire con **una ventana 1:1 que el texto no pisa y una tarjeta que la cruza** — la lección del login aplicada al hero, la escena del cierre sin competencia. Peso tras compresión: menos de medio megabyte en cinco archivos que hoy pesan ocho. **Este cierre queda enmendado por §15: la ventana 1:1 fue rechazada y el peso medido no fue el estimado.**
+
+---
+
+## 15. Hero a sangre: lo que se construyó
+
+> **Qué es:** acta de lo ejecutado el 2026-11-07 en el hero y en el raster del sitio. No propone: describe lo servido. **Cero PASS afirmados** — son medidas de esta sesión: 145 tests · build 14/14 · lint 0 errores · tsc 0 · axe 12/12 sin violaciones a 1440, 992 y 375 · cero peticiones `/api/` · cero scroll horizontal. `ESTADO §8` registra 143 de una corrida anterior: son corridas distintas, no una corrección.
+
+### 15.1 Se rechaza la ventana 1:1 de §14.1
+
+El operador vetó la composición de §14.1: **«la imagen debe cubrir el hero completo y el demo experiencia está pegado en el texto»**. Entra la escena a sangre, es decir la opción (a) que §14 había rechazado con el argumento «el velo que salva el texto (≥ 50 %) borra la escena». Ese argumento queda refutado por medida en 15.3.
+
+### 15.2 Receta servida [medido]
+
+| Aspecto | Valor |
+|---|---|
+| Imagen y sección | miden lo mismo: **1440×618** a 1440 (`x=0..1440`, `y=76..694`, contando la barra fija de 76) |
+| Velo capa 1 (vertical) | `linear-gradient(0deg, color-mix(in srgb, var(--color-background-page) 55%, transparent) 0%, transparent 18%)` |
+| Velo capa 2 (horizontal) | `linear-gradient(90deg, var(--color-background-page) 0%, var(--color-background-page) 40%, color-mix(in srgb, var(--color-background-page) 88%, transparent) 52%, color-mix(in srgb, var(--color-background-page) 48%, transparent) 66%, transparent 84%)` |
+| Encuadre | `object-cover` + `object-position: 62% 68%` + `scale 1.06` |
+| Bajo 992 | la escena se oculta y **no se descarga**: 0 peticiones a 375 (la regla móvil de §14.1 sigue intacta) |
+
+Las dos capas van sobre la imagen y **debajo del contenido**; cero hex nuevo, solo `color-mix` sobre el token de página. **Por qué el contraste es determinista:** el horizontal es opaco de 0 % a 40 % del ancho y el bloque de texto cierra en x=696 de 1440 (≈ 48 %), así que lo que hay bajo cada letra lo fija el velo, no lo que dibujó el generador — la desviación residual medida es de 2–5 unidades por canal sobre el crema. El CTA no depende de la escena: se muestrea sobre su propia superficie tinta. Contraste medido **sobre el píxel real a 1440**, no sobre el token: eyebrow **5,66** (`rgb(242,224,195)`) · lead **5,78** (`rgb(245,226,197)`) · CTA **14,28** (`rgb(26,24,27)`). Los tres sobre 4,5; el par del token (5,93) queda como referencia, no como lo servido.
+
+### 15.3 Prueba de que la escena se lee [medido]
+
+| Punto | Color servido | Δ vs crema `rgb(247,229,200)` (suma de canales; mayor Δ = más escena) |
+|---|---|---|
+| (1150,520) | `rgb(230,214,194)` | **38** |
+| (1320,470) | `rgb(188,167,138)` | **183** |
+| (1400,620) | `rgb(159,132,101)` | **284** |
+
+Bajo y junto a la tarjeta el velo es casi total (Δ 38); hacia el borde derecho y el pie del hero la escena aparece franca (Δ 183 y 284). No hubo que elegir entre texto legible y escena visible.
+
+### 15.4 H1, sombras y coral [medido]
+
+Tres cortes explícitos: «Lo que tus» / «clientes piensan,» / caja tinta «antes de que se vayan». Antes la frase se cortaba y se leía «ANTES DE QUE SE VAYA»: **faltaba la N**. La caja termina en **x=696**, la tarjeta empieza en **x=875** → **179 px** de aire entre los dos; bloque texto–tarjeta **116 px**. Sombras: **2** nodos con `0 10px 24px -12px` — el presupuesto de dos sigue cerrado. Coral en el hero: **1** (el tile `9`). A 992 la tarjeta se apila bajo el texto con 32 px; a 375 una columna, sin escena.
+
+### 15.5 La imagen y su peso [medido]
+
+Dos intentos de generación: el primero trajo una retícula con **tres esquinas de QR** en el soporte de mesa → **descartado** por la regla anti-QR; el segundo salió con la tarjeta **en blanco**. Fuente **1024×1024**. Antes: 5 PNG servidos **7,83 MB** + la escena nueva **1,57 MB** = **9,40 MB**. Después, servido en WebP:
+
+| Archivo | Ancho/calidad | Peso |
+|---|---|---|
+| `i1.webp` | 728 / 80 | 97,3 KB |
+| `i2.webp` | 728 / 80 | 85,8 KB |
+| `i3.webp` | 728 / 80 | 89,4 KB |
+| `banda-9-escena.webp` | 1456 / 65 | 141,6 KB |
+| `login-escena.webp` | 768 / 75 | 136,1 KB |
+| `hero-escena.webp` | 1024 / 70 | 148,4 KB |
+
+**Total servido: 0,67 MB** de raster; **226 KB** de peso transferido real en la home a 1440. El estimado de §14.6 (0,3–0,4 MB servidos) **no se cumplió**: lo que baja de verdad es lo transferido. Los PNG originales **no se borraron**: se movieron a `scansaydone-front/assets/fuentes-imagenes/`, fuera de `public`, y no se sirven.
+
+### 15.6 Enmienda del criterio LCP de §14.1
+
+Con la escena a sangre el LCP pasa a ser **la imagen** (~144 ms medidos), no el H1 (~124 ms). El criterio de §14.1 («el H1 debe ser LCP») asumía un hero sin raster y queda **enmendado**: lo que importa es que el LCP ocurra pronto, y ocurre. `priority` / `fetchPriority` de la escena se re-ven contra ese número.
+
+### 15.7 Lo que NO verifiqué
+
+Sin Lighthouse: ni score de performance, ni score de accesibilidad, ni presupuesto de red por esa vía. Sin estados de carga ni de error del hero: solo el render completo a tres anchos. Sin navegadores sin `color-mix` — las dos capas del velo lo usan y su degradación no fue probada. Cero medición de CLS. C-95 y C-96 siguen sin acta: esto es lo construido, no lo firmado.
