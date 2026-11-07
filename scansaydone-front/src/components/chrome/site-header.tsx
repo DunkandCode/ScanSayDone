@@ -170,9 +170,9 @@ export function SiteHeader() {
                 <li>
                   <Link
                     href={surveyHref}
-                    className="inline-flex h-11 items-center justify-center rounded-[8px] px-4
+                    className="inline-flex h-11 items-center justify-center rounded-[8px] border border-border-mid bg-surface-elevated px-4
                       font-ui text-[15px] font-semibold text-text-primary
-                      hover:bg-surface-elevated
+                      hover:bg-surface-default
                       motion-safe:transition-colors motion-safe:duration-150
                       focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
                   >

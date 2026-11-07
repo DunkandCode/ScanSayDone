@@ -35,6 +35,12 @@
   --container-mkt-xl: 1140px;
   --container-mkt-2xl: 1320px;
 
+  /* Hero marketing — dimensionado para nav fija + hero de 680–720 px. */
+  --spacing-marketing-hero: 38.5rem;
+  --text-marketing-hero: clamp(2.5rem, 5vw, 4.5rem);
+  --text-marketing-hero--line-height: 0.98;
+  --tracking-marketing-hero: -0.01em;
+
   /* Base font — Montserrat (CANON §5) */
   --font-ui: var(--font-montserrat);
   --font-display: var(--font-bebas);
@@ -43,10 +49,17 @@
 /* Elevation: única sombra del sistema (PASE-VISUAL-2 §2.2, C-87) */
 :root {
   --elev-float: 0 10px 24px -12px rgb(26 24 27 / 0.22);
+  --marketing-focus-outline: 3px solid var(--color-on-dark);
+  --marketing-focus-outline-offset: -3px;
 }
 
 .elev-float {
   box-shadow: var(--elev-float);
+}
+
+.marketing-hero-cta:focus-visible {
+  outline: var(--marketing-focus-outline);
+  outline-offset: var(--marketing-focus-outline-offset);
 }
 
 /* Reveal-on-scroll — CSS scroll-driven animations (PASE-VISUAL-2 §2.5) */

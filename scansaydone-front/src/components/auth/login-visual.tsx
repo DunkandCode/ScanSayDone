@@ -5,9 +5,9 @@ export function LoginVisual() {
     <figure className="relative hidden min-h-screen w-full self-stretch overflow-hidden lg:block">
       {/* Full-bleed background scene */}
       <Image
-        src="/img/fondos/login-escena.png"
-        width={1024}
-        height={1280}
+        src="/img/fondos/login-escena.webp"
+        width={768}
+        height={960}
         alt=""
         aria-hidden="true"
         loading="lazy"

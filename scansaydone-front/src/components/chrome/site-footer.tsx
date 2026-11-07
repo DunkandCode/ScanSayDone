@@ -104,16 +104,21 @@ export function SiteFooter() {
             <h2 className="font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-text-primary">
               Contacto
             </h2>
-            <ul className="mt-3 list-none">
+            <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-4">
+              <p className="font-ui text-[14px] leading-[1.5] text-text-secondary">
+                Hablemos sobre tu negocio.
+              </p>
+            <ul className="mt-2 list-none">
               <li>
                 <Link
                   href="/contactus"
-                  className="inline-flex min-h-11 items-center font-ui text-[15px] text-text-primary underline decoration-border-mid underline-offset-4 hover:decoration-2 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                  className="mt-1 inline-flex min-h-11 items-center justify-center rounded-[8px] bg-surface-dark px-4 font-ui text-[15px] font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-text-primary"
                 >
                   Contáctanos
                 </Link>
               </li>
             </ul>
+            </div>
           </div>
 
           {/* Celda 4 — Legal */}
@@ -121,7 +126,7 @@ export function SiteFooter() {
             <h2 className="font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-text-primary">
               Legal
             </h2>
-            <p className="mt-3 font-ui text-[14px] leading-[1.5] text-text-secondary">
+            <p className="mt-3 font-ui text-[14px] leading-[1.5] text-text-primary">
               Las reglas de uso y la política de privacidad se publicarán una vez completada la revisión legal.
             </p>
           </div>

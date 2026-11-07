@@ -30,7 +30,7 @@ function QrMatrix({ kind }: { kind: "mesa" | "mostrador" | "cartel" }) {
 
 function ChannelIllustration({ kind }: { kind: ChannelKind }) {
   const p = "var(--color-text-primary)";
-  const s = "var(--color-border-subtle)";
+  const s = "var(--color-border-mid)";
   const m = "var(--color-border-mid)";
   const a = "var(--color-interactive-primary)";
 
@@ -109,7 +109,7 @@ export function Channels() {
       id="canales"
       tabIndex={-1}
       aria-labelledby="l4-title"
-      className="w-full bg-background-page px-4 py-15 md:py-25 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+      className="w-full bg-surface-elevated px-4 py-15 scroll-mt-[92px] focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary md:py-25"
     >
       <div className="mx-auto w-full max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl">
         <p className="font-ui text-[12px] font-semibold uppercase tracking-[0.14em] text-text-secondary lg:text-[13px]">
@@ -131,10 +131,10 @@ export function Channels() {
           {CHANNELS.map((ch, index) => (
             <li
               key={ch.kind}
-              className={`reveal${index > 0 ? ` reveal-${index + 1}` : ""} col-span-12 lg:col-span-6 xl:col-span-3 rounded-[8px] border border-border-mid bg-surface-default p-4`}
+              className={`reveal${index > 0 ? ` reveal-${index + 1}` : ""} col-span-12 rounded-[8px] border border-border-subtle bg-surface-default p-5 lg:col-span-6 xl:col-span-3 md:p-6`}
             >
               <ChannelIllustration kind={ch.kind} />
-              <h3 className="mt-2 font-ui text-[18px] font-semibold leading-[1.3] text-text-primary md:text-[20px]">
+              <h3 className="mt-3 font-ui text-[18px] font-bold leading-[1.3] text-text-primary md:text-[20px]">
                 {ch.title}
               </h3>
               <p className="mt-2 font-ui text-[16px] leading-[1.6] text-text-primary">

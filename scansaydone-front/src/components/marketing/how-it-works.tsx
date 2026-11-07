@@ -67,8 +67,8 @@ export function HowItWorks() {
                 // Scroll-driven reveal (PASE-VISUAL-2 §2.5)
                 "reveal",
                 index > 0 ? `reveal-${index + 1}` : "",
-                // Base card: 1px border all sides, same bg as band, 16px padding
-                "relative col-span-12 md:col-span-4 rounded-[8px] border border-border-mid p-4 bg-surface-default",
+                // Warm card surface with a quiet filete against the white section.
+                "relative col-span-12 rounded-[8px] border border-border-subtle bg-background-page p-5 md:col-span-4 md:p-6",
                 // Mobile: 2px left border = vertical decorative connector
                 "border-l-2 md:border-l",
                 // Desktop: horizontal connector pseudo-element (not on last item)
@@ -83,7 +83,7 @@ export function HowItWorks() {
                 <div className="flex items-center gap-4">
                   <span
                     aria-hidden="true"
-                    className="flex size-10 shrink-0 items-center justify-center rounded-full bg-interactive-primary font-display text-[32px] leading-[0.9] text-text-primary md:text-[40px]"
+                    className={`flex size-10 shrink-0 items-center justify-center rounded-full font-display text-[32px] leading-[0.9] text-text-primary md:text-[40px] ${index === 0 ? "bg-interactive-primary" : "border border-border-mid bg-surface-elevated"}`}
                   >
                     {index + 1}
                   </span>

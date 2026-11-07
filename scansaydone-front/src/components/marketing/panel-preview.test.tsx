@@ -39,10 +39,12 @@ describe("PanelPreview", () => {
   it("three bullets match approved copy inside ul role='list'", () => {
     render(<PanelPreview />);
 
-    const list = screen.getByRole("list");
+    const list = screen
+      .getByText("Cada opinión llega con su fecha y su canal.")
+      .closest("ul");
     expect(list).toBeInTheDocument();
 
-    const items = list.querySelectorAll("li");
+    const items = list!.querySelectorAll("li");
     expect(items).toHaveLength(3);
     expect(items[0]).toHaveTextContent(
       "Cada opinión llega con su fecha y su canal."
@@ -75,7 +77,7 @@ describe("PanelPreview", () => {
   it("does NOT render '42 %', '42%', or '8,7'", () => {
     render(<PanelPreview />);
 
-    const panel = screen.getByRole("region");
+    const panel = screen.getByRole("region", { name: "TODO EN UN MISMO LUGAR" });
     const textContent = panel.textContent ?? "";
     expect(textContent).not.toContain("42 %");
     expect(textContent).not.toContain("42%");
@@ -109,6 +111,23 @@ describe("PanelPreview", () => {
     expect(barsSvg).toBeInTheDocument();
     const rects = barsSvg!.querySelectorAll("rect");
     expect(rects).toHaveLength(11);
+    expect(Array.from(rects).map((rect) => rect.getAttribute("fill"))).toEqual([
+      ...Array(7).fill("var(--color-border-mid)"),
+      ...Array(2).fill("color-mix(in srgb, var(--color-text-primary) 20%, var(--color-border-mid))"),
+      ...Array(2).fill("color-mix(in srgb, var(--color-text-primary) 40%, var(--color-border-mid))"),
+    ]);
+  });
+
+  it("exposes every distribution value in a screen-reader table", () => {
+    render(<PanelPreview />);
+
+    const table = screen.getByRole("table", {
+      name: "Respuestas por nota, panel de ejemplo",
+    });
+    const rows = table.querySelectorAll("tbody tr");
+    expect(rows).toHaveLength(11);
+    expect(Array.from(rows[0].querySelectorAll("td")).map((cell) => cell.textContent)).toEqual(["0", "1"]);
+    expect(Array.from(rows[10].querySelectorAll("td")).map((cell) => cell.textContent)).toEqual(["10", "150"]);
   });
 
   it("line SVG has role='img' with descriptive aria-label and data-decorativo", () => {
@@ -181,7 +200,7 @@ describe("PanelPreview", () => {
   it("has no active links or enabled buttons inside the panel", () => {
     render(<PanelPreview />);
 
-    const panel = screen.getByRole("region");
+    const panel = screen.getByRole("region", { name: "TODO EN UN MISMO LUGAR" });
     const links = panel.querySelectorAll("a");
     expect(links).toHaveLength(0);
 
@@ -189,13 +208,27 @@ describe("PanelPreview", () => {
     expect(enabledButtons).toHaveLength(0);
   });
 
-  it("has zero elements with coral/interactive-primary background inside the panel", () => {
+  it("uses the dashboard's coral line over an ink under-stroke, not a coral control", () => {
     render(<PanelPreview />);
 
-    const panel = screen.getByRole("region");
-    const coralElements = panel.querySelectorAll(
-      "[class*='interactive-primary'], [class*='interactive-hover'], [class*='interactive-pressed']"
-    );
-    expect(coralElements).toHaveLength(0);
+    const panel = screen.getByRole("region", { name: "TODO EN UN MISMO LUGAR" });
+    const line = panel.querySelector('[data-decorativo="panel-linea"]');
+    const coralStroke = line?.querySelector("path.text-interactive-primary");
+    const inkUnderStroke = line?.querySelector("path.text-text-primary");
+    expect(coralStroke).toHaveAttribute("stroke-width", "2.5");
+    expect(inkUnderStroke).toHaveAttribute("stroke-width", "4.5");
+    expect(panel.querySelector("button[class*='interactive-primary']")).toBeNull();
+  });
+
+  it("shows the existing dashboard's ranked channel sample", () => {
+    render(<PanelPreview />);
+
+    expect(screen.getByText("Canales principales")).toBeInTheDocument();
+    expect(screen.getByText("QR en la mesa")).toBeInTheDocument();
+    expect(screen.getByText("210")).toBeInTheDocument();
+    expect(screen.getByText("Enlace de Instagram")).toBeInTheDocument();
+    expect(screen.getByText("112")).toBeInTheDocument();
+    expect(screen.getByText("Google Maps")).toBeInTheDocument();
+    expect(screen.getByText("89")).toBeInTheDocument();
   });
 });

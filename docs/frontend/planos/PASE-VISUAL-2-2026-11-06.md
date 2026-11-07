@@ -327,3 +327,84 @@ Nota de dependencia: F4 dimensiona la barra con wordmark 16; cuando F6 ponga el 
 ---
 
 **Cierre de formato:** el salto visual se compra con **superficie (5 degradados entre tokens, 2 halos, 1 sombra firmada), 1 imagen nueva (la escena de cierre con scrim calculado), una barra con mapa y un pie con suelo y navegación** — y cero librerías. La animación es el 10 % del efecto pedido y entra como CSS degradativo. El logo, última milla, en su lote F6.
+
+## 14. Hero con escena y plan de imágenes
+
+> **Qué es:** decisión de composición del hero con una escena generada — pedido literal del operador («en el hero tener una imagen así y poder acomodar el hero principal a la imagen creada», con el patrón «¿LISTO PARA EMPEZAR?» como referencia) — y plan de compresión de los cinco PNG servidos. No es código; cero build/axe/Playwright: **cero PASS aquí**. Reabre exactamente cuatro filas de este plano: §4.1 banda 1 (raster en hero), §4.3 (prompt), §4.4 (entrega), §8 F0/F3. El patrón importado es el servido en login: escena + velo crema + placa opaca (`login-visual.tsx:5-26,105` [as-built]).
+
+| Decisión | Receta exacta | Contraste / peso calculado |
+|---|---|---|
+| Composición | **(b) ventana 1:1 en la columna derecha + tarjeta cruzada sobre el corte**; texto 100 % sobre crema | cero nodos de texto sobre raster → pares §0 intactos (ink/crema 14,28 · secondary 5,93) |
+| Rechazo (a) sangre+velo | H1 ink bajo velo crema al 35 %: **2,85** sobre píxel casi-tinta, **3,53** sobre sombra #3A2C22, 5,25 solo si el peor píxel es madera [D] | < 4,5 no garantizable → veto: el velo que salva el texto (≥ 50 %) borra la escena; refuerza la restricción adoptada §1-9 |
+| Rechazo (c) banda inferior | la tarjeta N3 perdería su halo (G3 vive en 84 % 26 %) y el hero se parte en dos bloques | n/a |
+| Tarjeta | producto visible intacto; conserva su sombra (`--elev-float`, nodo #1 de 2) | separación: placa opaca + borde + solape; cero sombra nueva |
+| H1 | tres líneas con cortes explícitos `lg:block` (14.3) | la línea en caja cabe hoy [as-built medido]; el resto, gate B-10 |
+| Escena nueva | 1 generación wan-image 1:1 (14.4); ≥ 992 solo; `priority={false}` `fetchPriority="low"` | WebP ≈ 45–170 KB según variante (14.6) [medido/análogo] |
+| Cap | **2 escenas raster en landing (hero + banda 9)** + i1..3 ilustraciones | 3.ª escena = firma nueva |
+| Compresión | 5 PNG → WebP con ffmpeg; pesos medidos 2026-11-07 | **7,83 MB → ≈ 0,3–0,4 MB (−95 %)** [medido] |
+
+### 14.1 Ventana derecha: cotas y velo
+
+| BP | Ventana | Hero bloque [D] | Receta |
+|---|---|---|---|
+| 1440 | 518×518 (col 6/12 servida; `aspect-square`) | 76 + 96 + 518 + 96 ≈ **786** (dentro del pliegue de 900) | wrapper `relative hidden lg:block` → `<Image>` absoluto `inset-0 object-cover` 1:1→1:1 sin recorte; borde 1 px `border-mid` (3,79 sobre crema ✓); radio 8 servido; velo interno izquierdo `linear-gradient(90deg, color-mix(in srgb, #F7E5C8 55%, transparent) 0%, transparent 45%)` |
+| 992 | 452×452 | 76 + 96 + 452 + 96 ≈ **720** | idem; la tarjeta (448×~500) desborda la ventana por arriba y por abajo: el artefacto tapa la escena, no al revés |
+| 375 | **cero raster** (regla F3 móvil heredada: 0 KB) | sin cambio (no se reabre) | el wrapper `hidden` no genera petición de red |
+
+- **Velo:** solo el izquierdo, con las paradas exactas de arriba (un hex sobre transparente = monotónico, §0). No hay velo de texto porque no hay texto sobre la foto: el peor píxel de la escena no entra en ningún cálculo de lectura. Fuente generada en **1:1** para que ventana y fuente no recorten: `object-position` no aplica (cero sorpresas de encuadre).
+- **Declaración:** chip inferior-derecho sobre la ventana: `bg-surface-elevated` **opaco** + borde `border-mid` + la cadena firmada de banda 9 sin tocar («La imagen de fondo es una ilustración generada. No muestra un local real.» 74 car., 12 px `text-secondary`): secondary/elevated **5,33** [D]; opaco → inmune al píxel (precedente label ink/coral 5,61 «opaco, inmune»). `alt=""` + `aria-hidden`.
+- **LCP:** el H1 Bebas pinta antes que cualquier raster (`priority false` + `fetchPriority low`). Criterio F7: captura del elemento LCP antes/después; si pasa a ser la imagen → la escena se retira y se levanta el fallo en el acta. CLS 0: ventana con alto fijo por `aspect-square`.
+
+### 14.2 La tarjeta de encuesta
+
+Sigue siendo el producto visible — no se mueve de concepto, cambia de capa. Receta: columna derecha relativa; tarjeta `lg:absolute` con solape **−96 px sobre el corte** (su borde izquierdo cae en crema), centrada en vertical, z-10; escala y contenido intactos (`DEMO`, 0–10, tile 9 coral, Enviar deshabilitado). Conserva la sombra firmada (nodo #1 de 2; el corte visual tarjeta/escena se resuelve por **opacidad + borde + capa**, no por más sombra). Cero translate/hover nuevos. El halo G3 sigue activo bajo la mitad izquierda de la ventana.
+
+### 14.3 El H1: salto equilibrado
+
+Hoy: «LO QUE TUS CLIENTES» / «PIENSAN,» (viuda) / caja sobre la 3.ª [as-built]. Se reacomoda sin cambiar ninguna cadena:
+
+```text
+L1  Lo que tus
+L2  clientes piensan,
+L3  [caja tinta] antes de que se vayan
+```
+
+Spans `lg:block` alrededor de L1/L2 (bajo 992 queda el flujo natural, sin cambio). Pirámide 10/17/21 glifos: L2 ≈ 490–515 px [D, Bebas 72, 0,40–0,42 em/glifo] ≤ columna 623 [P L1]; L3 cabe hoy con `w-fit` [as-built medido] → la caja cubre la frase completa de pago. Fallback si el gate (B-10) mide desborde de L3: permitir doble línea interior de la caja (el negro la cubre igual). La caja tinta pasa a ser el remate estable, no el parche.
+
+### 14.4 Prompt de la escena del hero (literal, listo para pegar)
+
+```text
+Fotografía editorial realista cuadrada proporción 1:1 de una esquina de cafetería de barrio al amanecer, vacía de público: mesa redonda de madera con dos sillas vacías, taza de café sobre su platillo, y un pequeño soporte de mesa con una tarjeta que muestra solo una retícula abstracta claramente no escaneable, deliberadamente ilegible; ventana lateral con luz cálida suave; el tercio superior es una pared simple y tranquila; el borde izquierdo queda más suave y en sombra cálida. Paleta exclusivamente cálida: crema, madera, latón, blanco hueso, sombras miel. Sin personas, sin manos, sin rostros, sin siluetas humanas. Sin texto, letras, números, logotipos, carteles legibles ni marcas en ninguna superficie. Sin códigos QR ni patrones que parezcan códigos escaneables. Sin colores fríos: nada de azules, violetas, verdes fríos, blancos azulados, gris acero ni cian en sombras o reflejos. Sin zonas casi blancas: ningún píxel más brillante que un crema cálido suave. Estética de negocio auténtico de barrio, limpia y cálida; que no parezca banco de imágenes genérico. Sin grano, sin viñeta.
+```
+
+Fuente 1024×1024. Reglas de operación vigentes: 1 imagen = 1 tarea wan-image, ≤ 1 reintento, control anti-QR (tres esquinas = descartar), revisión visual anti-personas/anti-texto (heredado `MEJORA §10.7`).
+
+### 14.5 Cuántas secciones merecen imagen: una más, ninguna extra
+
+| Banda | ¿Imagen? | Por qué |
+|---|---|---|
+| 2 franja · 8 FAQ · 10 pie | **No** | cuerpo 14–15 px sobre raster = vetado por la restricción adoptada §1-9 (filas §4.1 intactas) |
+| 3 cómo funciona | **No** | set propio de iconos + numeración cierra el beat; manos vetadas |
+| 4 canales | **No** | C-92 sigue en pie: solo entraría con instrucción literal del operador |
+| 6 panel | **No** | banda de datos: el artefacto es el panel mismo (G2 + sombra N3 bastan) |
+| 1 hero · 9 cierre | **Sí — las únicas dos** | texto escaso y grande + placa/scrim calculados; una 3.ª escena requiere firma nueva |
+
+### 14.6 Plan de compresión (pesos medidos con ffmpeg/libwebp el 2026-11-07, salida pegada en el acta)
+
+| Archivo | Fuente medida | Destino | Peso medido | Qué se pierde |
+|---|---|---|---|---|
+| i1 · i2 · i3 | PNG 1024×768 · 1,38 / 1,32 / 1,30 MB | WebP **728w q80** | i1 **46,1 KB** (i2/i3 análogos [D]) | nada visible: plano q80 en ilustración sin detalle fino; **se corrige §4.4: variante 1456 = upscale de una fuente 1024 — no se sirve; 728 es 2× del display 364** |
+| banda-9-escena | PNG 1536×768 · 1,40 MB | WebP **1456w q65** | **20,2 KB** (q72: 22,3) | nada: queda detrás del scrim 0,88 firmado |
+| login-escena | PNG 1024×1280 · 2,06 MB | WebP **768w q75** | **42,5 KB** | nada visible: detrás del velo 30–60 % servido |
+| hero-escena (nueva) | PNG 1024×1024 (~1,5–2 MB al generar) | WebP **512w q70 + 1024w q70** | q60@1024 medido en análogo: 200,3 KB → q70 ≈ **150–170 KB [D]**; 512w ≈ 40–55 KB [D]; techo declarado **≤ 220 KB** por variante | plateado suave en 2× retina — aceptable bajo placa/velo |
+
+**Total servido: 7,83 MB → ≈ 0,3–0,4 MB (−95 %) [medido/análogo].** Qué hacer con las referencias: los cinco src son literales `.png` en `applications.tsx:15,21,27`, `cta-final.tsx:20`, `login-visual.tsx:8` (más el nuevo del hero) → cambiar a `.webp` con `width/height` reales de la variante máxima; `<Image>` servido se queda (next/image sigue re-codificando AVIF/WebP en runtime si sharp está en el tree — **a verificar en el acta; no lo afirmo**). Sufijos `@2x`: **ninguno** — el srcset de next/image cubre 2×; la conversión de origen vale igual por bytes en repo, dev y clientes sin optimizador.
+
+### 14.7 Fases, firmas y totales
+
+- **F7 (nueva, se ejecuta junto a F3 — misma receta de capas):** generar escena → webp → ventana + tarjeta sobre el corte + chip de declaración + criterio LCP. Depende de **C-95 (hero con escena — enmienda la fila «1 hero» de §4.1, que decía «ninguna raster»)**.
+- **C-94 (reservado en la cabecera de este plano y nunca asignado en §9): se asigna aquí** a la enmienda de compresión — extensión de F0 a los 5 PNG + cancelación de la variante 1456 de i1..i3. Frontend, sin firma de operador.
+- **C-96:** corte explícito del H1 (14.3) — cero cadenas nuevas, cambio estructural; firma de operador en el acta de F7.
+- **Totales del §14: entran 1 imagen nueva (hero); se comprimen 5; el landing queda con 2 escenas raster + 3 ilustraciones WebP + 4 SVG de banda 4.** Reutilizar `login-escena` en el hero queda descartado: su encuadre es 4:5 vertical de medio cuerpo de mesa pensado para el panel de login, y la ventana del hero es 1:1 con requisitos de solape distintos — se pierde más en el recorte de lo que se gana evitando una tarea de generación.
+
+**Cierre del §14:** el hero recibe su aire con **una ventana 1:1 que el texto no pisa y una tarjeta que la cruza** — la lección del login aplicada al hero, la escena del cierre sin competencia. Peso tras compresión: menos de medio megabyte en cinco archivos que hoy pesan ocho.

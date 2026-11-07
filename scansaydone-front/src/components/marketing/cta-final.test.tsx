@@ -54,12 +54,12 @@ describe("CtaFinal", () => {
     expect(bgImg).toHaveAttribute("loading", "lazy");
   });
 
-  it("veil layer exists with surface-dark/88 class", () => {
+  it("veil layer exists with the lighter surface-dark/72 class", () => {
     const { container } = render(<CtaFinal />);
     const section = container.querySelector("section");
     const veil = section?.querySelector('div[aria-hidden="true"]');
     expect(veil).not.toBeNull();
-    expect(veil?.className).toMatch(/bg-surface-dark\/88/);
+    expect(veil?.className).toMatch(/bg-surface-dark\/72/);
   });
 
   it("section has id='cta-final'", () => {

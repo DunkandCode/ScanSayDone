@@ -58,7 +58,7 @@ export function SurveyCard() {
   }, [selected]);
 
   return (
-    <div id="encuesta-demo" tabIndex={-1} className="elev-float scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary">
+    <div id="encuesta-demo" tabIndex={-1} className="elev-float scroll-mt-[92px] w-full border-2 border-border-mid rounded-lg bg-surface-default p-4 sm:p-6 lg:p-8 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary">
       {/* Header: DEMO tag + store label */}
       <div className="flex items-center justify-between mb-4">
         <span className="inline-block bg-surface-elevated text-text-primary text-xs font-ui font-semibold px-2 py-0.5 rounded">
@@ -114,7 +114,7 @@ export function SurveyCard() {
         type="button"
         onClick={handleSubmit}
         disabled={selected === null}
-        className="w-full py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg border-2 border-interactive-primary hover:bg-interactive-hover hover:border-interactive-hover active:bg-interactive-pressed active:border-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary disabled:bg-disabled-fill disabled:border-disabled-fill disabled:text-text-secondary disabled:cursor-not-allowed"
+        className="w-full rounded-lg border-2 border-text-primary bg-surface-dark py-3 font-ui font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark focus-visible:outline-[3px] focus-visible:outline-offset-[3px] focus-visible:outline-on-dark disabled:cursor-not-allowed disabled:border-disabled-fill disabled:bg-disabled-fill disabled:text-text-secondary"
       >
         Enviar
       </button>

@@ -17,9 +17,9 @@ export function CtaFinal() {
     >
       {/* Capa de imagen de fondo (solo md+) */}
       <Image
-        src="/img/fondos/banda-9-escena.png"
-        width={1536}
-        height={768}
+        src="/img/fondos/banda-9-escena.webp"
+        width={1456}
+        height={728}
         alt=""
         aria-hidden
         priority={false}
@@ -31,20 +31,20 @@ export function CtaFinal() {
       {/* Velo atenuador */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-surface-dark/88"
+        className="pointer-events-none absolute inset-0 bg-surface-dark/72"
       />
 
       {/* Contenido */}
       <div className="relative">
         <div className="mx-auto max-w-mkt-lg">
           <div className="mx-auto max-w-[632px] text-center">
-            <p className="font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-on-dark-secondary">
+            <p className="font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-on-dark">
               COMIENZA HOY
             </p>
             <h2 className="mt-4 font-display text-[44px] leading-[0.95] uppercase text-on-dark md:text-[64px]">
               ¿LISTO PARA EMPEZAR?
             </h2>
-            <p className="mt-4 font-ui text-[18px] leading-[1.6] text-on-dark-secondary">
+            <p className="mt-4 font-ui text-[18px] leading-[1.6] text-on-dark">
               Encuestas por QR para tu restaurante, café o comercio.
             </p>
             <div className="mt-8">
@@ -55,7 +55,7 @@ export function CtaFinal() {
                 Hablemos
               </Link>
             </div>
-            <p className="mt-6 font-ui text-[12px] text-on-dark-secondary">
+            <p className="mt-6 font-ui text-[12px] text-on-dark">
               La imagen de fondo es una ilustración generada. No muestra un
               local real.
             </p>

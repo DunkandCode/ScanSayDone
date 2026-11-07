@@ -32,15 +32,11 @@ const CLAIMS = [
 export function TrustStrip() {
   return (
     <section
-      className="w-full border-y border-border-mid px-4 py-15"
-      style={{
-        backgroundImage:
-          "linear-gradient(180deg, color-mix(in srgb, var(--color-background-page) 75%, var(--color-surface-elevated)) 0%, var(--color-surface-elevated) 100%)",
-      }}
+      className="w-full border-y border-border-mid bg-surface-elevated px-4 py-10 md:py-12"
     >
-      <div className="relative mx-auto grid w-full max-w-mkt-xl grid-cols-1 gap-4 min-[544px]:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] md:gap-6">
+        <div className="mx-auto grid w-full max-w-mkt-xl grid-cols-1 gap-4 min-[544px]:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] md:gap-5">
         {CLAIMS.map((claim) => (
-          <div key={claim.title} className="flex flex-col">
+          <div key={claim.title} className="flex flex-col rounded-[8px] border border-border-mid bg-surface-default p-5 md:p-6">
             {claim.iconId === "icon-sin-app" && (
               <svg
                 viewBox="0 0 24 24"
@@ -49,7 +45,7 @@ export function TrustStrip() {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="size-8 shrink-0 text-text-primary"
+                className="size-9 shrink-0 text-text-primary"
                 aria-hidden="true"
                 focusable="false"
                 data-decorativo="icon-sin-app"
@@ -69,7 +65,7 @@ export function TrustStrip() {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="size-8 shrink-0 text-text-primary"
+                className="size-9 shrink-0 text-text-primary"
                 aria-hidden="true"
                 focusable="false"
                 data-decorativo="icon-sin-cuenta"
@@ -91,7 +87,7 @@ export function TrustStrip() {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="size-8 shrink-0 text-text-primary"
+                className="size-9 shrink-0 text-text-primary"
                 aria-hidden="true"
                 focusable="false"
                 data-decorativo="icon-sin-reimpresion"
@@ -106,26 +102,15 @@ export function TrustStrip() {
                 <path d="M18 13 L20 15 L22 13" />
               </svg>
             )}
-            <p className="mt-3 font-ui text-[20px] font-semibold uppercase text-text-primary">
+            <p className="mt-4 font-ui text-[18px] font-bold uppercase text-text-primary md:text-[20px]">
               {claim.title}
             </p>
-            <p className="mt-2 font-ui text-[14px] leading-[1.45] text-text-secondary">
+            <p className="mt-2 font-ui text-[14px] leading-[1.55] text-text-secondary">
               {claim.body}
             </p>
           </div>
         ))}
 
-        {/* Filetes verticales entre columnas (C-86, §10.3): solo desktop (md+) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 hidden w-px bg-border-mid md:block"
-          style={{ left: "calc((100% - 48px) / 3 + 12px)" }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 hidden w-px bg-border-mid md:block"
-          style={{ left: "calc(2 * ((100% - 48px) / 3) + 36px)" }}
-        />
       </div>
     </section>
   );

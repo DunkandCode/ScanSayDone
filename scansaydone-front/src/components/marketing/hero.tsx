@@ -1,45 +1,68 @@
+import Image from "next/image";
 import { SurveyCard } from "@/components/marketing/survey-card";
 
 export function Hero() {
   return (
-    <section className="relative py-16 lg:py-24" aria-labelledby="hero-title">
-      {/* G3 halo — bajo la tarjeta demo (PASE-VISUAL-2 §2.3) */}
+    <section
+      className="relative isolate flex items-center overflow-hidden bg-background-page py-16 lg:min-h-marketing-hero lg:py-24"
+      aria-labelledby="hero-title"
+    >
+      {/* Escena de fondo completa — H1 conserva prioridad visual y de carga. */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(560px 440px at 84% 26%, var(--color-surface-elevated), transparent)",
-        }}
-      />
-      <div className="relative max-w-mkt-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Left column — 7/12 */}
-          <div className="lg:col-span-7">
-            {/* Eyebrow */}
-            <p className="font-ui text-xs sm:text-sm font-semibold tracking-widest uppercase text-text-secondary mb-4 sm:mb-6">
+        className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
+      >
+        <Image
+          src="/img/fondos/hero-escena.webp"
+          fill
+          alt=""
+          aria-hidden="true"
+          priority={false}
+          fetchPriority="low"
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[62%_68%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(0deg, color-mix(in srgb, var(--color-background-page) 55%, transparent) 0%, transparent 18%), linear-gradient(90deg, var(--color-background-page) 0%, var(--color-background-page) 40%, color-mix(in srgb, var(--color-background-page) 88%, transparent) 52%, color-mix(in srgb, var(--color-background-page) 48%, transparent) 66%, transparent 84%)",
+          }}
+        />
+        <div className="absolute bottom-4 right-4 z-10 max-w-sm rounded border border-border-mid bg-surface-elevated px-3 py-2">
+          <p className="font-ui text-xs text-text-secondary">
+            La imagen de fondo es una ilustración generada. No muestra un local real.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-mkt-xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-8 xl:flex-row xl:items-center xl:justify-between">
+          <div className="w-full max-w-xl">
+            <p className="mb-4 font-ui text-xs font-semibold uppercase tracking-widest text-text-secondary sm:mb-6 sm:text-sm">
               ENCUESTAS DE SATISFACCIÓN PARA RESTAURANTES Y COMERCIOS
             </p>
 
-            {/* H1 */}
-            <h1 id="hero-title" className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-text-primary">
-              Lo que tus clientes piensan,
-              <span className="block bg-surface-dark text-on-dark px-2 mt-2 w-fit">
+            <h1
+              id="hero-title"
+              className="font-display text-marketing-hero tracking-marketing-hero text-text-primary"
+            >
+              <span className="block">Lo que tus</span>
+              <span className="block">clientes piensan,</span>
+              <span className="mt-2 block w-fit max-w-full whitespace-nowrap bg-surface-dark px-2 text-on-dark">
                 antes de que se vayan
               </span>
             </h1>
 
-            {/* Subhead */}
-            <p className="font-ui text-base sm:text-lg text-text-secondary mt-6 max-w-md">
+            <p className="mt-6 max-w-md font-ui text-base text-text-secondary sm:text-lg">
               Un código en la mesa. Una respuesta breve. Un panel con lo que
               necesitas saber.
             </p>
 
-            {/* CTA — in-page anchor to the demo survey card below */}
             <div className="mt-8">
               <a
                 href="#encuesta-demo"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-interactive-primary text-text-primary font-ui font-semibold rounded-lg hover:bg-interactive-hover active:bg-interactive-pressed focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+                className="marketing-hero-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-text-primary bg-surface-dark px-6 py-3 font-ui font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark"
               >
                 Ver una encuesta de ejemplo
                 <svg
@@ -61,8 +84,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right column — 5/12, survey card */}
-          <div className="lg:col-span-5 flex items-center">
+          <div className="w-full max-w-sm self-start xl:self-end">
             <SurveyCard />
           </div>
         </div>
