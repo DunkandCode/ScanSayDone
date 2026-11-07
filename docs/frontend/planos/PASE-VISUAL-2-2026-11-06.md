@@ -467,3 +467,47 @@ Con la escena a sangre el LCP pasa a ser **la imagen** (~144 ms medidos), no el 
 ### 15.7 Lo que NO verifiqué
 
 Sin Lighthouse: ni score de performance, ni score de accesibilidad, ni presupuesto de red por esa vía. Sin estados de carga ni de error del hero: solo el render completo a tres anchos. Sin navegadores sin `color-mix` — las dos capas del velo lo usan y su degradación no fue probada. Cero medición de CLS. C-95 y C-96 siguen sin acta: esto es lo construido, no lo firmado.
+
+---
+
+## 16. Reencuadre final tras revisión del operador
+
+> **Qué es:** acta del corte de 2026-11-07 después de §15. Cambia la imagen del hero, no el mecanismo. Enmienda tres cosas de §15: la fila «Encuadre» de §15.2 (`62% 68%` + `scale 1.06` → lo de 16.3), el alto de sección (1440×618 → 1440×616) y la fila `hero-escena.webp` de §15.5. El criterio de LCP de §15.6 sigue vigente. **Este archivo no ejecutó nada ni abrió ninguna captura:** cada cifra de abajo es salida reportada por el implementador. Cero PASS aquí.
+
+### 16.1 Por qué se cambia la imagen
+
+La primera escena a sangre se rechaza por encuadre, no por receta: con v1 la taza y la mesa caían demasiado abajo y quedaban apenas visibles. El operador pidió probar otra imagen más acorde al hero. El fullbleed, el velo de dos capas, la sombra de la tarjeta y el «no se descarga en móvil» de §15 **no se tocan**: solo cambia la fotografía que hay debajo.
+
+### 16.2 Fuente v2, WebP activo y fuente preservada
+
+| Pieza | Ruta | Dimensiones | Bytes |
+|---|---|---|---|
+| Fuente v2 (fuera de `public`, no se sirve) | `scansaydone-front/assets/fuentes-imagenes/fondos/hero-escena-v2.png` | 1536×1024 | **2 249 493** |
+| WebP activo (único servido) | `public/img/fondos/hero-escena.webp` | 1536×1024, calidad 70 | **187 892** |
+| Fuente v1 (preservada, no se borra) | `scansaydone-front/assets/fuentes-imagenes/fondos/hero-escena.png` | 1024×1024 (§15.5) | sin medir en esta edición |
+
+v2 viene de una cafetería vacía: pared calma a la izquierda, mesa y taza visibles a la derecha, sin personas y sin QR. Compresión [D sobre bytes reportados]: 187 892 ÷ 2 249 493 = **8,35 %** del original, ratio **≈ 11,97:1**, recorte **≈ 91,65 %**; en KiB (÷1024) de 2 196,8 a **183,5**. El total de raster del sitio de §15.5 **no se recalculó aquí**: esa tabla no declara si sus «KB» son 2¹⁰ o 10³ bytes, así que la suma queda a cargo del gate.
+
+### 16.3 Encuadre y medidas
+
+`object-position: 50% 65%` con desplazamiento responsive: **27 % a 1280** y **23 % a 1440**, para que la pared quede en la izquierda bajo el velo y la taza/mesa salgan en la derecha. Regla acotada al hero: **no extender esa regla fuera de hero** y no tocar que la escena siga a sangre cubriendo la sección.
+
+| Medida [reportada por Playwright del implementador] | Valor |
+|---|---|
+| Hero/escena | 1440×616 a 1440 · 1280×616 a 1280 · 992×919,8 apilado · 375 escena oculta, **0 requests** |
+| H1 / gap texto–tarjeta / overflow | íntegro en los 4 viewports · 116 px desktop y 32 px apilado · sin overflow horizontal |
+| Muestras RGB vs crema `rgb(247,229,200)` (Δ suma de canales, criterio §15.3) | a 1280 taza **225** mesa **246**; a 1440 taza **220** mesa **233** |
+
+Las Δ de v2 caen en la franja donde §15.3 leía escena franca (183–284) y muy por encima del casi-velo (38): el reencuadre cumple lo pedido. Son datos reportados, **no evidencia independiente**: las capturas las tomó el implementador y quien documenta esto no las inspeccionó.
+
+### 16.4 Ajustes de revisión y batería
+
+Anillo de foco de **Enviar** corregido: tinta, 3 px, offset −3, contraste **12,82:1 reportado**. La caja del H1 permite wrap bajo `lg` tras un hallazgo LOW del reviewer. El CTA del cierre lleva `motion-safe`. Color, copy y dataset sin cambios; cero dependencias nuevas; cero sombras nuevas.
+
+Batería de la tanda final **[salida reportada por el implementador]**: 145 tests en 12 archivos · build 14/14 · lint 0 errores con 4 avisos preexistentes · tsc 0 · axe 12/12 con cero violaciones · Playwright en 1440/1280/992/375 · LCP **144 ms sobre la imagen**, reportado. El reviewer **APROBÓ con 2 LOW** (nowrap del H1 y geometría arbitraria); el nowrap se corrigió después y la suite se repitió 145/12 con build/lint/tsc/axe verdes según el propio agente. **El revisor no ejecutó pruebas: no tiene shell.** Ninguna batería de esta sección es ejecución del reviewer ni de esta edición.
+
+Estado git de la tanda: commit **`9f5278b`** (`fix(landing): reencuadrar la escena del hero y dejar foco visible`), rama `dev/nicolaslopezv-front`; incluye WebP activo, fuente v2, foco, wrap del H1 y motion-safe.
+
+### 16.5 No verificado
+
+Captura visual sin inspección independiente (ni reviewer ni esta edición) · Lighthouse en ninguna variante · degradación sin `color-mix` · navegadores reales · CLS · estados de carga y error del hero · recomposición del total de raster. Confirmar el árbol limpio y fijar el commit queda al operador. C-95 y C-96 siguen sin acta.
