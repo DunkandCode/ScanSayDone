@@ -92,9 +92,13 @@ describe("PanelPage", () => {
     expect(exportBtn).toHaveAttribute("aria-disabled", "true");
     expect(exportBtn).not.toHaveAttribute("href");
 
-    // Ajustes del panel
-    const settingsBtn = screen.getByRole("button", { name: /Ajustes del panel/i });
-    expect(settingsBtn).toHaveAttribute("aria-disabled", "true");
+    // D6: no hay un tercer "Ajustes" sobre el bloque de últimas respuestas
+    const ajustesButtons = screen.queryAllByText(/Ajustes/i);
+    // Solo los dos esperados: el control de la página y el ítem de navegación
+    expect(ajustesButtons.length).toBeLessThanOrEqual(2);
+    expect(
+      screen.queryByRole("button", { name: /Ajustes del panel/i })
+    ).not.toBeInTheDocument();
   });
 
   it("9. ningún enlace apunta a rutas vacías (/privacy, /terms, /pricing, /faqs, /aboutus, /services)", () => {

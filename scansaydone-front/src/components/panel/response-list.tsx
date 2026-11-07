@@ -18,24 +18,12 @@ function RatingChip({ rating }: { rating: number }) {
 export function ResponseList({ empty = false }: { empty?: boolean }) {
   return (
     <section aria-labelledby="b6-title" className="mt-6 lg:mt-8">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2
-          id="b6-title"
-          className="font-ui text-[16px] font-semibold text-text-primary lg:text-[18px]"
-        >
-          Últimas respuestas
-        </h2>
-
-        {/* Settings button (disabled) */}
-        <button
-          type="button"
-          aria-disabled="true"
-          title="Ajustes no están disponibles en el panel de ejemplo."
-          className="cursor-not-allowed rounded-[4px] border border-border-subtle px-3 py-1 font-ui text-[13px] font-medium text-text-secondary focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
-        >
-          Ajustes del panel
-        </button>
-      </div>
+      <h2
+        id="b6-title"
+        className="font-ui text-[16px] font-semibold text-text-primary lg:text-[18px]"
+      >
+        Últimas respuestas
+      </h2>
 
       {empty ? (
         <div className="mt-4 border-t border-border-subtle py-4">
