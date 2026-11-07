@@ -15,9 +15,7 @@ export default function MarketingLanding() {
       <HowItWorks />
       <Channels />
       <Applications />
-      {/* C-19: banda 6 en estado vacio (sin captura del panel). RETIRAR este bloque del DOM publico
-          si se despliega antes de la etapa P; el marco vacio no se publica (L3-PANEL §1.2, criterio 1).
-          Al llegar la captura real: se repone con el ghost "Ver mi panel (demo)". */}
+      {/* Banda 6: panel de ejemplo con datos inventados, declarado con badge y pie. C-19 quedó reabierta y firmada el 2026-11-06. */}
       <PanelPreview />
       <Faqs />
       <CtaFinal />

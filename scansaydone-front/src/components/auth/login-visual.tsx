@@ -110,7 +110,7 @@ export function LoginVisual() {
             ejemplo de referencia · sin funciones
           </p>
           <p className="mt-2 font-ui text-[14px] font-medium text-text-primary">
-            Todavía no hay panel que mostrar.
+            El panel de ejemplo ya se puede ver.
           </p>
         </figcaption>
       </div>
