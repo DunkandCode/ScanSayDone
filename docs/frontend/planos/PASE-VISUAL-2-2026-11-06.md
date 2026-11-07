@@ -510,13 +510,13 @@ Estado git de la tanda: commit **`9f5278b`** (`fix(landing): reencuadrar la esce
 
 ### 16.5 No verificado
 
-Captura visual sin inspección independiente (ni reviewer ni esta edición) · Lighthouse en ninguna variante · degradación sin `color-mix` · navegadores reales · CLS · estados de carga y error del hero · recomposición del total de raster. Confirmar el árbol limpio y fijar el commit queda al operador. C-95 y C-96 siguen sin acta.
+Captura visual sin inspección independiente (ni reviewer ni esta edición) · Lighthouse en ninguna variante · degradación sin `color-mix` · navegadores reales · CLS · estados de carga y error del hero · recomposición del total de raster. C-95 y C-96 siguen sin acta.
 
 ---
 
 ## 17. Validación fullbleed y velo perceptual
 
-> **Qué es:** acta del corte 2026-11-07 tras §16: verificación geométrica fullbleed y corrección del velo. Enmienda §16.3 (translate responsivo → removido; `object-position` → `68% 65%`) y el velo horizontal de §15.2 (sin tramo opaco). **Cero PASS atribuido a esta edición** — es documental. El fix fullbleed + velo es el **cambio pendiente de commit** de esta tanda (hash sin fijar; se añade al final).
+> **Qué es:** acta del corte 2026-11-07 tras §16: verificación geométrica fullbleed y corrección del velo. Enmienda §16.3 (translate responsivo → removido; `object-position` → `68% 65%`) y el velo horizontal de §15.2 (sin tramo opaco). **Cero PASS atribuido a esta edición** — es documental. El fix fullbleed + velo quedó en commit **`1e15698`**.
 
 ### 17.1 Geometría [Playwright **ejecutado por el orquestador** a 1440]
 
