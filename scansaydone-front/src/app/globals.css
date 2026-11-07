@@ -62,6 +62,12 @@
   outline-offset: var(--marketing-focus-outline-offset);
 }
 
+.survey-card-submit:focus-visible {
+  outline-color: var(--color-text-primary);
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+}
+
 /* Reveal-on-scroll — CSS scroll-driven animations (PASE-VISUAL-2 §2.5) */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {

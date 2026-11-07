@@ -114,7 +114,7 @@ export function SurveyCard() {
         type="button"
         onClick={handleSubmit}
         disabled={selected === null}
-        className="w-full rounded-lg border-2 border-text-primary bg-surface-dark py-3 font-ui font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark focus-visible:outline-[3px] focus-visible:outline-offset-[3px] focus-visible:outline-on-dark disabled:cursor-not-allowed disabled:border-disabled-fill disabled:bg-disabled-fill disabled:text-text-secondary"
+        className="survey-card-submit w-full rounded-lg border-2 border-text-primary bg-surface-dark py-3 font-ui font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary disabled:cursor-not-allowed disabled:border-disabled-fill disabled:bg-disabled-fill disabled:text-text-secondary"
       >
         Enviar
       </button>

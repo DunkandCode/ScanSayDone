@@ -4,23 +4,23 @@ import { SurveyCard } from "@/components/marketing/survey-card";
 export function Hero() {
   return (
     <section
-      className="relative isolate flex items-center overflow-hidden bg-background-page py-16 lg:min-h-marketing-hero lg:py-24"
+      className="relative isolate flex items-center overflow-hidden bg-background-page py-16 lg:min-h-marketing-hero lg:py-20"
       aria-labelledby="hero-title"
     >
       {/* Escena de fondo completa — H1 conserva prioridad visual y de carga. */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
-      >
-        <Image
-          src="/img/fondos/hero-escena.webp"
-          fill
-          alt=""
-          aria-hidden="true"
-          priority={false}
-          fetchPriority="low"
-          sizes="100vw"
-          className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[62%_68%]"
-        />
+      <div className="pointer-events-none absolute inset-0 z-0 hidden lg:block">
+        <div className="marketing-hero-scene absolute inset-0 overflow-hidden">
+          <Image
+            src="/img/fondos/hero-escena.webp"
+            fill
+            alt=""
+            aria-hidden="true"
+            priority={false}
+            fetchPriority="low"
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_65%] xl:translate-x-[27%] 2xl:translate-x-[23%]"
+          />
+        </div>
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -49,7 +49,7 @@ export function Hero() {
             >
               <span className="block">Lo que tus</span>
               <span className="block">clientes piensan,</span>
-              <span className="mt-2 block w-fit max-w-full whitespace-nowrap bg-surface-dark px-2 text-on-dark">
+              <span className="mt-2 block w-fit max-w-full whitespace-normal lg:whitespace-nowrap bg-surface-dark px-1.5 py-1.5 text-on-dark">
                 antes de que se vayan
               </span>
             </h1>
