@@ -511,3 +511,34 @@ Estado git de la tanda: commit **`9f5278b`** (`fix(landing): reencuadrar la esce
 ### 16.5 No verificado
 
 Captura visual sin inspección independiente (ni reviewer ni esta edición) · Lighthouse en ninguna variante · degradación sin `color-mix` · navegadores reales · CLS · estados de carga y error del hero · recomposición del total de raster. Confirmar el árbol limpio y fijar el commit queda al operador. C-95 y C-96 siguen sin acta.
+
+---
+
+## 17. Validación fullbleed y velo perceptual
+
+> **Qué es:** acta del corte 2026-11-07 tras §16: verificación geométrica fullbleed y corrección del velo. Enmienda §16.3 (translate responsivo → removido; `object-position` → `68% 65%`) y el velo horizontal de §15.2 (sin tramo opaco). **Cero PASS atribuido a esta edición** — es documental. El fix fullbleed + velo es el **cambio pendiente de commit** de esta tanda (hash sin fijar; se añade al final).
+
+### 17.1 Geometría [Playwright **ejecutado por el orquestador** a 1440]
+
+| Rect medido | Valor |
+|---|---|
+| Sección hero | `x=0` · `w=1440` · `right=1440` · `h=616` |
+| Img | `x=0` · `w=1440` · `right=1440` · `h=616` — cubre toda la caja; `scrollWidth=1440` |
+
+El gap que se veía era **falso**: lo causaban `xl:translate-x-[27%] 2xl:translate-x-[23%]`, ya **removidas**. Encuadre actual: `object-cover object-[68%_65%]`. La escena es fullbleed en geometría: el CSS no recorta media imagen.
+
+### 17.2 Velo y percepción: error CSS corregido vs composición del asset
+
+- **Velo:** stops continuos, **sin tramo opaco** (antes: 40 % sólido en la capa horizontal) → ya no hay borde duro CSS. El criterio «el texto solo vive donde el velo es opaco» (§15.2, `ESTADO §6`) queda **enmendado por esta sección**: el contraste lo fija la muestra del píxel compuesto.
+- **Percepción:** el usuario sigue leyendo «foto» solo en la mitad derecha. Causa residual: la fuente v2 tiene **pared lisa a la izquierda** (área limpia deliberada bajo el texto, prompt §14.4) y **café/mesa a la derecha**. **No se afirma que la escena se perciba homogénea**: el reviewer confirma que la asimetría del asset persiste; solo la cambiaría otra fuente — las candidatas v3/v4 no fueron elegidas y fueron retiradas (igual que los reportes de validación defectuosos); la fuente v2 y el WebP activo siguen.
+
+### 17.3 Contraste y batería [ejecutado vs reportado]
+
+| Dato | Quién | Estado |
+|---|---|---|
+| Contraste por píxel: eyebrow **4,80→5,25** · lead **4,77→5,16** · texto secondary `rgb(90,85,85)` | implementador | **reportado**; no muestreó cada glifo — última letra del lead sin revisar |
+| Reviewer **APROBADO** con residuales no bloqueantes: R1 (mínimo 4,77, margen pequeño) · R4 (asimetría perceptual del source) | reviewer | inspección estática; no ejecutó tests |
+| axe: `A11Y_BASE_URL=http://localhost:3203 npm run test:a11y` → **12 passed (6,8 s) · 0 violaciones · exit 0** | **orquestador** | **ejecutado en shell**, 2026-11-07 |
+| 145 tests · build 14/14 · lint 0 errores/4 avisos · tsc 0 | implementador | reportado, no reejecutado en esta sesión documental |
+
+**Límites:** Lighthouse no ejecutado · muestreo glifo a glifo incompleto · sin inspección de capturas independiente · actas C-95/C-96 siguen pendientes · axe cubre violaciones de reglas WCAG, **no** el contraste por píxel del texto sobre la foto (ese queda en la fila reportada de arriba).

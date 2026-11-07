@@ -18,7 +18,7 @@ export function Hero() {
             priority={false}
             fetchPriority="low"
             sizes="100vw"
-            className="absolute inset-0 h-full w-full object-cover object-[50%_65%] xl:translate-x-[27%] 2xl:translate-x-[23%]"
+            className="absolute inset-0 h-full w-full object-cover object-[68%_65%]"
           />
         </div>
         <div
@@ -26,7 +26,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(0deg, color-mix(in srgb, var(--color-background-page) 55%, transparent) 0%, transparent 18%), linear-gradient(90deg, var(--color-background-page) 0%, var(--color-background-page) 40%, color-mix(in srgb, var(--color-background-page) 88%, transparent) 52%, color-mix(in srgb, var(--color-background-page) 48%, transparent) 66%, transparent 84%)",
+              "linear-gradient(0deg, color-mix(in srgb, var(--color-background-page) 35%, transparent) 0%, transparent 24%), linear-gradient(90deg, color-mix(in srgb, var(--color-background-page) 38%, transparent) 0%, color-mix(in srgb, var(--color-background-page) 66%, transparent) 32%, color-mix(in srgb, var(--color-background-page) 86%, transparent) 48%, color-mix(in srgb, var(--color-background-page) 86%, transparent) 52%, color-mix(in srgb, var(--color-background-page) 54%, transparent) 66%, transparent 88%)",
           }}
         />
         <div className="absolute bottom-4 right-4 z-10 max-w-sm rounded border border-border-mid bg-surface-elevated px-3 py-2">
