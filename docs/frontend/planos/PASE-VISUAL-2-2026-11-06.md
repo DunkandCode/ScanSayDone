@@ -514,31 +514,65 @@ Captura visual sin inspección independiente (ni reviewer ni esta edición) · L
 
 ---
 
-## 17. Validación fullbleed y velo perceptual
+## 17. Fullbleed, la costura del asset v2 y el fix final: la imagen
 
-> **Qué es:** acta del corte 2026-11-07 tras §16: verificación geométrica fullbleed y corrección del velo. Enmienda §16.3 (translate responsivo → removido; `object-position` → `68% 65%`) y el velo horizontal de §15.2 (sin tramo opaco). **Cero PASS atribuido a esta edición** — es documental. El fix fullbleed + velo quedó en commit **`1e15698`**.
+> **Qué es:** acta del cierre 2026-11-07 tras §16: geometría verificada, análisis de causa raíz de la costura percibida y **fix final ya aplicado**. Enmienda §16.3 (translate removido; el encuadre `object-[68%_65%]` era de la era v2 y queda sin efecto al cambiar la imagen) y §15.2 (el velo de dos capas **desaparece del hero**: el texto pasa a una superficie propia opaca). **Supersede el §17.2 de la edición anterior**, que afirmaba que la asimetría de v2 quedaba como residual y que las candidatas v3/v4 «no fueron elegidas y fueron retiradas»: ya no es cierto — **v4 es hoy la imagen activa**. Commits: `1e15698` es la tanda intermedia fullbleed + velo; **el fix final es `b5653d2`** (`git log` 2026-11-07). **Cero PASS atribuido a esta edición** — es documental.
 
-### 17.1 Geometría [Playwright **ejecutado por el orquestador** a 1440]
+### 17.1 Geometría: ya era fullbleed [Playwright **ejecutado por el orquestador** a 1440]
 
 | Rect medido | Valor |
 |---|---|
-| Sección hero | `x=0` · `w=1440` · `right=1440` · `h=616` |
-| Img | `x=0` · `w=1440` · `right=1440` · `h=616` — cubre toda la caja; `scrollWidth=1440` |
+| Sección hero | `x=0` · `y=76` · `w=1440` · `right=1440` · `h=616` |
+| Img | `x=0` · `y=76` · `w=1440` · `right=1440` · `h=616` — cubre toda la caja; `scrollWidth=1440` |
 
-El gap que se veía era **falso**: lo causaban `xl:translate-x-[27%] 2xl:translate-x-[23%]`, ya **removidas**. Encuadre actual: `object-cover object-[68%_65%]`. La escena es fullbleed en geometría: el CSS no recorta media imagen.
+El gap que se veía era **falso**: lo causaban `xl:translate-x-[27%] 2xl:translate-x-[23%]`, ya **removidas** (`1e15698`). Al diagnosticar (`/` en localhost:3000, 1440), sección e imagen medían lo mismo: el CSS **no recorta media imagen** ni falta ancho. La costura a explicar no estaba en la geometría.
 
-### 17.2 Velo y percepción: error CSS corregido vs composición del asset
+### 17.2 Causa raíz: la composición de la fuente, no la geometría [designer-alibaba y explore-alibaba, **independientes**, read-only]
 
-- **Velo:** stops continuos, **sin tramo opaco** (antes: 40 % sólido en la capa horizontal) → ya no hay borde duro CSS. El criterio «el texto solo vive donde el velo es opaco» (§15.2, `ESTADO §6`) queda **enmendado por esta sección**: el contraste lo fija la muestra del píxel compuesto.
-- **Percepción:** el usuario sigue leyendo «foto» solo en la mitad derecha. Causa residual: la fuente v2 tiene **pared lisa a la izquierda** (área limpia deliberada bajo el texto, prompt §14.4) y **café/mesa a la derecha**. **No se afirma que la escena se perciba homogénea**: el reviewer confirma que la asimetría del asset persiste; solo la cambiaría otra fuente — las candidatas v3/v4 no fueron elegidas y fueron retiradas (igual que los reportes de validación defectuosos); la fuente v2 y el WebP activo siguen.
+Los dos análisis llegan al mismo veredicto: la causa raíz es **la composición del asset**, con el velo y la oclusión de la tarjeta como agravantes secundarios. **No** es falta de ancho en CSS — eso lo descarta la geometría medida de 17.1. Por peso:
 
-### 17.3 Contraste y batería [ejecutado vs reportado]
+| # | Causa | Peso | Lo verificado |
+|---|---|---|---|
+| 1 | **Asset v2:** pared pálida ocupa media izquierda; detalle de café, media derecha | **principal** | la costura vive en la fuente, cerca de su x≈50 % |
+| 2 | **El encuadre no podía disimularla:** fuente 3:2 (1536×1024) vs hero 1440/616 ≈ **2,337** | soporte mecánico de 1 | en `object-cover` **el ancho vincula**: no hay holgura horizontal → la costura de la fuente mapea a x≈**720** del viewport; `object-position-x` **no puede crear contenido de fuente que no existe** |
+| 3 | **Velo:** alfa máximo **86 %** en x 48–52 %, justo sobre la unión donde la pared terminaba | secundario | no tapaba la costura: **la amplificaba** |
+| 4 | **Tarjeta:** la demo (x 875–1245 · y 260–610) tapaba la **taza y el platillo** de la fuente (x≈922–1123 · y≈466–563) | secundario | lo bueno de la foto quedaba bajo el artefacto |
+
+**Lo que queda sin efecto de la §17.2 anterior:** aquella edición afirmaba que la asimetría de v2 quedaba como residual aceptado y que v3/v4 «no fueron elegidas y fueron retiradas». El fix final hace lo contrario de lo que ese párrafo descartaba: **adopta la panorámica v4 y retira el velo de lleno del hero** (17.3).
+
+### 17.3 Fix final aplicado [HEAD `git log`: `b5653d2`]
+
+| Pieza | Valor |
+|---|---|
+| Imagen activa | sustituida por la **panorámica v4** (generada e inspeccionada previamente): entorno de cafetería en todo el cuadro — cortina a la izquierda; estantes, barra y mesas a la derecha — con **mesa y taza visibles**. Sin personas, sin texto legible, sin QR |
+| Fuente v4 (fuera de `public`, no se sirve) | `scansaydone-front/assets/fuentes-imagenes/fondos/hero-escena-v4.png` · 1536×1024 · **2 266 592 bytes** [medidos con `Get-Item` por esta edición] |
+| WebP activo (único servido) | `scansaydone-front/public/img/fondos/hero-escena.webp` · 1536×1024 · q70 · **241 538 bytes** [medidos] |
+| Fuentes v2 y v1 | **preservadas** fuera de `public`; ninguna se sirve, ninguna se borra |
+| Geometría de la imagen | **sigue fullbleed**: nada de 17.1 se toca; el encuadre de 16.3 gobernaba la v2 y queda sin efecto — cambió el asset |
+| Bloque de texto | **superficie propia opaca**, localizada: `rounded-2xl bg-background-page`. **Sin velo de lleno en el hero**: radio y padding dan el canto de la placa — el mismo criterio determinista ya servido en `/entrar` (`ESTADO §4`) |
+| Tarjeta demo | **alineada arriba**: la mesa/taza se ven por debajo y fuera de ella. **Cero sombra nueva, cero dependencia, cero copy, cero dato** |
+
+El contraste cambia de naturaleza: el texto pisa superficie plana opaca, no hace falta muestrear píxel — secondary/`background-page` **5,93:1** · primary **13,77** · CTA **13,77** [reportado]. Los valores de la era del velo (eyebrow **4,80→5,25** · lead **4,77→5,16**, última letra sin muestrear) quedan **superseded**: describían otra receta.
+
+### 17.4 Verificación de la tanda [ejecutado vs reportado vs mediado por herramienta]
 
 | Dato | Quién | Estado |
 |---|---|---|
-| Contraste por píxel: eyebrow **4,80→5,25** · lead **4,77→5,16** · texto secondary `rgb(90,85,85)` | implementador | **reportado**; no muestreó cada glifo — última letra del lead sin revisar |
-| Reviewer **APROBADO** con residuales no bloqueantes: R1 (mínimo 4,77, margen pequeño) · R4 (asimetría perceptual del source) | reviewer | inspección estática; no ejecutó tests |
-| axe: `A11Y_BASE_URL=http://localhost:3203 npm run test:a11y` → **12 passed (6,8 s) · 0 violaciones · exit 0** | **orquestador** | **ejecutado en shell**, 2026-11-07 |
-| 145 tests · build 14/14 · lint 0 errores/4 avisos · tsc 0 | implementador | reportado, no reejecutado en esta sesión documental |
+| 145 tests en 12 archivos · build 14/14 · lint 0 errores y 4 avisos preexistentes · tsc 0 | implementador | **reportado**, no reejecutado en esta edición |
+| Playwright en 1440/1280/992/375: sin overflow horizontal · **0 peticiones** de la imagen del hero en móvil | implementador | **reportado** |
+| Contraste por píxel sobre la superficie opaca del texto: **5,93 / 13,77 / 13,77** | implementador | **reportado**; determinista porque la superficie es opaca |
+| `A11Y_BASE_URL=http://127.0.0.1:3120 npm run test:a11y` → **12 passed · 0 violaciones de axe · exit 0** | **orquestador** | **ejecutado**; el puerto 3120 quedó cerrado tras la corrida |
+| La corrida completa **sin env falló 10 tests**: los specs hardcodean fallbacks de `A11Y_BASE_URL` a puertos viejos (3155 · 3170) mientras el servidor gestionado por Playwright es 3120 | orquestador | **ejecutado y anotado candidamente**: inconsistencia **conocida del arnés de tests**, no un fallo del hero; con la invocación corregida pasa (queda también en `ESTADO §8`) |
+| Veredicto del reviewer: **APROBADO, 6 observaciones P3 informativas, cero P0/P1** | reviewer | sin shell: inspección estática |
+| Fuente y capturas 1440/1280/992/375: escena de cafetería cruzando todo el cuadro, mesa/taza visibles, superficie de texto separada, demo separada, sin personas/texto/QR | frontend y reviewer; el reviewer además con **ZAI Vision** | **mediado por herramienta**: no es auditoría humana de píxel |
 
-**Límites:** Lighthouse no ejecutado · muestreo glifo a glifo incompleto · sin inspección de capturas independiente · actas C-95/C-96 siguen pendientes · axe cubre violaciones de reglas WCAG, **no** el contraste por píxel del texto sobre la foto (ese queda en la fila reportada de arriba).
+### 17.5 Límites y deudas honestas
+
+- Lo que **sí** midió esta edición: bytes de los cuatro archivos de imagen (`Get-Item`) y el HEAD de la rama (`git log`). Lo que no: build, tests, axe, Playwright, capturas — **cero PASS propio** en este archivo.
+- El total de raster del sitio de §15.5 **no se recalcula**: el WebP activo subió de 187 892 a **241 538** bytes entre tandas; la suma queda a cargo del gate.
+- Sin Lighthouse · sin CLS · sin navegadores reales · sin estados de carga/error del hero. La degradación sin `color-mix` sigue sin probarse en las otras bandas (en el hero el texto ya no usa velo).
+- C-95 y C-96 siguen sin acta.
+
+### 17.6 Tanda intermedia anterior (historia, no estado actual)
+
+Receta de `1e15698`: velo de stops continuos **sin tramo opaco**, v2 como fuente activa y contraste medido sobre píxel compuesto (los valores superseded están en 17.3), con axe **ejecutado por el orquestador** a 3203 (`A11Y_BASE_URL=http://localhost:3203 npm run test:a11y` → 12 passed · 0 violaciones · exit 0) y reviewer **APROBADO con residuales no bloqueantes**: R1 (mínimo 4,77, margen pequeño) y R4 (asimetría perceptual del source). Nada de eso describe el sitio servido hoy; R4 es exactamente lo que 17.2 diagnosticó y 17.3 arregló.
