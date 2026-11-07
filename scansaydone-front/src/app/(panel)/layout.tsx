@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Panel — ScanSayDone",
@@ -11,20 +12,25 @@ export const metadata: Metadata = {
 
 export default function PanelLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col bg-background-page min-[993px]:flex-row">
+    <div className="flex min-h-screen flex-col min-[993px]:flex-row">
       {/* ── Topbar (≤992) ───────────────────────────────────────────────── */}
       <header
         className="sticky top-0 z-30 flex h-[56px] items-center justify-between border-b border-border-subtle bg-surface-default px-4 min-[993px]:hidden"
       >
-        <span className="font-ui text-[16px] font-semibold text-text-primary">
-          ScanSayDone
-        </span>
+        <Image
+          src="/img/marca/lockup-nav.png"
+          alt="ScanSayDone"
+          width={119}
+          height={28}
+          priority
+        />
       </header>
 
       {/* ── Nav row mobile (≤992) ───────────────────────────────────────── */}
       <nav
         aria-label="Navegación del panel"
-        className="sticky top-[56px] z-20 flex h-[44px] items-center gap-1 overflow-x-auto border-b border-border-subtle bg-surface-default px-4 min-[993px]:hidden"
+        tabIndex={0}
+        className="sticky top-[56px] z-20 flex h-[44px] items-center gap-1 overflow-x-auto border-b border-border-subtle bg-surface-default px-4 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary min-[993px]:hidden"
         style={{ scrollbarWidth: "none" }}
       >
         <PanelNavLink active label="Resumen" />
@@ -36,13 +42,21 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
       {/* ── Sidebar (≥993) ──────────────────────────────────────────────── */}
       <aside
         aria-label="Panel"
-        className="sticky top-0 hidden h-screen w-[240px] shrink-0 flex-col border-r border-border-subtle bg-surface-default min-[993px]:flex"
+        className="sticky top-0 hidden h-screen w-[240px] shrink-0 flex-col border-r border-border-subtle min-[993px]:flex"
+        style={{
+          background:
+            "linear-gradient(180deg, #FFFFFF 0%, color-mix(in srgb, #F0D8BD 26%, #FFFFFF) 100%)",
+        }}
       >
-        {/* Marca */}
-        <div className="flex h-[64px] items-center border-b border-border-subtle px-6">
-          <span className="font-ui text-[16px] font-semibold text-text-primary">
-            ScanSayDone
-          </span>
+        {/* Marca — F-O8 */}
+        <div className="flex items-center px-6" style={{ paddingTop: 16, paddingBottom: 24 }}>
+          <Image
+            src="/img/marca/lockup-nav.png"
+            alt="ScanSayDone"
+            width={168}
+            height={40}
+            priority
+          />
         </div>
 
         {/* Nav */}
@@ -66,6 +80,11 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
         id="panel-main"
         tabIndex={-1}
         className="flex-1 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
+        style={{
+          background:
+            "linear-gradient(180deg, #F7E5C8 0%, #F0D8BD 100%)",
+          minHeight: "100svh",
+        }}
       >
         <div className="mx-auto w-full max-w-[1056px] px-4 py-6 xs:px-4 md:px-6 lg:px-8 lg:py-8">
           {children}
@@ -95,7 +114,12 @@ function SidebarNavLink({
     return (
       <span
         aria-current="page"
-        className={`${base} bg-surface-elevated text-text-primary`}
+        className={`${base} font-semibold text-text-primary`}
+        style={{
+          background: "color-mix(in srgb, #F0D8BD 62%, #FFFFFF)",
+          borderLeft: "3px solid #8A6F55",
+          transition: "color 150ms, background-color 150ms",
+        }}
       >
         {label}
       </span>
@@ -116,7 +140,20 @@ function SidebarNavLink({
   }
 
   return (
-    <span className={`${base} text-text-secondary`}>
+    <span
+      className={`${base} text-text-secondary`}
+      style={{
+        transition: "color 150ms, background-color 150ms",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "color-mix(in srgb, #F0D8BD 35%, #FFFFFF)";
+        e.currentTarget.style.color = "#1A181B";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "";
+        e.currentTarget.style.color = "";
+      }}
+    >
       {label}
     </span>
   );
@@ -140,7 +177,12 @@ function PanelNavLink({
     return (
       <span
         aria-current="page"
-        className={`${base} bg-surface-elevated text-text-primary`}
+        className={`${base} font-semibold text-text-primary`}
+        style={{
+          background: "color-mix(in srgb, #F0D8BD 62%, #FFFFFF)",
+          borderLeft: "3px solid #8A6F55",
+          transition: "color 150ms, background-color 150ms",
+        }}
       >
         {label}
       </span>
@@ -161,7 +203,20 @@ function PanelNavLink({
   }
 
   return (
-    <span className={`${base} text-text-secondary`}>
+    <span
+      className={`${base} text-text-secondary`}
+      style={{
+        transition: "color 150ms, background-color 150ms",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "color-mix(in srgb, #F0D8BD 35%, #FFFFFF)";
+        e.currentTarget.style.color = "#1A181B";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "";
+        e.currentTarget.style.color = "";
+      }}
+    >
       {label}
     </span>
   );

@@ -23,10 +23,11 @@ describe("PanelPage", () => {
   });
 
   it("3. hay exactamente 11 barras de distribución", () => {
-    // Desktop SVG has 11 rect elements
+    // Desktop SVG has 11 bar rects (track rects removed for visual clarity)
     const barsSvg = document.querySelector('[aria-labelledby="b4-svg-title"]');
     expect(barsSvg).toBeInTheDocument();
     const rects = barsSvg!.querySelectorAll("rect");
+    // 11 bar rects only (no track rects)
     expect(rects).toHaveLength(11);
   });
 
@@ -153,7 +154,9 @@ describe("PanelPage", () => {
     const srOnlyNotes = within(responseSection).getAllByText(/Nota \d+ sobre 10/);
     expect(srOnlyNotes.length).toBeGreaterThanOrEqual(5);
 
-    const chips = responseSection.querySelectorAll(".font-bold");
+    // §13: scope to list items only (not section title which also has font-bold)
+    const listItems = within(responseSection).getAllByRole("listitem");
+    const chips = listItems.flatMap((li) => Array.from(li.querySelectorAll(".font-bold")));
     expect(chips.length).toBe(5);
   });
 
@@ -223,5 +226,61 @@ describe("PanelPage", () => {
     );
     expect(footerText).toBeInTheDocument();
     expect(footerText.closest("footer")).toBeInTheDocument();
+  });
+
+  // ── §13 visual upgrade tests ────────────────────────────────────────────
+
+  it("§13-1: no duplicate brand text in panel page", () => {
+    // Lockup is in layout, not PanelPage. Test that panel page doesn't duplicate brand.
+    // §13 F-O8: brand text replaced by lockup in layout
+    const brandTexts = screen.queryAllByText("ScanSayDone");
+    // PanelPage should not contain "ScanSayDone" text (it's in layout as Image)
+    expect(brandTexts.length).toBe(0);
+  });
+
+  it("§13-4: three KPI numbers use Bebas font at 36px", () => {
+    const resumen = screen.getByRole("region", { name: /Resumen/i });
+    // Find all numbers in KPI cards (8,5 / 486 / 377) — font-display maps to Bebas
+    const kpiNumbers = resumen.querySelectorAll(".font-display");
+    expect(kpiNumbers.length).toBe(3);
+
+    // Check that all use font-display class (maps to Bebas via CSS var --font-display)
+    kpiNumbers.forEach((el) => {
+      expect(el.className).toContain("font-display");
+    });
+
+    // Check font-size class is text-[36px] or text-[32px] (jsdom can't compute computed style)
+    kpiNumbers.forEach((el) => {
+      const cls = el.className;
+      const hasSize = cls.includes("text-[36px]") || cls.includes("text-[32px]");
+      expect(hasSize).toBe(true);
+    });
+  });
+
+  it("§13-5: section titles have vertical filete (3×16 #8A6F55)", () => {
+    // Check that section titles have the filete structure
+    const sectionTitles = document.querySelectorAll("h2[id^='b']");
+    expect(sectionTitles.length).toBeGreaterThan(0);
+
+    // Check first section title (Resumen)
+    const b2Title = document.getElementById("b2-title");
+    expect(b2Title).toBeInTheDocument();
+    
+    // Check it has the filete span (aria-hidden decorative element)
+    const filete = b2Title!.querySelector('span[aria-hidden="true"]');
+    expect(filete).toBeInTheDocument();
+  });
+
+  it("§13-8: Total row still shows 486 and 100 %", () => {
+    const tables = document.querySelectorAll("table");
+    const channelTable = Array.from(tables).find((t) => {
+      const caption = t.querySelector("caption");
+      return caption?.textContent?.includes("Reseñas por canal");
+    });
+    const tfoot = channelTable!.querySelector("tfoot");
+    const totalRow = tfoot!.querySelector("tr");
+    const totalTds = totalRow!.querySelectorAll("td");
+    expect(totalTds[0]).toHaveTextContent("486");
+    expect(totalTds[1]).toHaveTextContent("100 %");
   });
 });

@@ -1,12 +1,11 @@
 "use client";
 
-"use client";
-
 /**
  * /panel — Dashboard de ejemplo con datos inventados.
  * Cumple PANEL-2026-11-06.md: B1-B7, dataset canónico, cero sombras,
  * único coral en B3, chip DEMO + línea + pie de declaración.
  * D5: toggle switch para estado vacío.
+ * §13: salto visual (gradientes, filetes, Bebas, medallones).
  */
 import { useState } from "react";
 import { EvolutionChart } from "@/components/panel/evolution-chart";
@@ -81,29 +80,25 @@ export default function PanelPage() {
 
       {/* ── B2: Resumen (3 KPIs) ──────────────────────────────────────── */}
       <section aria-labelledby="b2-title" className="mt-6 lg:mt-8">
-        <h2
-          id="b2-title"
-          className="font-ui text-[16px] font-semibold text-text-primary lg:text-[18px]"
-        >
-          Resumen
-        </h2>
+        <SectionTitle id="b2-title">Resumen</SectionTitle>
 
         <div className="mt-4 grid grid-cols-1 gap-4 xs:grid-cols-3">
           {showExample ? (
             <>
-              <KpiCard label="Media" value={meanFormatted} detail="de 0 a 10" />
-              <KpiCard label="Reseñas" value={String(totalReviews)} detail="últimos 30 días" />
+              <KpiCard label="Media" value={meanFormatted} detail="de 0 a 10" glyph="media" />
+              <KpiCard label="Reseñas" value={String(totalReviews)} detail="últimos 30 días" glyph="reviews" />
               <KpiCard
                 label="Notas 8-10"
                 value={highFormatted}
                 detail="satisfacción alta"
+                glyph="high"
               />
             </>
           ) : (
             <>
-              <KpiCard label="Media" value="—" detail="de 0 a 10" />
-              <KpiCard label="Reseñas" value="—" detail="últimos 30 días" />
-              <KpiCard label="Notas 8-10" value="—" detail="satisfacción alta" />
+              <KpiCard label="Media" value="—" detail="de 0 a 10" glyph="media" />
+              <KpiCard label="Reseñas" value="—" detail="últimos 30 días" glyph="reviews" />
+              <KpiCard label="Notas 8-10" value="—" detail="satisfacción alta" glyph="high" />
             </>
           )}
         </div>
@@ -122,7 +117,7 @@ export default function PanelPage() {
           <EvolutionChart />
 
           {/* ── B4 + B5: Distribución + Canales (paralelo ≥993) ───────────── */}
-          <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:flex-row">
+          <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:flex-row lg:items-start">
             {/* B4: ~640 (2/3) */}
             <div className="min-w-0 flex-1 lg:flex-[2]">
               <DistributionChart />
@@ -149,26 +144,141 @@ export default function PanelPage() {
   );
 }
 
-/* ── KPI Card ────────────────────────────────────────────────────────────── */
+/* ── Section title with vertical filete (§13 row 5) ────────────────────── */
+
+function SectionTitle({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <h2
+      id={id}
+      className="flex items-center gap-[10px] font-ui text-[16px] font-bold text-text-primary xs:text-[16px] lg:text-[18px]"
+    >
+      <span
+        aria-hidden="true"
+        className="inline-block shrink-0 rounded-[1px]"
+        style={{
+          width: 3,
+          height: 16,
+          background: "#8A6F55",
+        }}
+      />
+      {children}
+    </h2>
+  );
+}
+
+/* ── KPI medallón glyphs (F-O7: 3 geometrías, ≤9 trazos) ─────────────────── */
+
+function GlyphMedia() {
+  // 2 bars + tick
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="6" y1="18" x2="6" y2="13" />
+      <line x1="10" y1="18" x2="10" y2="10" />
+      <polyline points="14,15 16.5,12 19,8" />
+    </svg>
+  );
+}
+
+function GlyphReviews() {
+  // bocadillo con cola
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 5h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-8l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+    </svg>
+  );
+}
+
+function GlyphHigh() {
+  // 3 barras ascendentes
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="6" y1="18" x2="6" y2="14" />
+      <line x1="12" y1="18" x2="12" y2="10" />
+      <line x1="18" y1="18" x2="18" y2="6" />
+    </svg>
+  );
+}
+
+/* ── KPI Card (§13 row 4) ────────────────────────────────────────────────── */
 
 function KpiCard({
   label,
   value,
   detail,
+  glyph,
 }: {
   label: string;
   value: string;
   detail: string;
+  glyph: "media" | "reviews" | "high";
 }) {
+  const Glyph = glyph === "media" ? GlyphMedia : glyph === "reviews" ? GlyphReviews : GlyphHigh;
   return (
-    <div className="rounded-[8px] border border-border-subtle bg-surface-default p-4">
-      <p className="font-ui text-[13px] font-medium text-text-secondary">
-        {label}
-      </p>
-      <p className="mt-1 font-ui text-[28px] font-semibold leading-none tabular-nums text-text-primary lg:text-[32px]">
-        {value}
-      </p>
-      <p className="mt-2 font-ui text-[13px] text-text-secondary">{detail}</p>
+    <div
+      className="relative overflow-hidden rounded-[8px] border p-4"
+      style={{
+        background:
+          "linear-gradient(180deg, #FFFFFF 0%, color-mix(in srgb, #F0D8BD 24%, #FFFFFF) 100%)",
+        borderTop: "3px solid #8A6F55",
+        borderColor: "#D9C0A0",
+      }}
+    >
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="font-ui text-[13px] font-semibold text-text-secondary">
+            {label}
+          </p>
+          <p
+            className="mt-1 font-display text-[32px] leading-none tabular-nums text-text-primary xs:text-[32px] lg:text-[36px]"
+            style={{ textTransform: "uppercase" }}
+          >
+            {value}
+          </p>
+          <p className="mt-2 font-ui text-[12px] text-text-secondary">{detail}</p>
+        </div>
+        {/* Medallón 28px (§13 row 4) */}
+        <span
+          className="flex shrink-0 items-center justify-center rounded-full text-border-mid"
+          style={{
+            width: 28,
+            height: 28,
+            background: "color-mix(in srgb, #F0D8BD 60%, #FFFFFF)",
+            border: "1px solid #D9C0A0",
+          }}
+        >
+          <Glyph />
+        </span>
+      </div>
     </div>
   );
 }
