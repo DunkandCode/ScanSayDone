@@ -19,9 +19,6 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
         <span className="font-ui text-[16px] font-semibold text-text-primary">
           ScanSayDone
         </span>
-        <span className="rounded-[4px] border border-border-mid bg-surface-elevated px-2 py-0.5 font-ui text-[12px] font-semibold uppercase tracking-[0.1em] text-text-primary">
-          DEMO
-        </span>
       </header>
 
       {/* ── Nav row mobile (≤992) ───────────────────────────────────────── */}

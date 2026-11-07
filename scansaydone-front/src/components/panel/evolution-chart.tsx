@@ -8,7 +8,7 @@ import { dailySeries, totalReviews } from "@/components/panel/panel-data";
 const VB_W = 1000;
 const VB_H = 260;
 const PAD_L = 44;
-const PAD_R = 12;
+const PAD_R = 44; // D3: reserve 44px right for mean label
 const PAD_T = 14;
 const PAD_B = 32;
 const CHART_W = VB_W - PAD_L - PAD_R;
@@ -126,17 +126,18 @@ export function EvolutionChart() {
               y2={meanY}
               stroke="currentColor"
               strokeWidth="1"
-              strokeDasharray="6 4"
+              strokeDasharray="4 3"
               className="text-text-secondary"
             />
+            {/* D3: label in right margin, hidden at mobile (shown below SVG) */}
             <text
-              x={VB_W - 40}
+              x={xForDay(30) + 4}
               y={meanY}
-              textAnchor="end"
+              textAnchor="start"
               dominantBaseline="middle"
-              fontSize="11"
+              fontSize="12"
               fontFamily="var(--font-montserrat), system-ui, sans-serif"
-              className="fill-text-secondary"
+              className="hidden fill-text-secondary md:inline"
             >
               16,2
             </text>
@@ -164,6 +165,11 @@ export function EvolutionChart() {
             ))}
           </svg>
         </div>
+
+        {/* D3: mobile alternative for mean label (hidden at md+) */}
+        <p className="mt-1 font-ui text-[13px] text-text-secondary md:hidden">
+          Media diaria: 16,2 reseñas.
+        </p>
 
         {/* SR-only table */}
         <div className="sr-only">

@@ -77,23 +77,28 @@ export function ChannelTable() {
             })}
           </tbody>
           <tfoot>
-            <tr className="border-t border-border-mid">
+            <tr className="border-t border-border-mid bg-surface-elevated">
               <th
                 scope="row"
-                className="pt-3 text-left font-semibold text-text-primary"
+                className="pt-3 font-ui text-[14px] font-semibold tabular-nums text-text-primary"
               >
                 Total
               </th>
-              <td className="pt-3 text-right tabular-nums font-semibold text-text-primary">
+              <td className="pt-3 text-right font-ui text-[14px] font-semibold tabular-nums text-text-primary">
                 {totalReviews}
               </td>
-              <td className="pt-3 text-right tabular-nums font-semibold text-text-secondary">
+              <td className="pt-3 text-right font-ui text-[14px] font-semibold tabular-nums text-text-primary">
                 100 %
               </td>
             </tr>
           </tfoot>
         </table>
       </div>
+
+      {/* D1: rounding note */}
+      <p className="mt-2 font-ui text-[13px] text-text-secondary">
+        Las partes suman 99,9 % por redondeo.
+      </p>
     </section>
   );
 }

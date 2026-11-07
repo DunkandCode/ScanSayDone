@@ -1,5 +1,5 @@
 /// <reference types="vitest/globals" />
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, fireEvent } from "@testing-library/react";
 import PanelPage from "@/app/(panel)/panel/page";
 
 describe("PanelPage", () => {
@@ -116,5 +116,108 @@ describe("PanelPage", () => {
     expect(title).toBeInTheDocument();
     expect(title!.id).toBe("b3-svg-title");
     expect(title!.textContent).toContain("Reseñas por día durante 30 días");
+  });
+
+  it("11. D1: fila Total con 486 y 100 % más nota de redondeo", () => {
+    const tables = document.querySelectorAll("table");
+    const channelTable = Array.from(tables).find((t) => {
+      const caption = t.querySelector("caption");
+      return caption?.textContent?.includes("Reseñas por canal");
+    });
+    expect(channelTable).toBeInTheDocument();
+
+    const tfoot = channelTable!.querySelector("tfoot");
+    expect(tfoot).toBeInTheDocument();
+
+    const totalRow = tfoot!.querySelector("tr");
+    expect(totalRow).toBeInTheDocument();
+
+    const totalTh = totalRow!.querySelector('th[scope="row"]');
+    expect(totalTh).toHaveTextContent("Total");
+
+    const totalTds = totalRow!.querySelectorAll("td");
+    expect(totalTds[0]).toHaveTextContent("486");
+    expect(totalTds[1]).toHaveTextContent("100 %");
+
+    const roundingNote = screen.getByText("Las partes suman 99,9 % por redondeo.");
+    expect(roundingNote).toBeInTheDocument();
+  });
+
+  it("12. D2: chip numérico de nota por fila con sr-only", () => {
+    const responseSection = screen.getByRole("region", { name: /Últimas respuestas/i });
+    
+    const srOnlyNotes = within(responseSection).getAllByText(/Nota \d+ sobre 10/);
+    expect(srOnlyNotes.length).toBeGreaterThanOrEqual(5);
+
+    const chips = responseSection.querySelectorAll(".font-bold");
+    expect(chips.length).toBe(5);
+  });
+
+  it("13. D4: fila sin texto con literal", () => {
+    const noTextMessage = screen.getByText("Reseña sin texto del comensal.");
+    expect(noTextMessage).toBeInTheDocument();
+  });
+
+  it("14. D4: cita reescrita sin cifras de tiempo", () => {
+    const rewrittenQuote = screen.getByText(/La comida bien, pero la espera fue larga/);
+    expect(rewrittenQuote).toBeInTheDocument();
+
+    const oldQuote = screen.queryByText(/30 minutos/);
+    expect(oldQuote).not.toBeInTheDocument();
+  });
+
+  it("15. D5: interruptor con role=switch y cambio de estado", () => {
+    const toggle = screen.getByRole("switch");
+    expect(toggle).toBeInTheDocument();
+    expect(toggle).toHaveAttribute("aria-checked", "true");
+
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-checked", "false");
+
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-checked", "true");
+  });
+
+  it("16. D5: estado vacío muestra textos literales y oculta B3/B4/B5", () => {
+    const toggle = screen.getByRole("switch");
+    fireEvent.click(toggle);
+
+    const emptySubtitle = screen.getByText(
+      "Ves el panel de ejemplo vacío. No hay datos reales en ninguna cuenta."
+    );
+    expect(emptySubtitle).toBeInTheDocument();
+
+    const emptyB2Note = screen.getByText(
+      "Así verías el panel antes de la primera reseña."
+    );
+    expect(emptyB2Note).toBeInTheDocument();
+
+    const emptyB6Note = screen.getByText(
+      "Todavía no hay respuestas que mostrar. Cada reseña nueva ocupa una fila como esta."
+    );
+    expect(emptyB6Note).toBeInTheDocument();
+
+    const b3 = screen.queryByRole("region", { name: /Últimos 30 días/i });
+    expect(b3).not.toBeInTheDocument();
+
+    const b4 = screen.queryByRole("region", { name: /Notas, de la 0 a la 10/i });
+    expect(b4).not.toBeInTheDocument();
+
+    const b5 = screen.queryByRole("region", { name: /De dónde llegan las reseñas/i });
+    expect(b5).not.toBeInTheDocument();
+  });
+
+  it("17. D5: en estado vacío, chip DEMO y pie permanecen intactos", () => {
+    const toggle = screen.getByRole("switch");
+    fireEvent.click(toggle);
+
+    const demoChip = screen.getByText("DEMO");
+    expect(demoChip).toBeInTheDocument();
+
+    const footerText = screen.getByText(
+      /^Panel de ejemplo con datos inventados\. No pertenece a ningún negocio real\.$/
+    );
+    expect(footerText).toBeInTheDocument();
+    expect(footerText.closest("footer")).toBeInTheDocument();
   });
 });

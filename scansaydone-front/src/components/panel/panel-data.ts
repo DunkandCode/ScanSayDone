@@ -64,43 +64,51 @@ export const dailySeries = [
 ] as const;
 
 // ── Últimas respuestas (muestra) ────────────────────────────────────────────
-export const lastResponses = [
+// D4: ≤72 chars, ≤12 words, sin nombres/mesas/cifras, ≥2 crítica, 1 sin texto.
+// Antigüedades fijas: 9, 6, 5, 4, 2 días.
+export const lastResponses: ReadonlyArray<{
+  rating: number;
+  quote: string | null;
+  channel: string;
+  day: number;
+  daysAgo: number;
+}> = [
   {
     rating: 10,
-    quote: "La paella buenísima y nos atendieron con cariño.",
+    quote: "La paella estaba buena, aunque el servicio fue algo lento.",
     channel: "QR en la mesa",
     day: 28,
-    daysAgo: 2,
+    daysAgo: 9,
   },
   {
     rating: 9,
-    quote: "Volveremos seguro, el servicio fue muy amable.",
+    quote: "Volveremos seguro, el trato fue agradable.",
     channel: "QR en la mesa",
     day: 21,
-    daysAgo: 9,
+    daysAgo: 6,
   },
   {
     rating: 8,
     quote: "Buen arroz, pero llegó algo frío.",
     channel: "Google Maps",
     day: 26,
-    daysAgo: 4,
-  },
-  {
-    rating: 9,
-    quote: "Me gusto el lugar y la atención rápida.",
-    channel: "Enlace de Instagram",
-    day: 25,
     daysAgo: 5,
   },
   {
+    rating: 9,
+    quote: null,
+    channel: "Enlace de Instagram",
+    day: 25,
+    daysAgo: 4,
+  },
+  {
     rating: 7,
-    quote: "La comida bien, pero esperamos 30 minutos.",
+    quote: "La comida bien, pero la espera fue larga.",
     channel: "WhatsApp",
     day: 24,
-    daysAgo: 6,
+    daysAgo: 2,
   },
-] as const;
+];
 
 // ── Derivados ───────────────────────────────────────────────────────────────
 export const totalReviews = distribution.reduce((sum, d) => sum + d.count, 0); // 486

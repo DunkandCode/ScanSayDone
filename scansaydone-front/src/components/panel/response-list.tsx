@@ -1,41 +1,21 @@
 /**
  * B6 — "Últimas respuestas": list of 5 sample responses.
- * Star SVG + rating, quote (truncated), channel + days ago footer.
- * Separator between items.
+ * D2: numeric chip (no stars), D4: handle null quotes.
  */
 import { lastResponses } from "@/components/panel/panel-data";
 
-function StarIcon({ filled }: { filled: boolean }) {
+function RatingChip({ rating }: { rating: number }) {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      aria-hidden="true"
-      className={filled ? "fill-text-primary" : "fill-border-subtle"}
-    >
-      <path d="M8 0l2.47 5.01L16 5.81l-4 3.9.94 5.49L8 12.49 3.06 15.2 4 9.71 0 5.81l5.53-.8L8 0z" />
-    </svg>
-  );
-}
-
-function RatingStars({ rating }: { rating: number }) {
-  // Show filled stars up to rating, but limit to 5 for display
-  // For ratings > 5, show 5 filled stars
-  const displayStars = Math.min(rating, 5);
-  return (
-    <div className="flex items-center gap-0.5" aria-label={`${rating} de 10`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <StarIcon key={i} filled={i < displayStars} />
-      ))}
-      <span className="ml-1 font-ui text-[13px] tabular-nums text-text-primary">
+    <div className="flex items-center gap-2">
+      <span className="sr-only">Nota {rating} sobre 10</span>
+      <span className="inline-flex w-[34px] items-center justify-center rounded-[4px] border border-border-mid bg-surface-elevated px-2 py-1 font-ui text-[13px] font-bold tabular-nums text-text-primary">
         {rating}
       </span>
     </div>
   );
 }
 
-export function ResponseList() {
+export function ResponseList({ empty = false }: { empty?: boolean }) {
   return (
     <section aria-labelledby="b6-title" className="mt-6 lg:mt-8">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -57,27 +37,41 @@ export function ResponseList() {
         </button>
       </div>
 
-      <ul className="mt-4 space-y-0" role="list">
-        {lastResponses.map((resp, idx) => (
-          <li
-            key={idx}
-            className="border-b border-border-subtle py-4 first:pt-0 last:border-b-0"
-          >
-            {/* Header: rating */}
-            <RatingStars rating={resp.rating} />
+      {empty ? (
+        <div className="mt-4 border-t border-border-subtle py-4">
+          <p className="font-ui text-[14px] text-text-secondary">
+            Todavía no hay respuestas que mostrar. Cada reseña nueva ocupa una fila como esta.
+          </p>
+        </div>
+      ) : (
+        <ul className="mt-4 space-y-0" role="list">
+          {lastResponses.map((resp, idx) => (
+            <li
+              key={idx}
+              className="border-b border-border-subtle py-4 first:pt-0 last:border-b-0"
+            >
+              {/* D2: numeric chip instead of stars */}
+              <RatingChip rating={resp.rating} />
 
-            {/* Quote */}
-            <p className="mt-2 font-ui text-[14px] leading-[1.5] text-text-primary line-clamp-2 xs:line-clamp-1">
-              «{resp.quote}»
-            </p>
+              {/* D4: quote or null */}
+              {resp.quote ? (
+                <p className="mt-2 font-ui text-[14px] leading-[1.5] text-text-primary line-clamp-2 md:line-clamp-1">
+                  &laquo;{resp.quote}&raquo;
+                </p>
+              ) : (
+                <p className="mt-2 font-ui text-[14px] leading-[1.5] text-text-secondary">
+                  Reseña sin texto del comensal.
+                </p>
+              )}
 
-            {/* Footer: channel + days ago */}
-            <p className="mt-2 font-ui text-[13px] text-text-secondary">
-              {resp.channel} · respondida hace {resp.daysAgo} días
-            </p>
-          </li>
-        ))}
-      </ul>
+              {/* Footer: channel + days ago */}
+              <p className="mt-2 font-ui text-[13px] text-text-secondary">
+                {resp.channel} · respondida hace {resp.daysAgo} días
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
