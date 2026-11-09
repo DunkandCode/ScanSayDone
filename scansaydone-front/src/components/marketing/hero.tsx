@@ -68,7 +68,7 @@ export function Hero() {
             <div className="mt-8">
               <a
                 href="#encuesta-demo"
-                className="marketing-hero-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-text-primary bg-surface-dark px-6 py-3 font-ui font-semibold text-on-dark motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark"
+                className="marketing-hero-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-none border border-text-primary bg-surface-dark px-6 py-3 font-ui font-semibold text-surface-default motion-safe:transition-colors motion-safe:duration-150 hover:bg-text-secondary active:bg-surface-dark"
               >
                 Ver una encuesta de ejemplo
                 <svg
