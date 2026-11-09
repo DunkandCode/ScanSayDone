@@ -7,6 +7,7 @@ Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 | Archivo | Propósito | Estado |
 |---------|-----------|--------|
 | `README.md` | Organización de la documentación, reglas de convivencia con el snapshot, convenciones de nombres y precedencia | vigente |
+| `GUIA-CONTRIBUCION-FRONTEND.md` | Guía de incorporación para trabajar con landing, acceso y panel: rutas, componentes, estado/datos, tokens, accesibilidad, validación y límites conocidos | vigente |
 | `UX-SPEC-2026-11-05.md` | Especificación completa de UX: inventario de páginas, tokens de diseño, componentes, copy y assets | vigente |
 | `planos/PLANOS-2026-11-05.md` | Planos técnicos: retícula, spans, alturas, reflujo por breakpoint y geometría de componentes | vigente |
 | `planos/L1-HERO-2026-11-05.md` | Contrato de layout y accesibilidad del hero L1 (landing): composición asimétrica 7/5, escala tipográfica, estados de componentes, orden de foco y ratios de contraste WCAG | vigente |
