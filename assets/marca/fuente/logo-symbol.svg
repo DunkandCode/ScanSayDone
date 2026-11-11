@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" role="img">
+<title>Scan-Say-Done — isotipo</title>
+<!-- Isotipo una tinta (currentColor). Geometria plana autorizada a mano 27-oct-2026
+sobre la reticula de brand-src/referencias.png y medida en faviconScan.png (contenido
+779x716 px en lienzo 1254x1254 -> viewBox cuadrado 128, margen uniforme). Marco de
+escaneo: 4 escuadras L simetricas, trazo 16. Bocadillo: centro (58.5,53.5), rotado
+-8 deg, rect redondeado 59x41 (eje central) trazo 13, rabo en el borde inferior. -->
+<!-- marco de escaneo: 4 esquinas -->
+<path d="M30.5 8H16A8 8 0 0 0 8 16V30.5"/>
+<path d="M87.5 8H102A8 8 0 0 1 110 16V30.5"/>
+<path d="M8 78V92.5A8 8 0 0 0 16 100.5H30.5"/>
+<path d="M110 78V92.5A8 8 0 0 1 102 100.5H87.5"/>
+<!-- bocadillo + rabo + 3 puntos -->
+<g transform="translate(58.5 53.5)rotate(-8)">
+<rect x="-29.5" y="-20.5" width="59" height="41" rx="9.5" stroke-width="13"/>
+<path d="M-24.5 21L-18 39.5L-6 21" stroke-width="13"/>
+<g stroke="none" fill="currentColor">
+<circle cx="-15.2" r="5.6"/>
+<circle r="5.6"/>
+<circle cx="15.2" r="5.6"/>
+</g>
+</g>
+</svg>

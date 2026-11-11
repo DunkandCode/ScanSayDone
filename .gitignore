@@ -50,3 +50,19 @@ CLAUDE.md
 CLAUDE.local.md
 .claude.json
 .mcp.json
+
+# ---------------------------------------------------------------------------
+# Historical UX snapshot — previous stack, intentionally untracked
+# Folder: scansaydone-front/ENTREGA-UX-2026-10-30/
+# Backups: E:\Trabajos\ScanSayDone-local-history-2026-11-05.bundle
+#          E:\Trabajos\ScanSayDone-untracked-recovery-2026-11-05.zip
+# Precedence: these rules override prior includes for the listed paths.
+# ---------------------------------------------------------------------------
+scansaydone-front/ENTREGA-UX-2026-10-30/
+
+# Build and server logs (repo root only)
+/build*.log
+/server-*.log
+
+# UX snapshot archives (repo root only)
+/ENTREGA-UX-*.zip

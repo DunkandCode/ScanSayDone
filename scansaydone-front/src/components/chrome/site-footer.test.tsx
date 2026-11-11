@@ -1,0 +1,107 @@
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { SiteFooter } from "./site-footer";
+
+describe("SiteFooter", () => {
+  it("tiene un footer landmark (contentinfo)", () => {
+    render(<SiteFooter />);
+    const footer = screen.getByRole("contentinfo");
+    expect(footer).toBeInTheDocument();
+  });
+
+  it("tiene exactamente 3 encabezados de columna: Producto, Contacto, Legal", () => {
+    render(<SiteFooter />);
+    
+    // Buscar los 3 headings de columna
+    const productoHeading = screen.getByRole("heading", { name: /producto/i });
+    const contactoHeading = screen.getByRole("heading", { name: /contacto/i });
+    const legalHeading = screen.getByRole("heading", { name: /legal/i });
+    
+    expect(productoHeading).toBeInTheDocument();
+    expect(contactoHeading).toBeInTheDocument();
+    expect(legalHeading).toBeInTheDocument();
+    
+    // Verificar que hay exactamente 3 headings
+    const allHeadings = screen.getAllByRole("heading");
+    expect(allHeadings).toHaveLength(3);
+    
+    // La marca es una imagen (lockup), no un heading ni texto
+    const marcaImage = screen.getByAltText("Scan-Say-Done");
+    expect(marcaImage).toBeInTheDocument();
+    expect(marcaImage.tagName).toBe("IMG");
+  });
+
+  it("contiene el tagline ESCANEA. OPINA. LISTO.", () => {
+    render(<SiteFooter />);
+    const tagline = screen.getByText(/escanea\. opina\. listo\./i);
+    expect(tagline).toBeInTheDocument();
+  });
+
+  it("tiene los 5 enlaces de Producto con href exactos", () => {
+    render(<SiteFooter />);
+    
+    const comoFunciona = screen.getByRole("link", { name: /cómo funciona/i });
+    const canales = screen.getByRole("link", { name: /^canales$/i });
+    const aplicaciones = screen.getByRole("link", { name: /aplicaciones/i });
+    const panel = screen.getByRole("link", { name: /^panel$/i });
+    const preguntas = screen.getByRole("link", { name: /preguntas frecuentes/i });
+    
+    expect(comoFunciona).toHaveAttribute("href", "/#como-funciona");
+    expect(canales).toHaveAttribute("href", "/#canales");
+    expect(aplicaciones).toHaveAttribute("href", "/#aplicaciones");
+    expect(panel).toHaveAttribute("href", "/#panel");
+    expect(preguntas).toHaveAttribute("href", "/#faq");
+  });
+
+  it("tiene un enlace Contáctanos con href /contactus", () => {
+    render(<SiteFooter />);
+    const contactanos = screen.getByRole("link", { name: /contáctanos/i });
+    expect(contactanos).toBeInTheDocument();
+    expect(contactanos).toHaveAttribute("href", "/contactus");
+  });
+
+  it("contiene el párrafo legal exacto", () => {
+    render(<SiteFooter />);
+    const legalText = screen.getByText(
+      /las reglas de uso y la política de privacidad se publicarán una vez completada la revisión legal\./i
+    );
+    expect(legalText).toBeInTheDocument();
+  });
+
+  it("la línea de copyright contiene el año actual y ScanSayDone", () => {
+    render(<SiteFooter />);
+    const currentYear = new Date().getFullYear();
+    const copyright = screen.getByText(new RegExp(`© ${currentYear} scansaydone`, "i"));
+    expect(copyright).toBeInTheDocument();
+    expect(copyright.tagName).toBe("SPAN");
+  });
+
+  it("tiene enlace 'Volver arriba' que apunta a #contenido", () => {
+    render(<SiteFooter />);
+    const volverArriba = screen.getByRole("link", { name: /volver arriba/i });
+    expect(volverArriba).toBeInTheDocument();
+    expect(volverArriba).toHaveAttribute("href", "/#contenido");
+  });
+
+  it("NO contiene botones interactivos y tiene exactamente 7 enlaces", () => {
+    render(<SiteFooter />);
+    
+    // Verificar que no hay botones
+    expect(screen.queryAllByRole("button")).toHaveLength(0);
+    
+    // Verificar que hay exactamente 7 enlaces (5 de Producto + 1 de Contacto + 1 Volver arriba)
+    const allLinks = screen.getAllByRole("link");
+    expect(allLinks).toHaveLength(7);
+    
+    // Verificar que ninguno apunta a rutas placeholder
+    const hrefs = allLinks.map((link) => link.getAttribute("href"));
+    expect(hrefs).not.toContain("/privacy");
+    expect(hrefs).not.toContain("/terms");
+    expect(hrefs).not.toContain("/pricing");
+    expect(hrefs).not.toContain("/faqs");
+    
+    // Verificar que no hay enlaces que empiecen con /e/
+    const hasERoute = hrefs.some((href) => href && href.startsWith("/e/"));
+    expect(hasERoute).toBe(false);
+  });
+});

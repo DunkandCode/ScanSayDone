@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+@theme {
+  /* Color tokens — paleta aprobada CANON §4 + roles derivados */
+  --color-interactive-primary: #FC5A41;
+  --color-interactive-hover: #FD6E57;
+  --color-interactive-pressed: #E84A33;
+  --color-surface-default: #FFFFFF;
+  --color-surface-elevated: #F0D8BD;
+  --color-background-page: #F7E5C8;
+  --color-text-primary: #1A181B;
+  --color-text-secondary: #5A5555;
+  --color-surface-dark: #1A181B;
+  --color-on-dark: #F7E5C8;
+  --color-on-dark-secondary: #C9B6A6;
+  --color-border-mid: #8A6F55;
+  --color-border-subtle: #D9C0A0;
+  --color-success-text: #12603A;
+  --color-warning-text: #6F4700;
+  --color-error-text: #A82E39;
+  --color-disabled-fill: #E6D6C2;
+
+  /* Breakpoints — override Tailwind defaults (PLANOS §1.1) */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+
+  /* Containers — sistema de marca (PLANOS §1.1, §1.4) */
+  --container-mkt-sm: 540px;
+  --container-mkt-md: 720px;
+  --container-mkt-lg: 960px;
+  --container-mkt-xl: 1140px;
+  --container-mkt-2xl: 1320px;
+
+  /* Hero marketing — dimensionado para nav fija + hero de 680–720 px. */
+  --spacing-marketing-hero: 38.5rem;
+  --text-marketing-hero: clamp(2.5rem, 5vw, 4.5rem);
+  --text-marketing-hero--line-height: 0.98;
+  --tracking-marketing-hero: -0.01em;
+
+  /* Base font — Montserrat (CANON §5) */
+  --font-ui: var(--font-montserrat);
+  --font-display: var(--font-bebas);
+}
+
+/* Elevation: única sombra del sistema (PASE-VISUAL-2 §2.2, C-87) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --elev-float: 0 10px 24px -12px rgb(26 24 27 / 0.22);
+  --marketing-focus-outline: 3px solid var(--color-on-dark);
+  --marketing-focus-outline-offset: -3px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.elev-float {
+  box-shadow: var(--elev-float);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.marketing-hero-cta:focus-visible {
+  outline: var(--marketing-focus-outline);
+  outline-offset: var(--marketing-focus-outline-offset);
+}
+
+.survey-card-submit:focus-visible {
+  outline-color: var(--color-text-primary);
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+}
+
+/* Reveal-on-scroll — CSS scroll-driven animations (PASE-VISUAL-2 §2.5) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal   { animation: reveal-soft linear both; animation-timeline: view(); animation-range: entry 12% 40%; }
+    .reveal-2 { animation-range: entry 20% 48%; }
+    .reveal-3 { animation-range: entry 28% 56%; }
+    .reveal-4 { animation-range: entry 36% 64%; }
   }
+}
+@keyframes reveal-soft {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-ui), system-ui, sans-serif;
 }
