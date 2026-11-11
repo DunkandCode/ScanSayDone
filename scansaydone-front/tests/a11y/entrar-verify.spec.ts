@@ -1,12 +1,10 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const BASE_URL = process.env.A11Y_BASE_URL || "http://localhost:3155";
-
 test.describe("/entrar verification", () => {
   test("1440px — layout, gradients, shadows, links, status", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`${BASE_URL}/entrar`);
+    await page.goto("/entrar");
     await page.waitForLoadState("networkidle");
 
     // 1. Two columns at 1440 (grid-cols-2)
@@ -77,7 +75,7 @@ test.describe("/entrar verification", () => {
 
   test("375px — single column, card width, no horizontal scroll, right piece hidden", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto(`${BASE_URL}/entrar`);
+    await page.goto("/entrar");
     await page.waitForLoadState("networkidle");
 
     // 1. Single column at 375 (lg:grid-cols-2 not applied)

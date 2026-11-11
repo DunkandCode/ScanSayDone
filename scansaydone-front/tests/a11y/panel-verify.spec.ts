@@ -1,12 +1,10 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const BASE_URL = process.env.A11Y_BASE_URL || "http://localhost:3170";
-
 test.describe("/panel verification", () => {
   test("1440px — layout, sidebar, zero shadows, single coral, a11y", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(`${BASE_URL}/panel`);
+    await page.goto("/panel");
     await page.waitForLoadState("networkidle");
 
     // Sidebar visible at 1440
@@ -105,7 +103,7 @@ test.describe("/panel verification", () => {
 
   test("992px — topbar visible, sidebar hidden, no horizontal scroll", async ({ page }) => {
     await page.setViewportSize({ width: 992, height: 900 });
-    await page.goto(`${BASE_URL}/panel`);
+    await page.goto("/panel");
     await page.waitForLoadState("networkidle");
 
     // Sidebar hidden at 992
@@ -170,7 +168,7 @@ test.describe("/panel verification", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto(`${BASE_URL}/panel`);
+    await page.goto("/panel");
     await page.waitForLoadState("networkidle");
 
     // Sidebar hidden
