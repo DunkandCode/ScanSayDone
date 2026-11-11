@@ -14,9 +14,11 @@ ScanSayDone/
 ├── scansaydone-back/         # API REST Backend (Python 3.10+ / FastAPI / Pydantic)            -> Render
 └── docs/                     # Centro de Documentación y Arquitectura
     ├── arquitectura/         # Especificación técnica, flujos y visión del producto
+    ├── datos/                # Metodología, modelo relacional, datasets y scripts NLP
+    ├── frontend/             # Documentación técnica y planos de interfaz
     ├── implementaciones/     # Planes maestros y de desarrollo técnico por fase
-    ├── roles/                # Guías prácticas y matriz de asignación por especialidad
-    └── instrucciones/        # Manuales de Sprints, Product Manager y Vercel
+    ├── reuniones/            # Minutas de reuniones del equipo
+    └── roles/                # Guías prácticas y matriz de asignación por especialidad
 ```
 
 ---
