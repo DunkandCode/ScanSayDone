@@ -43,6 +43,14 @@ Thumbs.db
 # Temp & Artifacts
 repomix-output.xml
 
+# Claude Code
+.claude/
+claude/
+CLAUDE.md
+CLAUDE.local.md
+.claude.json
+.mcp.json
+
 # ---------------------------------------------------------------------------
 # Historical UX snapshot — previous stack, intentionally untracked
 # Folder: scansaydone-front/ENTREGA-UX-2026-10-30/

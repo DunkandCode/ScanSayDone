@@ -54,19 +54,25 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
-          cache-dependency-path: scansaydone-back/requirements.txt
+          cache-dependency-path: |
+            scansaydone-back/requirements.txt
+            scansaydone-back/requirements-dev.txt
 
       - name: 📦 Instalar dependencias del Backend
         working-directory: scansaydone-back
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
 
       - name: 🧪 Verificar sintaxis e inicialización de la API
         working-directory: scansaydone-back
         run: |
           python -m py_compile main.py
           python -c "import main; print('✓ FastAPI App inicializada correctamente')"
+
+      - name: 🧪 Ejecutar pruebas del Backend
+        working-directory: scansaydone-back
+        run: python -m pytest -v
 
   # -------------------------------------------------------------
   # 3. VERIFICACIÓN DE CIBERSEGURIDAD & SECRETOS

@@ -23,3 +23,7 @@ wheels/
 .venv/
 venv/
 ENV/
+
+# Variables de entorno (incluye .env.local que entrega Vercel)
+.env*
+!.env.example

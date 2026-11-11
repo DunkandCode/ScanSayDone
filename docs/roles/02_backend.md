@@ -3,7 +3,7 @@
 
 * **Área:** Ingeniería de Servidores, APIs & Lógica de Negocio.
 * **Ubicación en el Monorepo:** `/scansaydone-back`
-* **Tecnologías:** Python 3.10+, FastAPI, Uvicorn, Pydantic, QRCode (Pillow), PostgreSQL.
+* **Tecnologías:** Python 3.10+, FastAPI, Uvicorn, Pydantic, SQLAlchemy, Alembic, QRCode (Pillow), PostgreSQL (Supabase).
 * **Integrantes Asignados:**
   - **Desarrollador Backend Principal:** `[Nombre por asignar]` (`@usuario_github`)
   - **Desarrollador Backend / Integraciones:** `[Nombre por asignar]` (`@usuario_github`)
@@ -21,7 +21,7 @@ Construir el motor central del sistema que procesa los datos y expone los servic
 
 ## 🚀 ¿Qué ya está hecho y cómo empezar a trabajar?
 
-La base de FastAPI ya está lista y funcional en `scansaydone-back/main.py`.
+La API FastAPI vive en `scansaydone-back/` (`main.py` y el paquete `scansaydone/`). La guía completa de puesta en marcha, variables de entorno, migraciones y endpoints está en [`scansaydone-back/README.md`](../../scansaydone-back/README.md).
 
 ### Paso 1: Levantar el entorno virtual en tu máquina
 Desde la raíz del repositorio, entra a la carpeta y crea el entorno:
@@ -31,7 +31,7 @@ Desde la raíz del repositorio, entra a la carpeta y crea el entorno:
 cd scansaydone-back
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 **En Windows (PowerShell):**
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 cd scansaydone-back
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 ### Paso 2: Ejecutar el servidor local
@@ -52,20 +52,26 @@ Abre tu navegador en:
 
 ---
 
-## 📋 Endpoints Ya Implementados en `main.py`
+## 📋 Endpoints Implementados
 
 | Método | Ruta | Descripción |
 | :---: | :--- | :--- |
-| `GET` | `/health` | Chequeo de salud del servicio (para Render y monitoreo). |
+| `GET` | `/health` | Chequeo de salud del servicio (monitoreo). |
 | `GET` | `/api/v1/qr/generate?target_url=...` | Genera una imagen PNG del código QR al vuelo. |
 | `POST`| `/api/v1/nps/calculate` | Recibe una lista de enteros `[10, 9, 8, 4]` y devuelve el score NPS y categoría. |
+| `GET` | `/api/v1/empresas/{empresa_id}/encuesta` | Negocio y textos de las 5 preguntas de su rubro (para armar la encuesta en el front). |
+| `POST`| `/api/v1/respuestas` | Registra una encuesta anónima de 5 preguntas; el servidor calcula la categoría NPS, la alerta, el tipo de comentario y las variables temporales. |
+
+> **Regla de arquitectura:** solo el backend escribe en la base de datos y todos los cálculos se hacen en Python. El frontend envía las respuestas con `POST /api/v1/respuestas`; no escribe directamente en Supabase.
 
 ---
 
 ## 🛠️ Tareas Siguientes para el Backend
-1. **Conexión a Base de Datos:** Integrar SQLAlchemy con PostgreSQL para persistir comercios y respuestas.
-2. **Endpoint de Registro de Respuesta:** `POST /api/v1/comercios/{id}/respuestas`.
-3. **Rate Limiting:** Coordinar con el encargado de Ciberseguridad para incorporar límites de peticiones por minuto.
+1. ✅ **Conexión a Base de Datos** (#12): modelos SQLAlchemy, migración Alembic con RLS aplicada en Supabase y negocios de demostración cargados (`empresa_id` 1 a 4: Minimarket Don Lucho, Café Rincón Andino, Peluquería Estilo Sur y Cosmos Accesorios).
+2. ✅ **Endpoint de Registro de Respuesta** (#13): `POST /api/v1/respuestas`.
+3. **Rate Limiting y sanitización de comentarios** (#15, Ciberseguridad): límites de peticiones por IP.
+4. **Carga del dataset de 80 encuestas** (#16, Datos): usar los IDs que imprime `scripts/seed_demo.py`.
+5. **Dashboard** (Sprint 4): endpoints de métricas (NPS, CSAT, promedios y Top Box de P3/P4) y autenticación con Supabase Auth.
 
 ---
 

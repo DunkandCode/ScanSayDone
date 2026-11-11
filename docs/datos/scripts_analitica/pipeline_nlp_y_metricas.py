@@ -26,6 +26,8 @@ METADATA_RUBROS = {
 # -----------------------------------------------------------------------------
 # 2. MOTOR NLP Y CLASIFICACIÓN DE COMENTARIOS (P5)
 # -----------------------------------------------------------------------------
+# NOTA: esta lógica está copiada en scansaydone-back/scansaydone/nlp.py (backend FastAPI).
+# Si cambias las palabras clave o su orden de prioridad, aplica el cambio en AMBOS archivos.
 def clasificar_comentario_nlp(texto: str) -> str:
     """Clasifica el comentario abierto P5 según intención/sentimiento mediante léxico."""
     if pd.isna(texto) or str(texto).strip() == "":
