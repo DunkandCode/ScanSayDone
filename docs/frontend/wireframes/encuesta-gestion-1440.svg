@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>Encuesta de gestión — panel 1440</title>
+  <desc>Wireframe 1:1 px de /panel/encuesta [PROP] a 1440: shell con sidebar 240, H1 Encuesta de tu negocio, badge DATOS DE EJEMPLO, preview del cliente, tabla P1-P5, switch con aviso, respuestas vacias con guion largo.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="1440" height="36" fill="#F0D8BD"/>
+  <line x1="0" y1="36" x2="1440" y2="36" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="23" font-size="11" font-weight="700" letter-spacing="0.5" fill="#1A181B">ENCUESTA-GESTIÓN — /panel/encuesta [PROP] · 1440 · SHELL + SECCIÓN</text>
+  <text x="1424" y="23" font-size="10" fill="#5A5555" text-anchor="end">BORRADOR 2026-11-12 · wireframe 1:1 px</text>
+
+  <!-- lienzo del panel -->
+  <rect x="0" y="36" width="1440" height="828" fill="#F7E5C8"/>
+
+  <!-- cotas superiores -->
+  <line x1="0" y1="44" x2="0" y2="50" stroke="#5A5555" stroke-width="1"/>
+  <line x1="240" y1="44" x2="240" y2="50" stroke="#5A5555" stroke-width="1"/>
+  <line x1="0" y1="47" x2="240" y2="47" stroke="#5A5555" stroke-width="1"/>
+  <text x="108" y="42" font-size="10" fill="#5A5555" text-anchor="middle">240</text>
+  <line x1="312" y1="44" x2="312" y2="50" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1368" y1="44" x2="1368" y2="50" stroke="#5A5555" stroke-width="1"/>
+  <line x1="312" y1="47" x2="1368" y2="47" stroke="#5A5555" stroke-width="1"/>
+  <text x="840" y="42" font-size="10" fill="#5A5555" text-anchor="middle">columna 1056 (max-w) centrada en 1136 → márgenes auto 40</text>
+
+  <!-- ===== SIDEBAR 240 ===== -->
+  <rect x="0" y="36" width="240" height="828" fill="#FFFFFF"/>
+  <line x1="240" y1="36" x2="240" y2="864" stroke="#D9C0A0" stroke-width="1"/>
+  <!-- lockup (imagen) 168×40 -->
+  <rect x="36" y="60" width="168" height="40" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <line x1="36" y1="60" x2="204" y2="100" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="204" y1="60" x2="36" y2="100" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="120" y="83" font-size="10" fill="#5A5555" text-anchor="middle">lockup 168×40</text>
+  <!-- nav -->
+  <text x="32" y="151" font-size="12" font-weight="600" fill="#1A181B">Resumen</text>
+  <text x="32" y="195" font-size="12" fill="#5A5555">Reseñas*</text>
+  <text x="32" y="239" font-size="12" fill="#5A5555">Códigos QR*</text>
+  <!-- activo [PROP] -->
+  <rect x="16" y="256" width="208" height="44" rx="4" fill="#F0D8BD"/>
+  <rect x="16" y="256" width="3" height="44" fill="#8A6F55"/>
+  <text x="32" y="283" font-size="12" font-weight="700" fill="#1A181B">Encuesta</text>
+  <text x="216" y="283" font-size="9.5" fill="#5A5555" text-anchor="end">[PROP]</text>
+  <text x="32" y="327" font-size="12" fill="#5A5555">Ajustes*</text>
+  <text x="24" y="370" font-size="10" fill="#5A5555">* aria-disabled + title + ayuda</text>
+  <text x="24" y="384" font-size="10" fill="#5A5555">«Encuesta»: aria-current="page"</text>
+  <text x="24" y="398" font-size="10" fill="#5A5555">(activa solo si la ruta existe)</text>
+  <!-- pie sidebar -->
+  <text x="24" y="780" font-size="10" fill="#5A5555">Sesión de demostración.</text>
+  <text x="24" y="794" font-size="10" fill="#5A5555">No hay cuenta real detrás.</text>
+  <text x="24" y="826" font-size="11" font-weight="600" fill="#1A181B">Volver al inicio</text>
+
+  <!-- ===== CONTENIDO ===== -->
+  <text x="312" y="98" font-size="30" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">Encuesta de tu negocio</text>
+  <rect x="1216" y="76" width="152" height="24" rx="3" fill="#F0D8BD" stroke="#8A6F55" stroke-width="1"/>
+  <text x="1292" y="92" font-size="10" font-weight="700" letter-spacing="0.8" fill="#1A181B" text-anchor="middle">DATOS DE EJEMPLO</text>
+  <text x="312" y="120" font-size="11" fill="#5A5555">Ves la sección de encuesta del panel de ejemplo. No hay encuesta real, enlace ni respuestas detrás.</text>
+  <line x1="312" y1="132" x2="1368" y2="132" stroke="#D9C0A0" stroke-width="1"/>
+
+  <!-- C3 · Así la ve tu cliente -->
+  <rect x="312" y="144" width="1056" height="128" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="312" y="144" width="1056" height="3" fill="#8A6F55"/>
+  <text x="336" y="174" font-size="13" font-weight="700" fill="#1A181B">Así la ve tu cliente</text>
+  <rect x="496" y="165" width="16" height="3" fill="#8A6F55"/>
+  <rect x="1120" y="156" width="224" height="44" fill="#1A181B"/>
+  <text x="1232" y="182" font-size="11" font-weight="600" fill="#F7E5C8" text-anchor="middle">Ver encuesta completa</text>
+  <!-- glifo 0–10: 11 fichas en una fila, (1008−80)/11 = 84,4 -->
+  <rect x="336" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="378.2" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">0</text>
+  <rect x="428.4" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="470.6" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">1</text>
+  <rect x="520.8" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="563" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">2</text>
+  <rect x="613.2" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="655.4" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">3</text>
+  <rect x="705.6" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="747.8" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">4</text>
+  <rect x="798" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="840.2" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">5</text>
+  <rect x="890.4" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="932.6" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">6</text>
+  <rect x="982.8" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="1025" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">7</text>
+  <rect x="1075.2" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="1117.4" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">8</text>
+  <rect x="1167.6" y="196" width="84.4" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="1209.8" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">9</text>
+  <rect x="1260" y="196" width="84" height="44" rx="2" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <text x="1302" y="222" font-size="11" font-weight="600" fill="#1A181B" text-anchor="middle">10</text>
+  <text x="336" y="260" font-size="10" fill="#5A5555">P1 «¿Qué tan probable es que recomiendes el negocio…» · glifo aria-hidden sin preselección + espejo en texto · botón → demo /e/[code] (navegación local, no QR)</text>
+
+  <!-- C1 · Tus preguntas -->
+  <rect x="312" y="296" width="1056" height="336" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="312" y="296" width="1056" height="3" fill="#8A6F55"/>
+  <text x="336" y="326" font-size="13" font-weight="700" fill="#1A181B">Tus preguntas</text>
+  <rect x="472" y="317" width="16" height="3" fill="#8A6F55"/>
+  <text x="336" y="344" font-size="10" fill="#5A5555">Preguntas de la encuesta de ejemplo — catálogo del sistema, solo lectura · «Etiqueta» = dato interno (el cliente no la ve)</text>
+  <rect x="1256" y="306" width="88" height="36" rx="3" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="1300" y="328" font-size="11" fill="#5A5555" text-anchor="middle">Editar</text>
+  <!-- cabecera de tabla -->
+  <rect x="336" y="356" width="1008" height="34" fill="#F0D8BD" fill-opacity="0.6"/>
+  <text x="344" y="378" font-size="10" font-weight="700" fill="#1A181B">P#</text>
+  <text x="388" y="378" font-size="10" font-weight="700" fill="#1A181B">PREGUNTA</text>
+  <text x="1008" y="378" font-size="10" font-weight="700" fill="#1A181B">ESCALA</text>
+  <text x="1104" y="378" font-size="10" font-weight="700" fill="#1A181B">OBLIGATORIA</text>
+  <text x="1192" y="378" font-size="10" font-weight="700" fill="#1A181B">ETIQUETA</text>
+  <!-- filas 44 px · zebra con página al 35% -->
+  <rect x="336" y="434" width="1008" height="44" fill="#F7E5C8" fill-opacity="0.35"/>
+  <rect x="336" y="522" width="1008" height="44" fill="#F7E5C8" fill-opacity="0.35"/>
+  <line x1="336" y1="434" x2="1344" y2="434" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="336" y1="478" x2="1344" y2="478" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="336" y1="522" x2="1344" y2="522" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="336" y1="566" x2="1344" y2="566" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="336" y1="610" x2="1344" y2="610" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="344" y="417" font-size="10.5" font-weight="700" fill="#1A181B">P1</text>
+  <text x="388" y="417" font-size="10.5" fill="#1A181B">¿Qué tan probable es que recomiendes el negocio a un amigo o familiar?</text>
+  <text x="1008" y="417" font-size="10.5" fill="#1A181B">0–10 · 11 valores</text>
+  <text x="1104" y="417" font-size="10.5" fill="#1A181B">Sí</text>
+  <text x="1192" y="417" font-size="10.5" fill="#5A5555">—</text>
+  <text x="344" y="461" font-size="10.5" font-weight="700" fill="#1A181B">P2</text>
+  <text x="388" y="461" font-size="10.5" fill="#1A181B">En general, ¿qué tan satisfecho/a quedaste?</text>
+  <text x="1008" y="461" font-size="10.5" fill="#1A181B">1–5</text>
+  <text x="1104" y="461" font-size="10.5" fill="#1A181B">Sí</text>
+  <text x="1192" y="461" font-size="10.5" fill="#5A5555">—</text>
+  <text x="344" y="505" font-size="10.5" font-weight="700" fill="#1A181B">P3</text>
+  <text x="388" y="505" font-size="10.5" fill="#1A181B">¿Cómo calificas el sabor y la calidad de lo que consumiste?</text>
+  <text x="1008" y="505" font-size="10.5" fill="#1A181B">1–5</text>
+  <text x="1104" y="505" font-size="10.5" fill="#1A181B">Sí</text>
+  <text x="1192" y="505" font-size="10.5" fill="#1A181B">Calidad del producto</text>
+  <text x="344" y="549" font-size="10.5" font-weight="700" fill="#1A181B">P4</text>
+  <text x="388" y="549" font-size="10.5" fill="#1A181B">¿Qué tan conforme quedaste con el tiempo que tardó en llegar tu pedido?</text>
+  <text x="1008" y="549" font-size="10.5" fill="#1A181B">1–5</text>
+  <text x="1104" y="549" font-size="10.5" fill="#1A181B">Sí</text>
+  <text x="1192" y="549" font-size="10.5" fill="#1A181B">Tiempo de servicio</text>
+  <text x="344" y="593" font-size="10.5" font-weight="700" fill="#1A181B">P5</text>
+  <text x="388" y="593" font-size="10.5" fill="#1A181B">¿Qué podríamos hacer para que tu próxima visita sea mejor?</text>
+  <text x="1008" y="593" font-size="10.5" fill="#1A181B">Texto · máx. 300</text>
+  <text x="1104" y="593" font-size="10.5" fill="#1A181B">No · opcional</text>
+  <text x="1192" y="593" font-size="10.5" fill="#5A5555">—</text>
+  <text x="336" y="626" font-size="10" fill="#5A5555">Editar no está disponible en la demo.</text>
+
+  <!-- C2 · Estado de la encuesta (switch) -->
+  <rect x="312" y="656" width="1056" height="96" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="312" y="656" width="1056" height="3" fill="#8A6F55"/>
+  <text x="336" y="686" font-size="13" font-weight="700" fill="#1A181B">Estado de la encuesta</text>
+  <rect x="536" y="677" width="16" height="3" fill="#8A6F55"/>
+  <text x="1284" y="690" font-size="12" font-weight="600" fill="#1A181B" text-anchor="end">Activa</text>
+  <rect x="1292" y="672" width="44" height="24" rx="12" fill="#1A181B"/>
+  <circle cx="1324" cy="684" r="9" fill="#F7E5C8"/>
+  <rect x="1292" y="662" width="44" height="44" fill="none" stroke="#D9C0A0" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="1360" y="678" font-size="9.5" fill="#5A5555">hit 44</text>
+  <text x="336" y="714" font-size="10" fill="#5A5555">Cambio solo visual de la demo: no se guarda y no afecta el enlace que ve el cliente. · estado por texto («Activa»/«Pausada»), jamás solo color · role="switch"</text>
+
+  <!-- C6 · Respuestas (vacío «—») -->
+  <rect x="312" y="772" width="1056" height="76" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="312" y="772" width="1056" height="3" fill="#8A6F55"/>
+  <text x="336" y="800" font-size="13" font-weight="700" fill="#1A181B">Respuestas</text>
+  <rect x="480" y="677" width="16" height="3" fill="#8A6F55"/>
+  <text x="740" y="838" font-size="28" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#5A5555" text-anchor="middle">—</text>
+  <text x="762" y="828" font-size="11" font-weight="600" fill="#1A181B">Sin datos todavía.</text>
+  <text x="762" y="842" font-size="10" fill="#5A5555">Aún no hay respuestas. Cuando alguien responda tu QR, aparecerán aquí. (cero gráficos con ceros)</text>
+
+  <!-- pie B7 -->
+  <line x1="312" y1="852" x2="1368" y2="852" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="312" y="862" font-size="10" fill="#5A5555">Panel de ejemplo con datos inventados. No pertenece a ningún negocio real.</text>
+
+  <!-- Leyenda -->
+  <line x1="0" y1="872" x2="1440" y2="872" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="886" font-size="10" fill="#5A5555">Tokens: página #F7E5C8 · superficie #FFFFFF · elevado #F0D8BD · tinta #1A181B · secundario #5A5555 · filete #8A6F55 — sin sombras; borde 1 px · cero coral en esta pantalla (G2) · fila 44 · ≥993 sidebar 240 fija · ≤992 topbar 56 + fila 44 (ver hoja 375) · C5 Identidad omitida en esta hoja (plano §5.6) · scroll natural (§4.5)</text>
+</svg>
