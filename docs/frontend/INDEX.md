@@ -2,6 +2,8 @@
 
 Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 
+> **Actualizado 2026-11-12:** se reconciliaron L1-HERO, L3-PANEL, NAVBAR-Y-FOOTER y LOGIN contra el código vigente (§13/§11 nuevos), y se añadieron los planos de encuesta (cliente y gestión) como **BORRADOR pendiente de aprobación**.
+
 ## Documentos vigentes
 
 | Archivo | Propósito | Estado |
@@ -12,7 +14,7 @@ Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 | `planos/PLANOS-2026-11-05.md` | Planos técnicos: retícula, spans, alturas, reflujo por breakpoint y geometría de componentes | vigente |
 | `planos/L1-HERO-2026-11-05.md` | Contrato de layout y accesibilidad del hero L1 (landing): composición asimétrica 7/5, escala tipográfica, estados de componentes, orden de foco y ratios de contraste WCAG | vigente |
 | `planos/L2-COMO-FUNCIONA-2026-11-06.md` | Contrato de la banda 3 del landing (L2 "Cómo funciona"): retícula 3×364, reflujo por breakpoint, anatomía de la tarjeta de paso, conector, copy propuesto, accesibilidad y 26 criterios de aceptación | vigente |
-| `planos/L3-PANEL-2026-11-06.md` | Contrato de la banda 6 del landing (L3 "Qué ve el dueño"): única banda xxl (1320 → marco 872×545), estado vacío honesto mientras no exista captura del panel, anatomía del marco, copy propuesto, accesibilidad, 26 criterios y acta del gate de implementación | vigente |
+| `planos/L3-PANEL-2026-11-06.md` | Contrato de la banda 6 del landing (L3 "Qué ve el dueño"): única banda xxl (1320 → marco 872×545); **§13 registra el swap ejecutado** a panel de ejemplo completo con datos inventados declarados (486 respuestas, media 8,5), anatomía, copy, accesibilidad, 26 criterios y acta del gate | vigente |
 | `planos/L4-CANALES-2026-11-06.md` | Contrato de la banda 4 del landing (L4 "Canales"): 4 tarjetas 267 → 2×2 de 468 en lg, ilustraciones SVG propias declaradas (QR decorativo no escaneable, tablet sin numerales), copy propuesto, accesibilidad, 28 criterios y acta del gate | vigente |
 | `planos/L5-APLICACIONES-2026-11-06.md` | Contrato de la banda 5 del landing (L5 "Aplicaciones / Para quién"): 3 marcos 4/3 de 364 en xl con borde discontinuo, badge DEMO y declaración de vacío (no hay fotos), audiencias restaurante/café/comercio, cierre de C-32 por alternancia de fondos, criterios y acta del gate | vigente |
 | `planos/L6-FAQ-2026-11-06.md` | Contrato de la banda 8 del landing (L6 "Preguntas frecuentes"): única banda con container 960 y columna de lectura 632 (8 col + offset 2), acordeón ARIA (h3>button+region, múltiples abiertos), 5 preguntas respondibles hoy con 10 datos faltantes registrados con owner, anillo de foco propuesto pendiente de firma, criterios y acta del gate | vigente |
@@ -25,6 +27,10 @@ Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 | `ESTADO-2026-11-06.md` | Estado real al cierre de la jornada: rutas que existen y rutas vacías, banda por banda, chrome, `/entrar`, `/panel`, sistema visual, dataset canónico, batería de verificación, firmas aplicadas, lo que espera confirmación y pendientes vivos | vigente |
 | `assets/MANIFEST-UX-2026-11-05.md` | Manifiesto de assets del snapshot histórico congelado | vigente |
 | `decisiones/DECISIONES-2026-11-05.md` | Registro de decisiones técnicas y de diseño con justificación, alternativas rechazadas y owner | vigente |
+| `planos/ENCUESTA-CLIENTE-2026-11-12.md` | Plano de la encuesta del cliente en `/e/[code]`: variante A (nota 0–10 vigente) y B (cinco preguntas, bloqueada por gate #0), rejillas con px, contratos de componentes, estados, accesibilidad, copy exacto y checklist de aceptación | **BORRADOR** |
+| `planos/ENCUESTA-GESTION-2026-11-12.md` | Plano de la gestión de la encuesta dentro del panel: navegación propuesta, anatomía 1440/992/768/375, retícula, contratos de tabla/switch/estados vacíos, frontera maqueta vs backend y checklist | **BORRADOR** |
+| `planos/PROPUESTA-ENCUESTA-CAFETERIA-2026-11-11.md` | Propuesta de producto y flujo de encuesta (cliente + gestión), conflicto D-1/G-0 y preguntas Q1–Q11 de aprobación | **BORRADOR** |
+| `INTEGRACION-BACKEND-2026-11-12.md` | *(movido)* Ahora vive en `docs/integracion/PREGUNTAS-BACKEND-2026-11-12.md` junto a `REQUISITOS-FRONTEND-DASHBOARD-2026-11-12.md` | — |
 
 ## Carpetas
 
@@ -32,7 +38,7 @@ Esta carpeta contiene toda la documentación viva del frontend ScanSayDone.
 |---------|-----------|
 | `planos/` | Contratos técnicos y de diseño: retícula, geometría, copy, accesibilidad y criterios de aceptación |
 | `features/` | **Referencias visuales del operador sin versionar** (mockups, capturas de problemas, variantes de logotipo). No es documentación: es material de entrada. Ver `ESTADO §11.7` |
-| `wireframes/` | Wireframes y mockups |
+| `wireframes/` | Wireframes 1:1 en SVG, dibujados a mano desde los planos: encuesta cliente (375/768/1440), gestión (1440/375), hero v4, banda 6 con panel demo, navbar fase 2 y login 430. Ver `wireframes/README.md`. **BORRADOR** |
 | `assets/` | Manifiestos y referencias a assets del snapshot |
 | `decisiones/` | Registro de decisiones (ADRs) |
 
