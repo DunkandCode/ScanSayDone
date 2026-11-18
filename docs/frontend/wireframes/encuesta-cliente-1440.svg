@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>Encuesta cliente — 1440 px, paso 2</title>
+  <desc>Wireframe 1:1 px de /e/[code] a 1440: columna centrada max 540, padding 32 (p-8 desde 992), contenido 474, tres grupos 1-5 de fichas 88,4 px.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="1440" height="40" fill="#F0D8BD"/>
+  <line x1="0" y1="40" x2="1440" y2="40" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="25" font-size="11" font-weight="700" letter-spacing="0.5" fill="#1A181B">ENCUESTA CLIENTE — /e/[code] · 1440 · PASO 2 (VARIANTE B)</text>
+  <text x="1424" y="25" font-size="10" fill="#5A5555" text-anchor="end">BORRADOR 2026-11-12 · wireframe 1:1 px</text>
+
+  <!-- Viewport 1440 -->
+  <rect x="0" y="64" width="1440" height="776" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="32" y="76" width="56" height="22" rx="3" fill="#F0D8BD"/>
+  <text x="60" y="91" font-size="11" font-weight="700" fill="#1A181B" text-anchor="middle">DEMO</text>
+  <text x="1408" y="84" font-size="10" fill="#5A5555" text-anchor="end">Código de demostración: {code}</text>
+  <text x="1408" y="97" font-size="10" fill="#5A5555" text-anchor="end">— no corresponde a ninguna empresa real.</text>
+  <line x1="0" y1="108" x2="1440" y2="108" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="450" y="140" font-size="14" font-weight="600" fill="#1A181B">Encuesta</text>
+  <circle cx="458" cy="168" r="4" fill="#1A181B"/>
+  <line x1="466" y1="168" x2="490" y2="168" stroke="#8A6F55" stroke-width="1.5"/>
+  <circle cx="498" cy="168" r="4" fill="#1A181B"/>
+  <line x1="506" y1="168" x2="530" y2="168" stroke="#8A6F55" stroke-width="1.5"/>
+  <circle cx="538" cy="168" r="4" fill="none" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="990" y="173" font-size="11" fill="#5A5555" text-anchor="end">Pregunta 2 de 3</text>
+
+  <!-- cotas de columna -->
+  <line x1="450" y1="181" x2="450" y2="186" stroke="#5A5555" stroke-width="1"/>
+  <line x1="990" y1="181" x2="990" y2="186" stroke="#5A5555" stroke-width="1"/>
+  <line x1="450" y1="183" x2="990" y2="183" stroke="#5A5555" stroke-width="1"/>
+  <text x="720" y="179" font-size="10" fill="#5A5555" text-anchor="middle">540 · margen auto (1440−540)/2 = 450</text>
+  <line x1="450" y1="209" x2="450" y2="214" stroke="#5A5555" stroke-width="1"/>
+  <line x1="482" y1="209" x2="482" y2="214" stroke="#5A5555" stroke-width="1"/>
+  <line x1="450" y1="211" x2="482" y2="211" stroke="#5A5555" stroke-width="1"/>
+  <text x="466" y="207" font-size="10" fill="#5A5555" text-anchor="middle">32</text>
+
+  <!-- tarjeta discreta 540 -->
+  <rect x="450" y="192" width="540" height="560" rx="8" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="482" y="234" font-size="15" font-weight="600" fill="#1A181B">En general, ¿qué tan satisfecho/a quedaste?</text>
+  <line x1="482" y1="243" x2="482" y2="248" stroke="#5A5555" stroke-width="1"/>
+  <line x1="570.4" y1="243" x2="570.4" y2="248" stroke="#5A5555" stroke-width="1"/>
+  <line x1="482" y1="245" x2="570.4" y2="245" stroke="#5A5555" stroke-width="1"/>
+  <text x="486" y="241" font-size="10" fill="#5A5555">88,4</text>
+  <!-- P2 · fila de 5 (88,4 = (474−32)/5) -->
+  <rect x="482" y="252" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="526.2" y="281" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">1</text>
+  <rect x="578.4" y="252" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="622.6" y="281" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">2</text>
+  <rect x="674.8" y="252" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="719" y="281" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">3</text>
+  <rect x="771.2" y="252" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="815.4" y="281" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">4</text>
+  <rect x="867.6" y="252" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="911.8" y="281" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">5</text>
+  <!-- P3 -->
+  <text x="482" y="340" font-size="15" font-weight="600" fill="#1A181B">¿Cómo calificas el sabor y la calidad de lo que consumiste?</text>
+  <rect x="482" y="356" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="526.2" y="385" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">1</text>
+  <rect x="578.4" y="356" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="622.6" y="385" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">2</text>
+  <rect x="674.8" y="356" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="719" y="385" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">3</text>
+  <rect x="771.2" y="356" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="815.4" y="385" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">4</text>
+  <rect x="867.6" y="356" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="911.8" y="385" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">5</text>
+  <!-- P4 (2 líneas a 474) -->
+  <text x="482" y="446" font-size="15" font-weight="600" fill="#1A181B">¿Qué tan conforme quedaste con el tiempo que</text>
+  <text x="482" y="464" font-size="15" font-weight="600" fill="#1A181B">tardó en llegar tu pedido?</text>
+  <rect x="482" y="480" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="526.2" y="509" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">1</text>
+  <rect x="578.4" y="480" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="622.6" y="509" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">2</text>
+  <rect x="674.8" y="480" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="719" y="509" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">3</text>
+  <rect x="771.2" y="480" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="815.4" y="509" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">4</text>
+  <rect x="867.6" y="480" width="88.4" height="48" rx="3" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="911.8" y="509" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">5</text>
+  <text x="482" y="560" font-size="11" fill="#5A5555">Faltan 3 de 3 respuestas.</text>
+  <!-- acciones -->
+  <rect x="482" y="600" width="474" height="48" rx="6" fill="#1A181B"/>
+  <text x="719" y="630" font-size="13" font-weight="600" fill="#F7E5C8" text-anchor="middle">Continuar</text>
+  <text x="719" y="692" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">Volver</text>
+  <text x="719" y="788" font-size="10" fill="#5A5555" text-anchor="middle">Maqueta: no se envía ni se guarda</text>
+
+  <!-- anotaciones de retícula -->
+  <text x="1010" y="232" font-size="10" fill="#5A5555">tarjeta 540 = max --container-mkt-sm · borde 1 px completo ≥576 · r8 (rounded-lg)</text>
+  <text x="1010" y="250" font-size="10" fill="#5A5555">padding 32 (p-8 desde 992) → contenido W = 540−2−64 = 474</text>
+  <text x="1010" y="268" font-size="10" fill="#5A5555">ficha 1–5 = (474−32)/5 = 88,4 × 48 · gap 8 · ≥44 ✓</text>
+  <text x="1010" y="286" font-size="10" fill="#5A5555">ficha 0–10 (paso 1) = (474−40)/6 = 72,3 · rejilla 6+5</text>
+  <text x="1010" y="304" font-size="10" fill="#5A5555">gap entre grupos 24 (mb-6) · pregunta + fichas viajan juntas</text>
+  <text x="1010" y="322" font-size="10" fill="#5A5555">768: margen 114 · padding 24 (p-6) · W 490 · fichas 91,6 / 75</text>
+  <text x="1010" y="340" font-size="10" fill="#5A5555">992: margen 226 · W 474 (igual que 1440) · fichas 88,4 / 72,3</text>
+  <text x="1010" y="358" font-size="10" fill="#5A5555">breakpoints del sistema: 375 · 768 · 992 · 1440 (xs sm md lg xl 2xl)</text>
+  <text x="1010" y="376" font-size="10" fill="#5A5555">1 columna siempre (una tarea, un camino — nunca 2 columnas)</text>
+
+  <!-- Leyenda -->
+  <line x1="0" y1="852" x2="1440" y2="852" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="868" font-size="10" fill="#5A5555">Tokens: zona encuesta #FFFFFF · elevado #F0D8BD · tinta #1A181B · secundario #5A5555 · coral #FC5A41 (solo ficha seleccionada) · deshabilitado #E6D6C2 · borde fichas 2 px #8A6F55 — sin sombras; borde 1 px</text>
+  <text x="16" y="884" font-size="10" fill="#5A5555">foco 3 px #1A181B interior (offset −3, C-48) · táctil ≥44×44 · Montserrat cuerpo (≥16 real) · progreso por puntos + texto «Pregunta n de 3» (sin barra animada) · Bebas solo en título terminal ≥32</text>
+</svg>

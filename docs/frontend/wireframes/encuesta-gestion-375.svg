@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 900" width="375" height="900" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>Encuesta de gestión — móvil 375</title>
+  <desc>Wireframe 1:1 px de /panel/encuesta [PROP] a 375: topbar 56 + fila nav 44 con scroll-x, encabezado apilado, tabla convertida en lista de definición, switch y botones a ancho completo.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="375" height="36" fill="#F0D8BD"/>
+  <line x1="0" y1="36" x2="375" y2="36" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="8" y="23" font-size="11" font-weight="700" fill="#1A181B">ENCUESTA-GESTIÓN — 375</text>
+
+  <!-- lienzo móvil -->
+  <rect x="0" y="36" width="375" height="828" fill="#F7E5C8"/>
+
+  <!-- topbar 56 -->
+  <rect x="0" y="36" width="375" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="92" x2="375" y2="92" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="50" width="119" height="28" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.2"/>
+  <line x1="16" y1="50" x2="135" y2="78" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="135" y1="50" x2="16" y2="78" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="75.5" y="68" font-size="10" fill="#5A5555" text-anchor="middle">lockup 119×28</text>
+  <rect x="307" y="53" width="52" height="22" rx="3" fill="#F0D8BD"/>
+  <text x="333" y="68" font-size="10" font-weight="700" fill="#1A181B" text-anchor="middle">DEMO</text>
+  <line x1="4" y1="36" x2="4" y2="92" stroke="#5A5555" stroke-width="0.75"/>
+  <text x="11" y="68" font-size="9.5" fill="#5A5555">56</text>
+
+  <!-- fila nav 44 · scroll-x -->
+  <rect x="0" y="92" width="375" height="44" fill="#FFFFFF"/>
+  <line x1="0" y1="136" x2="375" y2="136" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="119" font-size="11" font-weight="600" fill="#1A181B">Resumen</text>
+  <rect x="78" y="98" width="72" height="32" rx="4" fill="#F0D8BD"/>
+  <rect x="78" y="98" width="3" height="32" fill="#8A6F55"/>
+  <text x="88" y="118" font-size="11" font-weight="700" fill="#1A181B">Encuesta</text>
+  <text x="158" y="119" font-size="11" fill="#5A5555">Reseñas*</text>
+  <text x="216" y="119" font-size="11" fill="#5A5555">Códigos QR*</text>
+  <text x="296" y="119" font-size="11" fill="#5A5555">Ajustes*</text>
+  <text x="366" y="119" font-size="11" fill="#5A5555" text-anchor="end">→</text>
+  <line x1="4" y1="92" x2="4" y2="136" stroke="#5A5555" stroke-width="0.75"/>
+  <text x="11" y="118" font-size="9.5" fill="#5A5555">44</text>
+
+  <!-- encabezado de sección -->
+  <text x="16" y="172" font-size="24" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">Encuesta de tu negocio</text>
+  <rect x="16" y="182" width="148" height="22" rx="3" fill="#F0D8BD" stroke="#8A6F55" stroke-width="1"/>
+  <text x="90" y="197" font-size="10" font-weight="700" letter-spacing="0.6" fill="#1A181B" text-anchor="middle">DATOS DE EJEMPLO</text>
+  <text x="16" y="218" font-size="10" fill="#5A5555">Ves la sección de encuesta del panel de ejemplo.</text>
+  <text x="16" y="232" font-size="10" fill="#5A5555">No hay encuesta real, enlace ni respuestas detrás.</text>
+
+  <!-- C1 como lista de definición (P1–P5) -->
+  <rect x="16" y="244" width="343" height="84" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="244" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="268" font-size="12" font-weight="700" fill="#1A181B">P1</text>
+  <text x="347" y="268" font-size="10" fill="#5A5555" text-anchor="end">etiqueta: —</text>
+  <text x="28" y="290" font-size="10.5" fill="#1A181B">¿Qué tan probable es que recomiendes el negocio…?</text>
+  <text x="28" y="312" font-size="10" fill="#5A5555">Escala: 0–10 · 11 valores · Obligatoria: Sí</text>
+
+  <rect x="16" y="338" width="343" height="84" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="338" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="362" font-size="12" font-weight="700" fill="#1A181B">P2</text>
+  <text x="347" y="362" font-size="10" fill="#5A5555" text-anchor="end">etiqueta: —</text>
+  <text x="28" y="384" font-size="10.5" fill="#1A181B">En general, ¿qué tan satisfecho/a quedaste?</text>
+  <text x="28" y="406" font-size="10" fill="#5A5555">Escala: 1–5 · Obligatoria: Sí</text>
+
+  <rect x="16" y="432" width="343" height="84" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="432" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="456" font-size="12" font-weight="700" fill="#1A181B">P3</text>
+  <text x="347" y="456" font-size="10" fill="#5A5555" text-anchor="end">Calidad del producto</text>
+  <text x="28" y="478" font-size="10.5" fill="#1A181B">¿Cómo calificas el sabor y la calidad…?</text>
+  <text x="28" y="500" font-size="10" fill="#5A5555">Escala: 1–5 · Obligatoria: Sí</text>
+
+  <rect x="16" y="526" width="343" height="84" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="526" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="550" font-size="12" font-weight="700" fill="#1A181B">P4</text>
+  <text x="347" y="550" font-size="10" fill="#5A5555" text-anchor="end">Tiempo de servicio</text>
+  <text x="28" y="572" font-size="10.5" fill="#1A181B">¿Qué tan conforme quedaste con el tiempo…?</text>
+  <text x="28" y="594" font-size="10" fill="#5A5555">Escala: 1–5 · Obligatoria: Sí</text>
+
+  <rect x="16" y="620" width="343" height="84" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="620" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="644" font-size="12" font-weight="700" fill="#1A181B">P5</text>
+  <text x="347" y="644" font-size="10" fill="#5A5555" text-anchor="end">etiqueta: —</text>
+  <text x="28" y="666" font-size="10.5" fill="#1A181B">¿Qué podríamos hacer para que tu próxima visita…?</text>
+  <text x="28" y="688" font-size="10" fill="#5A5555">Escala: texto · máx. 300 · Obligatoria: No · opcional</text>
+
+  <!-- botón pleno ancho + ayuda -->
+  <rect x="16" y="718" width="343" height="44" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="187.5" y="744" font-size="11" fill="#5A5555" text-anchor="middle">Editar</text>
+  <text x="16" y="778" font-size="10" fill="#5A5555">Editar no está disponible en la demo.</text>
+
+  <!-- C2 switch a ancho completo -->
+  <rect x="16" y="790" width="343" height="74" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="1"/>
+  <rect x="16" y="790" width="343" height="3" fill="#8A6F55"/>
+  <text x="28" y="814" font-size="11" font-weight="700" fill="#1A181B">Estado de la encuesta</text>
+  <text x="291" y="818" font-size="10" font-weight="600" fill="#1A181B" text-anchor="end">Activa</text>
+  <rect x="303" y="804" width="44" height="24" rx="12" fill="#1A181B"/>
+  <circle cx="335" cy="816" r="9" fill="#F7E5C8"/>
+  <text x="28" y="838" font-size="10" fill="#5A5555">Cambio solo visual de la demo: no se guarda</text>
+  <text x="28" y="852" font-size="10" fill="#5A5555">y no afecta el enlace que ve el cliente.</text>
+
+  <!-- notas -->
+  <text x="16" y="872" font-size="10" fill="#5A5555">plano G3 (§4.4): tabla con scroll-x min 640 — la lista apilada de esta hoja responde al encargo</text>
+  <text x="16" y="886" font-size="10" fill="#5A5555">del orquestador · C3 preview y C6 «—» bajo el fold (ver hoja 1440) · contenido 343 = 375−2×16</text>
+</svg>

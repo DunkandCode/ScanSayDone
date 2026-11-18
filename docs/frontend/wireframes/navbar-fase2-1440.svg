@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" width="1440" height="120" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>Navbar fase 2 — 1440 × 76</title>
+  <desc>Wireframe del header post fase 2: lockup como imagen, 4 anclas (Cómo funciona, Canales, Aplicaciones, FAQ) y CTA «Entrar»; alto 76 px, fondo crema permanente, border-bottom 1 px.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="1440" height="24" fill="#F0D8BD"/>
+  <line x1="0" y1="24" x2="1440" y2="24" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="16" font-size="10" font-weight="700" letter-spacing="0.5" fill="#1A181B">NAVBAR FASE 2 — 1440 · ALTO 76 · POST-PANEL</text>
+  <text x="1424" y="16" font-size="10" fill="#5A5555" text-anchor="end">BORRADOR 2026-11-12 · wireframe 1:1 px</text>
+
+  <!-- barra 76 px -->
+  <rect x="0" y="26" width="1440" height="76" fill="#F7E5C8"/>
+  <line x1="0" y1="102" x2="1440" y2="102" stroke="#8A6F55" stroke-width="1"/>
+
+  <!-- lockup (imagen) -->
+  <rect x="150" y="44" width="155" height="36" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1.5"/>
+  <line x1="150" y1="44" x2="305" y2="80" stroke="#D9C0A0" stroke-width="1"/>
+  <line x1="305" y1="44" x2="150" y2="80" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="227.5" y="66" font-size="10" fill="#5A5555" text-anchor="middle">lockup-nav.png ~155×36</text>
+  <text x="150" y="96" font-size="10" fill="#5A5555">imagen · hit h-11 (44)</text>
+
+  <!-- anclas -->
+  <text x="760" y="70" font-size="12" font-weight="600" fill="#1A181B">Cómo funciona</text>
+  <text x="880" y="70" font-size="12" font-weight="600" fill="#1A181B">Canales</text>
+  <text x="952" y="70" font-size="12" font-weight="600" fill="#1A181B">Aplicaciones</text>
+  <text x="1064" y="70" font-size="12" font-weight="600" fill="#1A181B">FAQ</text>
+  <text x="760" y="96" font-size="10" fill="#5A5555">/#como-funciona</text>
+  <text x="880" y="96" font-size="10" fill="#5A5555">solo ≥1200</text>
+  <text x="952" y="96" font-size="10" fill="#5A5555">solo ≥1200</text>
+  <text x="1064" y="96" font-size="10" fill="#5A5555">/#faq</text>
+
+  <!-- CTA fase 2 -->
+  <rect x="1150" y="44" width="140" height="44" rx="6" fill="#F0D8BD" stroke="#8A6F55" stroke-width="1"/>
+  <text x="1220" y="70" font-size="12" font-weight="600" fill="#1A181B" text-anchor="middle">Entrar</text>
+  <text x="1150" y="96" font-size="10" fill="#5A5555">→ /entrar (fase 2, con panel existente)</text>
+
+  <!-- cota alto 76 -->
+  <line x1="1412" y1="26" x2="1412" y2="102" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1406" y1="26" x2="1418" y2="26" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1406" y1="102" x2="1418" y2="102" stroke="#5A5555" stroke-width="1"/>
+  <text x="1398" y="68" font-size="10" fill="#5A5555" text-anchor="end">76</text>
+
+  <!-- Leyenda -->
+  <line x1="0" y1="106" x2="1440" y2="106" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="117" font-size="10" fill="#5A5555">Mapa: lockup → Cómo funciona · Canales · Aplicaciones · FAQ → CTA «Entrar» · eje x=150–1290 (container 1140) · alto 76 = 20+36+20 · fondo #F7E5C8 fijo sin estados por scroll · border-bottom 1 px #8A6F55 · skip-link primer focable · hit ≥44 · Tokens: #F7E5C8 #F0D8BD #1A181B #5A5555 #8A6F55 #D9C0A0 — sin sombras; borde 1 px</text>
+</svg>

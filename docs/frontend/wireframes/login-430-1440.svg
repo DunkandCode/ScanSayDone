@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>/entrar — tarjeta de acceso 430 — 1440</title>
+  <desc>Wireframe de /entrar as-built tras la reconciliación 2026-11-12: tarjeta blanca de 430 (sustituye la cota 400 del plano desactualizado), borde 1 px, fondo crema→elevado en dos bandas planas (G6), inputs de 48, botón ENTRAR de 52, foco 3 px interior. Columna móvil 375 → 343.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="1440" height="36" fill="#F0D8BD"/>
+  <line x1="0" y1="36" x2="1440" y2="36" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="23" font-size="11" font-weight="700" letter-spacing="0.5" fill="#1A181B">/ENTRAR — TARJETA DE ACCESO 430 · 1440 · AS-BUILT TRAS RECONCILIACIÓN</text>
+  <text x="1424" y="23" font-size="10" fill="#5A5555" text-anchor="end">BORRADOR 2026-11-12 · wireframe 1:1 px · sustituye cota 400 → 430</text>
+
+  <!-- fondo: degradado G6 plano en dos bandas (page.tsx:8-11) -->
+  <rect x="0" y="36" width="1440" height="424" fill="#F7E5C8"/>
+  <rect x="0" y="460" width="1440" height="392" fill="#F0D8BD"/>
+  <text x="24" y="456" font-size="10" fill="#5A5555">banda 1 · #F7E5C8 (0%)</text>
+  <text x="24" y="476" font-size="10" fill="#5A5555">banda 2 · #F0D8BD (100%) — gradiente 180° plano (page.tsx:8-11)</text>
+
+  <!-- cota 430 sobre la tarjeta -->
+  <line x1="505" y1="88" x2="505" y2="93" stroke="#5A5555" stroke-width="1"/>
+  <line x1="935" y1="88" x2="935" y2="93" stroke="#5A5555" stroke-width="1"/>
+  <line x1="505" y1="90" x2="935" y2="90" stroke="#5A5555" stroke-width="1"/>
+  <text x="720" y="86" font-size="10" fill="#5A5555" text-anchor="middle">430 (max-w-[430px] · login-card.tsx:44)</text>
+
+  <!-- tarjeta blanca 430 · rx 12 · borde 1 px · pad 32 -->
+  <rect x="505" y="110" width="430" height="652" rx="12" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1"/>
+
+  <!-- lockup (imagen h-9 · login-card.tsx:46-53) -->
+  <rect x="537" y="142" width="180" height="36" fill="none" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="627" y="164" font-size="10" fill="#5A5555" text-anchor="middle">lockup (imagen h-9)</text>
+
+  <!-- chip DEMO + línea de honestidad (sobre los campos) -->
+  <rect x="537" y="202" width="56" height="22" rx="4" fill="#F0D8BD" stroke="#8A6F55" stroke-width="1"/>
+  <text x="565" y="217" font-size="10" font-weight="700" letter-spacing="0.5" fill="#1A181B" text-anchor="middle">DEMO</text>
+  <text x="601" y="217" font-size="11" fill="#5A5555">Demostración: todavía no se abre ninguna sesión.</text>
+
+  <!-- H1 + apoyo (H1 servido 44→56 en un renglón) -->
+  <text x="537" y="286" font-size="38" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">LEE LO QUE TE DICEN</text>
+  <text x="537" y="318" font-size="13" fill="#5A5555">Tu acceso, con usuario y contraseña.</text>
+
+  <!-- formulario -->
+  <text x="537" y="364" font-size="13" font-weight="600" fill="#5A5555">Tu usuario</text>
+  <rect x="537" y="374" width="366" height="48" rx="8" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1"/>
+  <rect x="540" y="377" width="360" height="42" rx="5" fill="none" stroke="#1A181B" stroke-width="3"/>
+  <text x="537" y="460" font-size="13" font-weight="600" fill="#5A5555">Tu contraseña</text>
+  <rect x="537" y="470" width="366" height="48" rx="8" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1"/>
+  <text x="549" y="499" font-size="13" fill="#5A5555">••••••••••</text>
+  <rect x="845" y="472" width="44" height="44" rx="4" fill="none" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="867" y="498" font-size="11" fill="#5A5555" text-anchor="middle">Ver</text>
+  <rect x="537" y="542" width="366" height="52" rx="8" fill="#1A181B"/>
+  <text x="720" y="574" font-size="15" font-weight="600" fill="#F7E5C8" text-anchor="middle">ENTRAR</text>
+  <line x1="537" y1="662" x2="903" y2="662" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="720" y="712" font-size="14" font-weight="600" fill="#1A181B" text-anchor="middle">Volver al sitio</text>
+  <line x1="663" y1="717" x2="777" y2="717" stroke="#8A6F55" stroke-width="1"/>
+
+  <!-- cotas laterales de campos -->
+  <text x="943" y="390" font-size="10" fill="#5A5555">48 ≥44 · anillo: foco 3 px interior (:97)</text>
+  <text x="943" y="498" font-size="10" fill="#5A5555">48 · «Ver» 44×44 (:140)</text>
+  <text x="943" y="572" font-size="10" fill="#5A5555">52 ≥44 (:157)</text>
+
+  <!-- notas de contexto (margen izq.) -->
+  <text x="24" y="142" font-size="10" fill="#5A5555">split: 1 columna &lt;992 · lg:grid-cols-2 ≥992 (page.tsx:13)</text>
+  <text x="24" y="158" font-size="10" fill="#5A5555">as-built a 1440: tarjeta en mitad izquierda (x 145–575) + LoginVisual a la derecha — plano LOGIN §2 reconciliado</text>
+  <text x="24" y="174" font-size="10" fill="#5A5555">375 → tarjeta 343 (375 − 2×16 de margen de página) · 992 → x 33–463 (LOGIN §3)</text>
+  <text x="24" y="190" font-size="10" fill="#5A5555">degradado G6: linear-gradient(180°, page → elevated) (page.tsx:8-11) — maqueta plana en dos bandas</text>
+
+  <!-- notas as-built (margen der.) -->
+  <text x="952" y="142" font-size="10" fill="#5A5555">tarjeta max-w-[430px] (login-card.tsx:44)</text>
+  <text x="952" y="158" font-size="10" fill="#5A5555">servido: radius 16 · pad 24/40-48 (:44) — esta hoja traza 12 · pad 32</text>
+  <text x="952" y="174" font-size="10" fill="#5A5555">H1 Bebas servido 44→56 en un renglón (:66-68) — dibujado reducido</text>
+  <text x="952" y="190" font-size="10" fill="#5A5555">slot de error aria-live min-h 20 bajo cada input (:101-107, :145-151)</text>
+  <text x="952" y="206" font-size="10" fill="#5A5555">status al enviar: «Demostración: no se ha iniciado ninguna sesión.» (:40)</text>
+
+  <!-- nota de sustitución -->
+  <text x="24" y="800" font-size="11" font-weight="700" fill="#1A181B">ESTA HOJA SUSTITUYE la imagen de plano desactualizada que mostraba una tarjeta de 400 — cota corregida a 430 as-built</text>
+  <text x="24" y="820" font-size="10" fill="#5A5555">chip + confesión servidos: «Todavía no se abre ninguna sesión.» (:56-63) — la línea trazada aquí sigue el encargo del plano</text>
+
+  <!-- Leyenda -->
+  <line x1="0" y1="852" x2="1440" y2="852" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="868" font-size="10" fill="#5A5555">Tokens: fondo #F7E5C8 → #F0D8BD (dos bandas, G6) · superficie #FFFFFF borde 1 px #8A6F55 · elevado #F0D8BD (chip) · tinta #1A181B · secundario #5A5555 — sin sombras; borde 1 px</text>
+  <text x="16" y="884" font-size="10" fill="#5A5555">inputs 48 / botón 52 / «Ver» 44×44 — táctil ≥44 ✓ · foco 3 px interior #1A181B · a 375 la tarjeta llena 343 · sustituye cota 400 → 430</text>
+</svg>

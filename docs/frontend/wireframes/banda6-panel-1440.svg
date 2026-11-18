@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" font-family="Montserrat, 'Segoe UI', Arial, sans-serif">
+  <title>Banda 6 — «Qué ve el dueño» — 1440</title>
+  <desc>Wireframe de la banda 6 del landing: marco 872×545 con panel de ejemplo DEMO (3 bloques Media/Reseñas/Notas 8-10 con 8,5/486/377, barras respuestas por nota, canales y filas de respuestas) y declaracion de datos inventados.</desc>
+
+  <!-- Franja de encabezado de hoja -->
+  <rect x="0" y="0" width="1440" height="36" fill="#F0D8BD"/>
+  <line x1="0" y1="36" x2="1440" y2="36" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="23" font-size="11" font-weight="700" letter-spacing="0.5" fill="#1A181B">BANDA 6 — «QUÉ VE EL DUEÑO» · LANDING · 1440</text>
+  <text x="1424" y="23" font-size="10" fill="#5A5555" text-anchor="end">BORRADOR 2026-11-12 · wireframe 1:1 px</text>
+
+  <!-- banda crema -->
+  <rect x="0" y="36" width="1440" height="828" fill="#F7E5C8"/>
+  <text x="60" y="84" font-size="11" font-weight="600" letter-spacing="1.2" fill="#5A5555">TUS OPINIONES, EN UN PANEL</text>
+  <text x="60" y="130" font-size="40" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">TODO EN UN MISMO LUGAR</text>
+  <text x="60" y="160" font-size="13" fill="#5A5555">Ahí llegan las respuestas que te dejan tus clientes.</text>
+
+  <!-- cotas del marco -->
+  <line x1="284" y1="178" x2="284" y2="183" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1156" y1="178" x2="1156" y2="183" stroke="#5A5555" stroke-width="1"/>
+  <line x1="284" y1="180" x2="1156" y2="180" stroke="#5A5555" stroke-width="1"/>
+  <text x="720" y="176" font-size="10" fill="#5A5555" text-anchor="middle">872 (span-8 del container 1320 · aire 224 por lado)</text>
+  <line x1="1168" y1="188" x2="1173" y2="188" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1168" y1="733" x2="1173" y2="733" stroke="#5A5555" stroke-width="1"/>
+  <line x1="1170" y1="188" x2="1170" y2="733" stroke="#5A5555" stroke-width="1"/>
+  <text x="1180" y="464" font-size="10" fill="#5A5555">545 (16/10)</text>
+
+  <!-- marco del panel de ejemplo -->
+  <rect x="284" y="188" width="872" height="545" rx="8" fill="#FFFFFF" stroke="#8A6F55" stroke-width="1"/>
+  <rect x="300" y="204" width="56" height="22" rx="4" fill="#F0D8BD" stroke="#8A6F55" stroke-width="1"/>
+  <text x="328" y="219" font-size="10" font-weight="700" letter-spacing="0.5" fill="#1A181B" text-anchor="middle">DEMO</text>
+  <text x="1140" y="219" font-size="11" font-weight="700" fill="#1A181B" text-anchor="end">DEMO — datos inventados</text>
+  <!-- fila de título -->
+  <text x="308" y="258" font-size="12" font-weight="600" fill="#1A181B">Resumen de satisfacción</text>
+  <rect x="1034" y="244" width="96" height="22" rx="3" fill="none" stroke="#8A6F55" stroke-width="1"/>
+  <text x="1082" y="259" font-size="10" fill="#5A5555" text-anchor="middle">Últimos 30 días</text>
+  <line x1="308" y1="272" x2="1132" y2="272" stroke="#D9C0A0" stroke-width="1"/>
+
+  <!-- KPI ×3 (dataset declarado: 8,5 · 486 · 377) -->
+  <rect x="308" y="288" width="258" height="96" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="0.75"/>
+  <rect x="308" y="288" width="258" height="2" fill="#8A6F55"/>
+  <text x="320" y="310" font-size="10" font-weight="700" letter-spacing="0.6" fill="#5A5555">MEDIA</text>
+  <text x="320" y="348" font-size="30" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">8,5</text>
+  <text x="320" y="370" font-size="10" fill="#5A5555">de 0 a 10</text>
+  <rect x="590" y="288" width="258" height="96" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="0.75"/>
+  <rect x="590" y="288" width="258" height="2" fill="#8A6F55"/>
+  <text x="602" y="310" font-size="10" font-weight="700" letter-spacing="0.6" fill="#5A5555">RESEÑAS</text>
+  <text x="602" y="348" font-size="30" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">486</text>
+  <text x="602" y="370" font-size="10" fill="#5A5555">últimos 30 días</text>
+  <rect x="872" y="288" width="258" height="96" fill="#FFFFFF" stroke="#D9C0A0" stroke-width="0.75"/>
+  <rect x="872" y="288" width="258" height="2" fill="#8A6F55"/>
+  <text x="884" y="310" font-size="10" font-weight="700" letter-spacing="0.6" fill="#5A5555">NOTAS 8–10</text>
+  <text x="884" y="348" font-size="30" font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif" fill="#1A181B">377</text>
+  <text x="884" y="370" font-size="10" fill="#5A5555">satisfacción alta</text>
+
+  <!-- barras: respuestas por nota (dataset 1·1·2·2·4·6·20·73·100·127·150 · barra ∝ conteo, 150→200 px) -->
+  <text x="308" y="414" font-size="11" font-weight="600" fill="#1A181B">Respuestas por nota</text>
+  <rect x="308" y="658.5" width="36" height="1.5" fill="#8A6F55"/>
+  <rect x="352" y="658.5" width="36" height="1.5" fill="#8A6F55"/>
+  <rect x="396" y="657" width="36" height="3" fill="#8A6F55"/>
+  <rect x="440" y="657" width="36" height="3" fill="#8A6F55"/>
+  <rect x="484" y="654.5" width="36" height="5.5" fill="#8A6F55"/>
+  <rect x="528" y="652" width="36" height="8" fill="#8A6F55"/>
+  <rect x="572" y="633" width="36" height="27" fill="#8A6F55"/>
+  <rect x="616" y="563" width="36" height="97" fill="#8A6F55"/>
+  <rect x="616" y="563" width="36" height="97" fill="#1A181B" fill-opacity="0.2"/>
+  <rect x="660" y="527" width="36" height="133" fill="#8A6F55"/>
+  <rect x="660" y="527" width="36" height="133" fill="#1A181B" fill-opacity="0.2"/>
+  <rect x="704" y="491" width="36" height="169" fill="#8A6F55"/>
+  <rect x="704" y="491" width="36" height="169" fill="#1A181B" fill-opacity="0.4"/>
+  <rect x="748" y="460" width="36" height="200" fill="#8A6F55"/>
+  <rect x="748" y="460" width="36" height="200" fill="#1A181B" fill-opacity="0.4"/>
+  <line x1="308" y1="660" x2="784" y2="660" stroke="#8A6F55" stroke-width="1.5"/>
+  <text x="326" y="674" font-size="10" fill="#5A5555" text-anchor="middle">0</text>
+  <text x="370" y="674" font-size="10" fill="#5A5555" text-anchor="middle">1</text>
+  <text x="414" y="674" font-size="10" fill="#5A5555" text-anchor="middle">2</text>
+  <text x="458" y="674" font-size="10" fill="#5A5555" text-anchor="middle">3</text>
+  <text x="502" y="674" font-size="10" fill="#5A5555" text-anchor="middle">4</text>
+  <text x="546" y="674" font-size="10" fill="#5A5555" text-anchor="middle">5</text>
+  <text x="590" y="674" font-size="10" fill="#5A5555" text-anchor="middle">6</text>
+  <text x="634" y="674" font-size="10" fill="#5A5555" text-anchor="middle">7</text>
+  <text x="678" y="674" font-size="10" fill="#5A5555" text-anchor="middle">8</text>
+  <text x="722" y="674" font-size="10" fill="#5A5555" text-anchor="middle">9</text>
+  <text x="766" y="674" font-size="10" fill="#5A5555" text-anchor="middle">10</text>
+  <text x="308" y="690" font-size="10" fill="#5A5555">dataset declarado (panel-data.ts): 1·1·2·2·4·6·20·73·100·127·150 · barra ∝ conteo (150→200 px) · tinta 20%/40% en 7–8 / 9–10</text>
+
+  <!-- canales principales -->
+  <text x="832" y="414" font-size="11" font-weight="600" fill="#1A181B">Canales principales</text>
+  <text x="832" y="444" font-size="10" fill="#1A181B">QR en la mesa</text>
+  <text x="1002" y="444" font-size="10" font-weight="600" fill="#1A181B" text-anchor="end">210</text>
+  <rect x="832" y="452" width="140" height="8" rx="2" fill="#D9C0A0"/>
+  <rect x="832" y="452" width="140" height="8" rx="2" fill="#8A6F55"/>
+  <text x="832" y="484" font-size="10" fill="#1A181B">Enlace de Instagram</text>
+  <text x="1002" y="484" font-size="10" font-weight="600" fill="#1A181B" text-anchor="end">112</text>
+  <rect x="832" y="492" width="140" height="8" rx="2" fill="#D9C0A0"/>
+  <rect x="832" y="492" width="75" height="8" rx="2" fill="#8A6F55"/>
+  <text x="832" y="524" font-size="10" fill="#1A181B">Google Maps</text>
+  <text x="1002" y="524" font-size="10" font-weight="600" fill="#1A181B" text-anchor="end">89</text>
+  <rect x="832" y="532" width="140" height="8" rx="2" fill="#D9C0A0"/>
+  <rect x="832" y="532" width="59" height="8" rx="2" fill="#8A6F55"/>
+
+  <!-- últimas respuestas (por encargo; la banda servida no las trae) -->
+  <text x="832" y="572" font-size="11" font-weight="600" fill="#1A181B">Últimas respuestas</text>
+  <text x="832" y="596" font-size="10" fill="#1A181B">10 · La paella estaba buena, aunque el…</text>
+  <text x="832" y="618" font-size="10" fill="#1A181B">9 · Volveremos seguro, el trato fue agradable.</text>
+  <text x="832" y="640" font-size="10" fill="#1A181B">8 · — (sin texto)</text>
+  <text x="832" y="662" font-size="10" fill="#5A5555">lastResponses (panel-data.ts) · antigüedad fija ·</text>
+  <text x="832" y="676" font-size="10" fill="#5A5555">la banda servida muestra solo Canales — filas por encargo</text>
+
+  <!-- declaración figcaption -->
+  <line x1="285" y1="697" x2="1155" y2="697" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="720" y="717" font-size="10" fill="#5A5555" text-anchor="middle">Panel de ejemplo con datos inventados. No pertenece a ningún negocio real.</text>
+
+  <!-- viñetas -->
+  <text x="284" y="762" font-size="11" fill="#1A181B">• Cada opinión llega con su fecha y su canal.</text>
+  <text x="284" y="784" font-size="11" fill="#1A181B">• Todo junto, sin repartirlo en planillas.</text>
+  <text x="284" y="806" font-size="11" fill="#1A181B">• Se leen las respuestas, no un número suelto.</text>
+  <text x="284" y="840" font-size="10" fill="#5A5555">cota 872×545 del encargo (span-8, xxl 1320); §13.3 servido: container capped a 1140 con marco a 12 col — reconciliar en gate · py banda 100 desktop</text>
+
+  <!-- Leyenda -->
+  <line x1="0" y1="852" x2="1440" y2="852" stroke="#D9C0A0" stroke-width="1"/>
+  <text x="16" y="868" font-size="10" fill="#5A5555">Tokens: banda #F7E5C8 · marco #FFFFFF borde 1 px #8A6F55 · elevado #F0D8BD · tinta #1A181B · secundario #5A5555 · filete KPI #8A6F55 — sin sombras; borde 1 px</text>
+  <text x="16" y="884" font-size="10" fill="#5A5555">dataset DEMO único declarado (panel-data.ts): 486 / 8,5 / 377 · cero métricas fuera de ese dataset · Bebas solo en cifras y H2 (≥32) · foco 3 px interior</text>
+</svg>

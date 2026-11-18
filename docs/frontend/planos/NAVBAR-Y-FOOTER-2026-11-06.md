@@ -1,5 +1,8 @@
 # NAVBAR-Y-FOOTER — plano del chrome de navegación (banda de barra + banda 10)
 
+> **CHANGELOG**
+> - **2026-11-12 (docs-only, subagente designer):** plano escrito **antes** de la implementación («no existe header…», §0); el chrome está servido desde el 2026-11-06 y pasó el gate de §10. Reconciliación en §11: **(a)** lockup = **imagen** `lockup-nav.png` (305×72 a `h-9`), no el texto 108×36 de §A.3 (`site-header.tsx:106-113`; firma F-O8, `ESTADO:140`); **(b)** mapa de ítems superado: servidos **Cómo funciona · Canales (≥1200) · Aplicaciones (≥1200) · FAQ · Entrar → `/entrar` · CTA demo** (`site-header.tsx:117-181`) — la «fase 1 sin Entrar» de §A.4-c quedó atrás (Entrar se sirve; acta de C-56 no hallada en `ESTADO` → servido-pendiente-de-firma); **(c)** estilo del CTA diverge de O1: `border-mid` 1px + relleno `surface-elevated` (`:173-177`); **(d)** pie: quinto enlace `Panel → /#panel` + `Volver arriba` (`site-footer.tsx:85,140-143`) — criterio 25 («exactamente 5 enlaces, cero /panel») superado. Geometría confirmada sin cambio: 76 px, fixed, `border-mid`, skip-link, drawer <992 (§11.3). Nada de esto es firma nueva.
+
 > **Fecha:** 2026-11-06 · **Autor:** designer-alibaba · **Ruta canónica:** `docs/frontend/planos/NAVBAR-Y-FOOTER-2026-11-06.md` · **Precedente de formato:** `L5-APLICACIONES-2026-11-06.md`, `L6-FAQ-2026-11-06.md` (§12/§13 como modelo de acta) · **Compañero de numeración:** conflictos `C-1…C-54` servidos por L1–L6; **este plano abre C-55**.
 > **Qué es:** plano implementable de las dos piezas de chrome que faltan: la barra fija (nav) y el pie (banda 10). Canon: `PLANOS §2.5` (lockup), `§2.1` (fila 10 y fila Navbar), `§2.3`, `§2.4`; `UX-SPEC §2.1` nota Navbar y fila Footer; `CANON §4/§5/§7`.
 > **Qué NO es:** no toca las bandas servidas salvo una clase por banda (desplazamiento de anclas, §A.5/C-59); no decide precios (B-7); no inventa datos de empresa (B-5/G-28); no reabre lo firmado hoy (anillo 3 px / offset −3 px; copy L6; `/contactus` con canal pendiente; banda 6 con marco vacío declarado; ejes intactos).
@@ -19,7 +22,7 @@
 | `[propuesta]` | decisión de este plano sujeta a firma del operador |
 | `sin dato` | falta; se nombra el archivo que debió contenerlo |
 
-Hoy, verificado por lectura: **no existe `header`, ni `nav`, ni `footer` en el build**; `(marketing)/layout.tsx` es `<main className="flex-1">{children}</main>` de 7 líneas `[as-built]`. La página arranca en el hero y termina en la banda 8 (`page.tsx:10-20 [as-built]`). Este lote introduce **los primeros enlaces de navegación reales del producto**.
+Hoy, verificado por lectura: **no existe `header`, ni `nav`, ni `footer` en el build**; `(marketing)/layout.tsx` es `<main className="flex-1">{children}</main>` de 7 líneas `[as-built]`. La página arranca en el hero y termina en la banda 8 (`page.tsx:10-20 [as-built]`). Este lote introduce **los primeros enlaces de navegación reales del producto**. **[2026-11-12: superado por §11 — el chrome está servido desde el 2026-11-06 (`site-header.tsx`, `nav-drawer.tsx`, `site-footer.tsx`; gate §10; `ESTADO:43-50`); este párrafo queda como fotografía del momento pre-implementación.]**
 
 ---
 
@@ -57,6 +60,8 @@ Los desfases 6 y 8 son estructurales (contenedores distintos por diseño `[P]`);
 
 ### A.3 Anatomía del lockup (logo)
 
+> **[2026-11-12: superado por §11.1 — lockup servido = imagen `lockup-nav.png` 305×72 a `h-9` (36) dentro del `Link href="/"` con hit `h-11` (`site-header.tsx:101-114`); firma F-O8 «el logotipo entra como imagen» (`ESTADO:140`), render reportado ~155×36 (`ESTADO:47`). La caja 108×36 con texto vivo de abajo es historia [prop].]**
+
 `[P] PLANOS §2.5`: logo **108×36 (3:1)** en el extremo izquierdo del container; `[P] UX-SPEC §2.1`: "Logo 108×36 (3:1 real), no los 93×22 del template (4.2:1 deforma)".
 
 - Caja: `w-[108px] h-9` (36) dentro de un enlace con hit de 44 de alto.
@@ -65,6 +70,8 @@ Los desfases 6 y 8 son estructurales (contenedores distintos por diseño `[P]`);
 - Extremo izquierdo exacto: el borde del lockup coincide con x 150 a 1440 (criterio A3).
 
 ### A.4 Ítems, decisiones de enlace y CTA
+
+> **[2026-11-12: superado por §11.2 — mapa servido: Cómo funciona · Canales (≥1200) · Aplicaciones (≥1200) · FAQ · **Entrar → `/entrar`** · CTA `Ver una encuesta de ejemplo` (`site-header.tsx:117-181`); Precios sigue sin nodo (`:169`, C-55 vigente). La «fase 1 sin Entrar» de la decisión (c) quedó atrás; el CTA sirve `border-mid` 1px + `surface-elevated`, no el ghost 2px-ink de O1.]**
 
 `[P] PLANOS §2.3`: `NAV fijo (logo→/ · Precios · FAQ · CTA)`.
 
@@ -541,3 +548,35 @@ Barra: alto **76**, fondo crema, wordmark **108×36** con hit de 44, sin coral. 
 - **M5 — la brecha del ancla (34 px) no coincide con la que el criterio pedía (16±8)**, y el valor 92 de C-59 se eligió sobre ese supuesto. Hace falta re-medir con `document.fonts.ready` antes de dar el criterio por cerrado.
 - **Año del pie:** `new Date().getFullYear()` quedó a alcance de módulo (se evalúa al cargar el módulo, no por render) después de dos intentos. El efecto práctico es que la fecha se congela con el build, que es lo razonable para un sitio estático, pero el comentario y el criterio 26 piden otra cosa: se anota, no se reabre.
 - **Desviaciones benignas registradas:** el drawer existe en el DOM estando cerrado (necesario para la transición de 200 ms y para que `aria-controls` siempre resuelva; se compensa con `inert` + `invisible`), el `nav` completo se oculta bajo `lg` en vez de solo su `<ul>`, y el grid del pie usa `gap-6` (24) en lugar del `gap-y-10` del mapping, lo que explica una altura menor que la estimada.
+
+---
+
+## 11. Reconciliación as-built del chrome (2026-11-12, docs-only)
+
+> Lectura estática del subagente designer; **cero ejecuciones**. **[REPO]** = hecho del código con `archivo:línea`; `sin_evidencia` = no verificable aquí. Nada de esto es firma nueva; registra divergencias entre este plano (pre-implementación) y el chrome servido que pasó el gate de §10.
+
+### 11.1 Lockup — imagen, no texto (F-O8)
+
+[REPO] `site-header.tsx:106-113`: `<Image src="/img/marca/lockup-nav.png" width={305} height={72} alt="Scan-Say-Done" className="h-9 w-auto" priority>` dentro de `Link href="/"` con hit `h-11` (44) y anillo 3/−3 (`:103-104`). El pie usa la misma imagen (`site-footer.tsx:39`). Firma F-O8: «el logotipo entra **como imagen** a barra, pie, barra lateral y barra móvil; el texto de marca desaparece» (`ESTADO:140`); render reportado ~155×36 (`ESTADO:47`). La receta 108×36-texto-vivo de §A.3 es historia; también lo es el requisito previo B-8 (el vector ya vive en `public/img/marca/`).
+
+### 11.2 Mapa de ítems servido (supera las decisiones a/b/c de §A.4)
+
+[REPO] Desktop `hidden lg:flex` (`site-header.tsx:117-183`), en orden: **Cómo funciona** (`:120-127`) · **Canales** (`:129-138`, `hidden xl:inline-flex` — solo ≥1200) · **Aplicaciones** (`:139-148`, ídem) · **FAQ** (`:149-158`) · **Entrar → `/entrar`** (`:159-168`) · **CTA `Ver una encuesta de ejemplo`** (`:170-181`). El drawer porta el mismo mapa completo (`nav-drawer.tsx:108,120,132,144,156,168`). Precios sigue sin nodo, con el comentario de C-55 intacto (`:169`).
+
+- **C-56 fase 2 materializada as-built**: `Entrar → /entrar` se sirve (`site-header.tsx:161`) y `ESTADO:48` lo lista («Ítems: … `Entrar`»). Este plano condicionaba ese paso a la luz verde del operador; **no se halla acta de esa firma en `ESTADO §9-§10`** → se registra como **servido-pendiente-de-firma** (mismo estatus que las piezas de `ESTADO §10`).
+- **Href condicional**: en home `#faq` / `#encuesta-demo` / `#como-funciona` / `#canales` / `#aplicaciones`; desde otra ruta `/#…` (`site-header.tsx:29-33`) — exactamente la regla de la decisión (a).
+- **Estilo del CTA diverge de O1**: servido = `border border-border-mid bg-surface-elevated` (borde-mid 1px + relleno elevado; hover `bg-surface-default`) (`:173-177`), no el ghost 2px-ink transparente de §A.4/O1. Cumple la restricción de fondo (cero coral en la barra) y conserva el anillo 3/−3 (`:177`).
+- Ítems de texto: `px-4` (16) en vez del `px-3` (12) del mapping §7; hover `bg-surface-elevated`, transición 150 ms (`:122-124`) — anatomía equivalente, cota menor distinta.
+- `aria-current`: ningún ítem lo lleva (FAQ es ancla; canales/aplicaciones también) — regla §A11Y.5 respetada [REPO].
+
+### 11.3 Geometría confirmada (sin cambios)
+
+[REPO] `h-[76px]` + `fixed inset-x-0 top-0 z-40` + `border-b border-border-mid` + `bg-background-page` + `px-4` (`site-header.tsx:91`); escalera `max-w-mkt-sm md:max-w-mkt-md lg:max-w-mkt-lg xl:max-w-mkt-xl` (`:93`); burger `size-11` (44×44) `border-2` con `aria-expanded`/`aria-controls` y SVG ≡/✕ que conmuta forma según estado (`:186-218`); drawer dentro del `header` (`:222`); overlay `bg-surface-dark/55` `z-30` fuera del header (`:225-232`); `inert` dinámico sobre main + skip-link al abrir (`:36-52`); `Esc` cierra (`:55-64`); el foco vuelve al burger salvo cierre por navegación (`:66-75`). Skip-link primer focable con receta completa y anillo 3/−3 (`:80-89`). Todo coincide con §A.2/§A.6/§A11Y y con lo medido en §10.1. Única corrección de cita: el `px-8` del hero referenciado como `hero.tsx:6` en §A.2 vive ahora en `hero.tsx:34` (`lg:px-8`) — el desfase 32 px declarado sigue en pie.
+
+### 11.4 C-59 ejecutado y C-69 atendido
+
+[REPO] `scroll-mt-[92px]` servido en `survey-card.tsx:61` y `panel-preview.tsx:101` (el resto de bandas según gate §10.1). Además `#encuesta-demo` es ahora focable **con anillo visible**: `tabIndex={-1}` + `focus-visible:outline-[3px] outline-offset-[-3px] outline-text-primary` (`survey-card.tsx:61`) — la deuda C-69 de §10.3 (foco sin indicador por `focus:outline-none`) quedó atendida en el árbol actual. `sin_evidencia`: re-medición del gap del ancla (M5) en esta pasada.
+
+### 11.5 Pie — divergencias contra §B.4/criterio 25
+
+[REPO] El pie servido agrega un **quinto enlace de producto: `Panel` → `/#panel`** (`site-footer.tsx:85-88`) además de los 4 de §B.4 (`:61,69,77,93`), mantiene `Contáctanos` → `/contactus` (`:114`), la cadena legal literal (`:130`) y agrega **`Volver arriba` → `/#contenido`** (`:140-143`). El test espejo exige exactamente 7 enlaces (5 Producto + 1 Contacto + 1 Volver arriba; `site-footer.test.tsx:92`). Consecuencias: el criterio 25 («exactamente los 5 de §B.4… cero `href` a `/panel`») está **superado** — el enlace apunta al ancla de la banda 6 (`/#panel`), no a la ruta `/panel`, y la banda ya sirve el panel de ejemplo (L3 §13), de modo que el destino tiene contenido; la regla D10 queda satisfecha. La marca del pie es la imagen del lockup (`:39`), no texto. `ESTADO:39,50` describe el pie servido («cuatro bloques, filetes… `Volver arriba`… `Panel` como quinto enlace»). `sin_evidencia`: re-medición de alturas/pt-pb del pie en esta pasada (§10.1 las midió para su árbol).

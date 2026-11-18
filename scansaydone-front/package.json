@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:a11y": "playwright test tests/a11y"
+    "pretest:a11y": "next build",
+    "test:a11y": "playwright test tests/a11y",
+    "servers:list": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev-servers.ps1 -Action List",
+    "servers:stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev-servers.ps1 -Action Stop"
   },
   "dependencies": {
     "next": "16.4.3",
