@@ -66,3 +66,6 @@ scansaydone-front/ENTREGA-UX-2026-10-30/
 
 # UX snapshot archives (repo root only)
 /ENTREGA-UX-*.zip
+
+# Local development database
+scansaydone-back/dev-local.db
