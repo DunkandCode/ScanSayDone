@@ -95,6 +95,7 @@ export function LoginCard() {
         height={72}
         alt="Scan-Say-Done"
         className="h-9 w-auto"
+        style={{ width: "auto" }}
         priority
       />
 
