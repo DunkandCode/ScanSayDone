@@ -11,7 +11,8 @@
 |---|---|---|
 | `PREGUNTAS-BACKEND-2026-11-12.md` | Backend | 18 preguntas de integración con evidencia `archivo:línea`, default recomendado y qué se rompe si quedan sin responder. Incluye archivos consumibles, mapa de campos y brechas bloqueantes |
 | `REQUISITOS-FRONTEND-DASHBOARD-2026-11-12.md` | Backend + datos | Qué necesita el panel para dejar de ser demo: bloques, forma de datos, decisiones D1–D6, propuesta de respuesta y qué no debe enviar el backend |
-| `BORRADOR-RESPUESTAS-INTEGRACION-2026-11-18.md` | Todo el equipo | Borrador de respuestas propuestas a Q1–Q18 y D1–D6 verificado contra `main` (`aed058a`) para revisar y firmar en reunión |
+| `BACKEND-LOGIN-Y-PANEL-2026-11-18.md` | Backend + frontend | Diseño del login de demostración (tabla `dim_usuarios`, credenciales en dos pasos) y del endpoint del panel con el agregado y el detalle de cada respuesta |
+| `BORRADOR-RESPUESTAS-INTEGRACION-2026-11-18.md` | Todo el equipo | Borrador de respuestas propuestas a Q1–Q18 y D1–D6 verificado contra `main` (`aed058a`) para revisar en reunión. **Parcialmente superado** por `CONTRATO-API-BACKEND-2026-11-19-JPA.md` (login y panel ya existen) |
 
 ## Documentos relacionados (fuera de esta carpeta)
 
