@@ -68,4 +68,4 @@ scansaydone-front/ENTREGA-UX-2026-10-30/
 /ENTREGA-UX-*.zip
 
 # Local development database
-scansaydone-back/dev-local.db
+scansaydone-back/dev-*.db
