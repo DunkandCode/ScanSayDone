@@ -4,7 +4,8 @@
 * **Área:** Seguridad Ofensiva/Defensiva, Privacidad de Datos & Aseguramiento de Calidad.
 * **Tecnologías:** OWASP Top 10, Cifrado, Rate Limiting, Sanitización de Inputs, Seguridad API.
 * **Integrantes Asignados:**
-  - **Especialista de Ciberseguridad Principal:** `[Nombre por asignar]` (`@usuario_github`)
+  - **Especialista de Ciberseguridad & QA:** Daniel García Rojas ([`@DGRcodex`](https://github.com/DGRcodex) · Discord: `@D.G.R.`)
+  - **Especialista de Ciberseguridad API, RLS & Cifrado:** Juan Pablo Ahumada ([`@JuampaCL`](https://github.com/JuampaCL) · Discord: `@juampacl`)
 
 ---
 

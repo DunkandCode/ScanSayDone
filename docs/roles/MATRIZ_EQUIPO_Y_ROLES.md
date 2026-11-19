@@ -1,8 +1,8 @@
 # 👥 Matriz de Roles y Asignación de Equipo
 ## Dunk & Code XD — Proyecto ScanSayDone
 
-> **Instrucciones para el Product Manager / Coordinador:**  
-> Esta tabla tiene los puestos listos para completar manualmente con los nombres, usuarios de GitHub y Discord de cada integrante del equipo (capacidad para 5 a 9 personas). Puedes duplicar o ajustar filas según sea necesario.
+> **Estado de la matriz:**  
+> Asignación oficial basada en la ficha de equipo ([`docs/equipo-dunk-code-xd.png`](../equipo-dunk-code-xd.png)), historial de commits, GitHub Issues y minutas semanales. Los campos marcados como `[Por confirmar]` corresponden a cuentas de Discord/GitHub o roles aún por ratificar en reunión.
 
 ---
 
@@ -10,15 +10,16 @@
 
 | # | Área / Especialidad | Rol Principal | Integrante (Nombre) | Usuario GitHub | Usuario Discord |
 | :-: | :--- | :--- | :--- | :--- | :--- |
-| **1** | 🎯 **Gestión & Estrategia** | **Product Manager / Coordinador** | `[Por Asignar]` | `@` | `@` |
-| **2** | 🎯 **Gestión & Agilidad** | **Coordinador Suplente / Scrum** | `[Por Asignar]` | `@` | `@` |
-| **3** | 💻 **Ingeniería Frontend** | **Desarrollador Frontend Principal** | `[Por Asignar]` | `@` | `@` |
-| **4** | 💻 **Ingeniería Frontend** | **Desarrollador Frontend / UI** | `[Por Asignar]` | `@` | `@` |
-| **5** | ⚙️ **Ingeniería Backend** | **Desarrollador Backend (Python/API)** | `[Por Asignar]` | `@` | `@` |
-| **6** | ⚙️ **Ingeniería Backend** | **Desarrollador Backend / Integraciones** | `[Por Asignar]` | `@` | `@` |
-| **7** | 📊 **Analítica & Datos** | **Especialista de Datos & Métricas NPS**| `[Por Asignar]` | `@` | `@` |
-| **8** | 🎨 **Diseño de Experiencia**| **Diseñador UX/UI & Prototipos** | `[Por Asignar]` | `@` | `@` |
-| **9** | 🛡️ **Seguridad & Calidad** | **Especialista en Ciberseguridad & QA** | `[Por Asignar]` | `@` | `@` |
+| **1** | 🎯 **Gestión & Estrategia** | **Product Manager / Coordinador Principal** | **Daniel García Rojas** | [`@DGRcodex`](https://github.com/DGRcodex) | `@D.G.R.` |
+| **2** | 🎯 **Gestión & Agilidad** | **Coordinación Suplente / Scrum** | **Nicolás López Vásquez** · **Bernarda Rodríguez** · **Juan Pablo Ahumada** | [`@nicolaslopezv`](https://github.com/nicolaslopezv) · [`@bernarda2020163`](https://github.com/bernarda2020163) · [`@JuampaCL`](https://github.com/JuampaCL) | `@nicolopezvasquez1623` · `@bernarda_rodriguez_81811` · `@juampacl` |
+| **3** | 💻 **Ingeniería Frontend** | **Desarrollador Frontend Principal** (`scansaydone-front`) | **Nicolás López Vásquez** | [`@nicolaslopezv`](https://github.com/nicolaslopezv) | `@nicolopezvasquez1623` |
+| **4** | ⚙️ **Ingeniería Backend** | **Desarrollador Backend Principal** (`scansaydone-back`) | **Juan Pablo Ahumada** | [`@JuampaCL`](https://github.com/JuampaCL) | `@juampacl` |
+| **5** | 📊 **Analítica & Datos** | **Especialista de Datos & Métricas NPS** *(Apoyo ERD/ETL: Juan Pablo Ahumada)* | **Bernarda Rodríguez** | [`@bernarda2020163`](https://github.com/bernarda2020163) | `@bernarda_rodriguez_81811` |
+| **6** | 🎨 **Diseño de Experiencia** | **Diseñador UX/UI & Prototipos** | **Thomas Rain** | [`@thomasrain05-design`](https://github.com/thomasrain05-design) | `@partypankakes12` |
+| **7** | 🎨 **Diseño de Experiencia** | **Diseñador UX/UI** | **Adrián** *(`[Apellido por confirmar]`)* | [`@adrianoux8`](https://github.com/adrianoux8) | `[Por confirmar]` |
+| **8** | 🛡️ **Seguridad & Calidad** | **Especialistas en Ciberseguridad, CI/CD & QA** | **Daniel García Rojas** · **Juan Pablo Ahumada** | [`@DGRcodex`](https://github.com/DGRcodex) · [`@JuampaCL`](https://github.com/JuampaCL) | `@D.G.R.` · `@juampacl` |
+| **9** | 📢 **Mercado & Pilotos** | **Validación Comercial y Comercios Piloto** | **Fabiana Cueto** | `[Por confirmar]` | `@fabianzd` |
+| **10** | 🤝 **Equipo Dunk & Code XD** | **Integrante** *(Rol específico por confirmar)* | **Sebastián Riveros** | `[Por confirmar]` | `[Por confirmar]` |
 
 ---
 

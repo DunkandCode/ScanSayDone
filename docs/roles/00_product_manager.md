@@ -3,8 +3,8 @@
 
 * **Área:** Gestión de Producto, Metodología Ágil & Coordinación.
 * **Integrantes Asignados:**
-  - **PM / Coordinador Principal:** `[Nombre por asignar]` (`@usuario_github`)
-  - **Coordinador Suplente / Scrum:** `[Nombre por asignar]` (`@usuario_github`)
+  - **PM / Coordinador Principal:** Daniel García Rojas ([`@DGRcodex`](https://github.com/DGRcodex) · Discord: `@D.G.R.`)
+  - **Coordinación Suplente / Scrum:** Nicolás López Vásquez ([`@nicolaslopezv`](https://github.com/nicolaslopezv) · Discord: `@nicolopezvasquez1623`), Bernarda Rodríguez ([`@bernarda2020163`](https://github.com/bernarda2020163) · Discord: `@bernarda_rodriguez_81811`) y Juan Pablo Ahumada ([`@JuampaCL`](https://github.com/JuampaCL) · Discord: `@juampacl`)
 
 ---
 
