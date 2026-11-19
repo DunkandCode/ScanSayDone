@@ -1,5 +1,19 @@
 import type { NextConfig } from "next";
 
+/**
+ * Proxy de la API SOLO en desarrollo.
+ *
+ * En `next dev` no existe el rewrite de Vercel: `/api/*` y `/health` los
+ * serviría Next con 404. Este `rewrites()` los deriva al backend local.
+ *
+ * - Se activa únicamente con `NODE_ENV=development`; en producción la clave
+ *   no existe y el enrutado sigue en manos de `vercel.json`.
+ * - `API_PROXY_TARGET` es una URL de un servicio propio (no un secreto);
+ *   por defecto apunta al backend local en el 8000.
+ * - Cámbialo y reinicia `next dev` para que el nuevo destino surta efecto.
+ */
+const apiProxyTarget = process.env.API_PROXY_TARGET ?? "http://localhost:8000";
+
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
@@ -12,6 +26,22 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  ...(process.env.NODE_ENV === "development"
+    ? {
+        async rewrites() {
+          return [
+            {
+              source: "/api/:path*",
+              destination: `${apiProxyTarget}/api/:path*`,
+            },
+            {
+              source: "/health",
+              destination: `${apiProxyTarget}/health`,
+            },
+          ];
+        },
+      }
+    : {}),
 };
 
 export default nextConfig;

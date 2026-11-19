@@ -32,6 +32,36 @@ Los tests a11y usan SIEMPRE `http://127.0.0.1:3120` (desktop y móvil comparten 
 
 Detalle completo (seguridad, diagnóstico, diferencias dev vs Playwright): [`../docs/operaciones/DEV-SERVERS-2026-11-07.md`](../docs/operaciones/DEV-SERVERS-2026-11-07.md).
 
+## Proxy de la API en desarrollo (`next dev`)
+
+En desarrollo local, Next sirve él mismo las rutas `/api/*` y `/health`: sin
+configuración extra, todos los sondeos del panel devuelven 404 (parece "no hay
+negocios", pero es que las rutas nunca llegan al backend). Para que `next dev`
+alcance la API real, `next.config.ts` añade un `rewrites()` **solo cuando
+`NODE_ENV=development`**:
+
+- `/api/:path*` → `${API_PROXY_TARGET}/api/:path*`
+- `/health` → `${API_PROXY_TARGET}/health`
+
+Cómo se habilita (PowerShell):
+
+```powershell
+$env:API_PROXY_TARGET = "http://localhost:8000"; npm run dev
+```
+
+- `API_PROXY_TARGET` es la URL del backend local; si no se define, el proxy
+  usa el valor por defecto `http://localhost:8000`. Es una URL de un servicio
+  propio, no una credencial.
+- Tras cambiar la variable, reinicia `next dev` (la config se lee al arrancar).
+- En producción este proxy **no existe**: `vercel.json` (raíz del repositorio)
+  ya enruta las mismas rutas al backend desplegado.
+- **Nunca expongas credenciales al navegador**: las variables `POSTGRES_*` y
+  cualquier secreto del backend no deben llegar al bundle. Next solo incluye
+  en el cliente las variables con prefijo `NEXT_PUBLIC_`; no les pongas ese
+  prefijo ni las copies al `.env` del frontend. El proxy es server-side: el
+  navegador solo ve rutas relativas del mismo origen.
+
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

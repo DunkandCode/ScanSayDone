@@ -1,286 +1,333 @@
 /// <reference types="vitest/globals" />
 import { render, screen, within, fireEvent } from "@testing-library/react";
 import PanelPage from "@/app/(panel)/panel/page";
+import { PanelNavLinks } from "@/components/panel/panel-nav";
+import { limpiarCacheEmpresas } from "@/lib/api/empresas";
+import type { EncuestaEmpresa } from "@/lib/api/encuesta";
 
-describe("PanelPage", () => {
+/**
+ * Panel reestructurado: Resumen (por defecto), Resultados y Encuesta son
+ * pestañas de una sola página. Todos los números visibles salen de la
+ * instantánea local (60 respuestas, 4 empresas); nada del dataset de
+ * ejemplo anterior (486 / 8,5 / canales / últimas respuestas) puede
+ * aparecer.
+ */
+
+function payloadEncuesta(id: number, nombre: string): EncuestaEmpresa {
+  return {
+    empresa_id: id,
+    nombre_negocio: nombre,
+    rubro: "Rubro de prueba",
+    preguntas: {
+      p1: { texto: "¿Qué nota le pones a la experiencia?", escala: [0, 10] },
+      p2: { texto: "¿Qué tan satisfecho quedaste?", escala: [1, 5] },
+      p3: {
+        texto: "¿Qué nota le pones al atributo tres?",
+        etiqueta: "Atributo tres",
+        escala: [1, 5],
+      },
+      p4: {
+        texto: "¿Qué nota le pones al atributo cuatro?",
+        etiqueta: "Atributo cuatro",
+        escala: [1, 5],
+      },
+      p5: { texto: "Cuéntanos qué pasó", max_caracteres: 500 },
+    },
+  };
+}
+
+const EMPRESAS_API: Record<number, EncuestaEmpresa> = {
+  1: payloadEncuesta(1, "Minimarket Don Lucho"),
+  2: payloadEncuesta(2, "Café Rincón Andino"),
+  3: payloadEncuesta(3, "Peluquería Estilo Sur"),
+  4: payloadEncuesta(4, "Cosmos Accesorios (Instagram)"),
+};
+
+/** Ids 1..4 responden 200 con encuesta; el resto 404 (sondeo de lista). */
+function stubFetchListaReal() {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (url: string) => {
+      const m = String(url).match(/\/api\/v1\/empresas\/(\d+)\/encuesta$/);
+      const id = m ? Number(m[1]) : 0;
+      if (EMPRESAS_API[id]) {
+        return {
+          status: 200,
+          ok: true,
+          headers: {
+            get: (nombre: string) =>
+              nombre.toLowerCase() === "content-type"
+                ? "application/json"
+                : null,
+          },
+          json: async () => EMPRESAS_API[id],
+        };
+      }
+      return { status: 404, ok: false, json: async () => ({}) };
+    }),
+  );
+}
+
+function abrirPestana(nombre: "Resumen" | "Resultados" | "Encuesta" | "Reseñas") {
+  fireEvent.click(screen.getByRole("tab", { name: nombre }));
+}
+
+describe("PanelPage: pestañas con datos reales", () => {
   beforeEach(() => {
-    render(<PanelPage />);
+    stubFetchListaReal();
+    limpiarCacheEmpresas();
+    window.history.replaceState(null, "", "#");
   });
 
-  it("1. hay exactamente un h1", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    limpiarCacheEmpresas();
+    window.history.replaceState(null, "", "#");
+  });
+
+  it("1. la pestaña por defecto es Resumen, con un solo h1 y estructura aria correcta", () => {
+    render(<PanelPage />);
+
+    const tabResumen = screen.getByRole("tab", { name: "Resumen" });
+    expect(tabResumen).toHaveAttribute("aria-selected", "true");
+    expect(tabResumen).toHaveAttribute("aria-controls", "panel-resumen");
+
+    const panel = screen.getByRole("tabpanel");
+    expect(panel).toHaveAttribute("id", "panel-resumen");
+    expect(panel).toHaveAttribute("aria-labelledby", "tab-resumen");
+
+    // Resultados, Encuesta y Reseñas existen como pestañas no seleccionadas.
+    expect(screen.getByRole("tab", { name: "Resultados" })).toHaveAttribute(
+      "aria-selected",
+      "false",
+    );
+    expect(screen.getByRole("tab", { name: "Encuesta" })).toHaveAttribute(
+      "aria-selected",
+      "false",
+    );
+    expect(screen.getByRole("tab", { name: "Reseñas" })).toHaveAttribute(
+      "aria-selected",
+      "false",
+    );
+
     const h1s = screen.getAllByRole("heading", { level: 1 });
     expect(h1s).toHaveLength(1);
-    expect(h1s[0]).toHaveTextContent("Panel de ejemplo");
+    expect(h1s[0]).toHaveTextContent("Resumen");
   });
 
-  it("2. los tres KPIs muestran 8,5 / 486 / 377", () => {
-    // Scope to B2 section to avoid sr-only tables
-    const resumen = screen.getByRole("region", { name: /Resumen/i });
-    expect(within(resumen).getByText("8,5")).toBeInTheDocument();
-    expect(within(resumen).getByText("486")).toBeInTheDocument();
-    // 377 appears inside "377 (77,6 %)"
-    expect(within(resumen).getByText(/377/)).toBeInTheDocument();
-  });
-
-  it("3. hay exactamente 11 barras de distribución", () => {
-    // Desktop SVG has 11 bar rects (track rects removed for visual clarity)
-    const barsSvg = document.querySelector('[aria-labelledby="b4-svg-title"]');
-    expect(barsSvg).toBeInTheDocument();
-    const rects = barsSvg!.querySelectorAll("rect");
-    // 11 bar rects only (no track rects)
-    expect(rects).toHaveLength(11);
-  });
-
-  it("4. la tabla de canales tiene caption, th scope y suma 486", () => {
-    const tables = document.querySelectorAll("table");
-    // Find the channel table by its caption
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
-    });
-    expect(channelTable).toBeInTheDocument();
-
-    // Has th scope
-    const colHeaders = channelTable!.querySelectorAll('th[scope="col"]');
-    expect(colHeaders.length).toBeGreaterThan(0);
-    const rowHeaders = channelTable!.querySelectorAll('th[scope="row"]');
-    expect(rowHeaders.length).toBeGreaterThan(0);
-
-    // Sum of channel values = 486
-    const dataCells = channelTable!.querySelectorAll("tbody td:nth-child(2)");
-    const sum = Array.from(dataCells).reduce((acc, td) => {
-      return acc + parseInt(td.textContent || "0", 10);
-    }, 0);
-    expect(sum).toBe(486);
-  });
-
-  it("5. hay 5 filas de últimas respuestas", () => {
-    const responseSection = screen.getByRole("region", { name: /Últimas respuestas/i });
-    const listItems = within(responseSection).getAllByRole("listitem");
-    expect(listItems).toHaveLength(5);
-  });
-
-  it("6. el chip DEMO y la línea de declaración están presentes", () => {
-    const demoChip = screen.getByText("DEMO");
-    expect(demoChip).toBeInTheDocument();
-
-    const declaration = screen.getByText(
-      /Ves un panel de ejemplo con datos inventados/
-    );
-    expect(declaration).toBeInTheDocument();
-  });
-
-  it("7. el pie tiene el texto exacto del plano", () => {
-    const footerText = screen.getByText(
-      /^Panel de ejemplo con datos inventados\. No pertenece a ningún negocio real\.$/
-    );
-    expect(footerText).toBeInTheDocument();
-    expect(footerText.closest("footer")).toBeInTheDocument();
-  });
-
-  it("8. filtros y exportar están deshabilitados (aria-disabled, sin href/onClick)", () => {
-    // Date filters
-    const filter7 = screen.getByRole("button", { name: "7 días" });
-    const filter30 = screen.getByRole("button", { name: "30 días" });
-    const filter90 = screen.getByRole("button", { name: "90 días" });
-    expect(filter7).toHaveAttribute("aria-disabled", "true");
-    expect(filter30).toHaveAttribute("aria-disabled", "true");
-    expect(filter90).toHaveAttribute("aria-disabled", "true");
-    expect(filter7).not.toHaveAttribute("href");
-
-    // Export CSV
-    const exportBtn = screen.getByRole("button", { name: /Exportar CSV/i });
-    expect(exportBtn).toHaveAttribute("aria-disabled", "true");
-    expect(exportBtn).not.toHaveAttribute("href");
-
-    // D6: no hay un tercer "Ajustes" sobre el bloque de últimas respuestas
-    const ajustesButtons = screen.queryAllByText(/Ajustes/i);
-    // Solo los dos esperados: el control de la página y el ítem de navegación
-    expect(ajustesButtons.length).toBeLessThanOrEqual(2);
+  it("2. la etiqueta obligatoria de datos de prueba está presente", () => {
+    render(<PanelPage />);
     expect(
-      screen.queryByRole("button", { name: /Ajustes del panel/i })
+      screen.getByText(
+        "Datos de prueba locales · instantánea del 18-11-2026 · no son clientes reales",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("3. las cifras reales del resumen: 60 respuestas, 4 empresas, media 8,1 y recomendación neta 36,7", () => {
+    render(<PanelPage />);
+
+    expect(screen.getByText("60")).toBeInTheDocument(); // Respuestas
+    expect(screen.getByText("8,1")).toBeInTheDocument(); // Media general
+    expect(screen.getByText("36,7")).toBeInTheDocument(); // Recomendación neta general
+
+    // "4" también existe como etiqueta de nota en la distribución: se
+    // consulta dentro de la tarjeta de la cifra Empresas.
+    const tarjetaEmpresas = screen.getByText("Empresas").closest("div");
+    expect(tarjetaEmpresas).toBeInTheDocument();
+    expect(within(tarjetaEmpresas!).getByText("4")).toBeInTheDocument();
+  });
+
+  it("4. la distribución tiene 11 filas reales y la tabla 4 empresas en orden de id", () => {
+    render(<PanelPage />);
+
+    const distribucion = document.querySelector(
+      'ul[aria-label="Cantidad de respuestas por nota, de la 0 a la 10"]',
+    );
+    expect(distribucion).toBeInTheDocument();
+    expect(distribucion!.children).toHaveLength(11);
+
+    const comparacion = document.querySelector(
+      'ul[aria-label="Recomendación neta de cada negocio"]',
+    );
+    expect(comparacion).toBeInTheDocument();
+    expect(comparacion!.children).toHaveLength(4);
+
+    const tbody = document.querySelector("tbody");
+    expect(tbody).toBeInTheDocument();
+    const filas = within(tbody!).getAllByRole("row");
+    expect(filas).toHaveLength(4);
+    expect(filas[0]).toHaveTextContent(/Minimarket Don Lucho/);
+    expect(filas[1]).toHaveTextContent(/Café Rincón Andino/);
+    expect(filas[2]).toHaveTextContent(/Peluquería Estilo Sur/);
+    expect(filas[3]).toHaveTextContent(/Cosmos Accesorios \(Instagram\)/);
+  });
+
+  it("5. nada del dataset de ejemplo anterior aparece en el panel", () => {
+    render(<PanelPage />);
+
+    expect(screen.queryByText("486")).not.toBeInTheDocument();
+    expect(screen.queryByText("8,5")).not.toBeInTheDocument();
+
+    const texto = document.body.textContent ?? "";
+    expect(texto).not.toContain("486");
+    expect(texto).not.toContain("8,5");
+    expect(texto).not.toContain("Canales");
+    expect(texto).not.toContain("Últimas respuestas");
+    expect(texto).not.toContain("datos de ejemplo");
+    expect(texto).not.toContain("DEMO");
+    expect(texto).not.toContain("Panel de ejemplo");
+  });
+
+  it("6. las pestañas cambian de panel: Resultados y Encuesta con su selector", async () => {
+    render(<PanelPage />);
+
+    abrirPestana("Resultados");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute(
+      "id",
+      "panel-resultados",
+    );
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Resultados" }),
+    ).toBeInTheDocument();
+    // El selector del negocio está en la pestaña.
+    expect(screen.getByLabelText("Negocio")).toBeInTheDocument();
+    // Tras resolver la lista aparecen los resultados del negocio inicial.
+    expect(
+      await screen.findByRole("heading", { name: "Resultados de este negocio" }),
+    ).toBeInTheDocument();
+
+    abrirPestana("Encuesta");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-encuesta");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Encuesta" }),
+    ).toBeInTheDocument();
+    expect(await screen.findByLabelText("Negocio")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", {
+        name: "Encuesta definida para este negocio",
+      }),
+    ).toBeInTheDocument();
+
+    // Al cambiar de pestaña, el panel anterior deja de estar en el DOM.
+    expect(
+      screen.queryByRole("heading", { name: "Resultados de este negocio" }),
     ).not.toBeInTheDocument();
   });
 
-  it("9. ningún enlace apunta a rutas vacías (/privacy, /terms, /pricing, /faqs, /aboutus, /services)", () => {
-    const forbiddenRoutes = ["/privacy", "/terms", "/pricing", "/faqs", "/aboutus", "/services"];
-    const links = screen.queryAllByRole("link");
-    const hrefs = links.map((l) => l.getAttribute("href")).filter(Boolean);
+  it("6b. la pestaña Reseñas muestra el selector y el módulo del negocio", async () => {
+    render(<PanelPage />);
 
-    forbiddenRoutes.forEach((route) => {
-      expect(hrefs).not.toContain(route);
-    });
+    abrirPestana("Reseñas");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-resenas");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Reseñas" }),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText("Negocio")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", {
+        name: "Reseñas de este negocio",
+      }),
+    ).toBeInTheDocument();
+
+    // La lista del negocio inicial (Minimarket Don Lucho, id 1) llega con
+    // sus 15 reseñas y el conteo visible.
+    expect(
+      await screen.findByText("15 reseñas · 10 con comentario · 0 con alerta"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Mostrando 15 de 15 reseñas")).toBeInTheDocument();
   });
 
-  it("10. el SVG de evolución tiene nombre accesible (role=img + title)", () => {
-    const evoSvg = document.querySelector('[aria-labelledby="b3-svg-title"]');
-    expect(evoSvg).toBeInTheDocument();
-    expect(evoSvg).toHaveAttribute("role", "img");
+  it("7. navegación por teclado: la flecha derecha activa y enfoca Resultados", () => {
+    render(<PanelPage />);
 
-    const title = evoSvg!.querySelector("title");
-    expect(title).toBeInTheDocument();
-    expect(title!.id).toBe("b3-svg-title");
-    expect(title!.textContent).toContain("Reseñas por día durante 30 días");
-  });
+    const tablist = screen.getByRole("tablist");
+    fireEvent.keyDown(tablist, { key: "ArrowRight" });
 
-  it("11. D1: fila Total con 486 y 100 % más nota de redondeo", () => {
-    const tables = document.querySelectorAll("table");
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
-    });
-    expect(channelTable).toBeInTheDocument();
-
-    const tfoot = channelTable!.querySelector("tfoot");
-    expect(tfoot).toBeInTheDocument();
-
-    const totalRow = tfoot!.querySelector("tr");
-    expect(totalRow).toBeInTheDocument();
-
-    const totalTh = totalRow!.querySelector('th[scope="row"]');
-    expect(totalTh).toHaveTextContent("Total");
-
-    const totalTds = totalRow!.querySelectorAll("td");
-    expect(totalTds[0]).toHaveTextContent("486");
-    expect(totalTds[1]).toHaveTextContent("100 %");
-
-    const roundingNote = screen.getByText("Las partes suman 99,9 % por redondeo.");
-    expect(roundingNote).toBeInTheDocument();
-  });
-
-  it("12. D2: chip numérico de nota por fila con sr-only", () => {
-    const responseSection = screen.getByRole("region", { name: /Últimas respuestas/i });
-    
-    const srOnlyNotes = within(responseSection).getAllByText(/Nota \d+ sobre 10/);
-    expect(srOnlyNotes.length).toBeGreaterThanOrEqual(5);
-
-    // §13: scope to list items only (not section title which also has font-bold)
-    const listItems = within(responseSection).getAllByRole("listitem");
-    const chips = listItems.flatMap((li) => Array.from(li.querySelectorAll(".font-bold")));
-    expect(chips.length).toBe(5);
-  });
-
-  it("13. D4: fila sin texto con literal", () => {
-    const noTextMessage = screen.getByText("Reseña sin texto del comensal.");
-    expect(noTextMessage).toBeInTheDocument();
-  });
-
-  it("14. D4: cita reescrita sin cifras de tiempo", () => {
-    const rewrittenQuote = screen.getByText(/La comida bien, pero la espera fue larga/);
-    expect(rewrittenQuote).toBeInTheDocument();
-
-    const oldQuote = screen.queryByText(/30 minutos/);
-    expect(oldQuote).not.toBeInTheDocument();
-  });
-
-  it("15. D5: interruptor con role=switch y cambio de estado", () => {
-    const toggle = screen.getByRole("switch");
-    expect(toggle).toBeInTheDocument();
-    expect(toggle).toHaveAttribute("aria-checked", "true");
-
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute("aria-checked", "false");
-
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute("aria-checked", "true");
-  });
-
-  it("16. D5: estado vacío muestra textos literales y oculta B3/B4/B5", () => {
-    const toggle = screen.getByRole("switch");
-    fireEvent.click(toggle);
-
-    const emptySubtitle = screen.getByText(
-      "Ves el panel de ejemplo vacío. No hay datos reales en ninguna cuenta."
+    expect(screen.getByRole("tab", { name: "Resultados" })).toHaveAttribute(
+      "aria-selected",
+      "true",
     );
-    expect(emptySubtitle).toBeInTheDocument();
-
-    const emptyB2Note = screen.getByText(
-      "Así verías el panel antes de la primera reseña."
+    expect(screen.getByRole("tabpanel")).toHaveAttribute(
+      "id",
+      "panel-resultados",
     );
-    expect(emptyB2Note).toBeInTheDocument();
-
-    const emptyB6Note = screen.getByText(
-      "Todavía no hay respuestas que mostrar. Cada reseña nueva ocupa una fila como esta."
+    expect(document.activeElement).toBe(
+      screen.getByRole("tab", { name: "Resultados" }),
     );
-    expect(emptyB6Note).toBeInTheDocument();
 
-    const b3 = screen.queryByRole("region", { name: /Últimos 30 días/i });
-    expect(b3).not.toBeInTheDocument();
-
-    const b4 = screen.queryByRole("region", { name: /Notas, de la 0 a la 10/i });
-    expect(b4).not.toBeInTheDocument();
-
-    const b5 = screen.queryByRole("region", { name: /De dónde llegan las reseñas/i });
-    expect(b5).not.toBeInTheDocument();
-  });
-
-  it("17. D5: en estado vacío, chip DEMO y pie permanecen intactos", () => {
-    const toggle = screen.getByRole("switch");
-    fireEvent.click(toggle);
-
-    const demoChip = screen.getByText("DEMO");
-    expect(demoChip).toBeInTheDocument();
-
-    const footerText = screen.getByText(
-      /^Panel de ejemplo con datos inventados\. No pertenece a ningún negocio real\.$/
+    // La flecha izquierda vuelve a Resumen (orden circular).
+    fireEvent.keyDown(tablist, { key: "ArrowLeft" });
+    expect(screen.getByRole("tab", { name: "Resumen" })).toHaveAttribute(
+      "aria-selected",
+      "true",
     );
-    expect(footerText).toBeInTheDocument();
-    expect(footerText.closest("footer")).toBeInTheDocument();
   });
 
-  // ── §13 visual upgrade tests ────────────────────────────────────────────
+  it("8. el hash sincroniza la pestaña (enlaces de la navegación lateral)", () => {
+    render(<PanelPage />);
 
-  it("§13-1: no duplicate brand text in panel page", () => {
-    // Lockup is in layout, not PanelPage. Test that panel page doesn't duplicate brand.
-    // §13 F-O8: brand text replaced by lockup in layout
-    const brandTexts = screen.queryAllByText("ScanSayDone");
-    // PanelPage should not contain "ScanSayDone" text (it's in layout as Image)
-    expect(brandTexts.length).toBe(0);
+    // Un clic en la barra lateral cambia el hash; la página escucha
+    // hashchange y cambia de pestaña.
+    window.location.hash = "#encuesta";
+    fireEvent(window, new Event("hashchange"));
+
+    expect(screen.getByRole("tab", { name: "Encuesta" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-encuesta");
+
+    // Un hash desconocido cae a Resumen.
+    window.location.hash = "#cualquiera";
+    fireEvent(window, new Event("hashchange"));
+    expect(screen.getByRole("tab", { name: "Resumen" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
   });
 
-  it("§13-4: three KPI numbers use Bebas font at 36px", () => {
-    const resumen = screen.getByRole("region", { name: /Resumen/i });
-    // Find all numbers in KPI cards (8,5 / 486 / 377) — font-display maps to Bebas
-    const kpiNumbers = resumen.querySelectorAll(".font-display");
-    expect(kpiNumbers.length).toBe(3);
+  it("9. activar una pestaña actualiza el hash de la URL", () => {
+    render(<PanelPage />);
 
-    // Check that all use font-display class (maps to Bebas via CSS var --font-display)
-    kpiNumbers.forEach((el) => {
-      expect(el.className).toContain("font-display");
-    });
+    abrirPestana("Resultados");
+    expect(window.location.hash).toBe("#resultados");
+  });
+});
 
-    // Check font-size class is text-[36px] or text-[32px] (jsdom can't compute computed style)
-    kpiNumbers.forEach((el) => {
-      const cls = el.className;
-      const hasSize = cls.includes("text-[36px]") || cls.includes("text-[32px]");
-      expect(hasSize).toBe(true);
-    });
+describe("PanelNavLinks: navegación lateral", () => {
+  it("10. los módulos vivos son anclas de hash y Resumen queda activo por defecto", () => {
+    render(<PanelNavLinks variante="sidebar" />);
+
+    const resumen = screen.getByRole("link", { name: "Resumen" });
+    expect(resumen).toHaveAttribute("href", "#resumen");
+    expect(resumen).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Resultados" })).toHaveAttribute(
+      "href",
+      "#resultados",
+    );
+    expect(screen.getByRole("link", { name: "Encuesta" })).toHaveAttribute(
+      "href",
+      "#encuesta",
+    );
+    expect(screen.getByRole("link", { name: "Reseñas" })).toHaveAttribute(
+      "href",
+      "#resenas",
+    );
   });
 
-  it("§13-5: section titles have vertical filete (3×16 #8A6F55)", () => {
-    // Check that section titles have the filete structure
-    const sectionTitles = document.querySelectorAll("h2[id^='b']");
-    expect(sectionTitles.length).toBeGreaterThan(0);
+  it("11. Códigos QR y Ajustes quedan visibles pero deshabilitados, sin href", () => {
+    render(<PanelNavLinks variante="topbar" />);
 
-    // Check first section title (Resumen)
-    const b2Title = document.getElementById("b2-title");
-    expect(b2Title).toBeInTheDocument();
-    
-    // Check it has the filete span (aria-hidden decorative element)
-    const filete = b2Title!.querySelector('span[aria-hidden="true"]');
-    expect(filete).toBeInTheDocument();
-  });
+    for (const nombre of ["Códigos QR", "Ajustes"]) {
+      const item = screen.getByRole("link", { name: nombre });
+      expect(item).toHaveAttribute("aria-disabled", "true");
+      expect(item).not.toHaveAttribute("href");
+    }
 
-  it("§13-8: Total row still shows 486 and 100 %", () => {
-    const tables = document.querySelectorAll("table");
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
-    });
-    const tfoot = channelTable!.querySelector("tfoot");
-    const totalRow = tfoot!.querySelector("tr");
-    const totalTds = totalRow!.querySelectorAll("td");
-    expect(totalTds[0]).toHaveTextContent("486");
-    expect(totalTds[1]).toHaveTextContent("100 %");
+    // Reseñas ya es un módulo vivo: enlace real, nunca deshabilitado.
+    const resenas = screen.getByRole("link", { name: "Reseñas" });
+    expect(resenas).toHaveAttribute("href", "#resenas");
+    expect(resenas).not.toHaveAttribute("aria-disabled");
   });
 });
