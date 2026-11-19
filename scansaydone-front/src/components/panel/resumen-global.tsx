@@ -1,52 +1,60 @@
 "use client";
 
 /**
- * Resumen global del panel: 4 consultas al servicio (una por negocio) con
- * `Promise.allSettled`, más los gráficos por día y por momento del día.
+ * Resumen del panel para el negocio de la sesión: una sola consulta al
+ * servicio (`obtenerPanelEmpresa(empresaId)`) más los gráficos por día y
+ * por momento del día.
  *
- * - La lista de negocios sale de `listarEmpresas()` (sondeo de encuestas,
- *   cacheado 60 s); por cada id se consulta `obtenerPanelEmpresa`.
- * - Los totales se calculan DESDE LAS FILAS (`resumenGlobalDesdePaneles`):
- *   la recomendación neta general nunca es el promedio de las de cada
- *   negocio. La tabla usa los números oficiales de cada `agregado`.
- * - Gráfico por día: fusión de las series de los negocios consultados
- *   (13 días del 19 al 31 de octubre, sin rellenar huecos).
+ * - Las cuatro cifras (respuestas, media, recomendación neta y alertas)
+ *   son los números oficiales del `agregado` de esa empresa: no se
+ *   recalculan ni se promedian con otros negocios. Con login por empresa
+ *   ya no existe el resumen global agrupado ni la tabla de 4 negocios.
+ * - Gráfico por día: la serie diaria propia del negocio (sin rellenar
+ *   huecos con ceros inventados).
  * - Gráfico por momento: conteo en cliente de `bloque_horario`; los
  *   bloques con menos de 5 respuestas llevan la nota «muestra mínima».
  * - Estados honestos: si el servicio no se puede consultar, se muestra
- *   «No se pudo consultar el servicio.» SIN cifras. Si fallan algunos
- *   negocios (pero no todos), se muestran los que sí llegaron y una nota
- *   con la cantidad que falló.
+ *   «No se pudo consultar el servicio.» SIN cifras.
  */
 import { useEffect, useState } from "react";
 import { obtenerPanelEmpresa, type PanelEmpresaDatos } from "@/lib/api/panel";
-import { listarEmpresas } from "@/lib/api/empresas";
 import { formatear1, formatearDiaMes, formatearMedia } from "@/lib/panel/calculos";
 import {
-  agregarSerieDiaria,
   contarPorBloqueHorario,
   esMuestraMinima,
-  resumenGlobalDesdePaneles,
   type ConteoBloques,
-  type FilaNegocioGlobal,
   type PuntoDia,
-  type ResumenGlobal,
 } from "@/lib/panel/global";
 import { ETIQUETA_SIMULADOS } from "@/lib/panel/etiqueta";
 
 type EstadoResumen =
   | { fase: "cargando" }
   | { fase: "sin-servicio" }
-  | { fase: "sin-negocios" }
   | {
       fase: "ok";
-      datos: ResumenGlobal;
+      panel: PanelEmpresaDatos;
       serie: readonly PuntoDia[];
       bloques: ConteoBloques;
-      fallidos: number;
     };
 
-export function ResumenGlobal() {
+/** Serie del negocio como puntos del gráfico por día. */
+function serieDelPanel(panel: PanelEmpresaDatos): PuntoDia[] {
+  return panel.agregado.serie_diaria.map((punto) => ({
+    fecha: punto.fecha,
+    respuestas: punto.respuestas,
+  }));
+}
+
+/** Distribución 0–10 reindexada desde `distribucion_p1` (defensiva). */
+function distribucionDelPanel(panel: PanelEmpresaDatos): number[] {
+  const dist = new Array<number>(11).fill(0);
+  for (const fila of panel.agregado.distribucion_p1) {
+    if (fila.nota >= 0 && fila.nota <= 10) dist[fila.nota] = fila.cantidad;
+  }
+  return dist;
+}
+
+export function ResumenEmpresa({ empresaId }: { empresaId: number }) {
   const [estado, setEstado] = useState<EstadoResumen>({ fase: "cargando" });
 
   useEffect(() => {
@@ -54,45 +62,21 @@ export function ResumenGlobal() {
     let activo = true;
 
     (async () => {
-      const lista = await listarEmpresas();
+      const resultado = await obtenerPanelEmpresa(empresaId, controller.signal);
       if (!activo) return;
 
-      if (lista.estado !== "ok") {
-        // vacio | no-disponible | error: sin lista no hay qué consultar.
-        // La distinción la muestra el selector de las otras pestañas;
-        // aquí basta el estado honesto sin cifras.
-        setEstado({ fase: lista.estado === "vacio" ? "sin-negocios" : "sin-servicio" });
-        return;
-      }
-
-      const ids = lista.empresas.map((e) => e.empresaId);
-      const resultados = await Promise.allSettled(
-        ids.map((id) => obtenerPanelEmpresa(id, controller.signal)),
-      );
-      if (!activo) return;
-
-      const paneles: PanelEmpresaDatos[] = [];
-      let fallidos = 0;
-      for (const resultado of resultados) {
-        if (resultado.status === "fulfilled" && resultado.value.estado === "ok") {
-          paneles.push(resultado.value.panel);
-        } else {
-          fallidos += 1;
-        }
-      }
-
-      if (paneles.length === 0) {
+      // Con sesión de una empresa concreta, cualquier fallo (404, 5xx,
+      // red o payload ilegible) se reporta igual: sin cifras.
+      if (resultado.estado !== "ok") {
         setEstado({ fase: "sin-servicio" });
         return;
       }
 
-      const filas = paneles.flatMap((p) => p.respuestas);
       setEstado({
         fase: "ok",
-        datos: resumenGlobalDesdePaneles(paneles),
-        serie: agregarSerieDiaria(paneles.map((p) => p.agregado.serie_diaria)),
-        bloques: contarPorBloqueHorario(filas),
-        fallidos,
+        panel: resultado.panel,
+        serie: serieDelPanel(resultado.panel),
+        bloques: contarPorBloqueHorario(resultado.panel.respuestas),
       });
     })();
 
@@ -100,8 +84,7 @@ export function ResumenGlobal() {
       activo = false;
       controller.abort();
     };
-    // Solo al montar: los negocios del servicio no cambian sin recargar.
-  }, []);
+  }, [empresaId]);
 
   return (
     <>
@@ -124,18 +107,11 @@ export function ResumenGlobal() {
         </p>
       )}
 
-      {estado.fase === "sin-negocios" && (
-        <p role="status" className="mt-4 font-ui text-[14px] text-text-secondary">
-          El servicio responde, pero no hay negocios cargados.
-        </p>
-      )}
-
       {estado.fase === "ok" && (
         <ResumenDatos
-          datos={estado.datos}
+          panel={estado.panel}
           serie={estado.serie}
           bloques={estado.bloques}
-          fallidos={estado.fallidos}
         />
       )}
     </>
@@ -145,49 +121,42 @@ export function ResumenGlobal() {
 // ── Datos del resumen (fase ok) ────────────────────────────────────────────
 
 function ResumenDatos({
-  datos,
+  panel,
   serie,
   bloques,
-  fallidos,
 }: {
-  datos: ResumenGlobal;
+  panel: PanelEmpresaDatos;
   serie: readonly PuntoDia[];
   bloques: ConteoBloques;
-  fallidos: number;
 }) {
+  const a = panel.agregado;
   return (
     <>
-      {/* Cuatro cifras generales */}
+      {/* Cuatro cifras del negocio (números oficiales del agregado) */}
       <div className="mt-4 grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-4">
         <Cifra
           label="Respuestas"
-          value={String(datos.totalRespuestas)}
+          value={String(a.respuestas)}
           detail="entre el 19 y el 31 de octubre"
         />
         <Cifra
-          label="Media general"
-          value={
-            datos.mediaGeneral === null ? "—" : formatearMedia(datos.mediaGeneral)
-          }
+          label="Media"
+          value={a.media_p1 === null ? "—" : formatearMedia(a.media_p1)}
           detail="nota 1, de la 0 a la 10"
         />
         <Cifra
-          label="Negocios"
-          value={String(datos.filas.length)}
-          detail="consultados en el servicio"
+          label="Recomendación neta"
+          value={a.nps === null ? "—" : formatear1(a.nps)}
+          detail="va de -100 a 100"
         />
         <Cifra
-          label="Recomendación neta general"
-          value={
-            datos.recomendacionNetaGeneral === null
-              ? "—"
-              : formatear1(datos.recomendacionNetaGeneral)
-          }
-          detail="va de -100 a 100"
+          label="Requiere atención"
+          value={String(a.alertas)}
+          detail={a.alertas === 1 ? "respuesta por revisar" : "respuestas por revisar"}
         />
       </div>
 
-      {/* Gráfico por día: conteo diario fusionado */}
+      {/* Gráfico por día */}
       <section aria-labelledby="resumen-dia" className="mt-6 lg:mt-8">
         <TituloSeccion id="resumen-dia">Respuestas por día</TituloSeccion>
         <GraficoPorDia serie={serie} />
@@ -199,24 +168,13 @@ function ResumenDatos({
           <TituloSeccion id="resumen-distribucion">
             Distribución de las notas
           </TituloSeccion>
-          <DistribucionNotas distribucion={datos.distribucion} />
+          <DistribucionNotas distribucion={distribucionDelPanel(panel)} />
         </div>
         <div className="min-w-0 flex-1 lg:flex-[1]">
           <TituloSeccion id="resumen-momento">Por momento del día</TituloSeccion>
           <GraficoPorMomento bloques={bloques} />
         </div>
       </div>
-
-      {/* Tabla por negocio (orden fijo por id, sin ordenamiento) */}
-      <section aria-labelledby="resumen-tabla" className="mt-6 lg:mt-8">
-        <TituloSeccion id="resumen-tabla">Resumen por negocio</TituloSeccion>
-        <TablaNegocios filas={datos.filas} />
-        {fallidos > 0 && (
-          <p role="status" className="mt-3 font-ui text-[13px] text-text-secondary">
-            No se pudo consultar {fallidos} {fallidos === 1 ? "negocio" : "negocios"}.
-          </p>
-        )}
-      </section>
     </>
   );
 }
@@ -427,128 +385,5 @@ function GraficoPorMomento({ bloques }: { bloques: ConteoBloques }) {
         con menos de 5 respuestas se marcan como muestra mínima.
       </p>
     </div>
-  );
-}
-
-/* ── Tabla por negocio: apilada hasta lg (768 incluido), tabla real desde lg ─
- * A 768 la tabla real (7 columnas) desbordaba el documento
- * (scrollWidth 797 > clientWidth 768); el modo apilado se mantiene
- * hasta 1024 px. */
-
-function TablaNegocios({
-  filas,
-}: {
-  filas: readonly FilaNegocioGlobal[];
-}) {
-  return (
-    <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-2 lg:p-4">
-      <table className="w-full border-collapse font-ui text-[14px] text-text-primary">
-        <caption className="sr-only">
-          Resumen por negocio: respuestas, media, promotores, detractores y
-          recomendación neta
-        </caption>
-        <thead className="hidden lg:table-header-group">
-          <tr className="text-left">
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-[13px] font-semibold text-text-secondary"
-            >
-              Empresa
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-[13px] font-semibold text-text-secondary"
-            >
-              Rubro
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-right text-[13px] font-semibold text-text-secondary"
-            >
-              Respuestas
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-right text-[13px] font-semibold text-text-secondary"
-            >
-              Media
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-right text-[13px] font-semibold text-text-secondary"
-            >
-              Promotores
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-right text-[13px] font-semibold text-text-secondary"
-            >
-              Detractores
-            </th>
-            <th
-              scope="col"
-              className="border-b border-border-mid px-3 py-2 text-right text-[13px] font-semibold text-text-secondary"
-            >
-              Recomendación neta
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {filas.map((fila) => (
-            <tr
-              key={fila.empresaId}
-              className="block border-b border-border-subtle last:border-b-0 lg:table-row lg:border-b"
-            >
-              <th
-                scope="row"
-                className="block px-3 pb-1 pt-3 text-left font-semibold text-text-primary lg:table-cell lg:px-3 lg:py-2 lg:font-medium"
-              >
-                {fila.nombre}
-              </th>
-              <Celda etiqueta="Rubro">{fila.rubro}</Celda>
-              <Celda etiqueta="Respuestas" numerica>
-                {String(fila.respuestas)}
-              </Celda>
-              <Celda etiqueta="Media" numerica>
-                {fila.mediaP1 === null ? "—" : formatearMedia(fila.mediaP1)}
-              </Celda>
-              <Celda etiqueta="Promotores" numerica>
-                {String(fila.promotores)}
-              </Celda>
-              <Celda etiqueta="Detractores" numerica>
-                {String(fila.detractores)}
-              </Celda>
-              <Celda etiqueta="Recomendación neta" numerica>
-                {fila.recomendacionNeta === null
-                  ? "—"
-                  : formatear1(fila.recomendacionNeta)}
-              </Celda>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function Celda({
-  etiqueta,
-  numerica = false,
-  children,
-}: {
-  etiqueta: string;
-  numerica?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <td
-      className={`block px-3 pb-1 pt-0.5 text-text-primary lg:table-cell lg:px-3 lg:py-2 ${
-        numerica ? "tabular-nums lg:text-right" : ""
-      }`}
-    >
-      {/* En móvil cada celda se apila con su etiqueta visible. */}
-      <span className="mr-2 text-text-secondary lg:hidden">{etiqueta}:</span>
-      {children}
-    </td>
   );
 }

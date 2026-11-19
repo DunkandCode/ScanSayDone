@@ -60,8 +60,8 @@ describe("corte de la instantánea local", () => {
     expect(infractores).toEqual([]);
   });
 
-  it("la página del panel usa el resumen global (consultas al servicio)", async () => {
-    const { ResumenGlobal } = await import("@/components/panel/resumen-global");
-    expect(typeof ResumenGlobal).toBe("function");
+  it("la página del panel usa el resumen por empresa (consultas al servicio)", async () => {
+    const { ResumenEmpresa } = await import("@/components/panel/resumen-global");
+    expect(typeof ResumenEmpresa).toBe("function");
   });
 });

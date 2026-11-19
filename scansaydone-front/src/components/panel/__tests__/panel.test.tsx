@@ -1,21 +1,38 @@
 /// <reference types="vitest/globals" />
 import { render, screen, within, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import PanelPage from "@/app/(panel)/panel/page";
 import { PanelNavLinks } from "@/components/panel/panel-nav";
-import { limpiarCacheEmpresas } from "@/lib/api/empresas";
+import { CLAVE_SESION, guardarSesion, leerSesion } from "@/lib/auth/sesion";
 import type { EncuestaEmpresa } from "@/lib/api/encuesta";
 import {
-  IDS_FIXTURE,
-  nombreFixture,
   payloadPanelReal,
 } from "@/test/fixtures/panel";
 
 /**
- * Panel con datos del servicio (mockeado): Resumen global (4 consultas),
- * Resultados, Encuesta y Reseñas como pestañas. Números esperados =
- * fixture con los valores reales del servicio local (80 respuestas,
- * 19–31 de octubre).
+ * Panel dependiente de la sesión (mockeada en localStorage):
+ * - Sin sesión → redirect a /entrar y esqueleto sin cifras.
+ * - Con sesión (empresa 1 del fixture) → cabecera con el nombre del
+ *   negocio, botón «Cerrar sesión», sin selector, y los módulos
+ *   alimentados con el empresa_id guardado.
  */
+
+const pushMock = vi.fn();
+const replaceMock = vi.fn();
+// Identidad estable: useRouter devuelve SIEMPRE este mismo objeto. Si
+// devolviera un literal nuevo por llamada, cualquier efecto con [router]
+// re-dispararía en cada render.
+const routerMock = { push: pushMock, replace: replaceMock };
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => routerMock,
+}));
+
+const SESION_EMPRESA_1 = {
+  usuario: "minimarket_don_lucho",
+  empresa_id: 1,
+  nombre_negocio: "Minimarket Don Lucho",
+};
 
 function payloadEncuesta(id: number, nombre: string): EncuestaEmpresa {
   return {
@@ -40,11 +57,9 @@ function payloadEncuesta(id: number, nombre: string): EncuestaEmpresa {
   };
 }
 
-const ENCUESTAS: Record<number, EncuestaEmpresa> = Object.fromEntries(
-  IDS_FIXTURE.map((id) => [id, payloadEncuesta(id, nombreFixture(id))]),
-);
+const ENCUESTA_1 = payloadEncuesta(1, SESION_EMPRESA_1.nombre_negocio);
 
-/** Stub de fetch: encuesta para ids 1..4, panel para ids 1..4, resto 404. */
+/** Stub de fetch: panel + encuesta de la empresa de la sesión; resto 404. */
 function stubFetchServicio() {
   vi.stubGlobal(
     "fetch",
@@ -71,7 +86,7 @@ function stubFetchServicio() {
       const encuesta = String(url).match(/\/api\/v1\/empresas\/(\d+)\/encuesta$/);
       if (encuesta) {
         const id = Number(encuesta[1]);
-        if (ENCUESTAS[id]) {
+        if (id === 1) {
           return {
             status: 200,
             ok: true,
@@ -81,7 +96,7 @@ function stubFetchServicio() {
                   ? "application/json"
                   : null,
             },
-            json: async () => ENCUESTAS[id],
+            json: async () => ENCUESTA_1,
           };
         }
         return { status: 404, ok: false, json: async () => ({}) };
@@ -96,170 +111,119 @@ function abrirPestana(nombre: "Resumen" | "Resultados" | "Encuesta" | "Reseñas"
   fireEvent.click(screen.getByRole("tab", { name: nombre }));
 }
 
-describe("PanelPage: pestañas con datos del servicio", () => {
+describe("PanelPage: dependiente de la sesión", () => {
   beforeEach(() => {
-    stubFetchServicio();
-    limpiarCacheEmpresas();
-    window.history.replaceState(null, "", "#");
+    window.localStorage.clear();
+    pushMock.mockClear();
+    replaceMock.mockClear();
   });
 
   afterEach(() => {
     vi.unstubAllGlobals();
-    limpiarCacheEmpresas();
+    window.localStorage.clear();
     window.history.replaceState(null, "", "#");
   });
 
-  it("1. la pestaña por defecto es Resumen, con un solo h1 y estructura aria correcta", () => {
+  it("1. sin sesión: redirige a /entrar y no muestra cifras ni pestañas", async () => {
+    stubFetchServicio();
     render(<PanelPage />);
 
-    const tabResumen = screen.getByRole("tab", { name: "Resumen" });
-    expect(tabResumen).toHaveAttribute("aria-selected", "true");
-    expect(tabResumen).toHaveAttribute("aria-controls", "panel-resumen");
+    // El efecto de montaje manda a /entrar…
+    await waitFor(() => {
+      expect(replaceMock).toHaveBeenCalledWith("/entrar");
+    });
 
-    const panel = screen.getByRole("tabpanel");
-    expect(panel).toHaveAttribute("id", "panel-resumen");
-    expect(panel).toHaveAttribute("aria-labelledby", "tab-resumen");
-
-    expect(screen.getByRole("tab", { name: "Resultados" })).toHaveAttribute(
-      "aria-selected",
-      "false",
-    );
-    expect(screen.getByRole("tab", { name: "Encuesta" })).toHaveAttribute(
-      "aria-selected",
-      "false",
-    );
-    expect(screen.getByRole("tab", { name: "Reseñas" })).toHaveAttribute(
-      "aria-selected",
-      "false",
-    );
-
-    const h1s = screen.getAllByRole("heading", { level: 1 });
-    expect(h1s).toHaveLength(1);
-    expect(h1s[0]).toHaveTextContent("Resumen");
+    // …y mientras tanto solo hay esqueleto: ni pestañas, ni cifras, ni
+    // consultas al servicio del negocio.
+    expect(screen.queryByRole("tab")).not.toBeInTheDocument();
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    expect(screen.queryByText(/^20$/)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/por día/)).not.toBeInTheDocument();
   });
 
-  it("2. la etiqueta obligatoria de datos simulados está presente", async () => {
+  it("2. con sesión: cabecera con el nombre del negocio, sin selector, y cifras de SU empresa", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
+
+    // Cabecera: nombre del negocio de la sesión + cerrar sesión.
+    expect(screen.getByText("Minimarket Don Lucho")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Cerrar sesión" }),
+    ).toBeInTheDocument();
+
+    // Nada de selector de negocio en el panel.
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+
+    // Resumen de la empresa 1 del fixture: 20 respuestas, recomendación
+    // neta 25,0 y media 8,05 (números oficiales de su agregado).
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
+    expect(screen.getByText(/^20$/)).toBeInTheDocument();
+    expect(screen.getByText("8,05")).toBeInTheDocument();
+
+    // Ya no existe la tabla de 4 negocios ni los nombres ajenos.
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    expect(screen.queryByText("Café Rincón Andino")).not.toBeInTheDocument();
+    expect(screen.queryByText("Peluquería Estilo Sur")).not.toBeInTheDocument();
+    expect(screen.queryByText("Cosmos Accesorios")).not.toBeInTheDocument();
+  });
+
+  it("3. la etiqueta obligatoria de datos simulados está presente", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+
     expect(
       screen.getByText(
         "Datos simulados del servicio · 19 al 31 de octubre · no son clientes reales",
       ),
     ).toBeInTheDocument();
     // El resumen llega (no queda en "consultando").
-    expect(await screen.findByText("80")).toBeInTheDocument();
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
   });
 
-  it("3. cifras globales: 80 respuestas, media 8,1, 4 negocios y recomendación neta 26,3", async () => {
-    render(<PanelPage />);
-
-    expect(await screen.findByText("26,3")).toBeInTheDocument();
-    expect(screen.getByText("80")).toBeInTheDocument(); // Respuestas
-    expect(screen.getByText("8,1")).toBeInTheDocument(); // Media general
-
-    // "4" también aparece como nota en la distribución: se consulta dentro
-    // de la tarjeta de la cifra Negocios.
-    const tarjetaNegocios = screen.getByText("Negocios").closest("div");
-    expect(tarjetaNegocios).toBeInTheDocument();
-    expect(within(tarjetaNegocios!).getByText("4")).toBeInTheDocument();
-  });
-
-  it("4. gráfico por día: 13 barras con conteos visibles y rótulo dd-mm", async () => {
+  it("4. gráfico por día de la empresa (11 días con respuestas) y bloques 2/17/1", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
 
     const dia = await screen.findByLabelText(
       "Cantidad de respuestas por día, de la más antigua a la más reciente",
     );
     const barras = within(dia).getAllByRole("listitem");
-    expect(barras).toHaveLength(13);
+    // La serie de la empresa 1 tiene 11 días con respuestas.
+    expect(barras).toHaveLength(11);
+    expect(barras[0]).toHaveAttribute("aria-label", "19-10: 1 respuesta");
+    expect(barras.at(-1)).toHaveAttribute("aria-label", "31-10: 1 respuesta");
 
-    // Primera y última barra con su texto alternativo (aria-label del li).
-    expect(barras[0]).toHaveAttribute("aria-label", "19-10: 4 respuestas");
-    expect(barras.at(-1)).toHaveAttribute("aria-label", "31-10: 6 respuestas");
-    // El conteo es texto visible dentro de cada barra.
-    expect(within(barras[0]).getByText("4")).toBeInTheDocument();
-    expect(within(barras.at(-1)!).getByText("6")).toBeInTheDocument();
+    // Bloques del fixture empresa 1: Mañana 2 · Tarde 17 · Noche 1
+    // (muestra mínima en Mañana y Noche).
+    const momento = screen.getByLabelText(
+      "Cantidad de respuestas por momento del día",
+    );
+    const bloques = within(momento).getAllByRole("listitem");
+    expect(within(bloques[0]).getByText("2")).toBeInTheDocument();
+    expect(within(bloques[1]).getByText("17")).toBeInTheDocument();
+    expect(within(bloques[2]).getByText("1")).toBeInTheDocument();
+    expect(within(bloques[2]).getByText("muestra mínima")).toBeInTheDocument();
   });
 
-  it("5. distribución 11 filas y momento del día: 3 barras con muestra mínima en Noche", async () => {
+  it("5. distribución 11 filas (notas 0 a 10)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
 
     const distribucion = await screen.findByLabelText(
       "Cantidad de respuestas por nota, de la 0 a la 10",
     );
     expect(within(distribucion).getAllByRole("listitem")).toHaveLength(11);
-
-    const momento = screen.getByLabelText(
-      "Cantidad de respuestas por momento del día",
-    );
-    const bloques = within(momento).getAllByRole("listitem");
-    expect(bloques).toHaveLength(3);
-
-    // Global: Mañana 15 · Tarde 63 · Noche 2 (conteos del fixture).
-    expect(within(bloques[0]).getByText("15")).toBeInTheDocument();
-    expect(within(bloques[1]).getByText("63")).toBeInTheDocument();
-    expect(within(bloques[2]).getByText("2")).toBeInTheDocument();
-
-    // Global: Mañana 15 y Tarde 63 superan la muestra mínima; Noche 2
-    // no la alcanza y lleva la nota visible junto al conteo.
-    expect(within(bloques[0]).queryByText("muestra mínima")).not.toBeInTheDocument();
-    expect(within(bloques[1]).queryByText("muestra mínima")).not.toBeInTheDocument();
-    expect(within(bloques[2]).getByText("muestra mínima")).toBeInTheDocument();
   });
 
-  it("5b. «muestra mínima» es una nota separada del conteo, debajo de la fila", async () => {
+  it("6. ninguna palabra prohibida aparece en el panel", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
-
-    const momento = await screen.findByLabelText(
-      "Cantidad de respuestas por momento del día",
-    );
-
-    // Título acortado: no se parte en dos líneas en la columna angosta.
-    expect(
-      screen.getByRole("heading", { name: "Por momento del día" }),
-    ).toBeInTheDocument();
-
-    const bloques = within(momento).getAllByRole("listitem");
-
-    // Noche (2 respuestas): la nota vive en un elemento APARTE del conteo,
-    // nunca en el mismo nodo de texto del número.
-    const conteoNoche = within(bloques[2]).getByText("2");
-    const notaNoche = within(bloques[2]).getByText("muestra mínima");
-    expect(notaNoche).not.toBe(conteoNoche);
-    expect(conteoNoche.textContent).not.toContain("muestra mínima");
-    expect(notaNoche.textContent).toBe("muestra mínima");
-    // En el orden del DOM la nota va después del conteo (debajo de la fila).
-    expect(notaNoche.compareDocumentPosition(conteoNoche)).toBe(
-      Node.DOCUMENT_POSITION_PRECEDING,
-    );
-  });
-
-  it("6. tabla por negocio: 4 empresas con recomendación neta 25,0 / 25,0 / 50,0 / 5,0", async () => {
-    render(<PanelPage />);
-
-    const tbody = await waitFor(() => {
-      const el = document.querySelector("tbody");
-      expect(el).not.toBeNull();
-      return el as HTMLElement;
-    });
-    expect(tbody).toBeInTheDocument();
-    const cuerpo = within(tbody as HTMLElement).getAllByRole("row");
-    expect(cuerpo).toHaveLength(4);
-    expect(cuerpo[0]).toHaveTextContent(/Minimarket Don Lucho/);
-    expect(cuerpo[1]).toHaveTextContent(/Café Rincón Andino/);
-    expect(cuerpo[2]).toHaveTextContent(/Peluquería Estilo Sur/);
-    expect(cuerpo[3]).toHaveTextContent(/Cosmos Accesorios/);
-
-    // Recomendación neta por negocio (números oficiales del agregado).
-    // Empresas 1 y 2 comparten 25,0: se esperan DOS apariciones (una por
-    // fila de la tabla).
-    expect(screen.getAllByText("25,0")).toHaveLength(2);
-    expect(screen.getByText("50,0")).toBeInTheDocument();
-    expect(screen.getByText("5,0")).toBeInTheDocument();
-  });
-
-  it("7. ninguna palabra prohibida aparece en el panel", async () => {
-    render(<PanelPage />);
-    expect(await screen.findByText("26,3")).toBeInTheDocument();
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
 
     const texto = (document.body.textContent ?? "").toLowerCase();
     const prohibidas = [
@@ -280,7 +244,9 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     expect(encontradas).toEqual([]);
   });
 
-  it("8. las pestañas cambian de panel: Resultados y Encuesta con su selector", async () => {
+  it("7. pestañas sin selector: Resultados usa el empresa_id de la sesión", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
 
     abrirPestana("Resultados");
@@ -291,47 +257,42 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Resultados" }),
     ).toBeInTheDocument();
-    // El selector del negocio está en la pestaña.
-    expect(screen.getByLabelText("Negocio")).toBeInTheDocument();
-    // Tras resolver la lista aparecen los resultados del negocio inicial
-    // (empresa 1: recomendación neta 25,0, media 8,05).
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+
+    // Empresa 1 del fixture: recomendación neta 25,0 y media 8,05, sin
+    // pasar por selector.
     expect(
       await screen.findByRole("heading", { name: "Resultados de este negocio" }),
     ).toBeInTheDocument();
     expect(await screen.findByText("25,0")).toBeInTheDocument();
     expect(screen.getByText("8,05")).toBeInTheDocument();
+  });
+
+  it("8. pestaña Encuesta usa el empresa_id de la sesión", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
     abrirPestana("Encuesta");
     expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-encuesta");
-    expect(
-      screen.getByRole("heading", { level: 1, name: "Encuesta" }),
-    ).toBeInTheDocument();
-    expect(await screen.findByLabelText("Negocio")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
     expect(
       await screen.findByRole("heading", {
         name: "Encuesta definida para este negocio",
       }),
     ).toBeInTheDocument();
-
-    // Al cambiar de pestaña, el panel anterior deja de estar en el DOM.
-    expect(
-      screen.queryByRole("heading", { name: "Resultados de este negocio" }),
-    ).not.toBeInTheDocument();
   });
 
-  it("8b. la pestaña Reseñas muestra el selector y la lista del negocio inicial", async () => {
+  it("9. pestaña Reseñas usa el empresa_id de la sesión (20 · 17 · 5)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
 
     abrirPestana("Reseñas");
     expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-resenas");
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 1, name: "Reseñas" }),
-    ).toBeInTheDocument();
-    expect(screen.getByLabelText("Negocio")).toBeInTheDocument();
-    expect(
-      await screen.findByRole("heading", {
-        name: "Reseñas de este negocio",
-      }),
+      await screen.findByRole("heading", { name: "Reseñas de este negocio" }),
     ).toBeInTheDocument();
 
     // Empresa 1 del fixture: 20 reseñas · 17 con comentario · 5 con alerta.
@@ -341,29 +302,36 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     expect(screen.getByText("Mostrando 20 de 20 reseñas")).toBeInTheDocument();
   });
 
-  it("8c. cambiar el negocio en el selector cambia los resultados", async () => {
+  it("10. cerrar sesión: borra ssd.sesion y navega a /entrar", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
 
-    abrirPestana("Resultados");
-    expect(await screen.findByText("25,0")).toBeInTheDocument();
+    const user = userEvent.setup();
+    await user.click(await screen.findByRole("button", { name: "Cerrar sesión" }));
 
-    const select = screen.getByLabelText("Negocio");
-    await waitForSelect(select, "1");
-
-    fireEvent.change(select, { target: { value: "3" } });
-
-    // Empresa 3: recomendación neta 50,0 y media 8,55.
-    expect(await screen.findByText("50,0")).toBeInTheDocument();
-    expect(screen.getByText("8,55")).toBeInTheDocument();
-    // Los números del negocio anterior ya no están.
-    expect(screen.queryByText("25,0")).not.toBeInTheDocument();
-    expect(screen.queryByText("8,05")).not.toBeInTheDocument();
+    expect(window.localStorage.getItem(CLAVE_SESION)).toBeNull();
+    expect(leerSesion()).toBeNull();
+    expect(replaceMock).toHaveBeenCalledWith("/entrar");
   });
 
-  it("9. navegación por teclado: la flecha derecha activa y enfoca Resultados", () => {
+  it("11. sesión corrupta se trata como sin sesión", async () => {
+    stubFetchServicio();
+    window.localStorage.setItem(CLAVE_SESION, "{no-es-json");
     render(<PanelPage />);
 
-    const tablist = screen.getByRole("tablist");
+    await waitFor(() => {
+      expect(replaceMock).toHaveBeenCalledWith("/entrar");
+    });
+    expect(screen.queryByRole("tab")).not.toBeInTheDocument();
+  });
+
+  it("12. navegación por teclado: la flecha derecha activa y enfoca Resultados", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+
+    const tablist = await screen.findByRole("tablist");
     fireEvent.keyDown(tablist, { key: "ArrowRight" });
 
     expect(screen.getByRole("tab", { name: "Resultados" })).toHaveAttribute(
@@ -386,8 +354,11 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     );
   });
 
-  it("10. el hash sincroniza la pestaña (enlaces de la navegación lateral)", () => {
+  it("13. el hash sincroniza la pestaña (enlaces de la navegación lateral)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
+    await screen.findByRole("tablist");
 
     window.location.hash = "#encuesta";
     fireEvent(window, new Event("hashchange"));
@@ -407,24 +378,19 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     );
   });
 
-  it("11. activar una pestaña actualiza el hash de la URL", () => {
+  it("14. activar una pestaña actualiza el hash de la URL", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
     render(<PanelPage />);
+    await screen.findByRole("tablist");
 
     abrirPestana("Resultados");
     expect(window.location.hash).toBe("#resultados");
   });
 });
 
-/** Espera a que el select tome el valor esperado (la lista llega async). */
-async function waitForSelect(select: HTMLElement, valor: string) {
-  for (let i = 0; i < 20; i++) {
-    if ((select as HTMLSelectElement).value === valor) return;
-    await new Promise((r) => setTimeout(r, 10));
-  }
-}
-
 describe("PanelNavLinks: navegación lateral", () => {
-  it("12. los módulos vivos son anclas de hash y Resumen queda activo por defecto", () => {
+  it("15. los módulos vivos son anclas de hash y Resumen queda activo por defecto", () => {
     render(<PanelNavLinks variante="sidebar" />);
 
     const resumen = screen.getByRole("link", { name: "Resumen" });
@@ -444,7 +410,7 @@ describe("PanelNavLinks: navegación lateral", () => {
     );
   });
 
-  it("13. Códigos QR y Ajustes quedan visibles pero deshabilitados, sin href", () => {
+  it("16. Códigos QR y Ajustes quedan visibles pero deshabilitados, sin href", () => {
     render(<PanelNavLinks variante="topbar" />);
 
     for (const nombre of ["Códigos QR", "Ajustes"]) {

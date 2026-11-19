@@ -117,16 +117,24 @@ function Definicion({ encuesta }: { encuesta: EncuestaEmpresa }) {
         etiqueta={p4.etiqueta}
         escala={p4.escala}
       />
-      <div>
+      {/* p5 no tiene escala: se representa el campo de respuesta como un
+          recuadro decorativo de solo lectura (vista de definición, no un
+          formulario). El dato accesible queda en el par dt/dd. */}
+      <div className="pb-1">
         <dt className="font-ui text-[13px] font-semibold text-text-secondary">
-          Pregunta 5
+          Pregunta 5 · Respuesta abierta
         </dt>
         <dd className="mt-1 font-ui text-[14px] text-text-primary">
-          {p5.texto}{" "}
-          <span className="text-[12px] text-text-secondary">
-            (hasta {p5.max_caracteres} caracteres)
-          </span>
+          {p5.texto}
         </dd>
+        <div
+          aria-hidden="true"
+          className="mt-2 min-h-[72px] rounded-[4px] border p-3 font-ui text-[14px] text-text-secondary"
+          style={{ background: "#FFFFFF", borderColor: "#D9C0A0" }}
+        >
+          El cliente escribe su respuesta (máximo {p5.max_caracteres}{" "}
+          caracteres)
+        </div>
       </div>
     </dl>
   );

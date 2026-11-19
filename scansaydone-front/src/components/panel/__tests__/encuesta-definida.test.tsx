@@ -23,7 +23,7 @@ function encuestaCompleta(): EncuestaEmpresa {
         etiqueta: "Calidad de la atención",
         escala: [1, 5],
       },
-      p5: { texto: "Cuéntanos qué pasó", max_caracteres: 500 },
+      p5: { texto: "Cuéntanos qué pasó", max_caracteres: 300 },
     },
   };
 }
@@ -62,8 +62,25 @@ describe("EncuestaDefinida", () => {
     // Etiquetas de p3/p4 visibles.
     expect(screen.getByText(/Surtido y disponibilidad/)).toBeInTheDocument();
     expect(screen.getByText(/Calidad de la atención/)).toBeInTheDocument();
-    // Máximo de caracteres de p5.
-    expect(screen.getByText("(hasta 500 caracteres)")).toBeInTheDocument();
+  });
+
+  it("p5 es respuesta abierta: texto, recuadro de solo lectura y sin controles", async () => {
+    stubFetchOk(encuestaCompleta());
+    const { container } = render(<EncuestaDefinida empresaId={1} />);
+
+    // El dd con el texto de la pregunta es el dato accesible.
+    expect(await screen.findByText("Cuéntanos qué pasó")).toBeInTheDocument();
+    expect(
+      screen.getByText("Pregunta 5 · Respuesta abierta"),
+    ).toBeInTheDocument();
+
+    // Recuadro decorativo del campo (máximo de caracteres de p5).
+    expect(
+      screen.getByText("El cliente escribe su respuesta (máximo 300 caracteres)"),
+    ).toBeInTheDocument();
+
+    // Vista de definición: ningún textarea ni input en la sección.
+    expect(container.querySelectorAll("textarea, input")).toHaveLength(0);
   });
 
   it("expande la escala [0,10] en 11 fichas y la [1,5] en 5", async () => {
