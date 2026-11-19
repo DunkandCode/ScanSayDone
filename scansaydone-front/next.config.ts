@@ -21,6 +21,13 @@ const nextConfig: NextConfig = {
   experimental: {
     agentUpgrade: "security",
   },
+  // En producción (Vercel Services + rewrites) el endpoint `/_next/image`
+  // devuelve 404, mientras que los archivos de `/img` se sirven bien de
+  // forma directa: desactivamos el optimizador para que `next/image` emita
+  // `<img src="/img/...">` sin pasar por `/_next/image`.
+  images: {
+    unoptimized: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

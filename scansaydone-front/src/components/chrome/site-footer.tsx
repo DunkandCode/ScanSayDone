@@ -41,6 +41,7 @@ export function SiteFooter() {
               height={72}
               alt="Scan-Say-Done"
               className="h-9 w-auto"
+              style={{ width: "auto" }}
             />
             <p className="mt-4 font-display uppercase text-[32px] leading-[0.95] text-text-primary">
               ESCANEA. OPINA. LISTO.
