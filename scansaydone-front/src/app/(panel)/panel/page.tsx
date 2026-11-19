@@ -10,15 +10,15 @@
  * - La barra lateral enlaza con `#resumen` / `#resultados` / `#encuesta` /
  *   `#resenas`; esta página escucha `hashchange` para sincronizar la
  *   pestaña activa.
- * - Todos los números visibles salen de la instantánea local
- *   (`src/data/local-snapshot.json`) o de la API de encuestas. Nada del
- *   dataset anterior se importa aquí.
+ * - Todos los números visibles salen del servicio local
+ *   (`/api/v1/empresas/{id}/panel` y `/api/v1/empresas/{id}/encuesta`).
+ *   La instantánea local ya no se importa en ningún módulo del panel.
  */
 import { useEffect, useRef, useState } from "react";
 import { NegocioSelector } from "@/components/panel/negocio-selector";
 import { ResultadosNegocio } from "@/components/panel/resultados-negocio";
 import { EncuestaDefinida } from "@/components/panel/encuesta-definida";
-import { ResumenLocal } from "@/components/panel/resumen-local";
+import { ResumenGlobal } from "@/components/panel/resumen-global";
 import { ResenasNegocio } from "@/components/panel/resenas-negocio";
 import { PANEL_TABS, tabDesdeHash, type PanelTabKey } from "@/lib/panel/tabs";
 
@@ -109,7 +109,7 @@ export default function PanelPage() {
         tabIndex={-1}
         className="mt-6 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary"
       >
-        {tab === "resumen" && <ResumenLocal />}
+        {tab === "resumen" && <ResumenGlobal />}
 
         {tab === "resultados" && (
           <>

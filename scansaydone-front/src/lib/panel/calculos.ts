@@ -55,6 +55,19 @@ export function formatear1(n: number): string {
 }
 
 /**
+ * Formatea una media con coma decimal y hasta dos decimales (es-CL):
+ * 8.05 → "8,05", 8.1 → "8,1". Las medias de la API vienen redondeadas
+ * a dos decimales y no hay que perderlos al mostrarlas.
+ */
+export function formatearMedia(n: number): string {
+  if (!Number.isFinite(n)) return "—";
+  return new Intl.NumberFormat("es-CL", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2,
+  }).format(n);
+}
+
+/**
  * Formatea una fecha "YYYY-MM-DD" del snapshot como es-CL (dd-mm-yyyy).
  * Determinista: parsea el texto, sin `Date` ni zona horaria (así el
  * "2026-11-18" no se desplaza un día según la zona del navegador).
@@ -64,6 +77,17 @@ export function formatearFechaCL(fecha: string): string {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fecha.trim());
   if (!m) return fecha;
   return `${m[3]}-${m[2]}-${m[1]}`;
+}
+
+/**
+ * Formatea una fecha "YYYY-MM-DD" como día y mes (dd-mm) para los
+ * rótulos del gráfico por día: "2026-10-19" → "19-10". Mismo parseo
+ * determinista que `formatearFechaCL` (sin `Date` ni zona horaria).
+ */
+export function formatearDiaMes(fecha: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fecha.trim());
+  if (!m) return fecha;
+  return `${m[3]}-${m[2]}`;
 }
 
 const DISTRIBUCION_LARGO = 11;

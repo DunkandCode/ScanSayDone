@@ -1,147 +1,67 @@
 /// <reference types="vitest/globals" />
-import {
-  instantanea,
-  validarInstantanea,
-  empresasDeInstantanea,
-  respuestasDeEmpresa,
-  fechaInstantanea,
-  type RespuestaInstantanea,
-} from "@/lib/panel/instantanea";
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
 
-/* ── Instantánea real ─────────────────────────────────────────────────────── */
+/**
+ * Guard del corte de la instantánea local: ningún módulo VIVO del panel
+ * (páginas, layouts y componentes) puede importar la instantánea local
+ * ni el snapshot JSON. Los archivos `src/lib/panel/instantanea.ts` y
+ * `src/data/local-snapshot.json` quedan en disco, pero como módulo
+ * muerto: si alguien los vuelve a importar desde la UI, este test
+ * falla.
+ */
 
-describe("instantánea local", () => {
-  it("es válida y trae 4 negocios y 60 respuestas", () => {
-    expect(instantanea.valida).toBe(true);
-    expect(instantanea.empresas).toHaveLength(4);
-    expect(instantanea.respuestas).toHaveLength(60);
-  });
+const RAICES = ["src/app", "src/components"] as const;
+const PROHIBIDOS = [
+  '@/lib/panel/instantanea',
+  '@/../src/data/local-snapshot.json',
+  'local-snapshot.json',
+  'data/local-snapshot',
+];
 
-  it("cada negocio tiene 15 respuestas; ids desconocidos no tienen nada", () => {
-    for (const id of [1, 2, 3, 4]) {
-      expect(respuestasDeEmpresa(id)).toHaveLength(15);
+/** Archivos .ts/.tsx de un directorio (recorrido recursivo). */
+function archivosTs(directorio: string): string[] {
+  const archivos: string[] = [];
+  let entradas: string[];
+  try {
+    entradas = readdirSync(directorio);
+  } catch {
+    return archivos;
+  }
+  for (const entrada of entradas) {
+    const ruta = join(directorio, entrada);
+    if (statSync(ruta).isDirectory()) {
+      archivos.push(...archivosTs(ruta));
+    } else if (/\.(ts|tsx)$/.test(entrada)) {
+      archivos.push(ruta);
     }
-    expect(respuestasDeEmpresa(999)).toEqual([]);
-  });
-
-  it("expone los negocios con sus etiquetas p3/p4", () => {
-    const empresas = empresasDeInstantanea();
-    const e1 = empresas.find((e) => e.empresa_id === 1);
-    expect(e1?.p3_label).toBe("Surtido y disponibilidad");
-    expect(e1?.p4_label).toBe("Calidad de la atención");
-    const e4 = empresas.find((e) => e.empresa_id === 4);
-    expect(e4?.p4_label).toBe("Cumplimiento logístico");
-  });
-
-  it("formatea la fecha de generación en es-CL", () => {
-    // generado_en "2026-11-18T23:20:25" → "18-11-2026".
-    expect(fechaInstantanea()).toBe("18-11-2026");
-  });
-});
-
-/* ── Validación defensiva: forma incorrecta → instantánea vacía ──────────── */
-
-/** Respuesta válida mínima para mutar en cada caso. */
-function respuestaValida(): Record<string, unknown> {
-  return {
-    empresa_id: 1,
-    p1_nps: 9,
-    p2_csat: 5,
-    p3_atributo: 4,
-    p4_atributo: 5,
-    p5_comentario: "Buen servicio",
-    fecha: "2026-11-18",
-    hora: "23:19:05.000000",
-    categoria_nps: "Promotor",
-    alerta: "",
-    tipo_comentario: "Felicitación",
-    bloque_horario: "Noche",
-    dia_semana: "Miércoles",
-    semana_anio: 47,
-    anio: 2026,
-    mes_nombre: "Noviembre",
-  };
+  }
+  return archivos;
 }
 
-function snapshotValido(): Record<string, unknown> {
-  return {
-    generado_en: "2026-11-18T23:20:25",
-    fuente: "dev-local.db (SQLite local)",
-    empresas: [
-      {
-        empresa_id: 1,
-        nombre_negocio: "Minimarket Don Lucho",
-        rubro_id: 1,
-        rubro: "Minimarket / almacén de barrio",
-        p3_label: "Surtido y disponibilidad",
-        p4_label: "Calidad de la atención",
-      },
-    ],
-    respuestas: [respuestaValida()],
-  };
-}
+/** Ruta absoluta del proyecto (vitest corre con cwd en la raíz). */
+const raizProyecto = process.cwd();
 
-describe("validarInstantanea (defensivo)", () => {
-  it("acepta un payload con la forma correcta", () => {
-    const r = validarInstantanea(snapshotValido());
-    expect(r.valida).toBe(true);
-    expect(r.empresas).toHaveLength(1);
-    expect(r.respuestas).toHaveLength(1);
+describe("corte de la instantánea local", () => {
+  it("ningún archivo de src/app ni src/components importa la instantánea", () => {
+    const infractores: string[] = [];
+
+    for (const raiz of RAICES) {
+      for (const archivo of archivosTs(join(raizProyecto, raiz))) {
+        const contenido = readFileSync(archivo, "utf8");
+        for (const prohibido of PROHIBIDOS) {
+          if (contenido.includes(prohibido)) {
+            infractores.push(`${archivo} → ${prohibido}`);
+          }
+        }
+      }
+    }
+
+    expect(infractores).toEqual([]);
   });
 
-  it("rechaza null, arreglos y strings", () => {
-    expect(validarInstantanea(null).valida).toBe(false);
-    expect(validarInstantanea([]).valida).toBe(false);
-    expect(validarInstantanea("snapshot").valida).toBe(false);
-  });
-
-  it("rechaza falta de generado_en o fuente", () => {
-    const s1 = snapshotValido();
-    delete s1.generado_en;
-    expect(validarInstantanea(s1).valida).toBe(false);
-
-    const s2 = snapshotValido();
-    s2.fuente = "";
-    expect(validarInstantanea(s2).valida).toBe(false);
-  });
-
-  it("rechaza empresa con p3_label faltante", () => {
-    const s = snapshotValido();
-    delete (s.empresas as Record<string, unknown>[])[0].p3_label;
-    expect(validarInstantanea(s).valida).toBe(false);
-  });
-
-  it("rechaza respuesta con nota fuera de 0..10", () => {
-    const s = snapshotValido();
-    (s.respuestas as Record<string, unknown>[])[0].p1_nps = 11;
-    expect(validarInstantanea(s).valida).toBe(false);
-  });
-
-  it("rechaza respuesta con p1_nps string o comentario numérico", () => {
-    const s1 = snapshotValido();
-    (s1.respuestas as Record<string, unknown>[])[0].p1_nps = "9";
-    expect(validarInstantanea(s1).valida).toBe(false);
-
-    const s2 = snapshotValido();
-    (s2.respuestas as Record<string, unknown>[])[0].p5_comentario = 123;
-    expect(validarInstantanea(s2).valida).toBe(false);
-  });
-
-  it("la instantánea vacía no rompe: sin empresas ni respuestas", () => {
-    const r = validarInstantanea({ generado_en: "x", fuente: "y", empresas: [], respuestas: [] });
-    expect(r.valida).toBe(true);
-    expect(r.empresas).toEqual([]);
-    expect(r.respuestas).toEqual([]);
-  });
-});
-
-/* ── Compatibilidad estructural con calculos ──────────────────────────────── */
-
-describe("compatibilidad con resumenEmpresa", () => {
-  it("las respuestas de la instantánea sirven directo en resumenEmpresa", async () => {
-    const { resumenEmpresa } = await import("@/lib/panel/calculos");
-    const respuestas: readonly RespuestaInstantanea[] = respuestasDeEmpresa(1);
-    const r = resumenEmpresa(respuestas);
-    expect(r.total).toBe(15);
+  it("la página del panel usa el resumen global (consultas al servicio)", async () => {
+    const { ResumenGlobal } = await import("@/components/panel/resumen-global");
+    expect(typeof ResumenGlobal).toBe("function");
   });
 });
