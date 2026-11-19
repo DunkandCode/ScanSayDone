@@ -1,9 +1,11 @@
 # Integración frontend ↔ backend
 
-> Carpeta de documentos que cruzan los dos lados. **Todo en BORRADOR.** No son contratos
-> aprobados: son preguntas y requisitos para revisar en la reunión.
+> Carpeta de documentos que cruzan los dos lados. Los documentos de noviembre 12 siguen en
+> BORRADOR: son preguntas y requisitos para revisar. **Excepción:** `CONTRATO-API-BACKEND-2026-11-19-JPA.md`
+> es el contrato vigente de la rama `dev/JuampaCL` (verificado localmente el 2026-11-19).
 >
-> Rama: `dev/nicolaslopezv-front` (`ce7c594`). Fecha: 2026-11-12.
+> Rama de trabajo: `dev/nicolaslopezv-front`. Los documentos del 2026-11-18 y 2026-11-19 se
+> incorporaron desde `dev/JuampaCL` sin tocar el trabajo del frontend.
 
 ## Documentos
 
@@ -11,8 +13,13 @@
 |---|---|---|
 | `PREGUNTAS-BACKEND-2026-11-12.md` | Backend | 18 preguntas de integración con evidencia `archivo:línea`, default recomendado y qué se rompe si quedan sin responder. Incluye archivos consumibles, mapa de campos y brechas bloqueantes |
 | `REQUISITOS-FRONTEND-DASHBOARD-2026-11-12.md` | Backend + datos | Qué necesita el panel para dejar de ser demo: bloques, forma de datos, decisiones D1–D6, propuesta de respuesta y qué no debe enviar el backend |
-| `BACKEND-LOGIN-Y-PANEL-2026-11-18.md` | Backend + frontend | Diseño del login de demostración (tabla `dim_usuarios`, credenciales en dos pasos) y del endpoint del panel con el agregado y el detalle de cada respuesta |
+| `BACKEND-LOGIN-Y-PANEL-2026-11-18.md` | Backend + frontend | Diseño del login de demostración (tabla `dim_usuarios`, credenciales en dos pasos) y del endpoint del panel con el agregado y el detalle de cada respuesta; §11 lista diferencias con el contrato |
 | `BORRADOR-RESPUESTAS-INTEGRACION-2026-11-18.md` | Todo el equipo | Borrador de respuestas propuestas a Q1–Q18 y D1–D6 verificado contra `main` (`aed058a`) para revisar en reunión. **Parcialmente superado** por `CONTRATO-API-BACKEND-2026-11-19-JPA.md` (login y panel ya existen) |
+| `BACKEND-SUPABASE-2026-11-18.md` | Operador / backend | Revisión de los 33 `.py`: inventario, cadena de conexión, runbook paso a paso para conectar a Supabase, errores probables y riesgos |
+| `SUPABASE-LECTURA-2026-11-18.md` | Operador | Cómo leer datos desde Supabase/Vercel sin escribir: rutas de acceso, cadena recomendada, patrón read-only, verificación de tablas, consultas de métricas, obtención de credenciales y riesgos |
+| `API-LECTURA-2026-11-18.md` | Operador / backend | Sondeo del despliegue: el dominio público solo sirve el frontend (`/health` y `/api/*` dan 404); qué endpoints existen, qué superficie de lectura falta y cómo desbloquearla |
+| `CONTRATO-API-BACKEND-2026-11-19-JPA.md` | Agentes de IA / frontend | **Contrato vigente** de la rama `dev/JuampaCL`: login demo, `GET /empresas/{id}/panel` con agregado y detalle, fórmulas, errores y limitaciones. Precedencia: código y OpenAPI primero, luego este documento |
+| `PENDIENTES-BACKEND-2026-11-19.md` | Backend + frontend | Revisión técnica del backend (2026-11-19): verificación contra contrato vigente, 9 hallazgos/riesgos priorizados y medidas que aplica el frontend |
 
 ## Documentos relacionados (fuera de esta carpeta)
 

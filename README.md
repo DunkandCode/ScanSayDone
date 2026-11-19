@@ -75,14 +75,14 @@ Frontend y Backend se despliegan unificados bajo un mismo dominio gracias a **Ve
 
 | Recurso | URL / Ubicación | Estado Actual |
 | :--- | :--- | :--- |
-| **Aplicación Web (Landing, Acceso y Panel)** | [`scansaydone.vercel.app`](https://scansaydone.vercel.app) | 🟢 En producción (`/` landing, `/entrar`, `/panel` demo) |
+| **Aplicación Web (Landing, Acceso y Panel)** | [`scansaydone.vercel.app`](https://scansaydone.vercel.app) | 🟢 En producción (`/` landing, `/entrar` con login real y `/panel` por sesión) |
 | **Documentación Interactiva API (Swagger UI)** | [`scansaydone.vercel.app/docs`](https://scansaydone.vercel.app/docs) | 🟢 Operativa con esquema OpenAPI 3 |
 | **Healthcheck del Backend** | [`scansaydone.vercel.app/health`](https://scansaydone.vercel.app/health) | 🟢 Responde `{"status":"ok","version":...}` |
 | **Esquema OpenAPI JSON** | [`scansaydone.vercel.app/openapi.json`](https://scansaydone.vercel.app/openapi.json) | 🟢 Operativo |
 | **Encuesta QR Móvil (`/e/[code]`)** | [`scansaydone.vercel.app/e/2`](https://scansaydone.vercel.app/e/2) | 🟡 Marcador en integración con API (`#14`, contrato backend listo) |
 | **Tablero Kanban y Sprints** | [GitHub Projects — ScanSayDone](https://github.com/orgs/DunkandCode/projects/1) | 🟢 Activo |
 
-> **Nota sobre integración en curso:** La API REST del backend (`POST /api/v1/respuestas`, `POST /api/v1/auth/login`, `GET /api/v1/empresas/{empresa_id}/panel` y `GET /api/v1/empresas/{empresa_id}/encuesta`) ya está desplegada y conectada a **Supabase** con **80 encuestas de demostración** cargadas. Actualmente el equipo frontend integra las vistas `/e/[code]` y `/panel` para consumir estos endpoints en reemplazo del dataset demo estático.
+> **Estado de integración actual:** La API REST del backend (`POST /api/v1/respuestas`, `POST /api/v1/auth/login`, `GET /api/v1/empresas/{empresa_id}/panel` y `GET /api/v1/empresas/{empresa_id}/encuesta`) está conectada a **Supabase** con **80 encuestas de demostración**; el portal `/entrar` y el panel `/panel` (`Resumen`, `Resultados`, `Encuesta`, `Reseñas`) ya consumen estos endpoints por sesión demo. Queda en integración la vista cliente `/e/[code]` (`#14`).
 
 ---
 
@@ -141,7 +141,7 @@ sequenceDiagram
 | **Backend API** | **Python 3.11** (compatible 3.10+), **FastAPI `0.115+`**, **Pydantic `2.8+`**, **Uvicorn**, **QRCode (`Pillow`)** | Endpoints REST, validación estricta de entradas, generación dinámica de códigos QR en PNG, motor de reglas NPS/CSAT y NLP léxico. |
 | **Datos & Persistencia** | **PostgreSQL (Supabase)**, **SQLAlchemy 2.0**, **Alembic**, **Psycopg 3**, **`tzdata` (`America/Santiago`)** | Esquema dimensional (`dim_rubros`, `dim_empresas`, `dim_usuarios`, `fact_encuestas`), migraciones versionadas, RLS y cortes horarios de Chile. |
 | **Analítica & Validación** | **Python**, **`openpyxl`**, **Streamlit + Plotly** *(sandbox interno en `docs/datos/`)* | Pipeline léxico de clasificación de comentarios, generación del dataset sintético de 80 encuestas y prototipo analítico. |
-| **Calidad & Testing** | **Pytest**, **HTTPX**, **Vitest**, **Testing Library**, **Playwright + `@axe-core/playwright`**, **ESLint 9** | 149 pruebas unitarias/integración backend (SQLite en memoria), 145 pruebas frontend y auditoría automatizada de accesibilidad (desktop y móvil). |
+| **Calidad & Testing** | **Pytest**, **HTTPX**, **Vitest**, **Testing Library**, **Playwright + `@axe-core/playwright`**, **ESLint 9** | 149 pruebas unitarias/integración backend (SQLite en memoria), 279 pruebas unitarias/integración frontend (Vitest) y auditoría automatizada de accesibilidad (desktop y móvil). |
 | **Infraestructura & CI/CD** | **Vercel Services**, **GitHub Actions**, **GitHub Projects** | Despliegue unificado en región `gru1`, compilación Next.js, suite pytest y auditoría de secretos `.env` en cada push/PR. |
 
 ---
@@ -180,8 +180,8 @@ Toda la lógica metodológica y estadística está unificada entre el área de *
 | :--- | :--- | :--- | :--- |
 | `/` | `(marketing)` | Landing principal (propuesta de valor, funcionamiento, canales, aplicaciones y FAQ) | ✅ Operativa |
 | `/services`, `/pricing`, `/aboutus`, `/contactus`, `/faqs`, `/privacy`, `/terms` | `(marketing)` | Páginas informativas, planes y políticas legales | ✅ Operativas |
-| `/entrar` | `(auth)` | Pantalla de acceso para comerciantes | ✅ UI lista (pendiente enlazar sesión) |
-| `/panel` | `(panel)` | Dashboard con KPIs, evolución 30 días, distribución y últimas respuestas | 🟡 Demo estático (`panel-data.ts`) |
+| `/entrar` | `(auth)` | Pantalla de acceso para comerciantes | ✅ Conectado a `POST /api/v1/auth/login` (sesión demo `localStorage`) |
+| `/panel` | `(panel)` | Dashboard por sesión con pestañas `Resumen`, `Resultados`, `Encuesta` y `Reseñas` | ✅ Conectado a API (`/panel` y `/encuesta`, requiere sesión) |
 | `/e/[code]` | `(survey)` | Encuesta móvil QR para clientes finales | 🟡 Marcador (integración en `#14`) |
 
 ### Endpoints de la API REST (`scansaydone-back/`)
@@ -332,7 +332,7 @@ uvicorn main:app --reload                  # Levanta API en http://localhost:800
 | **Backend Tests** | `python -m pytest -v` | 149 pruebas unitarias/integración con SQLite en memoria (no requiere Supabase) |
 | **Backend Sintaxis** | `python -m py_compile main.py` | Validación sintáctica de entrada API |
 | **Frontend Lint** | `npm run lint` | Reglas ESLint 9 + Next.js |
-| **Frontend Unit** | `npm test` | Suite Vitest + Testing Library (145 pruebas) |
+| **Frontend Unit** | `npm test` | Suite Vitest + Testing Library (279 pruebas) |
 | **Frontend Build** | `npm run build` | Compilación de producción Next.js |
 | **Accesibilidad (a11y)** | `npm run test:a11y` | Build + servidor en `127.0.0.1:3120` + Playwright & `axe-core` (1440px y 375px) |
 

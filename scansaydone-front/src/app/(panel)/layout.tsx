@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PanelNavLinks } from "@/components/panel/panel-nav";
 
 export const metadata: Metadata = {
   title: "Panel — ScanSayDone",
-  description: "Panel de ejemplo con datos inventados.",
+  description:
+    "Resultados de la encuesta por negocio, con datos simulados del servicio.",
   robots: {
     index: false,
     follow: false,
@@ -33,10 +35,7 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
         className="sticky top-[56px] z-20 flex h-[44px] items-center gap-1 overflow-x-auto border-b border-border-subtle bg-surface-default px-4 focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary min-[993px]:hidden"
         style={{ scrollbarWidth: "none" }}
       >
-        <PanelNavLink active label="Resumen" />
-        <PanelNavLink label="Reseñas" disabled title="no disponible en el panel de ejemplo" />
-        <PanelNavLink label="Códigos QR" disabled title="no disponible en el panel de ejemplo" />
-        <PanelNavLink label="Ajustes" disabled title="no disponible en el panel de ejemplo" />
+        <PanelNavLinks variante="topbar" />
       </nav>
 
       {/* ── Sidebar (≥993) ──────────────────────────────────────────────── */}
@@ -61,16 +60,13 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
 
         {/* Nav */}
         <nav aria-label="Navegación del panel" className="flex flex-1 flex-col gap-1 px-3 py-4">
-          <SidebarNavLink active label="Resumen" />
-          <SidebarNavLink label="Reseñas" disabled title="no disponible en el panel de ejemplo" />
-          <SidebarNavLink label="Códigos QR" disabled title="no disponible en el panel de ejemplo" />
-          <SidebarNavLink label="Ajustes" disabled title="no disponible en el panel de ejemplo" />
+          <PanelNavLinks variante="sidebar" />
         </nav>
 
         {/* Footer */}
         <div className="border-t border-border-subtle px-6 py-4">
           <p className="font-ui text-[13px] text-text-secondary">
-            Sesión de demostración. No hay cuenta real detrás.
+            Datos simulados del servicio · no son clientes reales.
           </p>
         </div>
       </aside>
@@ -94,130 +90,3 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
   );
 }
 
-/* ── Link components ─────────────────────────────────────────────────────── */
-
-function SidebarNavLink({
-  label,
-  active,
-  disabled,
-  title,
-}: {
-  label: string;
-  active?: boolean;
-  disabled?: boolean;
-  title?: string;
-}) {
-  const base =
-    "flex h-[44px] items-center rounded-[6px] px-3 font-ui text-[14px] font-medium focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary";
-
-  if (active) {
-    return (
-      <span
-        aria-current="page"
-        className={`${base} font-semibold text-text-primary`}
-        style={{
-          background: "color-mix(in srgb, #F0D8BD 62%, #FFFFFF)",
-          borderLeft: "3px solid #8A6F55",
-          transition: "color 150ms, background-color 150ms",
-        }}
-      >
-        {label}
-      </span>
-    );
-  }
-
-  if (disabled) {
-    return (
-      <span
-        role="link"
-        aria-disabled="true"
-        title={title}
-        className={`${base} cursor-not-allowed text-text-secondary`}
-      >
-        {label}
-      </span>
-    );
-  }
-
-  return (
-    <span
-      className={`${base} text-text-secondary`}
-      style={{
-        transition: "color 150ms, background-color 150ms",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "color-mix(in srgb, #F0D8BD 35%, #FFFFFF)";
-        e.currentTarget.style.color = "#1A181B";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "";
-        e.currentTarget.style.color = "";
-      }}
-    >
-      {label}
-    </span>
-  );
-}
-
-function PanelNavLink({
-  label,
-  active,
-  disabled,
-  title,
-}: {
-  label: string;
-  active?: boolean;
-  disabled?: boolean;
-  title?: string;
-}) {
-  const base =
-    "flex h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-[6px] px-3 font-ui text-[14px] font-medium focus-visible:outline-[3px] focus-visible:outline-offset-[-3px] focus-visible:outline-text-primary";
-
-  if (active) {
-    return (
-      <span
-        aria-current="page"
-        className={`${base} font-semibold text-text-primary`}
-        style={{
-          background: "color-mix(in srgb, #F0D8BD 62%, #FFFFFF)",
-          borderLeft: "3px solid #8A6F55",
-          transition: "color 150ms, background-color 150ms",
-        }}
-      >
-        {label}
-      </span>
-    );
-  }
-
-  if (disabled) {
-    return (
-      <span
-        role="link"
-        aria-disabled="true"
-        title={title}
-        className={`${base} cursor-not-allowed text-text-secondary`}
-      >
-        {label}
-      </span>
-    );
-  }
-
-  return (
-    <span
-      className={`${base} text-text-secondary`}
-      style={{
-        transition: "color 150ms, background-color 150ms",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "color-mix(in srgb, #F0D8BD 35%, #FFFFFF)";
-        e.currentTarget.style.color = "#1A181B";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "";
-        e.currentTarget.style.color = "";
-      }}
-    >
-      {label}
-    </span>
-  );
-}
