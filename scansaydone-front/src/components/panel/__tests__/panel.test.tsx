@@ -1,286 +1,427 @@
 /// <reference types="vitest/globals" />
-import { render, screen, within, fireEvent } from "@testing-library/react";
+import { render, screen, within, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import PanelPage from "@/app/(panel)/panel/page";
+import { PanelNavLinks } from "@/components/panel/panel-nav";
+import { CLAVE_SESION, guardarSesion, leerSesion } from "@/lib/auth/sesion";
+import type { EncuestaEmpresa } from "@/lib/api/encuesta";
+import {
+  payloadPanelReal,
+} from "@/test/fixtures/panel";
 
-describe("PanelPage", () => {
+/**
+ * Panel dependiente de la sesión (mockeada en localStorage):
+ * - Sin sesión → redirect a /entrar y esqueleto sin cifras.
+ * - Con sesión (empresa 1 del fixture) → cabecera con el nombre del
+ *   negocio, botón «Cerrar sesión», sin selector, y los módulos
+ *   alimentados con el empresa_id guardado.
+ */
+
+const pushMock = vi.fn();
+const replaceMock = vi.fn();
+// Identidad estable: useRouter devuelve SIEMPRE este mismo objeto. Si
+// devolviera un literal nuevo por llamada, cualquier efecto con [router]
+// re-dispararía en cada render.
+const routerMock = { push: pushMock, replace: replaceMock };
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => routerMock,
+}));
+
+const SESION_EMPRESA_1 = {
+  usuario: "minimarket_don_lucho",
+  empresa_id: 1,
+  nombre_negocio: "Minimarket Don Lucho",
+};
+
+function payloadEncuesta(id: number, nombre: string): EncuestaEmpresa {
+  return {
+    empresa_id: id,
+    nombre_negocio: nombre,
+    rubro: "Rubro de prueba",
+    preguntas: {
+      p1: { texto: "¿Qué nota le pones a la experiencia?", escala: [0, 10] },
+      p2: { texto: "¿Qué tan satisfecho quedaste?", escala: [1, 5] },
+      p3: {
+        texto: "¿Qué nota le pones al atributo tres?",
+        etiqueta: "Atributo tres",
+        escala: [1, 5],
+      },
+      p4: {
+        texto: "¿Qué nota le pones al atributo cuatro?",
+        etiqueta: "Atributo cuatro",
+        escala: [1, 5],
+      },
+      p5: { texto: "Cuéntanos qué pasó", max_caracteres: 500 },
+    },
+  };
+}
+
+const ENCUESTA_1 = payloadEncuesta(1, SESION_EMPRESA_1.nombre_negocio);
+
+/** Stub de fetch: panel + encuesta de la empresa de la sesión; resto 404. */
+function stubFetchServicio() {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (url: string) => {
+      const panel = String(url).match(/\/api\/v1\/empresas\/(\d+)\/panel$/);
+      if (panel) {
+        const id = Number(panel[1]);
+        if (payloadPanelReal(id)) {
+          return {
+            status: 200,
+            ok: true,
+            headers: {
+              get: (nombre: string) =>
+                nombre.toLowerCase() === "content-type"
+                  ? "application/json"
+                  : null,
+            },
+            json: async () => payloadPanelReal(id),
+          };
+        }
+        return { status: 404, ok: false, json: async () => ({}) };
+      }
+
+      const encuesta = String(url).match(/\/api\/v1\/empresas\/(\d+)\/encuesta$/);
+      if (encuesta) {
+        const id = Number(encuesta[1]);
+        if (id === 1) {
+          return {
+            status: 200,
+            ok: true,
+            headers: {
+              get: (nombre: string) =>
+                nombre.toLowerCase() === "content-type"
+                  ? "application/json"
+                  : null,
+            },
+            json: async () => ENCUESTA_1,
+          };
+        }
+        return { status: 404, ok: false, json: async () => ({}) };
+      }
+
+      return { status: 404, ok: false, json: async () => ({}) };
+    }),
+  );
+}
+
+function abrirPestana(nombre: "Resumen" | "Resultados" | "Encuesta" | "Reseñas") {
+  fireEvent.click(screen.getByRole("tab", { name: nombre }));
+}
+
+describe("PanelPage: dependiente de la sesión", () => {
   beforeEach(() => {
+    window.localStorage.clear();
+    pushMock.mockClear();
+    replaceMock.mockClear();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    window.localStorage.clear();
+    window.history.replaceState(null, "", "#");
+  });
+
+  it("1. sin sesión: redirige a /entrar y no muestra cifras ni pestañas", async () => {
+    stubFetchServicio();
     render(<PanelPage />);
-  });
 
-  it("1. hay exactamente un h1", () => {
-    const h1s = screen.getAllByRole("heading", { level: 1 });
-    expect(h1s).toHaveLength(1);
-    expect(h1s[0]).toHaveTextContent("Panel de ejemplo");
-  });
-
-  it("2. los tres KPIs muestran 8,5 / 486 / 377", () => {
-    // Scope to B2 section to avoid sr-only tables
-    const resumen = screen.getByRole("region", { name: /Resumen/i });
-    expect(within(resumen).getByText("8,5")).toBeInTheDocument();
-    expect(within(resumen).getByText("486")).toBeInTheDocument();
-    // 377 appears inside "377 (77,6 %)"
-    expect(within(resumen).getByText(/377/)).toBeInTheDocument();
-  });
-
-  it("3. hay exactamente 11 barras de distribución", () => {
-    // Desktop SVG has 11 bar rects (track rects removed for visual clarity)
-    const barsSvg = document.querySelector('[aria-labelledby="b4-svg-title"]');
-    expect(barsSvg).toBeInTheDocument();
-    const rects = barsSvg!.querySelectorAll("rect");
-    // 11 bar rects only (no track rects)
-    expect(rects).toHaveLength(11);
-  });
-
-  it("4. la tabla de canales tiene caption, th scope y suma 486", () => {
-    const tables = document.querySelectorAll("table");
-    // Find the channel table by its caption
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
+    // El efecto de montaje manda a /entrar…
+    await waitFor(() => {
+      expect(replaceMock).toHaveBeenCalledWith("/entrar");
     });
-    expect(channelTable).toBeInTheDocument();
 
-    // Has th scope
-    const colHeaders = channelTable!.querySelectorAll('th[scope="col"]');
-    expect(colHeaders.length).toBeGreaterThan(0);
-    const rowHeaders = channelTable!.querySelectorAll('th[scope="row"]');
-    expect(rowHeaders.length).toBeGreaterThan(0);
-
-    // Sum of channel values = 486
-    const dataCells = channelTable!.querySelectorAll("tbody td:nth-child(2)");
-    const sum = Array.from(dataCells).reduce((acc, td) => {
-      return acc + parseInt(td.textContent || "0", 10);
-    }, 0);
-    expect(sum).toBe(486);
+    // …y mientras tanto solo hay esqueleto: ni pestañas, ni cifras, ni
+    // consultas al servicio del negocio.
+    expect(screen.queryByRole("tab")).not.toBeInTheDocument();
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    expect(screen.queryByText(/^20$/)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/por día/)).not.toBeInTheDocument();
   });
 
-  it("5. hay 5 filas de últimas respuestas", () => {
-    const responseSection = screen.getByRole("region", { name: /Últimas respuestas/i });
-    const listItems = within(responseSection).getAllByRole("listitem");
-    expect(listItems).toHaveLength(5);
-  });
+  it("2. con sesión: cabecera con el nombre del negocio, sin selector, y cifras de SU empresa", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-  it("6. el chip DEMO y la línea de declaración están presentes", () => {
-    const demoChip = screen.getByText("DEMO");
-    expect(demoChip).toBeInTheDocument();
-
-    const declaration = screen.getByText(
-      /Ves un panel de ejemplo con datos inventados/
-    );
-    expect(declaration).toBeInTheDocument();
-  });
-
-  it("7. el pie tiene el texto exacto del plano", () => {
-    const footerText = screen.getByText(
-      /^Panel de ejemplo con datos inventados\. No pertenece a ningún negocio real\.$/
-    );
-    expect(footerText).toBeInTheDocument();
-    expect(footerText.closest("footer")).toBeInTheDocument();
-  });
-
-  it("8. filtros y exportar están deshabilitados (aria-disabled, sin href/onClick)", () => {
-    // Date filters
-    const filter7 = screen.getByRole("button", { name: "7 días" });
-    const filter30 = screen.getByRole("button", { name: "30 días" });
-    const filter90 = screen.getByRole("button", { name: "90 días" });
-    expect(filter7).toHaveAttribute("aria-disabled", "true");
-    expect(filter30).toHaveAttribute("aria-disabled", "true");
-    expect(filter90).toHaveAttribute("aria-disabled", "true");
-    expect(filter7).not.toHaveAttribute("href");
-
-    // Export CSV
-    const exportBtn = screen.getByRole("button", { name: /Exportar CSV/i });
-    expect(exportBtn).toHaveAttribute("aria-disabled", "true");
-    expect(exportBtn).not.toHaveAttribute("href");
-
-    // D6: no hay un tercer "Ajustes" sobre el bloque de últimas respuestas
-    const ajustesButtons = screen.queryAllByText(/Ajustes/i);
-    // Solo los dos esperados: el control de la página y el ítem de navegación
-    expect(ajustesButtons.length).toBeLessThanOrEqual(2);
+    // Cabecera: nombre del negocio de la sesión + cerrar sesión.
+    expect(screen.getByText("Minimarket Don Lucho")).toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: /Ajustes del panel/i })
-    ).not.toBeInTheDocument();
+      screen.getByRole("button", { name: "Cerrar sesión" }),
+    ).toBeInTheDocument();
+
+    // Nada de selector de negocio en el panel.
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+
+    // Resumen de la empresa 1 del fixture: 20 respuestas, recomendación
+    // neta 25,0 y media 8,05 (números oficiales de su agregado).
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
+    expect(screen.getByText(/^20$/)).toBeInTheDocument();
+    expect(screen.getByText("8,05")).toBeInTheDocument();
+
+    // Ya no existe la tabla de 4 negocios ni los nombres ajenos.
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    expect(screen.queryByText("Café Rincón Andino")).not.toBeInTheDocument();
+    expect(screen.queryByText("Peluquería Estilo Sur")).not.toBeInTheDocument();
+    expect(screen.queryByText("Cosmos Accesorios")).not.toBeInTheDocument();
   });
 
-  it("9. ningún enlace apunta a rutas vacías (/privacy, /terms, /pricing, /faqs, /aboutus, /services)", () => {
-    const forbiddenRoutes = ["/privacy", "/terms", "/pricing", "/faqs", "/aboutus", "/services"];
-    const links = screen.queryAllByRole("link");
-    const hrefs = links.map((l) => l.getAttribute("href")).filter(Boolean);
+  it("3. la etiqueta obligatoria de datos simulados está presente", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-    forbiddenRoutes.forEach((route) => {
-      expect(hrefs).not.toContain(route);
-    });
+    expect(
+      screen.getByText(
+        "Datos simulados del servicio · 19 al 31 de octubre · no son clientes reales",
+      ),
+    ).toBeInTheDocument();
+    // El resumen llega (no queda en "consultando").
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
   });
 
-  it("10. el SVG de evolución tiene nombre accesible (role=img + title)", () => {
-    const evoSvg = document.querySelector('[aria-labelledby="b3-svg-title"]');
-    expect(evoSvg).toBeInTheDocument();
-    expect(evoSvg).toHaveAttribute("role", "img");
+  it("4. gráfico por día de la empresa (11 días con respuestas) y bloques 2/17/1", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-    const title = evoSvg!.querySelector("title");
-    expect(title).toBeInTheDocument();
-    expect(title!.id).toBe("b3-svg-title");
-    expect(title!.textContent).toContain("Reseñas por día durante 30 días");
-  });
-
-  it("11. D1: fila Total con 486 y 100 % más nota de redondeo", () => {
-    const tables = document.querySelectorAll("table");
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
-    });
-    expect(channelTable).toBeInTheDocument();
-
-    const tfoot = channelTable!.querySelector("tfoot");
-    expect(tfoot).toBeInTheDocument();
-
-    const totalRow = tfoot!.querySelector("tr");
-    expect(totalRow).toBeInTheDocument();
-
-    const totalTh = totalRow!.querySelector('th[scope="row"]');
-    expect(totalTh).toHaveTextContent("Total");
-
-    const totalTds = totalRow!.querySelectorAll("td");
-    expect(totalTds[0]).toHaveTextContent("486");
-    expect(totalTds[1]).toHaveTextContent("100 %");
-
-    const roundingNote = screen.getByText("Las partes suman 99,9 % por redondeo.");
-    expect(roundingNote).toBeInTheDocument();
-  });
-
-  it("12. D2: chip numérico de nota por fila con sr-only", () => {
-    const responseSection = screen.getByRole("region", { name: /Últimas respuestas/i });
-    
-    const srOnlyNotes = within(responseSection).getAllByText(/Nota \d+ sobre 10/);
-    expect(srOnlyNotes.length).toBeGreaterThanOrEqual(5);
-
-    // §13: scope to list items only (not section title which also has font-bold)
-    const listItems = within(responseSection).getAllByRole("listitem");
-    const chips = listItems.flatMap((li) => Array.from(li.querySelectorAll(".font-bold")));
-    expect(chips.length).toBe(5);
-  });
-
-  it("13. D4: fila sin texto con literal", () => {
-    const noTextMessage = screen.getByText("Reseña sin texto del comensal.");
-    expect(noTextMessage).toBeInTheDocument();
-  });
-
-  it("14. D4: cita reescrita sin cifras de tiempo", () => {
-    const rewrittenQuote = screen.getByText(/La comida bien, pero la espera fue larga/);
-    expect(rewrittenQuote).toBeInTheDocument();
-
-    const oldQuote = screen.queryByText(/30 minutos/);
-    expect(oldQuote).not.toBeInTheDocument();
-  });
-
-  it("15. D5: interruptor con role=switch y cambio de estado", () => {
-    const toggle = screen.getByRole("switch");
-    expect(toggle).toBeInTheDocument();
-    expect(toggle).toHaveAttribute("aria-checked", "true");
-
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute("aria-checked", "false");
-
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute("aria-checked", "true");
-  });
-
-  it("16. D5: estado vacío muestra textos literales y oculta B3/B4/B5", () => {
-    const toggle = screen.getByRole("switch");
-    fireEvent.click(toggle);
-
-    const emptySubtitle = screen.getByText(
-      "Ves el panel de ejemplo vacío. No hay datos reales en ninguna cuenta."
+    const dia = await screen.findByLabelText(
+      "Cantidad de respuestas por día, de la más antigua a la más reciente",
     );
-    expect(emptySubtitle).toBeInTheDocument();
+    const barras = within(dia).getAllByRole("listitem");
+    // La serie de la empresa 1 tiene 11 días con respuestas.
+    expect(barras).toHaveLength(11);
+    expect(barras[0]).toHaveAttribute("aria-label", "19-10: 1 respuesta");
+    expect(barras.at(-1)).toHaveAttribute("aria-label", "31-10: 1 respuesta");
 
-    const emptyB2Note = screen.getByText(
-      "Así verías el panel antes de la primera reseña."
+    // Bloques del fixture empresa 1: Mañana 2 · Tarde 17 · Noche 1
+    // (muestra mínima en Mañana y Noche).
+    const momento = screen.getByLabelText(
+      "Cantidad de respuestas por momento del día",
     );
-    expect(emptyB2Note).toBeInTheDocument();
+    const bloques = within(momento).getAllByRole("listitem");
+    expect(within(bloques[0]).getByText("2")).toBeInTheDocument();
+    expect(within(bloques[1]).getByText("17")).toBeInTheDocument();
+    expect(within(bloques[2]).getByText("1")).toBeInTheDocument();
+    expect(within(bloques[2]).getByText("muestra mínima")).toBeInTheDocument();
+  });
 
-    const emptyB6Note = screen.getByText(
-      "Todavía no hay respuestas que mostrar. Cada reseña nueva ocupa una fila como esta."
+  it("5. distribución 11 filas (notas 0 a 10)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+
+    const distribucion = await screen.findByLabelText(
+      "Cantidad de respuestas por nota, de la 0 a la 10",
     );
-    expect(emptyB6Note).toBeInTheDocument();
-
-    const b3 = screen.queryByRole("region", { name: /Últimos 30 días/i });
-    expect(b3).not.toBeInTheDocument();
-
-    const b4 = screen.queryByRole("region", { name: /Notas, de la 0 a la 10/i });
-    expect(b4).not.toBeInTheDocument();
-
-    const b5 = screen.queryByRole("region", { name: /De dónde llegan las reseñas/i });
-    expect(b5).not.toBeInTheDocument();
+    expect(within(distribucion).getAllByRole("listitem")).toHaveLength(11);
   });
 
-  it("17. D5: en estado vacío, chip DEMO y pie permanecen intactos", () => {
-    const toggle = screen.getByRole("switch");
-    fireEvent.click(toggle);
+  it("6. ninguna palabra prohibida aparece en el panel", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
 
-    const demoChip = screen.getByText("DEMO");
-    expect(demoChip).toBeInTheDocument();
+    const texto = (document.body.textContent ?? "").toLowerCase();
+    const prohibidas = [
+      "kpi",
+      "csat",
+      "nps",
+      "score",
+      "dashboard",
+      "insights",
+      "tiempo real",
+      "en construcción",
+      "próximamente",
+      "proximamente",
+      "demo",
+      "ejemplo",
+    ];
+    const encontradas = prohibidas.filter((p) => texto.includes(p));
+    expect(encontradas).toEqual([]);
+  });
 
-    const footerText = screen.getByText(
-      /^Panel de ejemplo con datos inventados\. No pertenece a ningún negocio real\.$/
+  it("7. pestañas sin selector: Resultados usa el empresa_id de la sesión", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+
+    abrirPestana("Resultados");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute(
+      "id",
+      "panel-resultados",
     );
-    expect(footerText).toBeInTheDocument();
-    expect(footerText.closest("footer")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Resultados" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+
+    // Empresa 1 del fixture: recomendación neta 25,0 y media 8,05, sin
+    // pasar por selector.
+    expect(
+      await screen.findByRole("heading", { name: "Resultados de este negocio" }),
+    ).toBeInTheDocument();
+    expect(await screen.findByText("25,0")).toBeInTheDocument();
+    expect(screen.getByText("8,05")).toBeInTheDocument();
   });
 
-  // ── §13 visual upgrade tests ────────────────────────────────────────────
+  it("8. pestaña Encuesta usa el empresa_id de la sesión", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-  it("§13-1: no duplicate brand text in panel page", () => {
-    // Lockup is in layout, not PanelPage. Test that panel page doesn't duplicate brand.
-    // §13 F-O8: brand text replaced by lockup in layout
-    const brandTexts = screen.queryAllByText("ScanSayDone");
-    // PanelPage should not contain "ScanSayDone" text (it's in layout as Image)
-    expect(brandTexts.length).toBe(0);
+    abrirPestana("Encuesta");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-encuesta");
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", {
+        name: "Encuesta definida para este negocio",
+      }),
+    ).toBeInTheDocument();
   });
 
-  it("§13-4: three KPI numbers use Bebas font at 36px", () => {
-    const resumen = screen.getByRole("region", { name: /Resumen/i });
-    // Find all numbers in KPI cards (8,5 / 486 / 377) — font-display maps to Bebas
-    const kpiNumbers = resumen.querySelectorAll(".font-display");
-    expect(kpiNumbers.length).toBe(3);
+  it("9. pestaña Reseñas usa el empresa_id de la sesión (20 · 17 · 5)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-    // Check that all use font-display class (maps to Bebas via CSS var --font-display)
-    kpiNumbers.forEach((el) => {
-      expect(el.className).toContain("font-display");
+    abrirPestana("Reseñas");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-resenas");
+    expect(screen.queryByLabelText("Negocio")).not.toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "Reseñas de este negocio" }),
+    ).toBeInTheDocument();
+
+    // Empresa 1 del fixture: 20 reseñas · 17 con comentario · 5 con alerta.
+    expect(
+      await screen.findByText("20 reseñas · 17 con comentario · 5 con alerta"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Mostrando 20 de 20 reseñas")).toBeInTheDocument();
+  });
+
+  it("10. cerrar sesión: borra ssd.sesion y navega a /entrar", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+
+    const user = userEvent.setup();
+    await user.click(await screen.findByRole("button", { name: "Cerrar sesión" }));
+
+    expect(window.localStorage.getItem(CLAVE_SESION)).toBeNull();
+    expect(leerSesion()).toBeNull();
+    expect(replaceMock).toHaveBeenCalledWith("/entrar");
+  });
+
+  it("11. sesión corrupta se trata como sin sesión", async () => {
+    stubFetchServicio();
+    window.localStorage.setItem(CLAVE_SESION, "{no-es-json");
+    render(<PanelPage />);
+
+    await waitFor(() => {
+      expect(replaceMock).toHaveBeenCalledWith("/entrar");
     });
-
-    // Check font-size class is text-[36px] or text-[32px] (jsdom can't compute computed style)
-    kpiNumbers.forEach((el) => {
-      const cls = el.className;
-      const hasSize = cls.includes("text-[36px]") || cls.includes("text-[32px]");
-      expect(hasSize).toBe(true);
-    });
+    expect(screen.queryByRole("tab")).not.toBeInTheDocument();
   });
 
-  it("§13-5: section titles have vertical filete (3×16 #8A6F55)", () => {
-    // Check that section titles have the filete structure
-    const sectionTitles = document.querySelectorAll("h2[id^='b']");
-    expect(sectionTitles.length).toBeGreaterThan(0);
+  it("12. navegación por teclado: la flecha derecha activa y enfoca Resultados", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
 
-    // Check first section title (Resumen)
-    const b2Title = document.getElementById("b2-title");
-    expect(b2Title).toBeInTheDocument();
-    
-    // Check it has the filete span (aria-hidden decorative element)
-    const filete = b2Title!.querySelector('span[aria-hidden="true"]');
-    expect(filete).toBeInTheDocument();
+    const tablist = await screen.findByRole("tablist");
+    fireEvent.keyDown(tablist, { key: "ArrowRight" });
+
+    expect(screen.getByRole("tab", { name: "Resultados" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByRole("tabpanel")).toHaveAttribute(
+      "id",
+      "panel-resultados",
+    );
+    expect(document.activeElement).toBe(
+      screen.getByRole("tab", { name: "Resultados" }),
+    );
+
+    // La flecha izquierda vuelve a Resumen (orden circular).
+    fireEvent.keyDown(tablist, { key: "ArrowLeft" });
+    expect(screen.getByRole("tab", { name: "Resumen" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
   });
 
-  it("§13-8: Total row still shows 486 and 100 %", () => {
-    const tables = document.querySelectorAll("table");
-    const channelTable = Array.from(tables).find((t) => {
-      const caption = t.querySelector("caption");
-      return caption?.textContent?.includes("Reseñas por canal");
-    });
-    const tfoot = channelTable!.querySelector("tfoot");
-    const totalRow = tfoot!.querySelector("tr");
-    const totalTds = totalRow!.querySelectorAll("td");
-    expect(totalTds[0]).toHaveTextContent("486");
-    expect(totalTds[1]).toHaveTextContent("100 %");
+  it("13. el hash sincroniza la pestaña (enlaces de la navegación lateral)", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+    await screen.findByRole("tablist");
+
+    window.location.hash = "#encuesta";
+    fireEvent(window, new Event("hashchange"));
+
+    expect(screen.getByRole("tab", { name: "Encuesta" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("id", "panel-encuesta");
+
+    // Un hash desconocido cae a Resumen.
+    window.location.hash = "#cualquiera";
+    fireEvent(window, new Event("hashchange"));
+    expect(screen.getByRole("tab", { name: "Resumen" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  });
+
+  it("14. activar una pestaña actualiza el hash de la URL", async () => {
+    stubFetchServicio();
+    guardarSesion(SESION_EMPRESA_1);
+    render(<PanelPage />);
+    await screen.findByRole("tablist");
+
+    abrirPestana("Resultados");
+    expect(window.location.hash).toBe("#resultados");
+  });
+});
+
+describe("PanelNavLinks: navegación lateral", () => {
+  it("15. los módulos vivos son anclas de hash y Resumen queda activo por defecto", () => {
+    render(<PanelNavLinks variante="sidebar" />);
+
+    const resumen = screen.getByRole("link", { name: "Resumen" });
+    expect(resumen).toHaveAttribute("href", "#resumen");
+    expect(resumen).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Resultados" })).toHaveAttribute(
+      "href",
+      "#resultados",
+    );
+    expect(screen.getByRole("link", { name: "Encuesta" })).toHaveAttribute(
+      "href",
+      "#encuesta",
+    );
+    expect(screen.getByRole("link", { name: "Reseñas" })).toHaveAttribute(
+      "href",
+      "#resenas",
+    );
+  });
+
+  it("16. Códigos QR y Ajustes quedan visibles pero deshabilitados, sin href", () => {
+    render(<PanelNavLinks variante="topbar" />);
+
+    for (const nombre of ["Códigos QR", "Ajustes"]) {
+      const item = screen.getByRole("link", { name: nombre });
+      expect(item).toHaveAttribute("aria-disabled", "true");
+      expect(item).not.toHaveAttribute("href");
+    }
+
+    // Reseñas ya es un módulo vivo: enlace real, nunca deshabilitado.
+    const resenas = screen.getByRole("link", { name: "Reseñas" });
+    expect(resenas).toHaveAttribute("href", "#resenas");
+    expect(resenas).not.toHaveAttribute("aria-disabled");
   });
 });
