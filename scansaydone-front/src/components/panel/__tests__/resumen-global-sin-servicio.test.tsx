@@ -123,6 +123,9 @@ describe("ResumenEmpresa: cifras del negocio de la sesión", () => {
     const tarjetaRespuestas = screen.getByText("Respuestas").closest("div");
     expect(tarjetaRespuestas).toBeInTheDocument();
     expect(within(tarjetaRespuestas!).getByText("20")).toBeInTheDocument();
+    expect(
+      within(tarjetaRespuestas!).getByText("del 19-10-2026 al 31-10-2026"),
+    ).toBeInTheDocument();
 
     const tarjetaMedia = screen.getByText("Media").closest("div");
     expect(within(tarjetaMedia!).getByText("8,05")).toBeInTheDocument();

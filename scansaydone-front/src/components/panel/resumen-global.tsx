@@ -18,7 +18,12 @@
  */
 import { useEffect, useState } from "react";
 import { obtenerPanelEmpresa, type PanelEmpresaDatos } from "@/lib/api/panel";
-import { formatear1, formatearDiaMes, formatearMedia } from "@/lib/panel/calculos";
+import {
+  formatear1,
+  formatearDiaMes,
+  formatearFechaCL,
+  formatearMedia,
+} from "@/lib/panel/calculos";
 import {
   contarPorBloqueHorario,
   esMuestraMinima,
@@ -120,6 +125,19 @@ export function ResumenEmpresa({ empresaId }: { empresaId: number }) {
 
 // ── Datos del resumen (fase ok) ────────────────────────────────────────────
 
+function detalleRangoFechas(
+  desde: string | null,
+  hasta: string | null,
+  total: number,
+): string {
+  if (total === 0 || !desde || !hasta) {
+    return "sin respuestas registradas";
+  }
+  const inicio = formatearFechaCL(desde);
+  const fin = formatearFechaCL(hasta);
+  return inicio === fin ? `el ${inicio}` : `del ${inicio} al ${fin}`;
+}
+
 function ResumenDatos({
   panel,
   serie,
@@ -137,7 +155,7 @@ function ResumenDatos({
         <Cifra
           label="Respuestas"
           value={String(a.respuestas)}
-          detail="entre el 19 y el 31 de octubre"
+          detail={detalleRangoFechas(a.desde, a.hasta, a.respuestas)}
         />
         <Cifra
           label="Media"

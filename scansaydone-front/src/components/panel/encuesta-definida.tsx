@@ -125,16 +125,16 @@ function Definicion({ encuesta }: { encuesta: EncuestaEmpresa }) {
           Pregunta 5 · Respuesta abierta
         </dt>
         <dd className="mt-1 font-ui text-[14px] text-text-primary">
-          {p5.texto}
+          <p>{p5.texto}</p>
+          <div
+            aria-hidden="true"
+            className="mt-2 min-h-[72px] rounded-[4px] border p-3 font-ui text-[14px] text-text-secondary"
+            style={{ background: "#FFFFFF", borderColor: "#D9C0A0" }}
+          >
+            El cliente escribe su respuesta (máximo {p5.max_caracteres}{" "}
+            caracteres)
+          </div>
         </dd>
-        <div
-          aria-hidden="true"
-          className="mt-2 min-h-[72px] rounded-[4px] border p-3 font-ui text-[14px] text-text-secondary"
-          style={{ background: "#FFFFFF", borderColor: "#D9C0A0" }}
-        >
-          El cliente escribe su respuesta (máximo {p5.max_caracteres}{" "}
-          caracteres)
-        </div>
       </div>
     </dl>
   );
@@ -154,8 +154,10 @@ function PreguntaEscala({
       <dt className="font-ui text-[13px] font-semibold text-text-secondary">
         Pregunta {numero}
       </dt>
-      <dd className="mt-1 font-ui text-[14px] text-text-primary">{texto}</dd>
-      <ChipsEscala escala={escala} />
+      <dd className="mt-1 font-ui text-[14px] text-text-primary">
+        <p>{texto}</p>
+        <ChipsEscala escala={escala} />
+      </dd>
     </div>
   );
 }
@@ -176,8 +178,10 @@ function PreguntaEtiquetada({
       <dt className="font-ui text-[13px] font-semibold text-text-secondary">
         Pregunta {numero} · {etiqueta}
       </dt>
-      <dd className="mt-1 font-ui text-[14px] text-text-primary">{texto}</dd>
-      <ChipsEscala escala={escala} />
+      <dd className="mt-1 font-ui text-[14px] text-text-primary">
+        <p>{texto}</p>
+        <ChipsEscala escala={escala} />
+      </dd>
     </div>
   );
 }
