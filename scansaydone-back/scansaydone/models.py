@@ -97,3 +97,18 @@ class Encuesta(Base):
     semana_anio: Mapped[int] = mapped_column(SmallInteger)
     dia_semana: Mapped[str] = mapped_column(String(9))
     bloque_horario: Mapped[str] = mapped_column(String(6))
+
+
+class Usuario(Base):
+    """Usuario del login de demostración: uno por empresa (se reemplaza por Supabase Auth)."""
+
+    __tablename__ = "dim_usuarios"
+    __table_args__ = (UniqueConstraint("usuario", name="uq_dim_usuarios_usuario"),)
+
+    usuario_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    usuario: Mapped[str] = mapped_column(String(40))
+    hash_contrasena: Mapped[str] = mapped_column(String(255))
+    empresa_id: Mapped[int] = mapped_column(Integer, ForeignKey("dim_empresas.empresa_id"))
+    creado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    empresa: Mapped[Empresa] = relationship()

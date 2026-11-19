@@ -12,7 +12,7 @@ from sqlalchemy.exc import OperationalError
 
 from scansaydone import config
 from scansaydone.config import ConfiguracionError
-from scansaydone.routers import analytics, empresas, general, qr, respuestas
+from scansaydone.routers import analytics, auth, empresas, general, qr, respuestas
 
 logger = logging.getLogger("scansaydone")
 
@@ -54,3 +54,4 @@ app.include_router(qr.router)
 app.include_router(analytics.router)
 app.include_router(respuestas.router)
 app.include_router(empresas.router)
+app.include_router(auth.router)
