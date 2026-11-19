@@ -137,7 +137,7 @@ sequenceDiagram
 
 | Capa | Tecnologías Principales | Propósito en el Proyecto |
 | :--- | :--- | :--- |
-| **Frontend Web** | **Next.js `16.4.3`** (App Router, Turbopack), **React `19.3`**, **TypeScript 5**, **Tailwind CSS 4** | Landing comercial, portal de acceso (`/entrar`), panel de resultados (`/panel`) y encuesta móvil QR (`/e/[code]`). |
+| **Frontend Web** | **Next.js `16.4.6`** (App Router, Turbopack), **React `19.3`**, **TypeScript 5**, **Tailwind CSS 4** | Landing comercial, portal de acceso (`/entrar`), panel de resultados (`/panel`) y encuesta móvil QR (`/e/[code]`). |
 | **Backend API** | **Python 3.11** (compatible 3.10+), **FastAPI `0.115+`**, **Pydantic `2.8+`**, **Uvicorn**, **QRCode (`Pillow`)** | Endpoints REST, validación estricta de entradas, generación dinámica de códigos QR en PNG, motor de reglas NPS/CSAT y NLP léxico. |
 | **Datos & Persistencia** | **PostgreSQL (Supabase)**, **SQLAlchemy 2.0**, **Alembic**, **Psycopg 3**, **`tzdata` (`America/Santiago`)** | Esquema dimensional (`dim_rubros`, `dim_empresas`, `dim_usuarios`, `fact_encuestas`), migraciones versionadas, RLS y cortes horarios de Chile. |
 | **Analítica & Validación** | **Python**, **`openpyxl`**, **Streamlit + Plotly** *(sandbox interno en `docs/datos/`)* | Pipeline léxico de clasificación de comentarios, generación del dataset sintético de 80 encuestas y prototipo analítico. |
