@@ -5,8 +5,8 @@
 * **Ubicación en el Monorepo:** `/scansaydone-front`
 * **Tecnologías:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Vercel.
 * **Integrantes Asignados:**
-  - **Desarrollador Frontend Principal:** `[Nombre por asignar]` (`@usuario_github`)
-  - **Desarrollador Frontend / UI:** `[Nombre por asignar]` (`@usuario_github`)
+  - **Desarrollador Frontend Principal:** Nicolás López Vásquez ([`@nicolaslopezv`](https://github.com/nicolaslopezv) · Discord: `@nicolopezvasquez1623`)
+  - **Apoyo Frontend / UI:** `[Por asignar según disponibilidad]`
 
 ---
 

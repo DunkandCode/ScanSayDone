@@ -4,7 +4,9 @@
 * **Área:** Experiencia de Usuario, Arquitectura de Información & Diseño de Interfaces.
 * **Herramientas:** Figma, Whimsical / Miro, Tailwind UI, Material Icons.
 * **Integrantes Asignados:**
-  - **Diseñador UX / UI Principal:** `[Nombre por asignar]` (`@usuario_github`)
+  - **Diseñador UX / UI:** Thomas Rain ([`@thomasrain05-design`](https://github.com/thomasrain05-design) · Discord: `@partypankakes12`)
+  - **Diseñador UX / UI:** Adrián `[Apellido por confirmar]` ([`@adrianoux8`](https://github.com/adrianoux8))
+  - **Validación Comercial & Pilotos en Terreno:** Fabiana Cueto *(Discord: `@fabianzd` · contacto con comercios piloto y validación de formularios)*
 
 ---
 

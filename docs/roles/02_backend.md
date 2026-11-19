@@ -5,8 +5,8 @@
 * **Ubicación en el Monorepo:** `/scansaydone-back`
 * **Tecnologías:** Python 3.10+, FastAPI, Uvicorn, Pydantic, SQLAlchemy, Alembic, QRCode (Pillow), PostgreSQL (Supabase).
 * **Integrantes Asignados:**
-  - **Desarrollador Backend Principal:** `[Nombre por asignar]` (`@usuario_github`)
-  - **Desarrollador Backend / Integraciones:** `[Nombre por asignar]` (`@usuario_github`)
+  - **Desarrollador Backend Principal:** Juan Pablo Ahumada ([`@JuampaCL`](https://github.com/JuampaCL) · Discord: `@juampacl`)
+  - **Apoyo Seguridad API & Despliegue:** Daniel García Rojas ([`@DGRcodex`](https://github.com/DGRcodex) · Discord: `@D.G.R.`)
 
 ---
 

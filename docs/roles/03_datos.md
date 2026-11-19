@@ -4,7 +4,8 @@
 * **Área:** Modelado de Datos, Métricas de Satisfacción & Business Intelligence.
 * **Tecnologías:** PostgreSQL, Python (Pandas/NumPy), SQL, Modelado ERD, Visualización.
 * **Integrantes Asignados:**
-  - **Especialista de Datos Principal:** `[Nombre por asignar]` (`@usuario_github`)
+  - **Especialista de Datos Principal:** Bernarda Rodríguez ([`@bernarda2020163`](https://github.com/bernarda2020163) · Discord: `@bernarda_rodriguez_81811`)
+  - **Apoyo en Modelado de Datos (ERD) & Carga:** Juan Pablo Ahumada ([`@JuampaCL`](https://github.com/JuampaCL) · Discord: `@juampacl`)
 
 ---
 
