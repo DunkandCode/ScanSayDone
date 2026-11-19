@@ -27,3 +27,6 @@ ENV/
 # Variables de entorno (incluye .env.local que entrega Vercel)
 .env*
 !.env.example
+
+# Credenciales del login de demostración en texto plano (scripts/usuarios_demo.py)
+credenciales_demo*.csv

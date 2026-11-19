@@ -10,16 +10,24 @@ scansaydone-back/
 ├── scansaydone/
 │   ├── config.py            # Variables de entorno (no se conecta a la BD al importar)
 │   ├── db.py                # Engine creado en el primer uso y dependencia `get_session`
-│   ├── models.py            # Tablas del ERD: dim_rubros, dim_empresas, fact_encuestas
+│   ├── models.py            # Tablas del ERD + dim_usuarios (login de demostración)
 │   ├── catalogo.py          # Preguntas y etiquetas P3/P4/P5 de los 4 rubros
 │   ├── schemas.py           # Modelos Pydantic de entrada y salida
+│   ├── registro.py          # Arma la fila de fact_encuestas con sus derivados (API y carga)
 │   ├── reglas.py            # Categoría NPS, alerta y variables temporales (hora de Chile)
 │   ├── nlp.py               # Clasificador de comentarios (copia del pipeline de datos)
 │   ├── metricas.py          # Cálculo del NPS
 │   ├── demo.py              # Negocios de demostración
-│   └── routers/             # general, qr, analytics, respuestas, empresas
-├── alembic/                 # Migraciones (0001: tablas iniciales con RLS)
-├── scripts/seed_demo.py     # Crea los negocios de demostración
+│   ├── simulacion.py        # Lectura y carga del Excel de 80 encuestas simuladas (#16)
+│   ├── seguridad.py         # Cifrado de contraseñas (PBKDF2-SHA256)
+│   ├── usuarios_demo.py     # Genera y carga las credenciales de demostración
+│   ├── panel.py             # Agregado del panel (NPS, CSAT, atributos, alertas, serie)
+│   └── routers/             # general, qr, analytics, respuestas, empresas, auth
+├── alembic/                 # Migraciones (0001: tablas iniciales con RLS; 0002: dim_usuarios)
+├── scripts/
+│   ├── seed_demo.py         # Crea los negocios de demostración
+│   ├── cargar_simulacion.py # Carga las 80 encuestas simuladas del Excel (#16)
+│   └── usuarios_demo.py     # Credenciales del login de demostración (generar / cargar)
 └── tests/                   # pytest (SQLite en memoria; no necesita Supabase)
 ```
 
@@ -55,10 +63,16 @@ La aplicación acepta las URLs tal como las entrega Supabase (`postgres://...`) 
 ```powershell
 alembic upgrade head             # crea las tablas, los 4 rubros y activa RLS
 python scripts/seed_demo.py      # crea los 4 negocios de demostración y muestra sus IDs
+python scripts/cargar_simulacion.py --prueba   # valida el Excel y simula la carga sin guardar
+python scripts/cargar_simulacion.py            # carga las 80 encuestas simuladas
+python scripts/usuarios_demo.py generar        # crea credenciales_demo.csv (texto plano, fuera de git)
+python scripts/usuarios_demo.py cargar         # cifra las contraseñas y crea un usuario por empresa
 ```
 
-- **RLS:** las tres tablas tienen RLS activado y sin políticas, así que la API pública de Supabase no puede leer ni escribir. Solo este backend accede a los datos; el frontend debe enviar las respuestas con `POST /api/v1/respuestas`.
+- **RLS:** todas las tablas tienen RLS activado y sin políticas, así que la API pública de Supabase no puede leer ni escribir. Solo este backend accede a los datos; el frontend debe enviar las respuestas con `POST /api/v1/respuestas`.
 - **`seed_demo.py`** es idempotente. Los IDs que imprime sirven para cargar el dataset de 80 encuestas simuladas.
+- **`cargar_simulacion.py`** lee la hoja «Datos_encuesta» de `docs/datos/datasets/simulacion_80_encuestas.xlsx` (necesita `requirements-dev.txt`). Valida cada fila con las mismas reglas del endpoint y falla sin cargar nada si alguna no cuadra. Del Excel toma solo los datos crudos (fecha, hora, negocio, P1–P5) y recalcula categoría, alerta y tipo de comentario con las reglas del backend; `creado_en` queda con la fecha y hora de la encuesta. Es idempotente y crea las empresas de demostración si faltan.
+- **`usuarios_demo.py`** trabaja en dos pasos para poder guardar las contraseñas antes de cifrarlas: `generar` crea un usuario por empresa (por ejemplo `cafe_rincon_andino`) con una contraseña aleatoria de 12 caracteres y los escribe en `credenciales_demo.csv`, que git ignora y que no se sobrescribe sin `--forzar`. `cargar` cifra las contraseñas con PBKDF2-SHA256 y las guarda en `dim_usuarios`; si el usuario ya existe, cambia su contraseña. Diseño: `docs/integracion/BACKEND-LOGIN-Y-PANEL-2026-11-18.md`.
 - Si cambias `models.py`, crea una migración nueva: una prueba falla si el esquema migrado y los modelos difieren.
 
 ## Pruebas
@@ -78,6 +92,8 @@ Usan SQLite en memoria, así que no necesitan Supabase ni variables de entorno. 
 | `POST` | `/api/v1/nps/calculate` | Recibe una lista de notas `[10, 9, 8, 4]` y devuelve el NPS y su categoría. |
 | `GET` | `/api/v1/empresas/{empresa_id}/encuesta` | Negocio y textos de las 5 preguntas de su rubro. |
 | `POST` | `/api/v1/respuestas` | Registra una encuesta anónima. |
+| `POST` | `/api/v1/auth/login` | Login de demostración: devuelve la empresa del usuario. |
+| `GET` | `/api/v1/empresas/{empresa_id}/panel` | Agregado y detalle de todas las respuestas de la empresa. |
 
 ### `POST /api/v1/respuestas`
 
@@ -129,6 +145,29 @@ Respuestas:
 
 Devuelve `404` si la empresa no existe.
 
+### `POST /api/v1/auth/login`
+
+Login de demostración (se reemplaza por Supabase Auth en el Sprint 4). No abre sesión ni entrega token.
+
+```json
+{ "usuario": "cafe_rincon_andino", "contrasena": "••••••••••••" }
+```
+
+- El usuario se compara sin espacios a los lados y en minúsculas; la contraseña, tal cual.
+- `200` → `{"usuario": "cafe_rincon_andino", "empresa_id": 2, "nombre_negocio": "Café Rincón Andino"}`
+- `401` → `{"detail": "Usuario o contraseña incorrectos."}` (mismo mensaje si el usuario no existe)
+- `422` → cuerpo inválido (campos vacíos, extra o demasiado largos).
+
+### `GET /api/v1/empresas/{empresa_id}/panel`
+
+Entrega **todo el historial** de la empresa, sin filtrar por fechas. Sin autenticación: cualquiera que conozca el `empresa_id` puede consultarlo (aceptado para la demo).
+
+- `empresa`: `empresa_id`, `nombre_negocio`, `rubro`.
+- `agregado`: `respuestas`, `desde`/`hasta` (primera y última fecha con datos), `nps`, `promotores` (9–10), `pasivos`, `detractores`, `notas_8_a_10`, `media_p1`, `csat` (% de P2 en 4 o 5), `media_p2`, `p3`/`p4` (`etiqueta`, `media`, `top_box`), `alertas`, `comentarios` (`felicitacion`, `reclamo`, `sugerencia`, `sin_comentario`), `distribucion_p1` (siempre 11 filas, nota 0 a 10) y `serie_diaria` (solo días con respuestas).
+- `respuestas`: detalle de cada encuesta, de la más reciente a la más antigua, con `alerta` como `true`/`false`.
+
+Las fórmulas son las del pipeline del área de datos. Sin respuestas, los conteos van en `0`, las listas vacías y lo que no se puede calcular (`nps`, medias, porcentajes, `desde`, `hasta`) en `null`. Devuelve `404` si la empresa no existe. Forma completa y ejemplo: `docs/integracion/BACKEND-LOGIN-Y-PANEL-2026-11-18.md`.
+
 ## Despliegue
 
 Está previsto desplegarlo en el mismo proyecto de Vercel que el frontend, mediante Vercel Services: `/api/...` llega a este backend y el resto al frontend. La configuración y su validación en una vista previa están descritas en `docs/superpowers/specs/2026-11-05-backend-respuestas-design.md` (sección «Despliegue en Vercel»).
@@ -136,5 +175,4 @@ Está previsto desplegarlo en el mismo proyecto de Vercel que el frontend, media
 ## Pendiente
 
 - Rate limiting por IP y sanitización de comentarios (#15).
-- Carga del dataset de 80 encuestas y validación de fórmulas (#16).
 - Endpoints de métricas del dashboard y autenticación con Supabase Auth (Sprint 4).

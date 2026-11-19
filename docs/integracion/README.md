@@ -1,9 +1,11 @@
 # Integración frontend ↔ backend
 
-> Carpeta de documentos que cruzan los dos lados. **Todo en BORRADOR.** No son contratos
-> aprobados: son preguntas y requisitos para revisar en la reunión.
+> Carpeta de documentos que cruzan los dos lados. Los documentos de noviembre 12 siguen en
+> BORRADOR: son preguntas y requisitos para revisar. **Excepción:** `CONTRATO-API-BACKEND-2026-11-19-JPA.md`
+> es el contrato vigente de la rama `dev/JuampaCL` (verificado localmente el 2026-11-19).
 >
-> Rama: `dev/nicolaslopezv-front` (`ce7c594`). Fecha: 2026-11-12.
+> Rama de trabajo: `dev/nicolaslopezv-front`. Los documentos del 2026-11-18 y 2026-11-19 se
+> incorporaron desde `dev/JuampaCL` sin tocar el trabajo del frontend.
 
 ## Documentos
 
@@ -14,6 +16,8 @@
 | `BACKEND-SUPABASE-2026-11-18.md` | Operador / backend | Revisión de los 33 `.py`: inventario, cadena de conexión, runbook paso a paso para conectar a Supabase, errores probables y riesgos |
 | `SUPABASE-LECTURA-2026-11-18.md` | Operador | Cómo leer datos desde Supabase/Vercel sin escribir: rutas de acceso, cadena recomendada, patrón read-only, verificación de tablas, consultas de métricas, obtención de credenciales y riesgos |
 | `API-LECTURA-2026-11-18.md` | Operador / backend | Sondeo del despliegue: el dominio público solo sirve el frontend (`/health` y `/api/*` dan 404); qué endpoints existen, qué superficie de lectura falta y cómo desbloquearla |
+| `CONTRATO-API-BACKEND-2026-11-19-JPA.md` | Agentes de IA / frontend | **Contrato vigente** de la rama `dev/JuampaCL`: login demo, `GET /empresas/{id}/panel` con agregado y detalle, fórmulas, errores y limitaciones. Precedencia: código y OpenAPI primero, luego este documento |
+| `BACKEND-LOGIN-Y-PANEL-2026-11-18.md` | Backend | Diseño del login demo y del endpoint de panel por empresa; §11 lista las diferencias con el contrato |
 
 ## Documentos relacionados (fuera de esta carpeta)
 
