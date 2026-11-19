@@ -9,8 +9,8 @@ MAX_CARACTERES_COMENTARIO = 300
 MAX_ID = 2_147_483_647
 
 
-class RespuestaEntrada(BaseModel):
-    """Payload de POST /api/v1/respuestas.
+class RespuestasEncuesta(BaseModel):
+    """Las 5 respuestas de una encuesta, validadas igual venga de la API o de una carga masiva.
 
     Los enteros son estrictos: `"9"`, `9.0` y `true` se rechazan en vez de convertirse.
     Se rechazan también los campos desconocidos.
@@ -18,7 +18,6 @@ class RespuestaEntrada(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    empresa_id: int = Field(strict=True, ge=1, le=MAX_ID)
     p1_nps: int = Field(strict=True, ge=0, le=10, description="Probabilidad de recomendar (0-10)")
     p2_csat: int = Field(strict=True, ge=1, le=5, description="Satisfacción global (1-5)")
     p3_atributo: int = Field(strict=True, ge=1, le=5, description="Atributo 1 del rubro (1-5)")
@@ -35,6 +34,12 @@ class RespuestaEntrada(BaseModel):
         if valor and "\x00" in valor:
             raise ValueError("El comentario contiene caracteres no permitidos.")
         return valor or None  # un comentario vacío tras recortar se guarda como NULL
+
+
+class RespuestaEntrada(RespuestasEncuesta):
+    """Payload de POST /api/v1/respuestas: las 5 respuestas más el negocio que las recibe."""
+
+    empresa_id: int = Field(strict=True, ge=1, le=MAX_ID)
 
 
 class RespuestaCreada(BaseModel):

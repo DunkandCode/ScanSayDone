@@ -13,13 +13,17 @@ scansaydone-back/
 │   ├── models.py            # Tablas del ERD: dim_rubros, dim_empresas, fact_encuestas
 │   ├── catalogo.py          # Preguntas y etiquetas P3/P4/P5 de los 4 rubros
 │   ├── schemas.py           # Modelos Pydantic de entrada y salida
+│   ├── registro.py          # Arma la fila de fact_encuestas con sus derivados (API y carga)
 │   ├── reglas.py            # Categoría NPS, alerta y variables temporales (hora de Chile)
 │   ├── nlp.py               # Clasificador de comentarios (copia del pipeline de datos)
 │   ├── metricas.py          # Cálculo del NPS
 │   ├── demo.py              # Negocios de demostración
+│   ├── simulacion.py        # Lectura y carga del Excel de 80 encuestas simuladas (#16)
 │   └── routers/             # general, qr, analytics, respuestas, empresas
 ├── alembic/                 # Migraciones (0001: tablas iniciales con RLS)
-├── scripts/seed_demo.py     # Crea los negocios de demostración
+├── scripts/
+│   ├── seed_demo.py         # Crea los negocios de demostración
+│   └── cargar_simulacion.py # Carga las 80 encuestas simuladas del Excel (#16)
 └── tests/                   # pytest (SQLite en memoria; no necesita Supabase)
 ```
 
@@ -55,10 +59,13 @@ La aplicación acepta las URLs tal como las entrega Supabase (`postgres://...`) 
 ```powershell
 alembic upgrade head             # crea las tablas, los 4 rubros y activa RLS
 python scripts/seed_demo.py      # crea los 4 negocios de demostración y muestra sus IDs
+python scripts/cargar_simulacion.py --prueba   # valida el Excel y simula la carga sin guardar
+python scripts/cargar_simulacion.py            # carga las 80 encuestas simuladas
 ```
 
 - **RLS:** las tres tablas tienen RLS activado y sin políticas, así que la API pública de Supabase no puede leer ni escribir. Solo este backend accede a los datos; el frontend debe enviar las respuestas con `POST /api/v1/respuestas`.
 - **`seed_demo.py`** es idempotente. Los IDs que imprime sirven para cargar el dataset de 80 encuestas simuladas.
+- **`cargar_simulacion.py`** lee la hoja «Datos_encuesta» de `docs/datos/datasets/simulacion_80_encuestas.xlsx` (necesita `requirements-dev.txt`). Valida cada fila con las mismas reglas del endpoint y falla sin cargar nada si alguna no cuadra. Del Excel toma solo los datos crudos (fecha, hora, negocio, P1–P5) y recalcula categoría, alerta y tipo de comentario con las reglas del backend; `creado_en` queda con la fecha y hora de la encuesta. Es idempotente y crea las empresas de demostración si faltan.
 - Si cambias `models.py`, crea una migración nueva: una prueba falla si el esquema migrado y los modelos difieren.
 
 ## Pruebas
@@ -136,5 +143,4 @@ Está previsto desplegarlo en el mismo proyecto de Vercel que el frontend, media
 ## Pendiente
 
 - Rate limiting por IP y sanitización de comentarios (#15).
-- Carga del dataset de 80 encuestas y validación de fórmulas (#16).
 - Endpoints de métricas del dashboard y autenticación con Supabase Auth (Sprint 4).
