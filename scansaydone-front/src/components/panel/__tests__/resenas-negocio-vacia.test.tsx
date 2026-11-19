@@ -36,7 +36,7 @@ describe("ResenasNegocio con un negocio sin respuestas", () => {
       screen.getByRole("heading", { name: "Reseñas de este negocio" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Datos simulados del servicio local/),
+      screen.getByText(/Datos simulados del servicio/),
     ).toBeInTheDocument();
   });
 });

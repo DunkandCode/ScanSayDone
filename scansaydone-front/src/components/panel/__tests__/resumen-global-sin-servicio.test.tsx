@@ -92,7 +92,7 @@ describe("ResumenGlobal: estados sin servicio", () => {
     render(<ResumenGlobal />);
 
     expect(
-      await screen.findByText(/Datos simulados del servicio local/),
+      await screen.findByText(/Datos simulados del servicio/),
     ).toBeInTheDocument();
   });
 });

@@ -83,7 +83,7 @@ describe("ResultadosNegocio: estados de falla", () => {
     stubRespuesta(500);
     render(<ResultadosNegocio empresaId={1} />);
     expect(
-      await screen.findByText(/Datos simulados del servicio local/),
+      await screen.findByText(/Datos simulados del servicio/),
     ).toBeInTheDocument();
   });
 });

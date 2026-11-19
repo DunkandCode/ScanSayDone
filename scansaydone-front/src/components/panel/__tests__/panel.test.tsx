@@ -142,7 +142,7 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     render(<PanelPage />);
     expect(
       screen.getByText(
-        "Datos simulados del servicio local · 19 al 31 de octubre · no son clientes reales",
+        "Datos simulados del servicio · 19 al 31 de octubre · no son clientes reales",
       ),
     ).toBeInTheDocument();
     // El resumen llega (no queda en "consultando").
@@ -204,6 +204,33 @@ describe("PanelPage: pestañas con datos del servicio", () => {
     expect(within(bloques[0]).queryByText("muestra mínima")).not.toBeInTheDocument();
     expect(within(bloques[1]).queryByText("muestra mínima")).not.toBeInTheDocument();
     expect(within(bloques[2]).getByText("muestra mínima")).toBeInTheDocument();
+  });
+
+  it("5b. «muestra mínima» es una nota separada del conteo, debajo de la fila", async () => {
+    render(<PanelPage />);
+
+    const momento = await screen.findByLabelText(
+      "Cantidad de respuestas por momento del día",
+    );
+
+    // Título acortado: no se parte en dos líneas en la columna angosta.
+    expect(
+      screen.getByRole("heading", { name: "Por momento del día" }),
+    ).toBeInTheDocument();
+
+    const bloques = within(momento).getAllByRole("listitem");
+
+    // Noche (2 respuestas): la nota vive en un elemento APARTE del conteo,
+    // nunca en el mismo nodo de texto del número.
+    const conteoNoche = within(bloques[2]).getByText("2");
+    const notaNoche = within(bloques[2]).getByText("muestra mínima");
+    expect(notaNoche).not.toBe(conteoNoche);
+    expect(conteoNoche.textContent).not.toContain("muestra mínima");
+    expect(notaNoche.textContent).toBe("muestra mínima");
+    // En el orden del DOM la nota va después del conteo (debajo de la fila).
+    expect(notaNoche.compareDocumentPosition(conteoNoche)).toBe(
+      Node.DOCUMENT_POSITION_PRECEDING,
+    );
   });
 
   it("6. tabla por negocio: 4 empresas con recomendación neta 25,0 / 25,0 / 50,0 / 5,0", async () => {

@@ -37,7 +37,7 @@ describe("ResultadosNegocio", () => {
     // Etiqueta obligatoria de origen de los datos.
     expect(
       screen.getByText(
-        "Datos simulados del servicio local · 19 al 31 de octubre · no son clientes reales",
+        "Datos simulados del servicio · 19 al 31 de octubre · no son clientes reales",
       ),
     ).toBeInTheDocument();
 
@@ -121,7 +121,7 @@ describe("ResultadosNegocio", () => {
       await screen.findByText("Sin respuestas registradas para este negocio."),
     ).toBeInTheDocument();
     // La etiqueta obligatoria sigue visible y no hay cifras.
-    expect(screen.getByText(/Datos simulados del servicio local/)).toBeInTheDocument();
+    expect(screen.getByText(/Datos simulados del servicio/)).toBeInTheDocument();
     expect(screen.queryByText("25,0")).not.toBeInTheDocument();
   });
 

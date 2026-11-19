@@ -202,9 +202,7 @@ function ResumenDatos({
           <DistribucionNotas distribucion={datos.distribucion} />
         </div>
         <div className="min-w-0 flex-1 lg:flex-[1]">
-          <TituloSeccion id="resumen-momento">
-            Respuestas por momento del día
-          </TituloSeccion>
+          <TituloSeccion id="resumen-momento">Por momento del día</TituloSeccion>
           <GraficoPorMomento bloques={bloques} />
         </div>
       </div>
@@ -270,10 +268,61 @@ function Cifra({
   );
 }
 
-/* ── Barras: tonos por rango (mismos que el resto del panel) ──────────────── */
+/* ── Barras: tono único del panel (sin resaltar rangos) ──────────────────── */
 
 function tonoBarra(): string {
   return "#8A6F55";
+}
+
+/* ── Fila de barra: patrón único para los tres gráficos ─────────────────────
+ * [etiqueta fija] [pista flexible] [valor fijo]. La etiqueta nunca se parte
+ * (`whitespace-nowrap` + `tabular-nums`); la barra interior mide sobre el
+ * máximo del conjunto (si el máximo es 0, todas quedan en 0, sin dividir
+ * por cero); el valor comparte tamaño tipográfico con la etiqueta. La fila
+ * mide 20 px en los tres gráficos, con bordes izquierdos alineados.
+ */
+
+function FilaBarra({
+  ariaLabel,
+  claseEtiqueta,
+  conteo,
+  etiqueta,
+  max,
+  nota,
+}: {
+  ariaLabel: string;
+  /** Ancho y alineación de la etiqueta: `w-14 text-right`, el MISMO valor
+   *  en los tres gráficos, para que las barras compartan el mismo origen
+   *  izquierdo (la columna de etiqueta es fija; el contenido no la ensancha). */
+  claseEtiqueta: string;
+  conteo: number;
+  etiqueta: string;
+  max: number;
+  /** Nota opcional DEBAJO de la fila (elemento aparte del conteo). */
+  nota?: React.ReactNode;
+}) {
+  const ancho = max > 0 ? (conteo / max) * 100 : 0;
+  return (
+    <li aria-label={ariaLabel} className="flex flex-col">
+      <div className="flex items-center gap-2">
+        <span
+          className={`shrink-0 whitespace-nowrap font-ui text-[13px] tabular-nums text-text-secondary ${claseEtiqueta}`}
+        >
+          {etiqueta}
+        </span>
+        <div className="h-[20px] min-w-0 flex-1" aria-hidden="true">
+          <div
+            className="h-full rounded-[2px]"
+            style={{ width: `${ancho}%`, background: tonoBarra() }}
+          />
+        </div>
+        <span className="min-w-[28px] shrink-0 text-right font-ui text-[13px] tabular-nums text-text-secondary sm:min-w-[36px]">
+          {conteo}
+        </span>
+      </div>
+      {nota}
+    </li>
+  );
 }
 
 /* ── Gráfico por día (filas horizontales, conteo visible) ─────────────────── */
@@ -286,7 +335,7 @@ function GraficoPorDia({ serie }: { serie: readonly PuntoDia[] }) {
       </p>
     );
   }
-  const max = Math.max(...serie.map((p) => p.respuestas), 1);
+  const max = Math.max(...serie.map((p) => p.respuestas));
   return (
     <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-4 xs:p-5">
       <ul
@@ -296,27 +345,14 @@ function GraficoPorDia({ serie }: { serie: readonly PuntoDia[] }) {
         {serie.map((punto) => {
           const dia = formatearDiaMes(punto.fecha);
           return (
-            <li
+            <FilaBarra
               key={punto.fecha}
-              aria-label={`${dia}: ${punto.respuestas} ${punto.respuestas === 1 ? "respuesta" : "respuestas"}`}
-              className="flex items-center gap-3"
-            >
-              <span className="w-10 shrink-0 text-right font-ui text-[13px] tabular-nums text-text-secondary">
-                {dia}
-              </span>
-              <div className="h-[18px] min-w-0 flex-1" aria-hidden="true">
-                <div
-                  className="h-full rounded-[2px]"
-                  style={{
-                    width: `${(punto.respuestas / max) * 100}%`,
-                    background: tonoBarra(),
-                  }}
-                />
-              </div>
-              <span className="w-10 shrink-0 text-right font-ui text-[12px] tabular-nums text-text-secondary">
-                {punto.respuestas}
-              </span>
-            </li>
+              ariaLabel={`${dia}: ${punto.respuestas} ${punto.respuestas === 1 ? "respuesta" : "respuestas"}`}
+              claseEtiqueta="w-14 text-right"
+              conteo={punto.respuestas}
+              etiqueta={dia}
+              max={max}
+            />
           );
         })}
       </ul>
@@ -324,16 +360,10 @@ function GraficoPorDia({ serie }: { serie: readonly PuntoDia[] }) {
   );
 }
 
-/* ── Distribución 0–10 (filas horizontales, tonos por rango) ──────────────── */
-
-function tonoNota(nota: number): string {
-  if (nota <= 6) return "#8A6F55";
-  if (nota <= 8) return "color-mix(in srgb, #1A181B 20%, #8A6F55)";
-  return "color-mix(in srgb, #1A181B 40%, #8A6F55)";
-}
+/* ── Distribución 0–10 (mismas filas; sin resaltar rangos) ────────────────── */
 
 function DistribucionNotas({ distribucion }: { distribucion: readonly number[] }) {
-  const max = Math.max(...distribucion, 1);
+  const max = Math.max(...distribucion);
   return (
     <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-4 xs:p-5">
       <ul
@@ -341,23 +371,14 @@ function DistribucionNotas({ distribucion }: { distribucion: readonly number[] }
         aria-label="Cantidad de respuestas por nota, de la 0 a la 10"
       >
         {distribucion.map((count, nota) => (
-          <li key={nota} className="flex items-center gap-3">
-            <span className="w-6 shrink-0 text-right font-ui text-[13px] tabular-nums text-text-secondary">
-              {nota}
-            </span>
-            <div className="h-[18px] min-w-0 flex-1" aria-hidden="true">
-              <div
-                className="h-full rounded-[2px]"
-                style={{
-                  width: `${(count / max) * 100}%`,
-                  background: tonoNota(nota),
-                }}
-              />
-            </div>
-            <span className="w-10 shrink-0 text-right font-ui text-[12px] tabular-nums text-text-secondary">
-              {count}
-            </span>
-          </li>
+          <FilaBarra
+            key={nota}
+            ariaLabel={`Nota ${nota}: ${count} ${count === 1 ? "respuesta" : "respuestas"}`}
+            claseEtiqueta="w-14 text-right"
+            conteo={count}
+            etiqueta={String(nota)}
+            max={max}
+          />
         ))}
       </ul>
     </div>
@@ -372,7 +393,7 @@ function GraficoPorMomento({ bloques }: { bloques: ConteoBloques }) {
     { etiqueta: "Tarde", rango: "de 12 a 19", conteo: bloques.tarde },
     { etiqueta: "Noche", rango: "de 20 a 5", conteo: bloques.noche },
   ];
-  const max = Math.max(...filas.map((f) => f.conteo), 1);
+  const max = Math.max(...filas.map((f) => f.conteo));
   return (
     <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-4 xs:p-5">
       <ul
@@ -380,32 +401,25 @@ function GraficoPorMomento({ bloques }: { bloques: ConteoBloques }) {
         aria-label="Cantidad de respuestas por momento del día"
       >
         {filas.map((fila) => (
-          <li
+          <FilaBarra
             key={fila.etiqueta}
-            aria-label={`${fila.etiqueta} (${fila.rango}): ${fila.conteo} ${fila.conteo === 1 ? "respuesta" : "respuestas"}`}
-            className="flex items-center gap-3"
-          >
-            <span className="w-14 shrink-0 font-ui text-[13px] font-semibold text-text-primary">
-              {fila.etiqueta}
-            </span>
-            <div className="h-[18px] min-w-0 flex-1" aria-hidden="true">
-              <div
-                className="h-full rounded-[2px]"
-                style={{
-                  width: `${(fila.conteo / max) * 100}%`,
-                  background: tonoBarra(),
-                }}
-              />
-            </div>
-            <span className="shrink-0 font-ui text-[12px] tabular-nums text-text-secondary">
-              {fila.conteo}
-              {esMuestraMinima(fila.conteo) && (
-                <span className="ml-2 rounded-[4px] border border-border-mid px-1.5 py-0.5 text-[11px]">
-                  muestra mínima
-                </span>
-              )}
-            </span>
-          </li>
+            ariaLabel={`${fila.etiqueta} (${fila.rango}): ${fila.conteo} ${fila.conteo === 1 ? "respuesta" : "respuestas"}`}
+            claseEtiqueta="w-14 text-right"
+            conteo={fila.conteo}
+            etiqueta={fila.etiqueta}
+            max={max}
+            nota={
+              esMuestraMinima(fila.conteo) ? (
+                /* Nota debajo de la fila, en un elemento aparte del conteo:
+                 * nunca se superpone al número. */
+                <p className="mt-1 font-ui text-[12px] text-text-secondary">
+                  <span className="inline-block rounded-[4px] border border-border-mid px-1.5 py-0.5 text-[11px]">
+                    muestra mínima
+                  </span>
+                </p>
+              ) : undefined
+            }
+          />
         ))}
       </ul>
       <p className="mt-4 font-ui text-[12px] text-text-secondary">
@@ -416,7 +430,10 @@ function GraficoPorMomento({ bloques }: { bloques: ConteoBloques }) {
   );
 }
 
-/* ── Tabla por negocio: apilada en móvil (375), tabla real desde md ───────── */
+/* ── Tabla por negocio: apilada hasta lg (768 incluido), tabla real desde lg ─
+ * A 768 la tabla real (7 columnas) desbordaba el documento
+ * (scrollWidth 797 > clientWidth 768); el modo apilado se mantiene
+ * hasta 1024 px. */
 
 function TablaNegocios({
   filas,
@@ -424,13 +441,13 @@ function TablaNegocios({
   filas: readonly FilaNegocioGlobal[];
 }) {
   return (
-    <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-2 md:p-4">
+    <div className="mt-3 rounded-[8px] border border-border-subtle bg-surface-default p-2 lg:p-4">
       <table className="w-full border-collapse font-ui text-[14px] text-text-primary">
         <caption className="sr-only">
           Resumen por negocio: respuestas, media, promotores, detractores y
           recomendación neta
         </caption>
-        <thead className="hidden md:table-header-group">
+        <thead className="hidden lg:table-header-group">
           <tr className="text-left">
             <th
               scope="col"
@@ -480,11 +497,11 @@ function TablaNegocios({
           {filas.map((fila) => (
             <tr
               key={fila.empresaId}
-              className="block border-b border-border-subtle last:border-b-0 md:table-row md:border-b"
+              className="block border-b border-border-subtle last:border-b-0 lg:table-row lg:border-b"
             >
               <th
                 scope="row"
-                className="block px-3 pb-1 pt-3 text-left font-semibold text-text-primary md:table-cell md:px-3 md:py-2 md:font-medium"
+                className="block px-3 pb-1 pt-3 text-left font-semibold text-text-primary lg:table-cell lg:px-3 lg:py-2 lg:font-medium"
               >
                 {fila.nombre}
               </th>
@@ -525,12 +542,12 @@ function Celda({
 }) {
   return (
     <td
-      className={`block px-3 pb-1 pt-0.5 text-text-primary md:table-cell md:px-3 md:py-2 ${
-        numerica ? "tabular-nums md:text-right" : ""
+      className={`block px-3 pb-1 pt-0.5 text-text-primary lg:table-cell lg:px-3 lg:py-2 ${
+        numerica ? "tabular-nums lg:text-right" : ""
       }`}
     >
       {/* En móvil cada celda se apila con su etiqueta visible. */}
-      <span className="mr-2 text-text-secondary md:hidden">{etiqueta}:</span>
+      <span className="mr-2 text-text-secondary lg:hidden">{etiqueta}:</span>
       {children}
     </td>
   );

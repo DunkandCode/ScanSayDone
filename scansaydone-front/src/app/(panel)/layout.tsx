@@ -5,7 +5,7 @@ import { PanelNavLinks } from "@/components/panel/panel-nav";
 export const metadata: Metadata = {
   title: "Panel — ScanSayDone",
   description:
-    "Resultados de la encuesta por negocio, con datos simulados del servicio local.",
+    "Resultados de la encuesta por negocio, con datos simulados del servicio.",
   robots: {
     index: false,
     follow: false,
@@ -66,7 +66,7 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
         {/* Footer */}
         <div className="border-t border-border-subtle px-6 py-4">
           <p className="font-ui text-[13px] text-text-secondary">
-            Datos simulados del servicio local · no son clientes reales.
+            Datos simulados del servicio · no son clientes reales.
           </p>
         </div>
       </aside>

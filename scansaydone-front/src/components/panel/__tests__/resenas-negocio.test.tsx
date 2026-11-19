@@ -114,7 +114,7 @@ describe("ResenasNegocio contra el servicio", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Datos simulados del servicio local · 19 al 31 de octubre · no son clientes reales",
+        "Datos simulados del servicio · 19 al 31 de octubre · no son clientes reales",
       ),
     ).toBeInTheDocument();
     expect(
