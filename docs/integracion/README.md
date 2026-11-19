@@ -11,6 +11,9 @@
 |---|---|---|
 | `PREGUNTAS-BACKEND-2026-11-12.md` | Backend | 18 preguntas de integración con evidencia `archivo:línea`, default recomendado y qué se rompe si quedan sin responder. Incluye archivos consumibles, mapa de campos y brechas bloqueantes |
 | `REQUISITOS-FRONTEND-DASHBOARD-2026-11-12.md` | Backend + datos | Qué necesita el panel para dejar de ser demo: bloques, forma de datos, decisiones D1–D6, propuesta de respuesta y qué no debe enviar el backend |
+| `BACKEND-SUPABASE-2026-11-18.md` | Operador / backend | Revisión de los 33 `.py`: inventario, cadena de conexión, runbook paso a paso para conectar a Supabase, errores probables y riesgos |
+| `SUPABASE-LECTURA-2026-11-18.md` | Operador | Cómo leer datos desde Supabase/Vercel sin escribir: rutas de acceso, cadena recomendada, patrón read-only, verificación de tablas, consultas de métricas, obtención de credenciales y riesgos |
+| `API-LECTURA-2026-11-18.md` | Operador / backend | Sondeo del despliegue: el dominio público solo sirve el frontend (`/health` y `/api/*` dan 404); qué endpoints existen, qué superficie de lectura falta y cómo desbloquearla |
 
 ## Documentos relacionados (fuera de esta carpeta)
 
