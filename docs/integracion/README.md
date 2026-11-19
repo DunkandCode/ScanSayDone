@@ -11,6 +11,7 @@
 |---|---|---|
 | `PREGUNTAS-BACKEND-2026-11-12.md` | Backend | 18 preguntas de integración con evidencia `archivo:línea`, default recomendado y qué se rompe si quedan sin responder. Incluye archivos consumibles, mapa de campos y brechas bloqueantes |
 | `REQUISITOS-FRONTEND-DASHBOARD-2026-11-12.md` | Backend + datos | Qué necesita el panel para dejar de ser demo: bloques, forma de datos, decisiones D1–D6, propuesta de respuesta y qué no debe enviar el backend |
+| `BACKEND-LOGIN-Y-PANEL-2026-11-18.md` | Backend + frontend | Diseño del login de demostración (tabla `dim_usuarios`, credenciales en dos pasos) y del endpoint del panel con el agregado y el detalle de cada respuesta |
 
 ## Documentos relacionados (fuera de esta carpeta)
 

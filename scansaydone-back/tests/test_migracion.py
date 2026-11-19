@@ -130,3 +130,45 @@ def test_check_rechaza_p1_fuera_de_rango_en_el_modelo(sesion, empresa_cafe):
     )
     with pytest.raises(sa.exc.IntegrityError):
         sesion.flush()
+
+
+# --- Migración 0002: dim_usuarios ----------------------------------------------------------
+
+
+def _insertar_usuario(engine, usuario="cafe_rincon_andino", empresa_id=1):
+    with engine.begin() as conexion:
+        conexion.execute(
+            sa.text(
+                "insert into dim_usuarios (usuario, hash_contrasena, empresa_id) "
+                "values (:usuario, 'pbkdf2_sha256$1$c2Fs$aGFzaA==', :empresa_id)"
+            ),
+            {"usuario": usuario, "empresa_id": empresa_id},
+        )
+
+
+def test_migracion_crea_dim_usuarios_con_creado_en(bd_migrada):
+    _insertar_usuario(bd_migrada)
+    with bd_migrada.connect() as conexion:
+        fila = conexion.execute(sa.text("select usuario, empresa_id, creado_en from dim_usuarios")).one()
+    assert fila.usuario == "cafe_rincon_andino"
+    assert fila.empresa_id == 1
+    assert fila.creado_en is not None
+
+
+def test_migracion_rechaza_usuario_repetido(bd_migrada):
+    _insertar_usuario(bd_migrada)
+    with pytest.raises(sa.exc.IntegrityError):
+        _insertar_usuario(bd_migrada)
+
+
+def test_migracion_activa_rls_en_dim_usuarios(monkeypatch):
+    monkeypatch.setenv("POSTGRES_URL_NON_POOLING", "postgresql://u:p@h:5432/db")
+    salida = io.StringIO()
+    command.upgrade(Config(str(ALEMBIC_INI), output_buffer=salida), "head", sql=True)
+
+    assert "ALTER TABLE dim_usuarios ENABLE ROW LEVEL SECURITY" in salida.getvalue()
+
+
+def test_migracion_0002_se_puede_revertir(bd_migrada, monkeypatch):
+    command.downgrade(Config(str(ALEMBIC_INI)), "0001")
+    assert "dim_usuarios" not in sa.inspect(bd_migrada).get_table_names()
